@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>2.3 Visualisation | R for Data Analytics</title>
+  <title>3.1 Introduction to Text Mining | R for Data Analytics</title>
   <meta name="description" content="This is a collection of examples on using R for Data Analytics" />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="2.3 Visualisation | R for Data Analytics" />
+  <meta property="og:title" content="3.1 Introduction to Text Mining | R for Data Analytics" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="2.3 Visualisation | R for Data Analytics" />
+  <meta name="twitter:title" content="3.1 Introduction to Text Mining | R for Data Analytics" />
   
   <meta name="twitter:description" content="This is a collection of examples on using R for Data Analytics" />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="2-2-data-preprocessing.html"/>
-<link rel="next" href="2-4-regression-analysis-using-lm.html"/>
+<link rel="prev" href="3-text-mining-using-r.html"/>
+<link rel="next" href="4-work-in-progress.html"/>
 <script src="libs/header-attrs-2.3/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -146,45 +146,38 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.2.4" data-path="1-2-technical-charts.html"><a href="1-2-technical-charts.html#add-technical-indicators"><i class="fa fa-check"></i><b>1.2.4</b> Add technical indicators</a></li>
 <li class="chapter" data-level="1.2.5" data-path="1-2-technical-charts.html"><a href="1-2-technical-charts.html#adding-indicators-sequentially"><i class="fa fa-check"></i><b>1.2.5</b> Adding indicators sequentially</a></li>
 </ul></li>
+<li class="chapter" data-level="1.3" data-path="1-3-investment-beta-using-r-single-index-model.html"><a href="1-3-investment-beta-using-r-single-index-model.html"><i class="fa fa-check"></i><b>1.3</b> Investment <span class="math inline">\(\beta\)</span> using R (Single Index Model)</a></li>
+<li class="chapter" data-level="1.4" data-path="1-4-data-preprocessing.html"><a href="1-4-data-preprocessing.html"><i class="fa fa-check"></i><b>1.4</b> Data preprocessing</a></li>
+<li class="chapter" data-level="1.5" data-path="1-5-visualisation.html"><a href="1-5-visualisation.html"><i class="fa fa-check"></i><b>1.5</b> Visualisation</a></li>
+<li class="chapter" data-level="1.6" data-path="1-6-regression-analysis-using-lm.html"><a href="1-6-regression-analysis-using-lm.html"><i class="fa fa-check"></i><b>1.6</b> Regression analysis using lm</a></li>
+<li class="chapter" data-level="1.7" data-path="1-7-value-at-risk.html"><a href="1-7-value-at-risk.html"><i class="fa fa-check"></i><b>1.7</b> Value at Risk</a></li>
+<li class="chapter" data-level="1.8" data-path="1-8-volatility-modelling-forecasting-using-garch.html"><a href="1-8-volatility-modelling-forecasting-using-garch.html"><i class="fa fa-check"></i><b>1.8</b> Volatility Modelling &amp; Forecasting using GARCH</a></li>
+<li class="chapter" data-level="1.9" data-path="1-9-garch11-to-forecast-var.html"><a href="1-9-garch11-to-forecast-var.html"><i class="fa fa-check"></i><b>1.9</b> GARCH(1,1) to forecast VaR</a></li>
+<li class="chapter" data-level="1.10" data-path="1-10-var-forecasts-using-out-of-sample.html"><a href="1-10-var-forecasts-using-out-of-sample.html"><i class="fa fa-check"></i><b>1.10</b> VaR forecasts using out of sample</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="2-linear-regression.html"><a href="2-linear-regression.html"><i class="fa fa-check"></i><b>2</b> Linear Regression</a>
+<li class="chapter" data-level="2" data-path="2-decision-trees-using-r.html"><a href="2-decision-trees-using-r.html"><i class="fa fa-check"></i><b>2</b> Decision Trees using R</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="2-1-investment-beta-using-r-single-index-model.html"><a href="2-1-investment-beta-using-r-single-index-model.html"><i class="fa fa-check"></i><b>2.1</b> Investment <span class="math inline">\(\beta\)</span> using R (Single Index Model)</a></li>
-<li class="chapter" data-level="2.2" data-path="2-2-data-preprocessing.html"><a href="2-2-data-preprocessing.html"><i class="fa fa-check"></i><b>2.2</b> Data preprocessing</a></li>
-<li class="chapter" data-level="2.3" data-path="2-3-visualisation.html"><a href="2-3-visualisation.html"><i class="fa fa-check"></i><b>2.3</b> Visualisation</a></li>
-<li class="chapter" data-level="2.4" data-path="2-4-regression-analysis-using-lm.html"><a href="2-4-regression-analysis-using-lm.html"><i class="fa fa-check"></i><b>2.4</b> Regression analysis using lm</a></li>
-</ul></li>
-<li class="chapter" data-level="3" data-path="3-forecasting-var-using-garch-models.html"><a href="3-forecasting-var-using-garch-models.html"><i class="fa fa-check"></i><b>3</b> Forecasting VaR using GARCH Models</a>
+<li class="chapter" data-level="2.1" data-path="2-1-import-data-and-pre-processing.html"><a href="2-1-import-data-and-pre-processing.html"><i class="fa fa-check"></i><b>2.1</b> Import Data and Pre-processing</a></li>
+<li class="chapter" data-level="2.2" data-path="2-2-visualisation-some-features.html"><a href="2-2-visualisation-some-features.html"><i class="fa fa-check"></i><b>2.2</b> Visualisation some features</a></li>
+<li class="chapter" data-level="2.3" data-path="2-3-creating-training-and-testing-set-and-control.html"><a href="2-3-creating-training-and-testing-set-and-control.html"><i class="fa fa-check"></i><b>2.3</b> Creating Training and Testing Set and Control</a></li>
+<li class="chapter" data-level="2.4" data-path="2-4-train-the-model-on-the-training-set.html"><a href="2-4-train-the-model-on-the-training-set.html"><i class="fa fa-check"></i><b>2.4</b> Train the model on the training set</a></li>
+<li class="chapter" data-level="2.5" data-path="2-5-prediction-and-accuracy.html"><a href="2-5-prediction-and-accuracy.html"><i class="fa fa-check"></i><b>2.5</b> Prediction and Accuracy</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="3-1-value-at-risk.html"><a href="3-1-value-at-risk.html"><i class="fa fa-check"></i><b>3.1</b> Value at Risk</a></li>
-<li class="chapter" data-level="3.2" data-path="3-2-volatility-modelling-forecasting-using-garch.html"><a href="3-2-volatility-modelling-forecasting-using-garch.html"><i class="fa fa-check"></i><b>3.2</b> Volatility Modelling &amp; Forecasting using GARCH</a></li>
-<li class="chapter" data-level="3.3" data-path="3-3-garch11-to-forecast-var.html"><a href="3-3-garch11-to-forecast-var.html"><i class="fa fa-check"></i><b>3.3</b> GARCH(1,1) to forecast VaR</a></li>
-<li class="chapter" data-level="3.4" data-path="3-4-var-forecasts-using-out-of-sample.html"><a href="3-4-var-forecasts-using-out-of-sample.html"><i class="fa fa-check"></i><b>3.4</b> VaR forecasts using out of sample</a></li>
+<li class="chapter" data-level="2.5.1" data-path="2-5-prediction-and-accuracy.html"><a href="2-5-prediction-and-accuracy.html#model-1"><i class="fa fa-check"></i><b>2.5.1</b> Model-1</a></li>
+<li class="chapter" data-level="2.5.2" data-path="2-5-prediction-and-accuracy.html"><a href="2-5-prediction-and-accuracy.html#model-2"><i class="fa fa-check"></i><b>2.5.2</b> Model-2</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="4-decision-trees-using-r.html"><a href="4-decision-trees-using-r.html"><i class="fa fa-check"></i><b>4</b> Decision Trees using R</a>
+<li class="chapter" data-level="2.6" data-path="2-6-feature-interpretation.html"><a href="2-6-feature-interpretation.html"><i class="fa fa-check"></i><b>2.6</b> Feature Interpretation</a></li>
+<li class="chapter" data-level="2.7" data-path="2-7-tree-visualisation.html"><a href="2-7-tree-visualisation.html"><i class="fa fa-check"></i><b>2.7</b> Tree visualisation</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="3-text-mining-using-r.html"><a href="3-text-mining-using-r.html"><i class="fa fa-check"></i><b>3</b> Text Mining using R</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="4-1-import-data-and-pre-processing.html"><a href="4-1-import-data-and-pre-processing.html"><i class="fa fa-check"></i><b>4.1</b> Import Data and Pre-processing</a></li>
-<li class="chapter" data-level="4.2" data-path="4-2-visualisation-some-features.html"><a href="4-2-visualisation-some-features.html"><i class="fa fa-check"></i><b>4.2</b> Visualisation some features</a></li>
-<li class="chapter" data-level="4.3" data-path="4-3-creating-training-and-testing-set-and-control.html"><a href="4-3-creating-training-and-testing-set-and-control.html"><i class="fa fa-check"></i><b>4.3</b> Creating Training and Testing Set and Control</a></li>
-<li class="chapter" data-level="4.4" data-path="4-4-train-the-model-on-the-training-set.html"><a href="4-4-train-the-model-on-the-training-set.html"><i class="fa fa-check"></i><b>4.4</b> Train the model on the training set</a></li>
-<li class="chapter" data-level="4.5" data-path="4-5-prediction-and-accuracy.html"><a href="4-5-prediction-and-accuracy.html"><i class="fa fa-check"></i><b>4.5</b> Prediction and Accuracy</a>
+<li class="chapter" data-level="3.1" data-path="3-1-introduction-to-text-mining.html"><a href="3-1-introduction-to-text-mining.html"><i class="fa fa-check"></i><b>3.1</b> Introduction to Text Mining</a>
 <ul>
-<li class="chapter" data-level="4.5.1" data-path="4-5-prediction-and-accuracy.html"><a href="4-5-prediction-and-accuracy.html#model-1"><i class="fa fa-check"></i><b>4.5.1</b> Model-1</a></li>
-<li class="chapter" data-level="4.5.2" data-path="4-5-prediction-and-accuracy.html"><a href="4-5-prediction-and-accuracy.html#model-2"><i class="fa fa-check"></i><b>4.5.2</b> Model-2</a></li>
-</ul></li>
-<li class="chapter" data-level="4.6" data-path="4-6-feature-interpretation.html"><a href="4-6-feature-interpretation.html"><i class="fa fa-check"></i><b>4.6</b> Feature Interpretation</a></li>
-<li class="chapter" data-level="4.7" data-path="4-7-tree-visualisation.html"><a href="4-7-tree-visualisation.html"><i class="fa fa-check"></i><b>4.7</b> Tree visualisation</a></li>
-</ul></li>
-<li class="chapter" data-level="5" data-path="5-text-mining-using-r.html"><a href="5-text-mining-using-r.html"><i class="fa fa-check"></i><b>5</b> Text Mining using R</a>
-<ul>
-<li class="chapter" data-level="5.1" data-path="5-1-introduction-to-text-mining.html"><a href="5-1-introduction-to-text-mining.html"><i class="fa fa-check"></i><b>5.1</b> Introduction to Text Mining</a>
-<ul>
-<li class="chapter" data-level="5.1.1" data-path="5-1-introduction-to-text-mining.html"><a href="5-1-introduction-to-text-mining.html#text-data"><i class="fa fa-check"></i><b>5.1.1</b> Text Data</a></li>
-<li class="chapter" data-level="5.1.2" data-path="5-1-introduction-to-text-mining.html"><a href="5-1-introduction-to-text-mining.html#generic-text-mining-system"><i class="fa fa-check"></i><b>5.1.2</b> Generic Text Mining System</a></li>
-<li class="chapter" data-level="5.1.3" data-path="5-1-introduction-to-text-mining.html"><a href="5-1-introduction-to-text-mining.html#data-pre-processing-in-text-mining"><i class="fa fa-check"></i><b>5.1.3</b> Data pre-processing in Text Mining</a></li>
+<li class="chapter" data-level="3.1.1" data-path="3-1-introduction-to-text-mining.html"><a href="3-1-introduction-to-text-mining.html#text-data"><i class="fa fa-check"></i><b>3.1.1</b> Text Data</a></li>
+<li class="chapter" data-level="3.1.2" data-path="3-1-introduction-to-text-mining.html"><a href="3-1-introduction-to-text-mining.html#generic-text-mining-system"><i class="fa fa-check"></i><b>3.1.2</b> Generic Text Mining System</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="6-work-in-progress.html"><a href="6-work-in-progress.html"><i class="fa fa-check"></i><b>6</b> Work in Progress</a></li>
+<li class="chapter" data-level="4" data-path="4-work-in-progress.html"><a href="4-work-in-progress.html"><i class="fa fa-check"></i><b>4</b> Work in Progress</a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><img src="firebrick3RA_img.png" height="100" width="100" style="position:absolute;bottom:0px;right:0px;" /></li>
@@ -206,28 +199,56 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="visualisation" class="section level2" number="2.3">
-<h2><span class="header-section-number">2.3</span> Visualisation</h2>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="2-3-visualisation.html#cb16-1"></a><span class="kw">library</span>(ggplot2)</span>
-<span id="cb16-2"><a href="2-3-visualisation.html#cb16-2"></a><span class="kw">library</span>(tidyr)</span>
-<span id="cb16-3"><a href="2-3-visualisation.html#cb16-3"></a></span>
-<span id="cb16-4"><a href="2-3-visualisation.html#cb16-4"></a>p1 =<span class="st"> </span><span class="kw">ggplot</span>(data_lm1, <span class="kw">aes</span>(asx, bhp))</span>
-<span id="cb16-5"><a href="2-3-visualisation.html#cb16-5"></a>p1 <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="dt">colour =</span> <span class="st">&quot;brown&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">theme_minimal</span>() <span class="op">+</span><span class="st"> </span></span>
-<span id="cb16-6"><a href="2-3-visualisation.html#cb16-6"></a><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Scatter plot of BHPvsASX and Linear Fit&quot;</span>)</span></code></pre></div>
-<p><img src="01-Part_1_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="2-3-visualisation.html#cb17-1"></a>p2 =<span class="st"> </span><span class="kw">ggplot</span>(data_lm1, <span class="kw">aes</span>(Date))</span>
-<span id="cb17-2"><a href="2-3-visualisation.html#cb17-2"></a>p2 <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">y =</span> bhp, <span class="dt">color =</span> <span class="st">&quot;bhp&quot;</span>), <span class="dt">size =</span> <span class="dv">1</span>, <span class="dt">lty =</span> <span class="dv">1</span>) <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">y =</span> asx, </span>
-<span id="cb17-3"><a href="2-3-visualisation.html#cb17-3"></a>    <span class="dt">color =</span> <span class="st">&quot;asx&quot;</span>), <span class="dt">size =</span> <span class="dv">1</span>, <span class="dt">lty =</span> <span class="dv">2</span>) <span class="op">+</span><span class="st"> </span><span class="kw">scale_color_discrete</span>(<span class="st">&quot;Asset&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb17-4"><a href="2-3-visualisation.html#cb17-4"></a><span class="st">    </span><span class="kw">theme_minimal</span>() <span class="op">+</span><span class="st"> </span><span class="kw">labs</span>(<span class="st">&quot;Line Chart of Returns&quot;</span>)</span></code></pre></div>
-<p><img src="01-Part_1_files/figure-html/unnamed-chunk-9-2.png" width="672" /></p>
+<div id="introduction-to-text-mining" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> Introduction to Text Mining</h2>
+<p>Text mining, also referred to as text data mining, roughly equivalent to text analytics, refers to the process of deriving high-quality information from text. High-quality information is typically derived through the devising of patterns and trends through means such as statistical pattern learning.</p>
+<ul>
+<li><p>Welbers et al. (2017) provides a mild introduction to Text Analytics using R</p></li>
+<li><p>Text mining has gained momentum and is used in analytics worldwide</p>
+<ul>
+<li><p>Sentiment Analysis</p></li>
+<li><p>Predicting Stock Market and other Financial Applications</p></li>
+<li><p>Customer influence</p></li>
+<li><p>News Analytics</p></li>
+<li><p>Social Network Analysis</p></li>
+<li><p>Customer Service and Help Desk</p></li>
+</ul></li>
+</ul>
+<div id="text-data" class="section level3" number="3.1.1">
+<h3><span class="header-section-number">3.1.1</span> Text Data</h3>
+<ul>
+<li><p>Text data is ubiquitous in social media analytics.</p></li>
+<li><p>Traditional media, social media, survey data, and numerous other sources.</p>
+<ul>
+<li>Twitter, Facebook, Surveys, Reported Data (Incident Reports)</li>
+</ul></li>
+<li><p>Massive quantity of text in the modern information age.</p></li>
+<li><p>The mounting availability of and interest in text data has been the development of a variety of statistical approaches for analysing this data.</p></li>
+</ul>
 </div>
+<div id="generic-text-mining-system" class="section level3" number="3.1.2">
+<h3><span class="header-section-number">3.1.2</span> Generic Text Mining System</h3>
+<ul>
+<li>Following figure demonstrates a general text mining system (Source: <span class="citation">(<span class="citeproc-not-found" data-reference-id="Feldman2007"><strong>???</strong></span>)</span>)</li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="3-1-introduction-to-text-mining.html#cb1-1"></a>knitr<span class="op">::</span><span class="kw">include_graphics</span>(<span class="st">&quot;fig-2.png&quot;</span>)</span></code></pre></div>
+<div class="figure"><span id="fig:unnamed-chunk-1"></span>
+<img src="fig-2.png" alt="Generic Text Mining System" width="403" />
+<p class="caption">
+Figure 3.1: Generic Text Mining System
+</p>
+</div>
+
+</div>
+</div>
+<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-<a href="2-2-data-preprocessing.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="2-4-regression-analysis-using-lm.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="3-text-mining-using-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="4-work-in-progress.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

@@ -24,7 +24,7 @@
 <meta name="author" content="Abhay Singh" />
 
 
-<meta name="date" content="2020-09-19" />
+<meta name="date" content="2020-09-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="3-text-mining-using-r.html"/>
-<link rel="next" href="4-work-in-progress.html"/>
+<link rel="next" href="3-2-mining-twitter-text-data-using-r.html"/>
 <script src="libs/header-attrs-2.3/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -52,6 +52,13 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+<link href="libs/wordcloud2-0.0.1/wordcloud.css" rel="stylesheet" />
+<script src="libs/wordcloud2-0.0.1/wordcloud2-all.js"></script>
+<script src="libs/wordcloud2-0.0.1/hover.js"></script>
+<script src="libs/wordcloud2-binding-0.2.1/wordcloud2.js"></script>
 
 
 <style type="text/css">
@@ -175,7 +182,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="3.1.1" data-path="3-1-introduction-to-text-mining.html"><a href="3-1-introduction-to-text-mining.html#text-data"><i class="fa fa-check"></i><b>3.1.1</b> Text Data</a></li>
 <li class="chapter" data-level="3.1.2" data-path="3-1-introduction-to-text-mining.html"><a href="3-1-introduction-to-text-mining.html#generic-text-mining-system"><i class="fa fa-check"></i><b>3.1.2</b> Generic Text Mining System</a></li>
+<li class="chapter" data-level="3.1.3" data-path="3-1-introduction-to-text-mining.html"><a href="3-1-introduction-to-text-mining.html#data-pre-processing-in-text-mining"><i class="fa fa-check"></i><b>3.1.3</b> Data pre-processing in Text Mining</a></li>
 </ul></li>
+<li class="chapter" data-level="3.2" data-path="3-2-mining-twitter-text-data-using-r.html"><a href="3-2-mining-twitter-text-data-using-r.html"><i class="fa fa-check"></i><b>3.2</b> Mining Twitter Text Data using R</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="3-2-mining-twitter-text-data-using-r.html"><a href="3-2-mining-twitter-text-data-using-r.html#obtaining-twitter-data"><i class="fa fa-check"></i><b>3.2.1</b> Obtaining Twitter Data</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="3-3-download-data-and-pre-process.html"><a href="3-3-download-data-and-pre-process.html"><i class="fa fa-check"></i><b>3.3</b> Download Data and Pre-process</a></li>
+<li class="chapter" data-level="3.4" data-path="3-4-data-pre-processing.html"><a href="3-4-data-pre-processing.html"><i class="fa fa-check"></i><b>3.4</b> Data Pre-processing</a></li>
+<li class="chapter" data-level="3.5" data-path="3-5-some-visualisation.html"><a href="3-5-some-visualisation.html"><i class="fa fa-check"></i><b>3.5</b> Some Visualisation</a></li>
+<li class="chapter" data-level="3.6" data-path="3-6-sentiment-analysis.html"><a href="3-6-sentiment-analysis.html"><i class="fa fa-check"></i><b>3.6</b> Sentiment Analysis</a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="3-6-sentiment-analysis.html"><a href="3-6-sentiment-analysis.html#method"><i class="fa fa-check"></i><b>3.6.1</b> Method</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="3-7-topic-modelling.html"><a href="3-7-topic-modelling.html"><i class="fa fa-check"></i><b>3.7</b> Topic Modelling</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="4-work-in-progress.html"><a href="4-work-in-progress.html"><i class="fa fa-check"></i><b>4</b> Work in Progress</a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
@@ -229,26 +249,43 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="generic-text-mining-system" class="section level3" number="3.1.2">
 <h3><span class="header-section-number">3.1.2</span> Generic Text Mining System</h3>
 <ul>
-<li>Following figure demonstrates a general text mining system (Source: <span class="citation">(<span class="citeproc-not-found" data-reference-id="Feldman2007"><strong>???</strong></span>)</span>)</li>
+<li>Following figure demonstrates a general text mining system (Source: <span class="citation">Feldman and Sanger (<a href="#ref-Feldman2007" role="doc-biblioref">2007</a>)</span>)</li>
 </ul>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="3-1-introduction-to-text-mining.html#cb1-1"></a>knitr<span class="op">::</span><span class="kw">include_graphics</span>(<span class="st">&quot;fig-2.png&quot;</span>)</span></code></pre></div>
-<div class="figure"><span id="fig:unnamed-chunk-1"></span>
+<div class="figure"><span id="fig:unnamed-chunk-2"></span>
 <img src="fig-2.png" alt="Generic Text Mining System" width="403" />
 <p class="caption">
 Figure 3.1: Generic Text Mining System
 </p>
 </div>
-
+</div>
+<div id="data-pre-processing-in-text-mining" class="section level3" number="3.1.3">
+<h3><span class="header-section-number">3.1.3</span> Data pre-processing in Text Mining</h3>
+<ul>
+<li>Following figure summarises main steps in a typical data pre-processing stage of text mining</li>
+</ul>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="3-1-introduction-to-text-mining.html#cb2-1"></a>knitr<span class="op">::</span><span class="kw">include_graphics</span>(<span class="st">&quot;fig-3.png&quot;</span>)</span></code></pre></div>
+<div class="figure"><span id="fig:unnamed-chunk-3"></span>
+<img src="fig-3.png" alt="Typical Text Pre-procesing" width="725" />
+<p class="caption">
+Figure 3.2: Typical Text Pre-procesing
+</p>
 </div>
 </div>
-<!-- </div> -->
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-Feldman2007">
+<p>Feldman, Ronen, and James Sanger. 2007. <em>The Text Mining Handbook: Advanced Approaches in Analyzing Unstructured Data</em>. Cambridge University Press.</p>
+</div>
+</div>
             </section>
 
           </div>
         </div>
       </div>
 <a href="3-text-mining-using-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="4-work-in-progress.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="3-2-mining-twitter-text-data-using-r.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

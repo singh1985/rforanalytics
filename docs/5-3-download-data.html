@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>2.4 Regression analysis using lm | R for Data Analytics</title>
+  <title>5.3 Download Data | R for Data Analytics</title>
   <meta name="description" content="This is a collection of examples on using R for Data Analytics" />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="2.4 Regression analysis using lm | R for Data Analytics" />
+  <meta property="og:title" content="5.3 Download Data | R for Data Analytics" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="2.4 Regression analysis using lm | R for Data Analytics" />
+  <meta name="twitter:title" content="5.3 Download Data | R for Data Analytics" />
   
   <meta name="twitter:description" content="This is a collection of examples on using R for Data Analytics" />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="rforda.png" type="image/x-icon" />
-<link rel="prev" href="2-3-visualisation.html"/>
-<link rel="next" href="3-forecasting-var-using-garch-models.html"/>
+<link rel="prev" href="5-2-mining-twitter-text-data-using-r.html"/>
+<link rel="next" href="5-4-data-pre-processing.html"/>
 <script src="libs/header-attrs-2.3/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -224,83 +224,35 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="regression-analysis-using-lm" class="section level2" number="2.4">
-<h2><span class="header-section-number">2.4</span> Regression analysis using lm</h2>
+<div id="download-data" class="section level2" number="5.3">
+<h2><span class="header-section-number">5.3</span> Download Data</h2>
 <ul>
-<li>Use lm to model the SIM</li>
+<li>We will download tweets with ‘#auspol’; a popular hashtag used in Australia to talk about current affairs and socio-political issues</li>
+<li>Example here uses rtweet package to download data</li>
+<li>After setting up the API</li>
+<li>Create the token</li>
+<li><code>search_tweets</code> can be used without creating the token, it will create a token using the default app for your Twitter account</li>
 </ul>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="2-4-regression-analysis-using-lm.html#cb18-1"></a>lreg1 =<span class="st"> </span><span class="kw">lm</span>(<span class="dt">formula =</span> bhp <span class="op">~</span><span class="st"> </span>asx, <span class="dt">data =</span> data_lm1)</span>
-<span id="cb18-2"><a href="2-4-regression-analysis-using-lm.html#cb18-2"></a><span class="kw">summary</span>(lreg1)  <span class="co">#to generate main results</span></span></code></pre></div>
-<pre><code>
-Call:
-lm(formula = bhp ~ asx, data = data_lm1)
-
-Residuals:
-      Min        1Q    Median        3Q       Max 
--0.078882 -0.007545 -0.000194  0.007385  0.058971 
-
-Coefficients:
-             Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept) 0.0003612  0.0005092   0.709    0.478    
-asx         1.0133410  0.0403693  25.102   &lt;2e-16 ***
----
-Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-
-Residual standard error: 0.01302 on 652 degrees of freedom
-Multiple R-squared:  0.4915,	Adjusted R-squared:  0.4907 
-F-statistic: 630.1 on 1 and 652 DF,  p-value: &lt; 2.2e-16</code></pre>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="2-4-regression-analysis-using-lm.html#cb20-1"></a><span class="kw">pander</span>(lreg1, <span class="dt">add.significance.stars =</span> T)  <span class="co">#to tabulate</span></span></code></pre></div>
-<table style="width:100%;">
-<caption>Fitting linear model: bhp ~ asx
-- Diagnostic Plots</caption>
-<colgroup>
-<col width="24%" />
-<col width="16%" />
-<col width="17%" />
-<col width="13%" />
-<col width="16%" />
-<col width="10%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th align="center"> </th>
-<th align="center">Estimate</th>
-<th align="center">Std. Error</th>
-<th align="center">t value</th>
-<th align="center">Pr(&gt;|t|)</th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center"><strong>(Intercept)</strong></td>
-<td align="center">0.0003612</td>
-<td align="center">0.0005092</td>
-<td align="center">0.7093</td>
-<td align="center">0.4784</td>
-<td></td>
-</tr>
-<tr class="even">
-<td align="center"><strong>asx</strong></td>
-<td align="center">1.013</td>
-<td align="center">0.04037</td>
-<td align="center">25.1</td>
-<td align="center">8.141e-98</td>
-<td>* * *</td>
-</tr>
-</tbody>
-</table>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="2-4-regression-analysis-using-lm.html#cb21-1"></a><span class="kw">plot</span>(lreg1)</span></code></pre></div>
-<p><img src="01-Part_1_files/figure-html/unnamed-chunk-11-1.png" width="672" /><img src="01-Part_1_files/figure-html/unnamed-chunk-11-2.png" width="672" /><img src="01-Part_1_files/figure-html/unnamed-chunk-11-3.png" width="672" /><img src="01-Part_1_files/figure-html/unnamed-chunk-11-4.png" width="672" /></p>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="5-3-download-data.html#cb61-1"></a><span class="kw">library</span>(rtweet)</span>
+<span id="cb61-2"><a href="5-3-download-data.html#cb61-2"></a></span>
+<span id="cb61-3"><a href="5-3-download-data.html#cb61-3"></a>token &lt;-<span class="st"> </span><span class="kw">create_token</span>(<span class="dt">app =</span> <span class="st">&quot;your_app_name&quot;</span>, <span class="dt">consumer_key =</span> <span class="st">&quot;your_consumer_key&quot;</span>, </span>
+<span id="cb61-4"><a href="5-3-download-data.html#cb61-4"></a>    <span class="dt">consumer_secret =</span> <span class="st">&quot;your_consumer_secret&quot;</span>, <span class="dt">access_token =</span> <span class="st">&quot;your_access_token&quot;</span>, </span>
+<span id="cb61-5"><a href="5-3-download-data.html#cb61-5"></a>    <span class="dt">access_secret =</span> <span class="st">&quot;your_access_secret&quot;</span>)</span></code></pre></div>
+<ul>
+<li>Use the <code>search_tweets</code> function to download the data, convert to data frame and save</li>
+</ul>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="5-3-download-data.html#cb62-1"></a>rt =<span class="st"> </span><span class="kw">search_tweets</span>(<span class="dt">q =</span> <span class="st">&quot;#auspol&quot;</span>, <span class="dt">n =</span> <span class="dv">15000</span>, <span class="dt">type =</span> <span class="st">&quot;recent&quot;</span>, <span class="dt">include_rts =</span> <span class="ot">FALSE</span>, </span>
+<span id="cb62-2"><a href="5-3-download-data.html#cb62-2"></a>    <span class="dt">since =</span> <span class="st">&quot;2020-09-14&quot;</span>)</span>
+<span id="cb62-3"><a href="5-3-download-data.html#cb62-3"></a>rt2 =<span class="st"> </span><span class="kw">as.data.frame</span>(rt)</span>
+<span id="cb62-4"><a href="5-3-download-data.html#cb62-4"></a><span class="kw">saveRDS</span>(rt2, <span class="dt">file =</span> <span class="st">&quot;tweets_auspol.rds&quot;</span>)</span></code></pre></div>
 </div>
-<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-<a href="2-3-visualisation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="3-forecasting-var-using-garch-models.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="5-2-mining-twitter-text-data-using-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="5-4-data-pre-processing.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

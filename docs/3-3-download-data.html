@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>3.4 Data Pre-processing | R for Data Analytics</title>
+  <title>3.3 Download Data | R for Data Analytics</title>
   <meta name="description" content="This is a collection of examples on using R for Data Analytics" />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="3.4 Data Pre-processing | R for Data Analytics" />
+  <meta property="og:title" content="3.3 Download Data | R for Data Analytics" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="3.4 Data Pre-processing | R for Data Analytics" />
+  <meta name="twitter:title" content="3.3 Download Data | R for Data Analytics" />
   
   <meta name="twitter:description" content="This is a collection of examples on using R for Data Analytics" />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="rforda.png" type="image/x-icon" />
-<link rel="prev" href="3-3-download-data.html"/>
-<link rel="next" href="3-5-some-visualisation.html"/>
+<link rel="prev" href="3-2-mining-twitter-text-data-using-r.html"/>
+<link rel="next" href="3-4-data-pre-processing.html"/>
 <script src="libs/header-attrs-2.3/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -217,106 +217,35 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="data-pre-processing" class="section level2" number="3.4">
-<h2><span class="header-section-number">3.4</span> Data Pre-processing</h2>
+<div id="download-data" class="section level2" number="3.3">
+<h2><span class="header-section-number">3.3</span> Download Data</h2>
 <ul>
-<li><p>We will conduct data pre-processing in this stage</p></li>
-<li><p>Some steps (depend on the types of problems analysed)</p>
-<ul>
-<li>Create a corpus</li>
-<li>Change encoding</li>
-<li>Convert to lower case</li>
-<li>Remove hashtags</li>
-<li>Remove URLs</li>
-<li>Remove @ mentions</li>
-<li>Remove punctuations</li>
-<li>Remove stop words</li>
-<li>Stemming can also be conducting (avoided in this example)</li>
-</ul></li>
+<li>We will download tweets with ‘#auspol’; a popular hashtag used in Australia to talk about current affairs and socio-political issues</li>
+<li>Example here uses rtweet package to download data</li>
+<li>After setting up the API</li>
+<li>Create the token</li>
+<li><code>search_tweets</code> can be used without creating the token, it will create a token using the default app for your Twitter account</li>
 </ul>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="3-4-data-pre-processing.html#cb5-1"></a><span class="kw">library</span>(tm)</span>
-<span id="cb5-2"><a href="3-4-data-pre-processing.html#cb5-2"></a>rt =<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;tweets_auspol.rds&quot;</span>)</span>
-<span id="cb5-3"><a href="3-4-data-pre-processing.html#cb5-3"></a><span class="co"># encoding</span></span>
-<span id="cb5-4"><a href="3-4-data-pre-processing.html#cb5-4"></a>rt<span class="op">$</span>text &lt;-<span class="st"> </span><span class="kw">sapply</span>(rt<span class="op">$</span>text, <span class="cf">function</span>(row) <span class="kw">iconv</span>(row, <span class="st">&quot;latin1&quot;</span>, <span class="st">&quot;ASCII&quot;</span>, <span class="dt">sub =</span> <span class="st">&quot;&quot;</span>))</span>
-<span id="cb5-5"><a href="3-4-data-pre-processing.html#cb5-5"></a></span>
-<span id="cb5-6"><a href="3-4-data-pre-processing.html#cb5-6"></a><span class="co"># build a corpus, and specify the source to be character vectors</span></span>
-<span id="cb5-7"><a href="3-4-data-pre-processing.html#cb5-7"></a></span>
-<span id="cb5-8"><a href="3-4-data-pre-processing.html#cb5-8"></a>myCorpus =<span class="st"> </span><span class="kw">Corpus</span>(<span class="kw">VectorSource</span>(rt<span class="op">$</span>text))</span>
-<span id="cb5-9"><a href="3-4-data-pre-processing.html#cb5-9"></a></span>
-<span id="cb5-10"><a href="3-4-data-pre-processing.html#cb5-10"></a></span>
-<span id="cb5-11"><a href="3-4-data-pre-processing.html#cb5-11"></a><span class="co"># convert to lower case</span></span>
-<span id="cb5-12"><a href="3-4-data-pre-processing.html#cb5-12"></a>myCorpus =<span class="st"> </span><span class="kw">tm_map</span>(myCorpus, <span class="kw">content_transformer</span>(tolower))</span>
-<span id="cb5-13"><a href="3-4-data-pre-processing.html#cb5-13"></a><span class="co"># remove punctuation</span></span>
-<span id="cb5-14"><a href="3-4-data-pre-processing.html#cb5-14"></a>myCorpus &lt;-<span class="st"> </span><span class="kw">tm_map</span>(myCorpus, removePunctuation)</span>
-<span id="cb5-15"><a href="3-4-data-pre-processing.html#cb5-15"></a><span class="co"># remove numbers</span></span>
-<span id="cb5-16"><a href="3-4-data-pre-processing.html#cb5-16"></a>myCorpus &lt;-<span class="st"> </span><span class="kw">tm_map</span>(myCorpus, removeNumbers)</span>
-<span id="cb5-17"><a href="3-4-data-pre-processing.html#cb5-17"></a></span>
-<span id="cb5-18"><a href="3-4-data-pre-processing.html#cb5-18"></a></span>
-<span id="cb5-19"><a href="3-4-data-pre-processing.html#cb5-19"></a><span class="co"># remove URLs</span></span>
-<span id="cb5-20"><a href="3-4-data-pre-processing.html#cb5-20"></a>removeURL =<span class="st"> </span><span class="cf">function</span>(x) <span class="kw">gsub</span>(<span class="st">&quot;http[^[:space:]]*&quot;</span>, <span class="st">&quot;&quot;</span>, x)</span>
-<span id="cb5-21"><a href="3-4-data-pre-processing.html#cb5-21"></a>removeURLs =<span class="st"> </span><span class="cf">function</span>(x) <span class="kw">gsub</span>(<span class="st">&quot;https[^[:space:]]*&quot;</span>, <span class="st">&quot;&quot;</span>, x)</span>
-<span id="cb5-22"><a href="3-4-data-pre-processing.html#cb5-22"></a></span>
-<span id="cb5-23"><a href="3-4-data-pre-processing.html#cb5-23"></a><span class="co"># remove hashtags</span></span>
-<span id="cb5-24"><a href="3-4-data-pre-processing.html#cb5-24"></a></span>
-<span id="cb5-25"><a href="3-4-data-pre-processing.html#cb5-25"></a>removehash =<span class="st"> </span><span class="cf">function</span>(x) <span class="kw">gsub</span>(<span class="st">&quot;#</span><span class="ch">\\</span><span class="st">S+&quot;</span>, <span class="st">&quot;&quot;</span>, x)</span>
-<span id="cb5-26"><a href="3-4-data-pre-processing.html#cb5-26"></a></span>
-<span id="cb5-27"><a href="3-4-data-pre-processing.html#cb5-27"></a><span class="co"># remove @</span></span>
-<span id="cb5-28"><a href="3-4-data-pre-processing.html#cb5-28"></a>removeats &lt;-<span class="st"> </span><span class="cf">function</span>(x) <span class="kw">gsub</span>(<span class="st">&quot;@</span><span class="ch">\\</span><span class="st">w+&quot;</span>, <span class="st">&quot;&quot;</span>, x)  <span class="co">#only removes the &#39;@&#39;</span></span>
-<span id="cb5-29"><a href="3-4-data-pre-processing.html#cb5-29"></a></span>
-<span id="cb5-30"><a href="3-4-data-pre-processing.html#cb5-30"></a><span class="co"># remove numbers and punctuations</span></span>
-<span id="cb5-31"><a href="3-4-data-pre-processing.html#cb5-31"></a>removeNumPunct =<span class="st"> </span><span class="cf">function</span>(x) <span class="kw">gsub</span>(<span class="st">&quot;[^[:alpha:][:space:]]*&quot;</span>, <span class="st">&quot;&quot;</span>, x)</span>
-<span id="cb5-32"><a href="3-4-data-pre-processing.html#cb5-32"></a></span>
-<span id="cb5-33"><a href="3-4-data-pre-processing.html#cb5-33"></a><span class="co"># leading and trailing white spaces</span></span>
-<span id="cb5-34"><a href="3-4-data-pre-processing.html#cb5-34"></a></span>
-<span id="cb5-35"><a href="3-4-data-pre-processing.html#cb5-35"></a>wspace1 =<span class="st"> </span><span class="cf">function</span>(x) <span class="kw">gsub</span>(<span class="st">&quot;^[[:space:]]*&quot;</span>, <span class="st">&quot;&quot;</span>, x)  <span class="co">## Remove leading whitespaces</span></span>
-<span id="cb5-36"><a href="3-4-data-pre-processing.html#cb5-36"></a>wspace2 =<span class="st"> </span><span class="cf">function</span>(x) <span class="kw">gsub</span>(<span class="st">&quot;[[:space:]]*$&quot;</span>, <span class="st">&quot;&quot;</span>, x)  <span class="co">## Remove trailing whitespaces</span></span>
-<span id="cb5-37"><a href="3-4-data-pre-processing.html#cb5-37"></a>wspace3 =<span class="st"> </span><span class="cf">function</span>(x) <span class="kw">gsub</span>(<span class="st">&quot; +&quot;</span>, <span class="st">&quot; &quot;</span>, x)  <span class="co">## Remove extra whitespaces</span></span>
-<span id="cb5-38"><a href="3-4-data-pre-processing.html#cb5-38"></a></span>
-<span id="cb5-39"><a href="3-4-data-pre-processing.html#cb5-39"></a>removeIms &lt;-<span class="st"> </span><span class="cf">function</span>(x) <span class="kw">gsub</span>(<span class="st">&quot;im&quot;</span>, <span class="st">&quot;&quot;</span>, x)</span>
-<span id="cb5-40"><a href="3-4-data-pre-processing.html#cb5-40"></a></span>
-<span id="cb5-41"><a href="3-4-data-pre-processing.html#cb5-41"></a>myCorpus =<span class="st"> </span><span class="kw">tm_map</span>(myCorpus, <span class="kw">content_transformer</span>(removeURL))  <span class="co">#url</span></span>
-<span id="cb5-42"><a href="3-4-data-pre-processing.html#cb5-42"></a>myCorpus =<span class="st"> </span><span class="kw">tm_map</span>(myCorpus, <span class="kw">content_transformer</span>(removeURLs))  <span class="co">#url</span></span>
-<span id="cb5-43"><a href="3-4-data-pre-processing.html#cb5-43"></a></span>
-<span id="cb5-44"><a href="3-4-data-pre-processing.html#cb5-44"></a>myCorpus &lt;-<span class="st"> </span><span class="kw">tm_map</span>(myCorpus, <span class="kw">content_transformer</span>(removehash))  <span class="co">#hashtag</span></span>
-<span id="cb5-45"><a href="3-4-data-pre-processing.html#cb5-45"></a>myCorpus &lt;-<span class="st"> </span><span class="kw">tm_map</span>(myCorpus, <span class="kw">content_transformer</span>(removeats))  <span class="co">#mentions</span></span>
-<span id="cb5-46"><a href="3-4-data-pre-processing.html#cb5-46"></a></span>
-<span id="cb5-47"><a href="3-4-data-pre-processing.html#cb5-47"></a>myCorpus =<span class="st"> </span><span class="kw">tm_map</span>(myCorpus, <span class="kw">content_transformer</span>(removeNumPunct))  <span class="co">#number and punctuation (just in case some are left over)</span></span>
-<span id="cb5-48"><a href="3-4-data-pre-processing.html#cb5-48"></a></span>
-<span id="cb5-49"><a href="3-4-data-pre-processing.html#cb5-49"></a>myCorpus =<span class="st"> </span><span class="kw">tm_map</span>(myCorpus, <span class="kw">content_transformer</span>(removeIms))  <span class="co">#Ims</span></span>
-<span id="cb5-50"><a href="3-4-data-pre-processing.html#cb5-50"></a></span>
-<span id="cb5-51"><a href="3-4-data-pre-processing.html#cb5-51"></a>myCorpus =<span class="st"> </span><span class="kw">tm_map</span>(myCorpus, <span class="kw">content_transformer</span>(wspace1))</span>
-<span id="cb5-52"><a href="3-4-data-pre-processing.html#cb5-52"></a>myCorpus =<span class="st"> </span><span class="kw">tm_map</span>(myCorpus, <span class="kw">content_transformer</span>(wspace2))</span>
-<span id="cb5-53"><a href="3-4-data-pre-processing.html#cb5-53"></a>myCorpus =<span class="st"> </span><span class="kw">tm_map</span>(myCorpus, <span class="kw">content_transformer</span>(wspace3))  <span class="co">#other white spaces</span></span>
-<span id="cb5-54"><a href="3-4-data-pre-processing.html#cb5-54"></a></span>
-<span id="cb5-55"><a href="3-4-data-pre-processing.html#cb5-55"></a><span class="co"># remove extra whitespace</span></span>
-<span id="cb5-56"><a href="3-4-data-pre-processing.html#cb5-56"></a>myCorpus =<span class="st"> </span><span class="kw">tm_map</span>(myCorpus, stripWhitespace)</span>
-<span id="cb5-57"><a href="3-4-data-pre-processing.html#cb5-57"></a></span>
-<span id="cb5-58"><a href="3-4-data-pre-processing.html#cb5-58"></a><span class="co"># remove extra stopwords</span></span>
-<span id="cb5-59"><a href="3-4-data-pre-processing.html#cb5-59"></a>myStopwords =<span class="st"> </span><span class="kw">c</span>(<span class="kw">stopwords</span>(<span class="st">&quot;English&quot;</span>), <span class="kw">stopwords</span>(<span class="st">&quot;SMART&quot;</span>), <span class="st">&quot;rt&quot;</span>, <span class="st">&quot;ht&quot;</span>, <span class="st">&quot;via&quot;</span>, <span class="st">&quot;amp&quot;</span>, </span>
-<span id="cb5-60"><a href="3-4-data-pre-processing.html#cb5-60"></a>    <span class="st">&quot;the&quot;</span>, <span class="st">&quot;australia&quot;</span>, <span class="st">&quot;australians&quot;</span>, <span class="st">&quot;australian&quot;</span>, <span class="st">&quot;auspol&quot;</span>)</span>
-<span id="cb5-61"><a href="3-4-data-pre-processing.html#cb5-61"></a></span>
-<span id="cb5-62"><a href="3-4-data-pre-processing.html#cb5-62"></a>myCorpus =<span class="st"> </span><span class="kw">tm_map</span>(myCorpus, removeWords, myStopwords)</span>
-<span id="cb5-63"><a href="3-4-data-pre-processing.html#cb5-63"></a></span>
-<span id="cb5-64"><a href="3-4-data-pre-processing.html#cb5-64"></a><span class="co"># generally a good idea to save the processed corpus now</span></span>
-<span id="cb5-65"><a href="3-4-data-pre-processing.html#cb5-65"></a><span class="kw">save</span>(myCorpus, <span class="dt">file =</span> <span class="st">&quot;auspol_sep.RData&quot;</span>)</span>
-<span id="cb5-66"><a href="3-4-data-pre-processing.html#cb5-66"></a></span>
-<span id="cb5-67"><a href="3-4-data-pre-processing.html#cb5-67"></a>data_tw2 =<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">text =</span> <span class="kw">get</span>(<span class="st">&quot;content&quot;</span>, myCorpus), <span class="dt">row.names =</span> <span class="ot">NULL</span>)</span>
-<span id="cb5-68"><a href="3-4-data-pre-processing.html#cb5-68"></a>data_tw2 =<span class="st"> </span><span class="kw">cbind</span>(data_tw2, <span class="dt">ID =</span> rt<span class="op">$</span>status_id)</span>
-<span id="cb5-69"><a href="3-4-data-pre-processing.html#cb5-69"></a>data_tw2 =<span class="st"> </span><span class="kw">cbind</span>(<span class="dt">Date =</span> <span class="kw">as.Date</span>(rt<span class="op">$</span>created_at), data_tw2)</span>
-<span id="cb5-70"><a href="3-4-data-pre-processing.html#cb5-70"></a><span class="co"># look at the data frame, still some white spaces left so let&#39;s get rid of them</span></span>
-<span id="cb5-71"><a href="3-4-data-pre-processing.html#cb5-71"></a>data_tw2<span class="op">$</span>text =<span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot;</span><span class="ch">\r</span><span class="st">?</span><span class="ch">\n</span><span class="st">|</span><span class="ch">\r</span><span class="st">&quot;</span>, <span class="st">&quot;&quot;</span>, data_tw2<span class="op">$</span>text)</span>
-<span id="cb5-72"><a href="3-4-data-pre-processing.html#cb5-72"></a>data_tw2<span class="op">$</span>text =<span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot; +&quot;</span>, <span class="st">&quot; &quot;</span>, data_tw2<span class="op">$</span>text)</span>
-<span id="cb5-73"><a href="3-4-data-pre-processing.html#cb5-73"></a><span class="kw">head</span>(data_tw2)</span>
-<span id="cb5-74"><a href="3-4-data-pre-processing.html#cb5-74"></a><span class="co"># save data</span></span>
-<span id="cb5-75"><a href="3-4-data-pre-processing.html#cb5-75"></a><span class="kw">saveRDS</span>(data_tw2, <span class="dt">file =</span> <span class="st">&quot;processed_data.rds&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="3-3-download-data.html#cb3-1"></a><span class="kw">library</span>(rtweet)</span>
+<span id="cb3-2"><a href="3-3-download-data.html#cb3-2"></a></span>
+<span id="cb3-3"><a href="3-3-download-data.html#cb3-3"></a>token &lt;-<span class="st"> </span><span class="kw">create_token</span>(<span class="dt">app =</span> <span class="st">&quot;your_app_name&quot;</span>, <span class="dt">consumer_key =</span> <span class="st">&quot;your_consumer_key&quot;</span>, </span>
+<span id="cb3-4"><a href="3-3-download-data.html#cb3-4"></a>    <span class="dt">consumer_secret =</span> <span class="st">&quot;your_consumer_secret&quot;</span>, <span class="dt">access_token =</span> <span class="st">&quot;your_access_token&quot;</span>, </span>
+<span id="cb3-5"><a href="3-3-download-data.html#cb3-5"></a>    <span class="dt">access_secret =</span> <span class="st">&quot;your_access_secret&quot;</span>)</span></code></pre></div>
+<ul>
+<li>Use the <code>search_tweets</code> function to download the data, convert to data frame and save</li>
+</ul>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="3-3-download-data.html#cb4-1"></a>rt =<span class="st"> </span><span class="kw">search_tweets</span>(<span class="dt">q =</span> <span class="st">&quot;#auspol&quot;</span>, <span class="dt">n =</span> <span class="dv">15000</span>, <span class="dt">type =</span> <span class="st">&quot;recent&quot;</span>, <span class="dt">include_rts =</span> <span class="ot">FALSE</span>, </span>
+<span id="cb4-2"><a href="3-3-download-data.html#cb4-2"></a>    <span class="dt">since =</span> <span class="st">&quot;2020-09-14&quot;</span>)</span>
+<span id="cb4-3"><a href="3-3-download-data.html#cb4-3"></a>rt2 =<span class="st"> </span><span class="kw">as.data.frame</span>(rt)</span>
+<span id="cb4-4"><a href="3-3-download-data.html#cb4-4"></a><span class="kw">saveRDS</span>(rt2, <span class="dt">file =</span> <span class="st">&quot;tweets_auspol.rds&quot;</span>)</span></code></pre></div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="3-3-download-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="3-5-some-visualisation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="3-2-mining-twitter-text-data-using-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="3-4-data-pre-processing.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

@@ -24,7 +24,7 @@
 <meta name="author" content="Abhay Singh" />
 
 
-<meta name="date" content="2020-09-21" />
+<meta name="date" content="2020-09-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -238,21 +238,21 @@ P[r_{t}&lt;-VaR_{t}[I_{t-1}]=\theta
 \end{equation}\]</span></p>
 <p>where <span class="math inline">\(I_{t-1}\)</span> represents the information set at time t-1.</p>
 <ul>
-<li>Despite the appealing simplicity of VaR in its offering of a simple summary of the downside risk of an asset portfolio, there is no single way to calculate it (see ?? (??) for an overview on VaR methods in finance).</li>
+<li>Despite the appealing simplicity of VaR in its offering of a simple summary of the downside risk of an asset portfolio, there is no single way to calculate it (see ?? (<span class="citation">(<span class="citeproc-not-found" data-reference-id="Manganelli2001"><strong>???</strong></span>)</span>) for an overview on VaR methods in finance).</li>
 </ul>
 <p>1% VaR</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="3-1-value-at-risk.html#cb22-1"></a><span class="co"># calculate normal density</span></span>
-<span id="cb22-2"><a href="3-1-value-at-risk.html#cb22-2"></a></span>
-<span id="cb22-3"><a href="3-1-value-at-risk.html#cb22-3"></a>den1_r =<span class="st"> </span>data_lm1<span class="op">$</span>bhp</span>
-<span id="cb22-4"><a href="3-1-value-at-risk.html#cb22-4"></a>den1_bhp =<span class="st"> </span><span class="kw">dnorm</span>(<span class="dt">x =</span> den1_r, <span class="dt">mean =</span> <span class="kw">mean</span>(den1_r), <span class="dt">sd =</span> <span class="kw">sd</span>(den1_r))</span>
-<span id="cb22-5"><a href="3-1-value-at-risk.html#cb22-5"></a>data_rd =<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> den1_r, <span class="dt">y =</span> den1_bhp)</span>
-<span id="cb22-6"><a href="3-1-value-at-risk.html#cb22-6"></a><span class="co"># normal quantile</span></span>
-<span id="cb22-7"><a href="3-1-value-at-risk.html#cb22-7"></a>var1 =<span class="st"> </span><span class="kw">quantile</span>(den1_r, <span class="fl">0.01</span>)</span>
-<span id="cb22-8"><a href="3-1-value-at-risk.html#cb22-8"></a>p3 =<span class="st"> </span><span class="kw">ggplot</span>(data_rd, <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>(<span class="dt">size =</span> <span class="dv">2</span>) <span class="op">+</span><span class="st"> </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> var1, </span>
-<span id="cb22-9"><a href="3-1-value-at-risk.html#cb22-9"></a>    <span class="dt">lty =</span> <span class="dv">2</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">size =</span> <span class="dv">2</span>) <span class="op">+</span><span class="st"> </span><span class="kw">theme_bw</span>() <span class="op">+</span><span class="st"> </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Normal Distribution and 1% (Empirical) VaR&quot;</span>)</span>
-<span id="cb22-10"><a href="3-1-value-at-risk.html#cb22-10"></a>p3</span></code></pre></div>
-<div class="figure"><span id="fig:unnamed-chunk-12"></span>
-<img src="01-Part_1_files/figure-html/unnamed-chunk-12-1.png" alt="1% VaR" width="672" />
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="3-1-value-at-risk.html#cb23-1"></a><span class="co"># calculate normal density</span></span>
+<span id="cb23-2"><a href="3-1-value-at-risk.html#cb23-2"></a></span>
+<span id="cb23-3"><a href="3-1-value-at-risk.html#cb23-3"></a>den1_r =<span class="st"> </span>data_lm1<span class="op">$</span>bhp</span>
+<span id="cb23-4"><a href="3-1-value-at-risk.html#cb23-4"></a>den1_bhp =<span class="st"> </span><span class="kw">dnorm</span>(<span class="dt">x =</span> den1_r, <span class="dt">mean =</span> <span class="kw">mean</span>(den1_r), <span class="dt">sd =</span> <span class="kw">sd</span>(den1_r))</span>
+<span id="cb23-5"><a href="3-1-value-at-risk.html#cb23-5"></a>data_rd =<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> den1_r, <span class="dt">y =</span> den1_bhp)</span>
+<span id="cb23-6"><a href="3-1-value-at-risk.html#cb23-6"></a><span class="co"># normal quantile</span></span>
+<span id="cb23-7"><a href="3-1-value-at-risk.html#cb23-7"></a>var1 =<span class="st"> </span><span class="kw">quantile</span>(den1_r, <span class="fl">0.01</span>)</span>
+<span id="cb23-8"><a href="3-1-value-at-risk.html#cb23-8"></a>p3 =<span class="st"> </span><span class="kw">ggplot</span>(data_rd, <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>(<span class="dt">size =</span> <span class="dv">2</span>) <span class="op">+</span><span class="st"> </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> var1, </span>
+<span id="cb23-9"><a href="3-1-value-at-risk.html#cb23-9"></a>    <span class="dt">lty =</span> <span class="dv">2</span>, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">size =</span> <span class="dv">2</span>) <span class="op">+</span><span class="st"> </span><span class="kw">theme_bw</span>() <span class="op">+</span><span class="st"> </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Normal Distribution and 1% (Empirical) VaR&quot;</span>)</span>
+<span id="cb23-10"><a href="3-1-value-at-risk.html#cb23-10"></a>p3</span></code></pre></div>
+<div class="figure"><span id="fig:unnamed-chunk-13"></span>
+<img src="01-Part_1_files/figure-html/unnamed-chunk-13-1.png" alt="1% VaR" width="672" />
 <p class="caption">
 Figure 3.1: 1% VaR
 </p>

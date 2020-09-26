@@ -326,9 +326,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Let’s visualise tree using the first model</p></li>
 <li><p>Use rpart.plot</p></li>
 </ul>
-<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="10-7-tree-visualisation.html#cb300-1"></a><span class="kw">library</span>(rpart.plot)</span>
-<span id="cb300-2"><a href="10-7-tree-visualisation.html#cb300-2"></a><span class="kw">rpart.plot</span>(cv_tree1<span class="op">$</span>finalModel, <span class="dt">main =</span> <span class="st">&quot;Decision Tree using Gini Index&quot;</span>, </span>
-<span id="cb300-3"><a href="10-7-tree-visualisation.html#cb300-3"></a>    <span class="dt">tweak =</span> <span class="fl">1.4</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb301-1"><a href="10-7-tree-visualisation.html#cb301-1"></a><span class="kw">library</span>(rpart.plot)</span>
+<span id="cb301-2"><a href="10-7-tree-visualisation.html#cb301-2"></a><span class="kw">rpart.plot</span>(cv_tree1<span class="op">$</span>finalModel, <span class="dt">main =</span> <span class="st">&quot;Decision Tree using Gini Index&quot;</span>, </span>
+<span id="cb301-3"><a href="10-7-tree-visualisation.html#cb301-3"></a>    <span class="dt">tweak =</span> <span class="fl">1.4</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:unnamed-chunk-10"></span>
 <img src="04-Part_2_files/figure-html/unnamed-chunk-10-1.png" alt="Decision Tree using rpart.plot" width="1344" />
 <p class="caption">

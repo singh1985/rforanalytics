@@ -332,45 +332,45 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>A good example here <a href="http://www.bnosac.be/index.php/blog/98-biterm-topic-modelling-for-short-texts" class="uri">http://www.bnosac.be/index.php/blog/98-biterm-topic-modelling-for-short-texts</a></li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb312-1"><a href="11-7-topic-modelling.html#cb312-1"></a><span class="co"># load packages and rearrange data</span></span>
-<span id="cb312-2"><a href="11-7-topic-modelling.html#cb312-2"></a><span class="kw">library</span>(udpipe)</span>
-<span id="cb312-3"><a href="11-7-topic-modelling.html#cb312-3"></a><span class="kw">library</span>(data.table)</span>
-<span id="cb312-4"><a href="11-7-topic-modelling.html#cb312-4"></a><span class="kw">library</span>(stopwords)</span>
-<span id="cb312-5"><a href="11-7-topic-modelling.html#cb312-5"></a><span class="kw">library</span>(BTM)</span>
-<span id="cb312-6"><a href="11-7-topic-modelling.html#cb312-6"></a><span class="kw">library</span>(textplot)</span>
-<span id="cb312-7"><a href="11-7-topic-modelling.html#cb312-7"></a><span class="kw">library</span>(ggraph)</span>
-<span id="cb312-8"><a href="11-7-topic-modelling.html#cb312-8"></a><span class="co"># rearrange to get doc id</span></span>
-<span id="cb312-9"><a href="11-7-topic-modelling.html#cb312-9"></a>data_tm =<span class="st"> </span>data_sent[, <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">2</span>)]</span>
-<span id="cb312-10"><a href="11-7-topic-modelling.html#cb312-10"></a><span class="kw">colnames</span>(data_tm)[<span class="dv">1</span>] =<span class="st"> &quot;doc_id&quot;</span></span></code></pre></div>
-<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb313-1"><a href="11-7-topic-modelling.html#cb313-1"></a><span class="co"># use parts of sentence (Nouns, Adjectives, Verbs for TM) Method is</span></span>
-<span id="cb313-2"><a href="11-7-topic-modelling.html#cb313-2"></a><span class="co"># computationally intensive and can take several minutes.</span></span>
-<span id="cb313-3"><a href="11-7-topic-modelling.html#cb313-3"></a>anno &lt;-<span class="st"> </span><span class="kw">udpipe</span>(data_tm, <span class="st">&quot;english&quot;</span>, <span class="dt">trace =</span> <span class="dv">1000</span>)</span>
-<span id="cb313-4"><a href="11-7-topic-modelling.html#cb313-4"></a>biterms &lt;-<span class="st"> </span><span class="kw">as.data.table</span>(anno)</span>
-<span id="cb313-5"><a href="11-7-topic-modelling.html#cb313-5"></a>biterms &lt;-<span class="st"> </span>biterms[, <span class="kw">cooccurrence</span>(<span class="dt">x =</span> lemma, <span class="dt">relevant =</span> upos <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;NOUN&quot;</span>, <span class="st">&quot;ADJ&quot;</span>, </span>
-<span id="cb313-6"><a href="11-7-topic-modelling.html#cb313-6"></a>    <span class="st">&quot;VERB&quot;</span>) <span class="op">&amp;</span><span class="st"> </span><span class="kw">nchar</span>(lemma) <span class="op">&gt;</span><span class="st"> </span><span class="dv">2</span> <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span>lemma <span class="op">%in%</span><span class="st"> </span><span class="kw">stopwords</span>(<span class="st">&quot;en&quot;</span>), <span class="dt">skipgram =</span> <span class="dv">3</span>), by =<span class="st"> </span><span class="kw">list</span>(doc_id)]</span>
-<span id="cb313-7"><a href="11-7-topic-modelling.html#cb313-7"></a></span>
-<span id="cb313-8"><a href="11-7-topic-modelling.html#cb313-8"></a></span>
-<span id="cb313-9"><a href="11-7-topic-modelling.html#cb313-9"></a></span>
-<span id="cb313-10"><a href="11-7-topic-modelling.html#cb313-10"></a><span class="kw">set.seed</span>(<span class="dv">999</span>)</span>
-<span id="cb313-11"><a href="11-7-topic-modelling.html#cb313-11"></a>traindata &lt;-<span class="st"> </span><span class="kw">subset</span>(anno, upos <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;NOUN&quot;</span>, <span class="st">&quot;ADJ&quot;</span>, <span class="st">&quot;VERB&quot;</span>) <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span>lemma <span class="op">%in%</span><span class="st"> </span><span class="kw">stopwords</span>(<span class="st">&quot;en&quot;</span>) <span class="op">&amp;</span><span class="st"> </span></span>
-<span id="cb313-12"><a href="11-7-topic-modelling.html#cb313-12"></a><span class="st">    </span><span class="kw">nchar</span>(lemma) <span class="op">&gt;</span><span class="st"> </span><span class="dv">2</span>)</span>
-<span id="cb313-13"><a href="11-7-topic-modelling.html#cb313-13"></a>traindata &lt;-<span class="st"> </span>traindata[, <span class="kw">c</span>(<span class="st">&quot;doc_id&quot;</span>, <span class="st">&quot;lemma&quot;</span>)]</span>
-<span id="cb313-14"><a href="11-7-topic-modelling.html#cb313-14"></a><span class="co"># fit 10 topics (other parameters are mostly default)</span></span>
-<span id="cb313-15"><a href="11-7-topic-modelling.html#cb313-15"></a>model &lt;-<span class="st"> </span><span class="kw">BTM</span>(traindata, <span class="dt">biterms =</span> biterms, <span class="dt">k =</span> <span class="dv">10</span>, <span class="dt">iter =</span> <span class="dv">2000</span>, <span class="dt">background =</span> <span class="ot">FALSE</span>, </span>
-<span id="cb313-16"><a href="11-7-topic-modelling.html#cb313-16"></a>    <span class="dt">trace =</span> <span class="dv">2000</span>)</span>
-<span id="cb313-17"><a href="11-7-topic-modelling.html#cb313-17"></a></span>
-<span id="cb313-18"><a href="11-7-topic-modelling.html#cb313-18"></a></span>
-<span id="cb313-19"><a href="11-7-topic-modelling.html#cb313-19"></a><span class="co"># extract biterms for plotting</span></span>
-<span id="cb313-20"><a href="11-7-topic-modelling.html#cb313-20"></a></span>
-<span id="cb313-21"><a href="11-7-topic-modelling.html#cb313-21"></a>biterms1 =<span class="st"> </span><span class="kw">terms</span>(model, <span class="dt">type =</span> <span class="st">&quot;biterms&quot;</span>)<span class="op">$</span>biterms</span>
-<span id="cb313-22"><a href="11-7-topic-modelling.html#cb313-22"></a></span>
-<span id="cb313-23"><a href="11-7-topic-modelling.html#cb313-23"></a><span class="co"># The model, biterms, biterms1 were saved to create the plot in this markdown</span></span>
-<span id="cb313-24"><a href="11-7-topic-modelling.html#cb313-24"></a><span class="co"># document.</span></span></code></pre></div>
+<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb313-1"><a href="11-7-topic-modelling.html#cb313-1"></a><span class="co"># load packages and rearrange data</span></span>
+<span id="cb313-2"><a href="11-7-topic-modelling.html#cb313-2"></a><span class="kw">library</span>(udpipe)</span>
+<span id="cb313-3"><a href="11-7-topic-modelling.html#cb313-3"></a><span class="kw">library</span>(data.table)</span>
+<span id="cb313-4"><a href="11-7-topic-modelling.html#cb313-4"></a><span class="kw">library</span>(stopwords)</span>
+<span id="cb313-5"><a href="11-7-topic-modelling.html#cb313-5"></a><span class="kw">library</span>(BTM)</span>
+<span id="cb313-6"><a href="11-7-topic-modelling.html#cb313-6"></a><span class="kw">library</span>(textplot)</span>
+<span id="cb313-7"><a href="11-7-topic-modelling.html#cb313-7"></a><span class="kw">library</span>(ggraph)</span>
+<span id="cb313-8"><a href="11-7-topic-modelling.html#cb313-8"></a><span class="co"># rearrange to get doc id</span></span>
+<span id="cb313-9"><a href="11-7-topic-modelling.html#cb313-9"></a>data_tm =<span class="st"> </span>data_sent[, <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">2</span>)]</span>
+<span id="cb313-10"><a href="11-7-topic-modelling.html#cb313-10"></a><span class="kw">colnames</span>(data_tm)[<span class="dv">1</span>] =<span class="st"> &quot;doc_id&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb314-1"><a href="11-7-topic-modelling.html#cb314-1"></a><span class="co"># use parts of sentence (Nouns, Adjectives, Verbs for TM) Method is</span></span>
+<span id="cb314-2"><a href="11-7-topic-modelling.html#cb314-2"></a><span class="co"># computationally intensive and can take several minutes.</span></span>
+<span id="cb314-3"><a href="11-7-topic-modelling.html#cb314-3"></a>anno &lt;-<span class="st"> </span><span class="kw">udpipe</span>(data_tm, <span class="st">&quot;english&quot;</span>, <span class="dt">trace =</span> <span class="dv">1000</span>)</span>
+<span id="cb314-4"><a href="11-7-topic-modelling.html#cb314-4"></a>biterms &lt;-<span class="st"> </span><span class="kw">as.data.table</span>(anno)</span>
+<span id="cb314-5"><a href="11-7-topic-modelling.html#cb314-5"></a>biterms &lt;-<span class="st"> </span>biterms[, <span class="kw">cooccurrence</span>(<span class="dt">x =</span> lemma, <span class="dt">relevant =</span> upos <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;NOUN&quot;</span>, <span class="st">&quot;ADJ&quot;</span>, </span>
+<span id="cb314-6"><a href="11-7-topic-modelling.html#cb314-6"></a>    <span class="st">&quot;VERB&quot;</span>) <span class="op">&amp;</span><span class="st"> </span><span class="kw">nchar</span>(lemma) <span class="op">&gt;</span><span class="st"> </span><span class="dv">2</span> <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span>lemma <span class="op">%in%</span><span class="st"> </span><span class="kw">stopwords</span>(<span class="st">&quot;en&quot;</span>), <span class="dt">skipgram =</span> <span class="dv">3</span>), by =<span class="st"> </span><span class="kw">list</span>(doc_id)]</span>
+<span id="cb314-7"><a href="11-7-topic-modelling.html#cb314-7"></a></span>
+<span id="cb314-8"><a href="11-7-topic-modelling.html#cb314-8"></a></span>
+<span id="cb314-9"><a href="11-7-topic-modelling.html#cb314-9"></a></span>
+<span id="cb314-10"><a href="11-7-topic-modelling.html#cb314-10"></a><span class="kw">set.seed</span>(<span class="dv">999</span>)</span>
+<span id="cb314-11"><a href="11-7-topic-modelling.html#cb314-11"></a>traindata &lt;-<span class="st"> </span><span class="kw">subset</span>(anno, upos <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;NOUN&quot;</span>, <span class="st">&quot;ADJ&quot;</span>, <span class="st">&quot;VERB&quot;</span>) <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span>lemma <span class="op">%in%</span><span class="st"> </span><span class="kw">stopwords</span>(<span class="st">&quot;en&quot;</span>) <span class="op">&amp;</span><span class="st"> </span></span>
+<span id="cb314-12"><a href="11-7-topic-modelling.html#cb314-12"></a><span class="st">    </span><span class="kw">nchar</span>(lemma) <span class="op">&gt;</span><span class="st"> </span><span class="dv">2</span>)</span>
+<span id="cb314-13"><a href="11-7-topic-modelling.html#cb314-13"></a>traindata &lt;-<span class="st"> </span>traindata[, <span class="kw">c</span>(<span class="st">&quot;doc_id&quot;</span>, <span class="st">&quot;lemma&quot;</span>)]</span>
+<span id="cb314-14"><a href="11-7-topic-modelling.html#cb314-14"></a><span class="co"># fit 10 topics (other parameters are mostly default)</span></span>
+<span id="cb314-15"><a href="11-7-topic-modelling.html#cb314-15"></a>model &lt;-<span class="st"> </span><span class="kw">BTM</span>(traindata, <span class="dt">biterms =</span> biterms, <span class="dt">k =</span> <span class="dv">10</span>, <span class="dt">iter =</span> <span class="dv">2000</span>, <span class="dt">background =</span> <span class="ot">FALSE</span>, </span>
+<span id="cb314-16"><a href="11-7-topic-modelling.html#cb314-16"></a>    <span class="dt">trace =</span> <span class="dv">2000</span>)</span>
+<span id="cb314-17"><a href="11-7-topic-modelling.html#cb314-17"></a></span>
+<span id="cb314-18"><a href="11-7-topic-modelling.html#cb314-18"></a></span>
+<span id="cb314-19"><a href="11-7-topic-modelling.html#cb314-19"></a><span class="co"># extract biterms for plotting</span></span>
+<span id="cb314-20"><a href="11-7-topic-modelling.html#cb314-20"></a></span>
+<span id="cb314-21"><a href="11-7-topic-modelling.html#cb314-21"></a>biterms1 =<span class="st"> </span><span class="kw">terms</span>(model, <span class="dt">type =</span> <span class="st">&quot;biterms&quot;</span>)<span class="op">$</span>biterms</span>
+<span id="cb314-22"><a href="11-7-topic-modelling.html#cb314-22"></a></span>
+<span id="cb314-23"><a href="11-7-topic-modelling.html#cb314-23"></a><span class="co"># The model, biterms, biterms1 were saved to create the plot in this markdown</span></span>
+<span id="cb314-24"><a href="11-7-topic-modelling.html#cb314-24"></a><span class="co"># document.</span></span></code></pre></div>
 <ul>
 <li>Plot the topics with 20 terms and labelled by the proportion</li>
 </ul>
-<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb314-1"><a href="11-7-topic-modelling.html#cb314-1"></a><span class="kw">plot</span>(model, <span class="dt">subtitle =</span> <span class="st">&quot;#auspol 14-20 Sep 2020&quot;</span>, <span class="dt">biterms =</span> biterms1, <span class="dt">labels =</span> <span class="kw">paste</span>(<span class="kw">round</span>(model<span class="op">$</span>theta <span class="op">*</span><span class="st"> </span></span>
-<span id="cb314-2"><a href="11-7-topic-modelling.html#cb314-2"></a><span class="st">    </span><span class="dv">100</span>, <span class="dv">2</span>), <span class="st">&quot;%&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>), <span class="dt">top_n =</span> <span class="dv">20</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb315-1"><a href="11-7-topic-modelling.html#cb315-1"></a><span class="kw">plot</span>(model, <span class="dt">subtitle =</span> <span class="st">&quot;#auspol 14-20 Sep 2020&quot;</span>, <span class="dt">biterms =</span> biterms1, <span class="dt">labels =</span> <span class="kw">paste</span>(<span class="kw">round</span>(model<span class="op">$</span>theta <span class="op">*</span><span class="st"> </span></span>
+<span id="cb315-2"><a href="11-7-topic-modelling.html#cb315-2"></a><span class="st">    </span><span class="dv">100</span>, <span class="dv">2</span>), <span class="st">&quot;%&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>), <span class="dt">top_n =</span> <span class="dv">20</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:unnamed-chunk-17"></span>
 <img src="05-method2_files/figure-html/unnamed-chunk-17-1.png" alt="BTM Visualisation of #auspol" width="960" />
 <p class="caption">

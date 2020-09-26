@@ -346,9 +346,9 @@ Number of people being liable to provide maintenance for
 Telephone
 foreign worker</p></li>
 </ul>
-<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="10-1-import-data-and-pre-processing.html#cb274-1"></a>data_cr =<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/german_credit.csv&quot;</span>)</span>
-<span id="cb274-2"><a href="10-1-import-data-and-pre-processing.html#cb274-2"></a><span class="co"># preliminary analysis descriptive and visual</span></span>
-<span id="cb274-3"><a href="10-1-import-data-and-pre-processing.html#cb274-3"></a><span class="kw">str</span>(data_cr)</span></code></pre></div>
+<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="10-1-import-data-and-pre-processing.html#cb275-1"></a>data_cr =<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/german_credit.csv&quot;</span>)</span>
+<span id="cb275-2"><a href="10-1-import-data-and-pre-processing.html#cb275-2"></a><span class="co"># preliminary analysis descriptive and visual</span></span>
+<span id="cb275-3"><a href="10-1-import-data-and-pre-processing.html#cb275-3"></a><span class="kw">str</span>(data_cr)</span></code></pre></div>
 <pre><code>&#39;data.frame&#39;:	1000 obs. of  21 variables:
  $ Creditability                    : int  1 1 1 1 1 1 1 1 1 1 ...
  $ Account.Balance                  : int  1 1 2 1 1 1 1 1 4 2 ...
@@ -371,10 +371,10 @@ foreign worker</p></li>
  $ No.of.dependents                 : int  1 2 1 2 1 2 1 2 1 1 ...
  $ Telephone                        : int  1 1 1 1 1 1 1 1 1 1 ...
  $ Foreign.Worker                   : int  1 1 1 2 2 2 2 2 1 1 ...</code></pre>
-<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="10-1-import-data-and-pre-processing.html#cb276-1"></a><span class="co"># remove NA</span></span>
-<span id="cb276-2"><a href="10-1-import-data-and-pre-processing.html#cb276-2"></a>data_cr =<span class="st"> </span><span class="kw">na.omit</span>(data_cr)</span>
-<span id="cb276-3"><a href="10-1-import-data-and-pre-processing.html#cb276-3"></a><span class="co"># quick summary</span></span>
-<span id="cb276-4"><a href="10-1-import-data-and-pre-processing.html#cb276-4"></a><span class="kw">summary</span>(data_cr)</span></code></pre></div>
+<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="10-1-import-data-and-pre-processing.html#cb277-1"></a><span class="co"># remove NA</span></span>
+<span id="cb277-2"><a href="10-1-import-data-and-pre-processing.html#cb277-2"></a>data_cr =<span class="st"> </span><span class="kw">na.omit</span>(data_cr)</span>
+<span id="cb277-3"><a href="10-1-import-data-and-pre-processing.html#cb277-3"></a><span class="co"># quick summary</span></span>
+<span id="cb277-4"><a href="10-1-import-data-and-pre-processing.html#cb277-4"></a><span class="kw">summary</span>(data_cr)</span></code></pre></div>
 <pre><code> Creditability Account.Balance Duration.of.Credit..month.
  Min.   :0.0   Min.   :1.000   Min.   : 4.0              
  1st Qu.:0.0   1st Qu.:1.000   1st Qu.:12.0              
@@ -427,7 +427,7 @@ foreign worker</p></li>
 <ul>
 <li>Let’s convert data types to as all of them are factors but some of them should be used as numeric</li>
 </ul>
-<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="10-1-import-data-and-pre-processing.html#cb278-1"></a><span class="kw">sapply</span>(data_cr, class)</span></code></pre></div>
+<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="10-1-import-data-and-pre-processing.html#cb279-1"></a><span class="kw">sapply</span>(data_cr, class)</span></code></pre></div>
 <pre><code>                    Creditability                   Account.Balance 
                         &quot;integer&quot;                         &quot;integer&quot; 
        Duration.of.Credit..month. Payment.Status.of.Previous.Credit 
@@ -450,10 +450,10 @@ foreign worker</p></li>
                         &quot;integer&quot;                         &quot;integer&quot; 
                    Foreign.Worker 
                         &quot;integer&quot; </code></pre>
-<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="10-1-import-data-and-pre-processing.html#cb280-1"></a><span class="co"># Keep Duration.of.Credit..month and Credit.Amount as numeric rest to</span></span>
-<span id="cb280-2"><a href="10-1-import-data-and-pre-processing.html#cb280-2"></a><span class="co"># factors</span></span>
-<span id="cb280-3"><a href="10-1-import-data-and-pre-processing.html#cb280-3"></a>id =<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">7</span><span class="op">:</span><span class="dv">21</span>)</span>
-<span id="cb280-4"><a href="10-1-import-data-and-pre-processing.html#cb280-4"></a>data_cr[id] =<span class="st"> </span><span class="kw">lapply</span>(data_cr[id], as.factor)</span></code></pre></div>
+<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="10-1-import-data-and-pre-processing.html#cb281-1"></a><span class="co"># Keep Duration.of.Credit..month and Credit.Amount as numeric rest to</span></span>
+<span id="cb281-2"><a href="10-1-import-data-and-pre-processing.html#cb281-2"></a><span class="co"># factors</span></span>
+<span id="cb281-3"><a href="10-1-import-data-and-pre-processing.html#cb281-3"></a>id =<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">7</span><span class="op">:</span><span class="dv">21</span>)</span>
+<span id="cb281-4"><a href="10-1-import-data-and-pre-processing.html#cb281-4"></a>data_cr[id] =<span class="st"> </span><span class="kw">lapply</span>(data_cr[id], as.factor)</span></code></pre></div>
 <hr />
 </div>
             </section>

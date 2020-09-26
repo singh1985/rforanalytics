@@ -327,23 +327,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Generate some descriptive statistics</li>
 <li>Some plots</li>
 </ul>
-<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="8-2-data-preprocessing.html#cb252-1"></a><span class="co"># using close prices</span></span>
-<span id="cb252-2"><a href="8-2-data-preprocessing.html#cb252-2"></a>bhp2 =<span class="st"> </span>BHP<span class="op">$</span>BHP.AX.Close</span>
-<span id="cb252-3"><a href="8-2-data-preprocessing.html#cb252-3"></a>asx2 =<span class="st"> </span>ASX<span class="op">$</span>AXJO.Close</span>
-<span id="cb252-4"><a href="8-2-data-preprocessing.html#cb252-4"></a><span class="co"># covert to returns</span></span>
-<span id="cb252-5"><a href="8-2-data-preprocessing.html#cb252-5"></a></span>
-<span id="cb252-6"><a href="8-2-data-preprocessing.html#cb252-6"></a>bhp_ret =<span class="st"> </span><span class="kw">dailyReturn</span>(bhp2, <span class="dt">type =</span> <span class="st">&quot;log&quot;</span>)</span>
-<span id="cb252-7"><a href="8-2-data-preprocessing.html#cb252-7"></a>asx_ret =<span class="st"> </span><span class="kw">dailyReturn</span>(asx2, <span class="dt">type =</span> <span class="st">&quot;log&quot;</span>)</span>
-<span id="cb252-8"><a href="8-2-data-preprocessing.html#cb252-8"></a><span class="co"># check number of days they must be the same</span></span>
-<span id="cb252-9"><a href="8-2-data-preprocessing.html#cb252-9"></a></span>
-<span id="cb252-10"><a href="8-2-data-preprocessing.html#cb252-10"></a><span class="kw">setdiff</span>(<span class="kw">index</span>(bhp_ret), <span class="kw">index</span>(asx_ret))  <span class="co">#should return 0 or else we will need to find common dates</span></span></code></pre></div>
+<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="8-2-data-preprocessing.html#cb253-1"></a><span class="co"># using close prices</span></span>
+<span id="cb253-2"><a href="8-2-data-preprocessing.html#cb253-2"></a>bhp2 =<span class="st"> </span>BHP<span class="op">$</span>BHP.AX.Close</span>
+<span id="cb253-3"><a href="8-2-data-preprocessing.html#cb253-3"></a>asx2 =<span class="st"> </span>ASX<span class="op">$</span>AXJO.Close</span>
+<span id="cb253-4"><a href="8-2-data-preprocessing.html#cb253-4"></a><span class="co"># covert to returns</span></span>
+<span id="cb253-5"><a href="8-2-data-preprocessing.html#cb253-5"></a></span>
+<span id="cb253-6"><a href="8-2-data-preprocessing.html#cb253-6"></a>bhp_ret =<span class="st"> </span><span class="kw">dailyReturn</span>(bhp2, <span class="dt">type =</span> <span class="st">&quot;log&quot;</span>)</span>
+<span id="cb253-7"><a href="8-2-data-preprocessing.html#cb253-7"></a>asx_ret =<span class="st"> </span><span class="kw">dailyReturn</span>(asx2, <span class="dt">type =</span> <span class="st">&quot;log&quot;</span>)</span>
+<span id="cb253-8"><a href="8-2-data-preprocessing.html#cb253-8"></a><span class="co"># check number of days they must be the same</span></span>
+<span id="cb253-9"><a href="8-2-data-preprocessing.html#cb253-9"></a></span>
+<span id="cb253-10"><a href="8-2-data-preprocessing.html#cb253-10"></a><span class="kw">setdiff</span>(<span class="kw">index</span>(bhp_ret), <span class="kw">index</span>(asx_ret))  <span class="co">#should return 0 or else we will need to find common dates</span></span></code></pre></div>
 <pre><code>numeric(0)</code></pre>
-<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="8-2-data-preprocessing.html#cb254-1"></a><span class="co"># create a data frame with values and dates</span></span>
-<span id="cb254-2"><a href="8-2-data-preprocessing.html#cb254-2"></a></span>
-<span id="cb254-3"><a href="8-2-data-preprocessing.html#cb254-3"></a>data_lm1 =<span class="st"> </span><span class="kw">data.frame</span>(<span class="kw">index</span>(bhp_ret), bhp_ret<span class="op">$</span>daily.returns, asx_ret<span class="op">$</span>daily.returns)</span>
-<span id="cb254-4"><a href="8-2-data-preprocessing.html#cb254-4"></a><span class="co"># change column names</span></span>
-<span id="cb254-5"><a href="8-2-data-preprocessing.html#cb254-5"></a><span class="kw">colnames</span>(data_lm1) =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Date&quot;</span>, <span class="st">&quot;bhp&quot;</span>, <span class="st">&quot;asx&quot;</span>)</span>
-<span id="cb254-6"><a href="8-2-data-preprocessing.html#cb254-6"></a><span class="kw">head</span>(data_lm1)</span></code></pre></div>
+<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="8-2-data-preprocessing.html#cb255-1"></a><span class="co"># create a data frame with values and dates</span></span>
+<span id="cb255-2"><a href="8-2-data-preprocessing.html#cb255-2"></a></span>
+<span id="cb255-3"><a href="8-2-data-preprocessing.html#cb255-3"></a>data_lm1 =<span class="st"> </span><span class="kw">data.frame</span>(<span class="kw">index</span>(bhp_ret), bhp_ret<span class="op">$</span>daily.returns, asx_ret<span class="op">$</span>daily.returns)</span>
+<span id="cb255-4"><a href="8-2-data-preprocessing.html#cb255-4"></a><span class="co"># change column names</span></span>
+<span id="cb255-5"><a href="8-2-data-preprocessing.html#cb255-5"></a><span class="kw">colnames</span>(data_lm1) =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Date&quot;</span>, <span class="st">&quot;bhp&quot;</span>, <span class="st">&quot;asx&quot;</span>)</span>
+<span id="cb255-6"><a href="8-2-data-preprocessing.html#cb255-6"></a><span class="kw">head</span>(data_lm1)</span></code></pre></div>
 <pre><code>                 Date           bhp          asx
 2018-01-02 2018-01-02  0.0000000000 0.0000000000
 2018-01-03 2018-01-03  0.0167060350 0.0015002183
@@ -351,10 +351,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 2018-01-05 2018-01-05  0.0082088788 0.0074101864
 2018-01-08 2018-01-08 -0.0009815476 0.0013221736
 2018-01-09 2018-01-09  0.0165561326 0.0008804525</code></pre>
-<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="8-2-data-preprocessing.html#cb256-1"></a><span class="kw">library</span>(pastecs)</span>
-<span id="cb256-2"><a href="8-2-data-preprocessing.html#cb256-2"></a></span>
-<span id="cb256-3"><a href="8-2-data-preprocessing.html#cb256-3"></a>desc_stat1 =<span class="st"> </span><span class="kw">stat.desc</span>(data_lm1[, <span class="dv">2</span><span class="op">:</span><span class="dv">3</span>], <span class="dt">norm =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb256-4"><a href="8-2-data-preprocessing.html#cb256-4"></a><span class="kw">pander</span>(desc_stat1, <span class="dt">caption =</span> <span class="st">&quot;Descriptive Statistics&quot;</span>, <span class="dt">split.table =</span> <span class="ot">Inf</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="8-2-data-preprocessing.html#cb257-1"></a><span class="kw">library</span>(pastecs)</span>
+<span id="cb257-2"><a href="8-2-data-preprocessing.html#cb257-2"></a></span>
+<span id="cb257-3"><a href="8-2-data-preprocessing.html#cb257-3"></a>desc_stat1 =<span class="st"> </span><span class="kw">stat.desc</span>(data_lm1[, <span class="dv">2</span><span class="op">:</span><span class="dv">3</span>], <span class="dt">norm =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb257-4"><a href="8-2-data-preprocessing.html#cb257-4"></a><span class="kw">pander</span>(desc_stat1, <span class="dt">caption =</span> <span class="st">&quot;Descriptive Statistics&quot;</span>, <span class="dt">split.table =</span> <span class="ot">Inf</span>)</span></code></pre></div>
 <table style="width:61%;">
 <caption>Descriptive Statistics</caption>
 <colgroup>

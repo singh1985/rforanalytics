@@ -329,18 +329,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Create the token</li>
 <li><code>search_tweets</code> can be used without creating the token, it will create a token using the default app for your Twitter account</li>
 </ul>
-<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="11-3-download-data.html#cb303-1"></a><span class="kw">library</span>(rtweet)</span>
-<span id="cb303-2"><a href="11-3-download-data.html#cb303-2"></a></span>
-<span id="cb303-3"><a href="11-3-download-data.html#cb303-3"></a>token &lt;-<span class="st"> </span><span class="kw">create_token</span>(<span class="dt">app =</span> <span class="st">&quot;your_app_name&quot;</span>, <span class="dt">consumer_key =</span> <span class="st">&quot;your_consumer_key&quot;</span>, </span>
-<span id="cb303-4"><a href="11-3-download-data.html#cb303-4"></a>    <span class="dt">consumer_secret =</span> <span class="st">&quot;your_consumer_secret&quot;</span>, <span class="dt">access_token =</span> <span class="st">&quot;your_access_token&quot;</span>, </span>
-<span id="cb303-5"><a href="11-3-download-data.html#cb303-5"></a>    <span class="dt">access_secret =</span> <span class="st">&quot;your_access_secret&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb304-1"><a href="11-3-download-data.html#cb304-1"></a><span class="kw">library</span>(rtweet)</span>
+<span id="cb304-2"><a href="11-3-download-data.html#cb304-2"></a></span>
+<span id="cb304-3"><a href="11-3-download-data.html#cb304-3"></a>token &lt;-<span class="st"> </span><span class="kw">create_token</span>(<span class="dt">app =</span> <span class="st">&quot;your_app_name&quot;</span>, <span class="dt">consumer_key =</span> <span class="st">&quot;your_consumer_key&quot;</span>, </span>
+<span id="cb304-4"><a href="11-3-download-data.html#cb304-4"></a>    <span class="dt">consumer_secret =</span> <span class="st">&quot;your_consumer_secret&quot;</span>, <span class="dt">access_token =</span> <span class="st">&quot;your_access_token&quot;</span>, </span>
+<span id="cb304-5"><a href="11-3-download-data.html#cb304-5"></a>    <span class="dt">access_secret =</span> <span class="st">&quot;your_access_secret&quot;</span>)</span></code></pre></div>
 <ul>
 <li>Use the <code>search_tweets</code> function to download the data, convert to data frame and save</li>
 </ul>
-<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb304-1"><a href="11-3-download-data.html#cb304-1"></a>rt =<span class="st"> </span><span class="kw">search_tweets</span>(<span class="dt">q =</span> <span class="st">&quot;#auspol&quot;</span>, <span class="dt">n =</span> <span class="dv">15000</span>, <span class="dt">type =</span> <span class="st">&quot;recent&quot;</span>, <span class="dt">include_rts =</span> <span class="ot">FALSE</span>, </span>
-<span id="cb304-2"><a href="11-3-download-data.html#cb304-2"></a>    <span class="dt">since =</span> <span class="st">&quot;2020-09-14&quot;</span>)</span>
-<span id="cb304-3"><a href="11-3-download-data.html#cb304-3"></a>rt2 =<span class="st"> </span><span class="kw">as.data.frame</span>(rt)</span>
-<span id="cb304-4"><a href="11-3-download-data.html#cb304-4"></a><span class="kw">saveRDS</span>(rt2, <span class="dt">file =</span> <span class="st">&quot;tweets_auspol.rds&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="11-3-download-data.html#cb305-1"></a>rt =<span class="st"> </span><span class="kw">search_tweets</span>(<span class="dt">q =</span> <span class="st">&quot;#auspol&quot;</span>, <span class="dt">n =</span> <span class="dv">15000</span>, <span class="dt">type =</span> <span class="st">&quot;recent&quot;</span>, <span class="dt">include_rts =</span> <span class="ot">FALSE</span>, </span>
+<span id="cb305-2"><a href="11-3-download-data.html#cb305-2"></a>    <span class="dt">since =</span> <span class="st">&quot;2020-09-14&quot;</span>)</span>
+<span id="cb305-3"><a href="11-3-download-data.html#cb305-3"></a>rt2 =<span class="st"> </span><span class="kw">as.data.frame</span>(rt)</span>
+<span id="cb305-4"><a href="11-3-download-data.html#cb305-4"></a><span class="kw">saveRDS</span>(rt2, <span class="dt">file =</span> <span class="st">&quot;tweets_auspol.rds&quot;</span>)</span></code></pre></div>
 </div>
             </section>
 

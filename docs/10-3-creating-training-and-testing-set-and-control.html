@@ -326,21 +326,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Use rsample package and stratified sampling</li>
 <li>Using mutliple cross validation for resampling</li>
 </ul>
-<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="10-3-creating-training-and-testing-set-and-control.html#cb283-1"></a><span class="kw">library</span>(rsample)</span>
-<span id="cb283-2"><a href="10-3-creating-training-and-testing-set-and-control.html#cb283-2"></a><span class="kw">library</span>(caret)</span>
-<span id="cb283-3"><a href="10-3-creating-training-and-testing-set-and-control.html#cb283-3"></a><span class="kw">set.seed</span>(<span class="dv">999</span>)  <span class="co">#for reproducibility (can pick your own seed, but keep it consistent)</span></span>
-<span id="cb283-4"><a href="10-3-creating-training-and-testing-set-and-control.html#cb283-4"></a>idx =<span class="st"> </span><span class="kw">initial_split</span>(<span class="dt">data =</span> data_cr, <span class="dt">prop =</span> <span class="fl">0.8</span>, <span class="dt">strata =</span> <span class="st">&quot;Creditability&quot;</span>)</span>
-<span id="cb283-5"><a href="10-3-creating-training-and-testing-set-and-control.html#cb283-5"></a>d_train1 =<span class="st"> </span><span class="kw">training</span>(idx)</span>
-<span id="cb283-6"><a href="10-3-creating-training-and-testing-set-and-control.html#cb283-6"></a>d_test1 =<span class="st"> </span><span class="kw">testing</span>(idx)</span>
-<span id="cb283-7"><a href="10-3-creating-training-and-testing-set-and-control.html#cb283-7"></a><span class="kw">prop.table</span>(<span class="kw">table</span>(d_train1<span class="op">$</span>Creditability))</span></code></pre></div>
+<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="10-3-creating-training-and-testing-set-and-control.html#cb284-1"></a><span class="kw">library</span>(rsample)</span>
+<span id="cb284-2"><a href="10-3-creating-training-and-testing-set-and-control.html#cb284-2"></a><span class="kw">library</span>(caret)</span>
+<span id="cb284-3"><a href="10-3-creating-training-and-testing-set-and-control.html#cb284-3"></a><span class="kw">set.seed</span>(<span class="dv">999</span>)  <span class="co">#for reproducibility (can pick your own seed, but keep it consistent)</span></span>
+<span id="cb284-4"><a href="10-3-creating-training-and-testing-set-and-control.html#cb284-4"></a>idx =<span class="st"> </span><span class="kw">initial_split</span>(<span class="dt">data =</span> data_cr, <span class="dt">prop =</span> <span class="fl">0.8</span>, <span class="dt">strata =</span> <span class="st">&quot;Creditability&quot;</span>)</span>
+<span id="cb284-5"><a href="10-3-creating-training-and-testing-set-and-control.html#cb284-5"></a>d_train1 =<span class="st"> </span><span class="kw">training</span>(idx)</span>
+<span id="cb284-6"><a href="10-3-creating-training-and-testing-set-and-control.html#cb284-6"></a>d_test1 =<span class="st"> </span><span class="kw">testing</span>(idx)</span>
+<span id="cb284-7"><a href="10-3-creating-training-and-testing-set-and-control.html#cb284-7"></a><span class="kw">prop.table</span>(<span class="kw">table</span>(d_train1<span class="op">$</span>Creditability))</span></code></pre></div>
 <pre><code>
         0         1 
 0.3004988 0.6995012 </code></pre>
-<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="10-3-creating-training-and-testing-set-and-control.html#cb285-1"></a><span class="kw">prop.table</span>(<span class="kw">table</span>(d_test1<span class="op">$</span>Creditability))</span></code></pre></div>
+<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="10-3-creating-training-and-testing-set-and-control.html#cb286-1"></a><span class="kw">prop.table</span>(<span class="kw">table</span>(d_test1<span class="op">$</span>Creditability))</span></code></pre></div>
 <pre><code>
         0         1 
 0.2979798 0.7020202 </code></pre>
-<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="10-3-creating-training-and-testing-set-and-control.html#cb287-1"></a>cntrl1 =<span class="st"> </span><span class="kw">trainControl</span>(<span class="dt">method =</span> <span class="st">&quot;repeatedcv&quot;</span>, <span class="dt">number =</span> <span class="dv">10</span>, <span class="dt">repeats =</span> <span class="dv">2</span>)  <span class="co">#using repeated cross validate (repeating twice)</span></span></code></pre></div>
+<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="10-3-creating-training-and-testing-set-and-control.html#cb288-1"></a>cntrl1 =<span class="st"> </span><span class="kw">trainControl</span>(<span class="dt">method =</span> <span class="st">&quot;repeatedcv&quot;</span>, <span class="dt">number =</span> <span class="dv">10</span>, <span class="dt">repeats =</span> <span class="dv">2</span>)  <span class="co">#using repeated cross validate (repeating twice)</span></span></code></pre></div>
 </div>
             </section>
 

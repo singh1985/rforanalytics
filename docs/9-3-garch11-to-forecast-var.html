@@ -327,15 +327,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Fitting a GARCH model using the rugarch package requires setting the model specification using the <code>ugarchspec</code> function.</p></li>
 <li><p>A GARCH(1,1) model with a contant mean equation <code>mean.model=list(armaOrder=c(0,0)</code> can be specified as follows:</p></li>
 </ul>
-<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="9-3-garch11-to-forecast-var.html#cb265-1"></a><span class="kw">library</span>(rugarch)</span>
-<span id="cb265-2"><a href="9-3-garch11-to-forecast-var.html#cb265-2"></a>garch_spec =<span class="st"> </span><span class="kw">ugarchspec</span>(<span class="dt">variance.model =</span> <span class="kw">list</span>(<span class="dt">model =</span> <span class="st">&quot;sGARCH&quot;</span>, <span class="dt">garchOrder =</span> <span class="kw">c</span>(<span class="dv">1</span>, </span>
-<span id="cb265-3"><a href="9-3-garch11-to-forecast-var.html#cb265-3"></a>    <span class="dv">1</span>)), <span class="dt">mean.model =</span> <span class="kw">list</span>(<span class="dt">armaOrder =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)))</span></code></pre></div>
+<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="9-3-garch11-to-forecast-var.html#cb266-1"></a><span class="kw">library</span>(rugarch)</span>
+<span id="cb266-2"><a href="9-3-garch11-to-forecast-var.html#cb266-2"></a>garch_spec =<span class="st"> </span><span class="kw">ugarchspec</span>(<span class="dt">variance.model =</span> <span class="kw">list</span>(<span class="dt">model =</span> <span class="st">&quot;sGARCH&quot;</span>, <span class="dt">garchOrder =</span> <span class="kw">c</span>(<span class="dv">1</span>, </span>
+<span id="cb266-3"><a href="9-3-garch11-to-forecast-var.html#cb266-3"></a>    <span class="dv">1</span>)), <span class="dt">mean.model =</span> <span class="kw">list</span>(<span class="dt">armaOrder =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)))</span></code></pre></div>
 <ul>
 <li>The above specification stored in <code>garch_spec</code> can now be used to fit the GARCH(1,1) model to our data. The following code fits the GARCH(1,1) model to BHP log returns using the  function and shows the results.</li>
 </ul>
-<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="9-3-garch11-to-forecast-var.html#cb266-1"></a>fit_garch =<span class="st"> </span><span class="kw">ugarchfit</span>(<span class="dt">spec =</span> garch_spec, <span class="dt">data =</span> bhp_ret)</span>
-<span id="cb266-2"><a href="9-3-garch11-to-forecast-var.html#cb266-2"></a><span class="co"># show the estimates and other diagnostic tests</span></span>
-<span id="cb266-3"><a href="9-3-garch11-to-forecast-var.html#cb266-3"></a>fit_garch</span></code></pre></div>
+<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="9-3-garch11-to-forecast-var.html#cb267-1"></a>fit_garch =<span class="st"> </span><span class="kw">ugarchfit</span>(<span class="dt">spec =</span> garch_spec, <span class="dt">data =</span> bhp_ret)</span>
+<span id="cb267-2"><a href="9-3-garch11-to-forecast-var.html#cb267-2"></a><span class="co"># show the estimates and other diagnostic tests</span></span>
+<span id="cb267-3"><a href="9-3-garch11-to-forecast-var.html#cb267-3"></a>fit_garch</span></code></pre></div>
 <pre><code>
 *---------------------------------*
 *          GARCH Model Fit        *
@@ -427,18 +427,18 @@ Adjusted Pearson Goodness-of-Fit Test:
 4    50     67.10      0.04385
 
 
-Elapsed time : 0.1496 </code></pre>
+Elapsed time : 0.1314869 </code></pre>
 <ul>
 <li>Selected fitted statistics can be obtained using various methods available to the <code>ugarchfit</code> object class</li>
 </ul>
-<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="9-3-garch11-to-forecast-var.html#cb268-1"></a>par1 =<span class="st"> </span><span class="kw">par</span>()  <span class="co">#save graphic parameters</span></span>
-<span id="cb268-2"><a href="9-3-garch11-to-forecast-var.html#cb268-2"></a></span>
-<span id="cb268-3"><a href="9-3-garch11-to-forecast-var.html#cb268-3"></a><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
-<span id="cb268-4"><a href="9-3-garch11-to-forecast-var.html#cb268-4"></a><span class="co"># generate plots using the which argument Figure-12 1. ACF of</span></span>
-<span id="cb268-5"><a href="9-3-garch11-to-forecast-var.html#cb268-5"></a><span class="co"># standardised residuals</span></span>
-<span id="cb268-6"><a href="9-3-garch11-to-forecast-var.html#cb268-6"></a><span class="kw">plot</span>(fit_garch, <span class="dt">which =</span> <span class="dv">10</span>)</span>
-<span id="cb268-7"><a href="9-3-garch11-to-forecast-var.html#cb268-7"></a><span class="co"># 2. Conditional SD (vs |returns|)</span></span>
-<span id="cb268-8"><a href="9-3-garch11-to-forecast-var.html#cb268-8"></a><span class="kw">plot</span>(fit_garch, <span class="dt">which =</span> <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="9-3-garch11-to-forecast-var.html#cb269-1"></a>par1 =<span class="st"> </span><span class="kw">par</span>()  <span class="co">#save graphic parameters</span></span>
+<span id="cb269-2"><a href="9-3-garch11-to-forecast-var.html#cb269-2"></a></span>
+<span id="cb269-3"><a href="9-3-garch11-to-forecast-var.html#cb269-3"></a><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
+<span id="cb269-4"><a href="9-3-garch11-to-forecast-var.html#cb269-4"></a><span class="co"># generate plots using the which argument Figure-12 1. ACF of</span></span>
+<span id="cb269-5"><a href="9-3-garch11-to-forecast-var.html#cb269-5"></a><span class="co"># standardised residuals</span></span>
+<span id="cb269-6"><a href="9-3-garch11-to-forecast-var.html#cb269-6"></a><span class="kw">plot</span>(fit_garch, <span class="dt">which =</span> <span class="dv">10</span>)</span>
+<span id="cb269-7"><a href="9-3-garch11-to-forecast-var.html#cb269-7"></a><span class="co"># 2. Conditional SD (vs |returns|)</span></span>
+<span id="cb269-8"><a href="9-3-garch11-to-forecast-var.html#cb269-8"></a><span class="kw">plot</span>(fit_garch, <span class="dt">which =</span> <span class="dv">3</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:unnamed-chunk-16"></span>
 <img src="01-Part_1_files/figure-html/unnamed-chunk-16-1.png" alt="Two Informative Plots for GARCH(1,1)" width="672" />
 <p class="caption">

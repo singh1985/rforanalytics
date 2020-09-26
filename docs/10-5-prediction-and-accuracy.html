@@ -327,8 +327,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <div id="model-1" class="section level3" number="10.5.1">
 <h3><span class="header-section-number">10.5.1</span> Model-1</h3>
-<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="10-5-prediction-and-accuracy.html#cb295-1"></a>pred1 =<span class="st"> </span><span class="kw">predict</span>(cv_tree1, <span class="dt">newdata =</span> d_test1)</span>
-<span id="cb295-2"><a href="10-5-prediction-and-accuracy.html#cb295-2"></a><span class="kw">confusionMatrix</span>(pred1, d_test1<span class="op">$</span>Creditability)</span></code></pre></div>
+<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="10-5-prediction-and-accuracy.html#cb296-1"></a>pred1 =<span class="st"> </span><span class="kw">predict</span>(cv_tree1, <span class="dt">newdata =</span> d_test1)</span>
+<span id="cb296-2"><a href="10-5-prediction-and-accuracy.html#cb296-2"></a><span class="kw">confusionMatrix</span>(pred1, d_test1<span class="op">$</span>Creditability)</span></code></pre></div>
 <pre><code>Confusion Matrix and Statistics
 
           Reference
@@ -359,8 +359,8 @@ Prediction   0   1
 </div>
 <div id="model-2" class="section level3" number="10.5.2">
 <h3><span class="header-section-number">10.5.2</span> Model-2</h3>
-<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb297-1"><a href="10-5-prediction-and-accuracy.html#cb297-1"></a>pred2 =<span class="st"> </span><span class="kw">predict</span>(cv_tree2, <span class="dt">newdata =</span> d_test1)</span>
-<span id="cb297-2"><a href="10-5-prediction-and-accuracy.html#cb297-2"></a><span class="kw">confusionMatrix</span>(pred2, d_test1<span class="op">$</span>Creditability)</span></code></pre></div>
+<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="10-5-prediction-and-accuracy.html#cb298-1"></a>pred2 =<span class="st"> </span><span class="kw">predict</span>(cv_tree2, <span class="dt">newdata =</span> d_test1)</span>
+<span id="cb298-2"><a href="10-5-prediction-and-accuracy.html#cb298-2"></a><span class="kw">confusionMatrix</span>(pred2, d_test1<span class="op">$</span>Creditability)</span></code></pre></div>
 <pre><code>Confusion Matrix and Statistics
 
           Reference

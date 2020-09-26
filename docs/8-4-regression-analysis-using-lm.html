@@ -325,8 +325,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>Use lm to model the SIM</li>
 </ul>
-<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="8-4-regression-analysis-using-lm.html#cb259-1"></a>lreg1 =<span class="st"> </span><span class="kw">lm</span>(<span class="dt">formula =</span> bhp <span class="op">~</span><span class="st"> </span>asx, <span class="dt">data =</span> data_lm1)</span>
-<span id="cb259-2"><a href="8-4-regression-analysis-using-lm.html#cb259-2"></a><span class="kw">summary</span>(lreg1)  <span class="co">#to generate main results</span></span></code></pre></div>
+<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="8-4-regression-analysis-using-lm.html#cb260-1"></a>lreg1 =<span class="st"> </span><span class="kw">lm</span>(<span class="dt">formula =</span> bhp <span class="op">~</span><span class="st"> </span>asx, <span class="dt">data =</span> data_lm1)</span>
+<span id="cb260-2"><a href="8-4-regression-analysis-using-lm.html#cb260-2"></a><span class="kw">summary</span>(lreg1)  <span class="co">#to generate main results</span></span></code></pre></div>
 <pre><code>
 Call:
 lm(formula = bhp ~ asx, data = data_lm1)
@@ -345,10 +345,9 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 Residual standard error: 0.01302 on 652 degrees of freedom
 Multiple R-squared:  0.4915,	Adjusted R-squared:  0.4907 
 F-statistic: 630.1 on 1 and 652 DF,  p-value: &lt; 2.2e-16</code></pre>
-<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="8-4-regression-analysis-using-lm.html#cb261-1"></a><span class="kw">pander</span>(lreg1, <span class="dt">add.significance.stars =</span> T)  <span class="co">#to tabulate</span></span></code></pre></div>
+<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="8-4-regression-analysis-using-lm.html#cb262-1"></a><span class="kw">pander</span>(lreg1, <span class="dt">add.significance.stars =</span> T)  <span class="co">#to tabulate</span></span></code></pre></div>
 <table style="width:100%;">
-<caption>Fitting linear model: bhp ~ asx
-- Using stargazer to print the output</caption>
+<caption>Fitting linear model: bhp ~ asx</caption>
 <colgroup>
 <col width="24%" />
 <col width="16%" />
@@ -386,8 +385,11 @@ F-statistic: 630.1 on 1 and 652 DF,  p-value: &lt; 2.2e-16</code></pre>
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="8-4-regression-analysis-using-lm.html#cb262-1"></a><span class="kw">library</span>(stargazer)</span>
-<span id="cb262-2"><a href="8-4-regression-analysis-using-lm.html#cb262-2"></a><span class="kw">stargazer</span>(lreg1, <span class="dt">type =</span> <span class="st">&quot;html&quot;</span>, <span class="dt">title =</span> <span class="st">&quot;Regression Results&quot;</span>)</span></code></pre></div>
+<ul>
+<li>Using stargazer to print the output</li>
+</ul>
+<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="8-4-regression-analysis-using-lm.html#cb263-1"></a><span class="kw">library</span>(stargazer)</span>
+<span id="cb263-2"><a href="8-4-regression-analysis-using-lm.html#cb263-2"></a><span class="kw">stargazer</span>(lreg1, <span class="dt">type =</span> <span class="st">&quot;html&quot;</span>, <span class="dt">title =</span> <span class="st">&quot;Regression Results&quot;</span>)</span></code></pre></div>
 <table style="text-align:center">
 <caption>
 <strong>Regression Results</strong>
@@ -522,7 +524,7 @@ F Statistic
 <ul>
 <li>Diagnostic Plots</li>
 </ul>
-<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="8-4-regression-analysis-using-lm.html#cb263-1"></a><span class="kw">plot</span>(lreg1)</span></code></pre></div>
+<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="8-4-regression-analysis-using-lm.html#cb264-1"></a><span class="kw">plot</span>(lreg1)</span></code></pre></div>
 <p><img src="01-Part_1_files/figure-html/unnamed-chunk-12-1.png" width="672" /><img src="01-Part_1_files/figure-html/unnamed-chunk-12-2.png" width="672" /><img src="01-Part_1_files/figure-html/unnamed-chunk-12-3.png" width="672" /><img src="01-Part_1_files/figure-html/unnamed-chunk-12-4.png" width="672" /></p>
 </div>
 <!-- </div> -->

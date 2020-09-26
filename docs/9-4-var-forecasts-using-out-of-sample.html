@@ -325,24 +325,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>Let’s use Student-t distribution as Financial Returns don’t always follow normal distribution</li>
 </ul>
-<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="9-4-var-forecasts-using-out-of-sample.html#cb269-1"></a><span class="co"># spec2 with student-t distribution</span></span>
-<span id="cb269-2"><a href="9-4-var-forecasts-using-out-of-sample.html#cb269-2"></a>spec2 =<span class="st"> </span><span class="kw">ugarchspec</span>(<span class="dt">variance.model =</span> <span class="kw">list</span>(<span class="dt">model =</span> <span class="st">&quot;sGARCH&quot;</span>, <span class="dt">garchOrder =</span> <span class="kw">c</span>(<span class="dv">1</span>, </span>
-<span id="cb269-3"><a href="9-4-var-forecasts-using-out-of-sample.html#cb269-3"></a>    <span class="dv">1</span>)), <span class="dt">mean.model =</span> <span class="kw">list</span>(<span class="dt">armaOrder =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)), <span class="dt">distribution.model =</span> <span class="st">&quot;std&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="9-4-var-forecasts-using-out-of-sample.html#cb270-1"></a><span class="co"># spec2 with student-t distribution</span></span>
+<span id="cb270-2"><a href="9-4-var-forecasts-using-out-of-sample.html#cb270-2"></a>spec2 =<span class="st"> </span><span class="kw">ugarchspec</span>(<span class="dt">variance.model =</span> <span class="kw">list</span>(<span class="dt">model =</span> <span class="st">&quot;sGARCH&quot;</span>, <span class="dt">garchOrder =</span> <span class="kw">c</span>(<span class="dv">1</span>, </span>
+<span id="cb270-3"><a href="9-4-var-forecasts-using-out-of-sample.html#cb270-3"></a>    <span class="dv">1</span>)), <span class="dt">mean.model =</span> <span class="kw">list</span>(<span class="dt">armaOrder =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)), <span class="dt">distribution.model =</span> <span class="st">&quot;std&quot;</span>)</span></code></pre></div>
 <ul>
 <li>The rugarch package has a very useful  function for estimating moving window models and forecasting VaR. The  function provides method for creating rolling forecasts from GARCH models and has various arguments to specify the forecast length (), window size (), model refitting frequency (), a rolling or recursive estimation window () etc.</li>
 </ul>
-<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="9-4-var-forecasts-using-out-of-sample.html#cb270-1"></a>var.t =<span class="st"> </span><span class="kw">ugarchroll</span>(spec2, <span class="dt">data =</span> bhp_ret, <span class="dt">n.ahead =</span> <span class="dv">1</span>, <span class="dt">forecast.length =</span> <span class="kw">ndays</span>(bhp_ret) <span class="op">-</span><span class="st"> </span></span>
-<span id="cb270-2"><a href="9-4-var-forecasts-using-out-of-sample.html#cb270-2"></a><span class="st">    </span><span class="dv">500</span>, <span class="dt">refit.every =</span> <span class="dv">5</span>, <span class="dt">window.size =</span> <span class="dv">500</span>, <span class="dt">refit.window =</span> <span class="st">&quot;rolling&quot;</span>, </span>
-<span id="cb270-3"><a href="9-4-var-forecasts-using-out-of-sample.html#cb270-3"></a>    <span class="dt">calculate.VaR =</span> <span class="ot">TRUE</span>, <span class="dt">VaR.alpha =</span> <span class="kw">c</span>(<span class="fl">0.01</span>, <span class="fl">0.05</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="9-4-var-forecasts-using-out-of-sample.html#cb271-1"></a>var.t =<span class="st"> </span><span class="kw">ugarchroll</span>(spec2, <span class="dt">data =</span> bhp_ret, <span class="dt">n.ahead =</span> <span class="dv">1</span>, <span class="dt">forecast.length =</span> <span class="kw">ndays</span>(bhp_ret) <span class="op">-</span><span class="st"> </span></span>
+<span id="cb271-2"><a href="9-4-var-forecasts-using-out-of-sample.html#cb271-2"></a><span class="st">    </span><span class="dv">500</span>, <span class="dt">refit.every =</span> <span class="dv">5</span>, <span class="dt">window.size =</span> <span class="dv">500</span>, <span class="dt">refit.window =</span> <span class="st">&quot;rolling&quot;</span>, </span>
+<span id="cb271-3"><a href="9-4-var-forecasts-using-out-of-sample.html#cb271-3"></a>    <span class="dt">calculate.VaR =</span> <span class="ot">TRUE</span>, <span class="dt">VaR.alpha =</span> <span class="kw">c</span>(<span class="fl">0.01</span>, <span class="fl">0.05</span>))</span></code></pre></div>
 <ul>
 <li>We can plot the 1% and 5% VaR forecasts against the actual returns using the following routine.</li>
 </ul>
-<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="9-4-var-forecasts-using-out-of-sample.html#cb271-1"></a><span class="co"># note the plot method provides four plots with option-4 for the VaR</span></span>
-<span id="cb271-2"><a href="9-4-var-forecasts-using-out-of-sample.html#cb271-2"></a><span class="co"># forecasts 1% Student-t GARCH VaR</span></span>
-<span id="cb271-3"><a href="9-4-var-forecasts-using-out-of-sample.html#cb271-3"></a><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
-<span id="cb271-4"><a href="9-4-var-forecasts-using-out-of-sample.html#cb271-4"></a><span class="kw">plot</span>(var.t, <span class="dt">which =</span> <span class="dv">4</span>, <span class="dt">VaR.alpha =</span> <span class="fl">0.01</span>)</span>
-<span id="cb271-5"><a href="9-4-var-forecasts-using-out-of-sample.html#cb271-5"></a><span class="co"># 5% Student-t GARCH VaR</span></span>
-<span id="cb271-6"><a href="9-4-var-forecasts-using-out-of-sample.html#cb271-6"></a><span class="kw">plot</span>(var.t, <span class="dt">which =</span> <span class="dv">4</span>, <span class="dt">VaR.alpha =</span> <span class="fl">0.05</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="9-4-var-forecasts-using-out-of-sample.html#cb272-1"></a><span class="co"># note the plot method provides four plots with option-4 for the VaR</span></span>
+<span id="cb272-2"><a href="9-4-var-forecasts-using-out-of-sample.html#cb272-2"></a><span class="co"># forecasts 1% Student-t GARCH VaR</span></span>
+<span id="cb272-3"><a href="9-4-var-forecasts-using-out-of-sample.html#cb272-3"></a><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
+<span id="cb272-4"><a href="9-4-var-forecasts-using-out-of-sample.html#cb272-4"></a><span class="kw">plot</span>(var.t, <span class="dt">which =</span> <span class="dv">4</span>, <span class="dt">VaR.alpha =</span> <span class="fl">0.01</span>)</span>
+<span id="cb272-5"><a href="9-4-var-forecasts-using-out-of-sample.html#cb272-5"></a><span class="co"># 5% Student-t GARCH VaR</span></span>
+<span id="cb272-6"><a href="9-4-var-forecasts-using-out-of-sample.html#cb272-6"></a><span class="kw">plot</span>(var.t, <span class="dt">which =</span> <span class="dv">4</span>, <span class="dt">VaR.alpha =</span> <span class="fl">0.05</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:unnamed-chunk-19"></span>
 <img src="01-Part_1_files/figure-html/unnamed-chunk-19-1.png" alt="Actual Return Vs 1% VaR forecasts" width="672" />
 <p class="caption">
@@ -352,9 +352,9 @@ Figure 2.1: Actual Return Vs 1% VaR forecasts
 <ul>
 <li>Finally backtesting can be obtained using the <code>report</code> method</li>
 </ul>
-<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="9-4-var-forecasts-using-out-of-sample.html#cb272-1"></a><span class="co"># backtest for VaR forecasts</span></span>
-<span id="cb272-2"><a href="9-4-var-forecasts-using-out-of-sample.html#cb272-2"></a></span>
-<span id="cb272-3"><a href="9-4-var-forecasts-using-out-of-sample.html#cb272-3"></a><span class="kw">report</span>(var.t, <span class="dt">VaR.alpha =</span> <span class="fl">0.05</span>)  <span class="co">#default value of alpha is 0.01</span></span></code></pre></div>
+<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="9-4-var-forecasts-using-out-of-sample.html#cb273-1"></a><span class="co"># backtest for VaR forecasts</span></span>
+<span id="cb273-2"><a href="9-4-var-forecasts-using-out-of-sample.html#cb273-2"></a></span>
+<span id="cb273-3"><a href="9-4-var-forecasts-using-out-of-sample.html#cb273-3"></a><span class="kw">report</span>(var.t, <span class="dt">VaR.alpha =</span> <span class="fl">0.05</span>)  <span class="co">#default value of alpha is 0.01</span></span></code></pre></div>
 <pre><code>VaR Backtest Report
 ===========================================
 Model:				sGARCH-std

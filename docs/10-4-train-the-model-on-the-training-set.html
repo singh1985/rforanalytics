@@ -326,20 +326,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Use rpart package and caret package</p></li>
 <li><p>The following block may results in slightly different results on individual computers. The fitted models are in data folder</p></li>
 </ul>
-<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="10-4-train-the-model-on-the-training-set.html#cb288-1"></a><span class="kw">set.seed</span>(<span class="dv">999</span>)  <span class="co">#for reproducibility</span></span>
-<span id="cb288-2"><a href="10-4-train-the-model-on-the-training-set.html#cb288-2"></a>cv_tree1 =<span class="st"> </span><span class="kw">train</span>(Creditability <span class="op">~</span><span class="st"> </span>., <span class="dt">data =</span> d_train1, <span class="dt">trControl =</span> cntrl1, </span>
-<span id="cb288-3"><a href="10-4-train-the-model-on-the-training-set.html#cb288-3"></a>    <span class="dt">method =</span> <span class="st">&quot;rpart&quot;</span>, <span class="dt">tuneLength =</span> <span class="dv">20</span>, <span class="dt">parms =</span> <span class="kw">list</span>(<span class="dt">split =</span> <span class="st">&quot;gini&quot;</span>))  <span class="co">#using gini index </span></span>
-<span id="cb288-4"><a href="10-4-train-the-model-on-the-training-set.html#cb288-4"></a>cv_tree2 =<span class="st"> </span><span class="kw">train</span>(Creditability <span class="op">~</span><span class="st"> </span>., <span class="dt">data =</span> d_train1, <span class="dt">trControl =</span> cntrl1, </span>
-<span id="cb288-5"><a href="10-4-train-the-model-on-the-training-set.html#cb288-5"></a>    <span class="dt">method =</span> <span class="st">&quot;rpart&quot;</span>, <span class="dt">tuneLength =</span> <span class="dv">20</span>, <span class="dt">parms =</span> <span class="kw">list</span>(<span class="dt">split =</span> <span class="st">&quot;information&quot;</span>))  <span class="co">#using information </span></span></code></pre></div>
+<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="10-4-train-the-model-on-the-training-set.html#cb289-1"></a><span class="kw">set.seed</span>(<span class="dv">999</span>)  <span class="co">#for reproducibility</span></span>
+<span id="cb289-2"><a href="10-4-train-the-model-on-the-training-set.html#cb289-2"></a>cv_tree1 =<span class="st"> </span><span class="kw">train</span>(Creditability <span class="op">~</span><span class="st"> </span>., <span class="dt">data =</span> d_train1, <span class="dt">trControl =</span> cntrl1, </span>
+<span id="cb289-3"><a href="10-4-train-the-model-on-the-training-set.html#cb289-3"></a>    <span class="dt">method =</span> <span class="st">&quot;rpart&quot;</span>, <span class="dt">tuneLength =</span> <span class="dv">20</span>, <span class="dt">parms =</span> <span class="kw">list</span>(<span class="dt">split =</span> <span class="st">&quot;gini&quot;</span>))  <span class="co">#using gini index </span></span>
+<span id="cb289-4"><a href="10-4-train-the-model-on-the-training-set.html#cb289-4"></a>cv_tree2 =<span class="st"> </span><span class="kw">train</span>(Creditability <span class="op">~</span><span class="st"> </span>., <span class="dt">data =</span> d_train1, <span class="dt">trControl =</span> cntrl1, </span>
+<span id="cb289-5"><a href="10-4-train-the-model-on-the-training-set.html#cb289-5"></a>    <span class="dt">method =</span> <span class="st">&quot;rpart&quot;</span>, <span class="dt">tuneLength =</span> <span class="dv">20</span>, <span class="dt">parms =</span> <span class="kw">list</span>(<span class="dt">split =</span> <span class="st">&quot;information&quot;</span>))  <span class="co">#using information </span></span></code></pre></div>
 <ul>
 <li><p>The fitted models were saved afterwards as <em>cv_tree1_gini.Rdata</em> and <em>cv_tree2_info.Rdata</em></p></li>
 <li><p>Loading the fitted models to analyse</p></li>
 </ul>
-<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="10-4-train-the-model-on-the-training-set.html#cb289-1"></a><span class="kw">set.seed</span>(<span class="dv">999</span>)</span>
-<span id="cb289-2"><a href="10-4-train-the-model-on-the-training-set.html#cb289-2"></a><span class="kw">load</span>(<span class="st">&quot;data/cv_tree1_gini.Rdata&quot;</span>)</span>
-<span id="cb289-3"><a href="10-4-train-the-model-on-the-training-set.html#cb289-3"></a><span class="kw">load</span>(<span class="st">&quot;data/cv_tree2_info.Rdata&quot;</span>)</span>
-<span id="cb289-4"><a href="10-4-train-the-model-on-the-training-set.html#cb289-4"></a><span class="co"># model fit 1</span></span>
-<span id="cb289-5"><a href="10-4-train-the-model-on-the-training-set.html#cb289-5"></a>cv_tree1</span></code></pre></div>
+<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="10-4-train-the-model-on-the-training-set.html#cb290-1"></a><span class="kw">set.seed</span>(<span class="dv">999</span>)</span>
+<span id="cb290-2"><a href="10-4-train-the-model-on-the-training-set.html#cb290-2"></a><span class="kw">load</span>(<span class="st">&quot;data/cv_tree1_gini.Rdata&quot;</span>)</span>
+<span id="cb290-3"><a href="10-4-train-the-model-on-the-training-set.html#cb290-3"></a><span class="kw">load</span>(<span class="st">&quot;data/cv_tree2_info.Rdata&quot;</span>)</span>
+<span id="cb290-4"><a href="10-4-train-the-model-on-the-training-set.html#cb290-4"></a><span class="co"># model fit 1</span></span>
+<span id="cb290-5"><a href="10-4-train-the-model-on-the-training-set.html#cb290-5"></a>cv_tree1</span></code></pre></div>
 <pre><code>CART 
 
 802 samples
@@ -375,8 +375,8 @@ Resampling results across tuning parameters:
 
 Accuracy was used to select the optimal model using the largest value.
 The final value used for the model was cp = 0.01747106.</code></pre>
-<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="10-4-train-the-model-on-the-training-set.html#cb291-1"></a><span class="co"># model fit 2</span></span>
-<span id="cb291-2"><a href="10-4-train-the-model-on-the-training-set.html#cb291-2"></a>cv_tree2</span></code></pre></div>
+<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="10-4-train-the-model-on-the-training-set.html#cb292-1"></a><span class="co"># model fit 2</span></span>
+<span id="cb292-2"><a href="10-4-train-the-model-on-the-training-set.html#cb292-2"></a>cv_tree2</span></code></pre></div>
 <pre><code>CART 
 
 802 samples
@@ -412,9 +412,9 @@ Resampling results across tuning parameters:
 
 Accuracy was used to select the optimal model using the largest value.
 The final value used for the model was cp = 0.01397685.</code></pre>
-<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="10-4-train-the-model-on-the-training-set.html#cb293-1"></a><span class="kw">plot</span>(cv_tree1)  <span class="co">#parameter search using gini</span></span></code></pre></div>
+<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="10-4-train-the-model-on-the-training-set.html#cb294-1"></a><span class="kw">plot</span>(cv_tree1)  <span class="co">#parameter search using gini</span></span></code></pre></div>
 <p><img src="04-Part_2_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
-<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="10-4-train-the-model-on-the-training-set.html#cb294-1"></a><span class="kw">plot</span>(cv_tree2)  <span class="co">#parameter search using information</span></span></code></pre></div>
+<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="10-4-train-the-model-on-the-training-set.html#cb295-1"></a><span class="kw">plot</span>(cv_tree2)  <span class="co">#parameter search using information</span></span></code></pre></div>
 <p><img src="04-Part_2_files/figure-html/unnamed-chunk-6-2.png" width="672" /></p>
 </div>
             </section>

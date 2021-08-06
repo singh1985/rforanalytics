@@ -1,0 +1,295 @@
+---
+title: "R for Financial Modelling"
+author: "Abhay Singh"
+date: "06/08/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(tidy=TRUE,tidy.opts=list(keep.blank.lines=TRUE,width.cutoff=70),fig.env='figure',message=FALSE,warning=FALSE,comment="",echo=TRUE)
+```
+
+# R Workshop 
+
+## R For Financial Modelling Workshop
+Material: www.rforanalytics.com Topic-7 to 10
+
+**We will start in**
+
+```{r, echo=FALSE,eval=FALSE}
+countdown::countdown_fullscreen(minutes=10, seconds=0,top=0,left=0,) 
+
+```
+
+
+## TA
+
+- Download data
+
+```{r}
+library(quantmod)
+
+cba=getSymbols("CBA.AX",from="2019-01-01", to= "2021-08-05",auto.assign=FALSE)
+str(cba)
+asx=getSymbols("^AXJO",from="2019-01-01", to= "2021-08-05",auto.assign=FALSE)
+
+library(pander)
+pander(head(cba),caption="OHLC Data",split.table=Inf)
+```
+
+### Charts
+
+- chartseries
+
+```{r}
+chartSeries(cba,theme="white",subset="last 2 months")
+addTA(ta="SMA")
+```
+
+```{r}
+chartSeries(cba,type="candle",subset="last 2 months",theme="white",TA=c(addSMA(5),addEMA(5)))
+```
+
+```{r,fig.cap="Technical Indicators (BBands, RSI, MACD, Momentum)",fig.keep='last'}
+chartSeries(cba,type="candle",subset="last 3 months",theme="white")
+addBBands()
+addMACD()
+addRSI()
+addMomentum()
+```
+
+> using pipes on quantmod
+
+```{r}
+library(tidyr)
+cba %>% chartSeries()
+```
+
+
+
+## Linear Regressions
+
+- CAPM: Capital Asset Pricing Model
+  + Evaluated using Linear Regressions
+- CAPM Equation
+
+$$R_s\approx \alpha + \beta_mR_m + \varepsilon$$
+- Linear Regression
+
+$$Y_i  \tilde\ \alpha_i+\beta_iX_i+\varepsilon $$
+
+
+
+
+**`lm`: Linear Model**
+
+
+- Convert prices to returns
+
+```{r}
+cba2=cba$CBA.AX.Adjusted
+asx2=asx$AXJO.Adjusted
+
+cba_ret=dailyReturn(cba2,type="log")
+asx_ret=dailyReturn(asx2,type="log")
+
+
+
+#data_lm1=data.frame("CBA"=cba_ret$daily.returns,"ASX"=asx_ret$daily.returns)
+
+data_lm1=merge.xts(cba_ret,asx_ret)
+head(data_lm1)
+data_lm1=as.data.frame(data_lm1)
+head(data_lm1)
+colnames(data_lm1)=c("CBA_ret","ASX_ret")
+head(data_lm1)
+data_lm1=data.frame("Date"=row.names(data_lm1),data_lm1)
+row.names(data_lm1)=NULL
+head(data_lm1)
+```
+
+
+
+- Regression analysis
+
+```{r}
+reg1=lm(formula=CBA_ret~ASX_ret,data=data_lm1)
+reg2=lm(formula=data_lm1$CBA_ret~data_lm1$ASX_ret)
+
+summary(reg1)
+```
+
+
+
+- presents regression results
+
+```{r}
+pander(reg1,add.significance.stars=T)
+```
+
+
+<!-- Back in  -->
+
+<!-- ```{r} -->
+<!-- countdown::countdown_fullscreen(minutes=5) -->
+<!-- ``` -->
+
+
+
+## VaR and GARCH
+
+### VaR: Value at Risk
+
+```{r, fig.cap="VaR (1%) based on Normal Density"}
+den_r=dnorm(x=coredata(cba_ret),mean=mean(coredata(cba_ret)),sd=sd(coredata(cba_ret)))
+data_rd=data.frame(x=den_r,y=coredata(cba_ret))
+colnames(data_rd)=c("x","y")
+(var1=quantile(coredata(cba_ret),0.01))
+library(ggplot2)
+
+p1=ggplot(data_rd,aes(y,x))+geom_line(size=1)
+p1+geom_vline(xintercept = var1,lty=2,col="darkblue",size=2)+theme_bw()
+
+```
+
+### GARCH Models
+
+- xts object of the CBA returns
+
+```{r}
+library(rugarch)
+#specification
+
+garch_spec1=ugarchspec(variance.model = list(model="sGARCH",garchOrder=c(1,1)),mean.model = list(armaOrder=c(0,0)),distribution.model = "norm")
+garch_spec2=ugarchspec(variance.model = list(model="sGARCH",garchOrder=c(1,1)),mean.model = list(armaOrder=c(0,0)),distribution.model = "std")
+
+fit_1=ugarchfit(spec=garch_spec1,data=cba_ret)
+fit_2=ugarchfit(spec=garch_spec2,data=cba_ret)
+fit_1
+fit_2
+
+```
+
+
+
+- Forecasting VaR
+
+
+```{r}
+var_n=ugarchroll(spec=garch_spec1,data=cba_ret,n.ahead=1,forecast.length = ndays(cba_ret)-500,refit.every = 5,refit.window = "rolling",calculate.VaR = TRUE,VaR.alpha = c(0.01,0.05))
+
+var_t=ugarchroll(spec=garch_spec2,data=cba_ret,n.ahead=1,forecast.length = ndays(cba_ret)-500,refit.every = 5,refit.window = "rolling",calculate.VaR = TRUE,VaR.alpha = c(0.01,0.05))
+
+plot(var_n,which=4,VaR.alpha=0.05)
+plot(var_t,which=4,VaR.alpha=0.05)
+```
+
+
+- Backtesting using `report` function
+
+```{r}
+report(var_t,VaR.alpha=0.05)
+```
+
+
+<!-- Back in -->
+
+<!-- ```{r} -->
+<!-- countdown::countdown_fullscreen(minutes=5) -->
+<!-- ``` -->
+
+## Portfolio Construction
+
+```{r}
+library(quantmod)
+library(TTR)
+s1=c("BHP.AX","CBA.AX","WOW.AX","TLS.AX","CSL.AX")
+
+data1=lapply(s1,FUN=function(x){
+  ROC(Ad(getSymbols(x,from="2019-01-01",to="2021-08-05",auto.assign = FALSE)),type="discrete")*100
+})
+#str(data1)
+
+ret1=as.data.frame(do.call(merge,data1))
+#head(ret1)
+
+colnames(ret1)=s1
+
+#head(ret1)
+ret1=ret1[-1,]
+#head(ret1)
+```
+
+- use fPortfolio package for portfolio
+https://www.rmetrics.org/ebooks-portfolio 
+
+
+```{r}
+library(fPortfolio)
+data_p1=xts(ret1,order.by = as.Date(row.names(ret1)))
+#plot(data_p1)
+data_p2=as.timeSeries(data_p1)
+
+pspec=portfolioSpec()
+setNFrontierPoints(pspec)=50
+
+eff_front1=portfolioFrontier(data_p2,spec=pspec,constraints = "LongOnly")
+
+plot(eff_front1,c(1,2,4,5,6))
+```
+
+
+
+
+```{r}
+tailoredFrontierPlot(eff_front1,sharpeRatio = FALSE,risk="Cov")
+```
+
+```{r}
+weightsPlot(eff_front1)
+```
+- Minimum variance portfolio
+```{r}
+(min_var1=minvariancePortfolio(data_p2,spec=pspec))
+```
+
+
+
+- Box constraints
+  + add additional constraints on weights etc
+  
+```{r}
+boxconst1=c("minW[1:5]=0.1","maxW[1:5]=1")
+eff_font2=portfolioFrontier(data_p2,spec=pspec,constraints = boxconst1)
+eff_font2
+(min_var2=minvariancePortfolio(data_p2,spec=pspec,constraints = boxconst1))
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

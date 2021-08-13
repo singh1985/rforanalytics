@@ -1,0 +1,191 @@
+---
+title: "ASSOC Workshop 2021"
+output:
+  word_document: default
+  html_notebook: default
+---
+
+```{r}
+knitr::opts_chunk$set(comment="")
+```
+
+# R ASSOC Workshop
+
+## Data import
+
+
+- Import from a csv file
+- R has a function called read.csv()
+
+```{r}
+data1=read.csv(file="data_fin.csv")
+str(data1)
+
+typeof(data1$Date)
+```
+
+- convert date character to date type
+
+```{r}
+data1$Date=as.Date(data1$Date,format="%d/%m/%Y")
+str(data1)
+
+
+```
+
+
+
+- Log returns
+
+$$R(log)=log[P(t)/P(t-1)] $$
+$$R= log(P(t))-log(P(t-1)$$
+
+
+
+
+```{r}
+data1$IBMR=c(0,diff(log(data1$IBM)))
+
+head(data1)
+```
+
+
+- Extract some columns (IBM, IBM Returns and Date)
+
+
+```{r}
+d_ex1=data1[,c("Date","IBM","IBMR")]
+#head(d_ex1)
+```
+
+
+## Summary Statistics
+
+```{r}
+(av1=mean(d_ex1$IBMR,na.rm = TRUE))
+
+d_ex1=na.omit(d_ex1)
+(sd1=sd(d_ex1$IBM))
+```
+
+```{r}
+library(pastecs)
+desc1=stat.desc(x=d_ex1[,-1],norm=TRUE)
+#desc1
+
+library(pander)
+pander(desc1,caption="Descriptive Statistics")
+```
+
+
+## Graphs
+
+- Base plot function
+
+```{r}
+plot(x=d_ex1$Date,y=d_ex1$IBMR,type="l",col=2,main="IBM Prices",xlab="Date",ylab="Prices")
+#boxplot(d_ex1$IBMR)
+```
+
+
+### Graphs using GGPLOT2
+
+```{r}
+library(ggplot2)
+head(d_ex1)
+
+library(tidyr)
+
+d_long=pivot_longer(d_ex1,cols=c(-Date),names_to = "name",values_to = "value")
+head(d_long)
+```
+
+
+- ggplot
+
+```{r}
+p1=ggplot(data=d_long,mapping=aes(x=Date,y=value,color=name))
+p1=p1+geom_path()
+p1+facet_wrap(name~.,scale="free")+theme_bw()+theme(legend.position = "top")+labs(y="Prices&Returns")
+```
+
+
+
+### Technical charts
+
+```{r}
+library(quantmod)
+d_tls=getSymbols(Symbols = "TLS.AX",from="2021-01-01",to="2021-08-12",auto.assign = FALSE)
+```
+
+```{r,fig.cap="Technical Chart of TLS"}
+chartSeries(x=d_tls,type="candlesticks",name="Telstra",theme="white",TA=c(addSMA(5),addMACD()))
+```
+
+
+
+<!-- ```{r} -->
+<!-- countdown::countdown_fullscreen(minutes = 5) -->
+<!-- ``` -->
+
+
+## Regressions using R
+
+
+$$R_i\ \tilde\ \alpha_i+\beta_iR_m+\varepsilon$$
+
+- lm: linear models
+  + linear regression using lm requires a formula
+  + formula: $y\tilde\\alpha+\beta x$
+  
+  
+```{r}
+
+asx=getSymbols("^AXJO",from="2021-01-01",to="2021-08-12",auto.assign = FALSE)
+
+# head(d_tls)
+# head(asx)
+
+tls1=d_tls$TLS.AX.Adjusted
+asx1=asx$AXJO.Adjusted
+
+tls_ret=ROC(tls1$TLS.AX.Adjusted,type="continuous")
+asx_ret=ROC(asx1$AXJO.Adjusted,type="continuous")
+
+d_ex2=merge.xts(tls_ret,asx_ret)
+#head(d_ex2)
+d_ex2=d_ex2[-1,]
+```
+
+- Convert to dataframe
+
+```{r}
+d_ex2=data.frame("Date"=index(d_ex2),coredata(d_ex2))
+str(d_ex2)
+
+colnames(d_ex2)[2:3]=c("TLS","ASX")
+head(d_ex2)
+```
+
+- Regressions
+
+```{r}
+lreg1=lm(d_ex2$TLS~d_ex2$ASX)
+summary(lreg1)
+```
+
+```{r}
+pander(lreg1,add.significance.stars=TRUE)
+```
+
+
+```{r}
+plot(lreg1)
+```
+- plot a fitted line
+
+```{r}
+p2=ggplot(data=d_ex2,aes(ASX,TLS))+geom_point()
+p2+geom_smooth(method="lm",se=FALSE)
+```
+

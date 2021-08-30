@@ -25,6 +25,7 @@ fig:ch6-1
 fig:ch6-2
 fig:ch6-3
 fig:ch6-5
+fig:ch6-8
 fig:ch6-6
 fig:ch6-7
 fig:unnamed-chunk-3-1

@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>9.4 VaR forecasts using out of sample | R for Data Analytics</title>
   <meta name="description" content="This is a collection of examples on using R for Data Analytics" />
-  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="9.4 VaR forecasts using out of sample | R for Data Analytics" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Abhay Singh" />
 
 
-<meta name="date" content="2021-08-30" />
+<meta name="date" content="2021-10-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,8 +33,9 @@
   <link rel="shortcut icon" href="rforda.png" type="image/x-icon" />
 <link rel="prev" href="9.3-garch11-to-forecast-var.html"/>
 <link rel="next" href="10-portfolio-modelling-using-r.html"/>
-<script src="libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -50,16 +51,15 @@
 
 
 
-
 <link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
-<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
-<script src="libs/plotly-binding-4.9.4.1/plotly.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.10.0/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
 <link href="libs/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet" />
 <script src="libs/crosstalk-1.1.1/js/crosstalk.min.js"></script>
-<link href="libs/plotly-htmlwidgets-css-1.57.1/plotly-htmlwidgets.css" rel="stylesheet" />
-<script src="libs/plotly-main-1.57.1/plotly-latest.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-2.5.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-2.5.1/plotly-latest.min.js"></script>
 <link href="libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 <link href="libs/wordcloud2-0.0.1/wordcloud.css" rel="stylesheet" />
@@ -263,24 +263,24 @@ div.csl-indent {
 <li class="chapter" data-level="6.3" data-path="6.3-plot-maps.html"><a href="6.3-plot-maps.html"><i class="fa fa-check"></i><b>6.3</b> Plot Maps</a></li>
 </ul></li>
 <li class="part"><span><b>Part II</b></span></li>
-<li class="chapter" data-level="7" data-path="7-technical-analysis-using-r.html"><a href="7-technical-analysis-using-r.html"><i class="fa fa-check"></i><b>7</b> Technical Analysis using R</a>
+<li class="chapter" data-level="7" data-path="7-linear-regression.html"><a href="7-linear-regression.html"><i class="fa fa-check"></i><b>7</b> Linear Regression</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="7.1-technical-analysis-ta-using-r.html"><a href="7.1-technical-analysis-ta-using-r.html"><i class="fa fa-check"></i><b>7.1</b> Technical Analysis (TA) using R</a></li>
-<li class="chapter" data-level="7.2" data-path="7.2-technical-charts.html"><a href="7.2-technical-charts.html"><i class="fa fa-check"></i><b>7.2</b> Technical Charts</a>
-<ul>
-<li class="chapter" data-level="7.2.1" data-path="7.2-technical-charts.html"><a href="7.2-technical-charts.html#candlesticks-and-ohlc-chart"><i class="fa fa-check"></i><b>7.2.1</b> Candlesticks and OHLC chart</a></li>
-<li class="chapter" data-level="7.2.2" data-path="7.2-technical-charts.html"><a href="7.2-technical-charts.html#line-chart"><i class="fa fa-check"></i><b>7.2.2</b> Line chart</a></li>
-<li class="chapter" data-level="7.2.3" data-path="7.2-technical-charts.html"><a href="7.2-technical-charts.html#candlestick-chart"><i class="fa fa-check"></i><b>7.2.3</b> Candlestick chart</a></li>
-<li class="chapter" data-level="7.2.4" data-path="7.2-technical-charts.html"><a href="7.2-technical-charts.html#add-technical-indicators"><i class="fa fa-check"></i><b>7.2.4</b> Add technical indicators</a></li>
-<li class="chapter" data-level="7.2.5" data-path="7.2-technical-charts.html"><a href="7.2-technical-charts.html#adding-indicators-sequentially"><i class="fa fa-check"></i><b>7.2.5</b> Adding indicators sequentially</a></li>
+<li class="chapter" data-level="7.1" data-path="7.1-investment-beta-using-r-single-index-model.html"><a href="7.1-investment-beta-using-r-single-index-model.html"><i class="fa fa-check"></i><b>7.1</b> Investment <span class="math inline">\(\beta\)</span> using R (Single Index Model)</a></li>
+<li class="chapter" data-level="7.2" data-path="7.2-data-preprocessing-1.html"><a href="7.2-data-preprocessing-1.html"><i class="fa fa-check"></i><b>7.2</b> Data preprocessing</a></li>
+<li class="chapter" data-level="7.3" data-path="7.3-visualisation.html"><a href="7.3-visualisation.html"><i class="fa fa-check"></i><b>7.3</b> Visualisation</a></li>
+<li class="chapter" data-level="7.4" data-path="7.4-regression-analysis-using-lm.html"><a href="7.4-regression-analysis-using-lm.html"><i class="fa fa-check"></i><b>7.4</b> Regression analysis using lm</a></li>
 </ul></li>
-</ul></li>
-<li class="chapter" data-level="8" data-path="8-linear-regression.html"><a href="8-linear-regression.html"><i class="fa fa-check"></i><b>8</b> Linear Regression</a>
+<li class="chapter" data-level="8" data-path="8-technical-analysis-using-r.html"><a href="8-technical-analysis-using-r.html"><i class="fa fa-check"></i><b>8</b> Technical Analysis using R</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="8.1-investment-beta-using-r-single-index-model.html"><a href="8.1-investment-beta-using-r-single-index-model.html"><i class="fa fa-check"></i><b>8.1</b> Investment <span class="math inline">\(\beta\)</span> using R (Single Index Model)</a></li>
-<li class="chapter" data-level="8.2" data-path="8.2-data-preprocessing-1.html"><a href="8.2-data-preprocessing-1.html"><i class="fa fa-check"></i><b>8.2</b> Data preprocessing</a></li>
-<li class="chapter" data-level="8.3" data-path="8.3-visualisation.html"><a href="8.3-visualisation.html"><i class="fa fa-check"></i><b>8.3</b> Visualisation</a></li>
-<li class="chapter" data-level="8.4" data-path="8.4-regression-analysis-using-lm.html"><a href="8.4-regression-analysis-using-lm.html"><i class="fa fa-check"></i><b>8.4</b> Regression analysis using lm</a></li>
+<li class="chapter" data-level="8.1" data-path="8.1-technical-analysis-ta-using-r.html"><a href="8.1-technical-analysis-ta-using-r.html"><i class="fa fa-check"></i><b>8.1</b> Technical Analysis (TA) using R</a></li>
+<li class="chapter" data-level="8.2" data-path="8.2-technical-charts.html"><a href="8.2-technical-charts.html"><i class="fa fa-check"></i><b>8.2</b> Technical Charts</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="8.2-technical-charts.html"><a href="8.2-technical-charts.html#candlesticks-and-ohlc-chart"><i class="fa fa-check"></i><b>8.2.1</b> Candlesticks and OHLC chart</a></li>
+<li class="chapter" data-level="8.2.2" data-path="8.2-technical-charts.html"><a href="8.2-technical-charts.html#line-chart"><i class="fa fa-check"></i><b>8.2.2</b> Line chart</a></li>
+<li class="chapter" data-level="8.2.3" data-path="8.2-technical-charts.html"><a href="8.2-technical-charts.html#candlestick-chart"><i class="fa fa-check"></i><b>8.2.3</b> Candlestick chart</a></li>
+<li class="chapter" data-level="8.2.4" data-path="8.2-technical-charts.html"><a href="8.2-technical-charts.html#add-technical-indicators"><i class="fa fa-check"></i><b>8.2.4</b> Add technical indicators</a></li>
+<li class="chapter" data-level="8.2.5" data-path="8.2-technical-charts.html"><a href="8.2-technical-charts.html#adding-indicators-sequentially"><i class="fa fa-check"></i><b>8.2.5</b> Adding indicators sequentially</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="9-forecasting-var-using-garch-models.html"><a href="9-forecasting-var-using-garch-models.html"><i class="fa fa-check"></i><b>9</b> Forecasting VaR using GARCH Models</a>
 <ul>
@@ -429,24 +429,24 @@ div.csl-indent {
 <ul>
 <li>Let’s use Student-t distribution as Financial Returns don’t always follow normal distribution</li>
 </ul>
-<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="9.4-var-forecasts-using-out-of-sample.html#cb272-1" aria-hidden="true" tabindex="-1"></a><span class="co"># spec2 with student-t distribution</span></span>
-<span id="cb272-2"><a href="9.4-var-forecasts-using-out-of-sample.html#cb272-2" aria-hidden="true" tabindex="-1"></a>spec2 <span class="ot">=</span> <span class="fu">ugarchspec</span>(<span class="at">variance.model =</span> <span class="fu">list</span>(<span class="at">model =</span> <span class="st">&quot;sGARCH&quot;</span>, <span class="at">garchOrder =</span> <span class="fu">c</span>(<span class="dv">1</span>,</span>
-<span id="cb272-3"><a href="9.4-var-forecasts-using-out-of-sample.html#cb272-3" aria-hidden="true" tabindex="-1"></a>    <span class="dv">1</span>)), <span class="at">mean.model =</span> <span class="fu">list</span>(<span class="at">armaOrder =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)), <span class="at">distribution.model =</span> <span class="st">&quot;std&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="9.4-var-forecasts-using-out-of-sample.html#cb271-1" aria-hidden="true" tabindex="-1"></a><span class="co"># spec2 with student-t distribution</span></span>
+<span id="cb271-2"><a href="9.4-var-forecasts-using-out-of-sample.html#cb271-2" aria-hidden="true" tabindex="-1"></a>spec2 <span class="ot">=</span> <span class="fu">ugarchspec</span>(<span class="at">variance.model =</span> <span class="fu">list</span>(<span class="at">model =</span> <span class="st">&quot;sGARCH&quot;</span>, <span class="at">garchOrder =</span> <span class="fu">c</span>(<span class="dv">1</span>,</span>
+<span id="cb271-3"><a href="9.4-var-forecasts-using-out-of-sample.html#cb271-3" aria-hidden="true" tabindex="-1"></a>    <span class="dv">1</span>)), <span class="at">mean.model =</span> <span class="fu">list</span>(<span class="at">armaOrder =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)), <span class="at">distribution.model =</span> <span class="st">&quot;std&quot;</span>)</span></code></pre></div>
 <ul>
 <li>The rugarch package has a very useful  function for estimating moving window models and forecasting VaR. The  function provides method for creating rolling forecasts from GARCH models and has various arguments to specify the forecast length (), window size (), model refitting frequency (), a rolling or recursive estimation window () etc.</li>
 </ul>
-<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="9.4-var-forecasts-using-out-of-sample.html#cb273-1" aria-hidden="true" tabindex="-1"></a>var.t <span class="ot">=</span> <span class="fu">ugarchroll</span>(spec2, <span class="at">data =</span> bhp_ret, <span class="at">n.ahead =</span> <span class="dv">1</span>, <span class="at">forecast.length =</span> <span class="fu">ndays</span>(bhp_ret) <span class="sc">-</span></span>
-<span id="cb273-2"><a href="9.4-var-forecasts-using-out-of-sample.html#cb273-2" aria-hidden="true" tabindex="-1"></a>    <span class="dv">500</span>, <span class="at">refit.every =</span> <span class="dv">5</span>, <span class="at">window.size =</span> <span class="dv">500</span>, <span class="at">refit.window =</span> <span class="st">&quot;rolling&quot;</span>,</span>
-<span id="cb273-3"><a href="9.4-var-forecasts-using-out-of-sample.html#cb273-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">calculate.VaR =</span> <span class="cn">TRUE</span>, <span class="at">VaR.alpha =</span> <span class="fu">c</span>(<span class="fl">0.01</span>, <span class="fl">0.05</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="9.4-var-forecasts-using-out-of-sample.html#cb272-1" aria-hidden="true" tabindex="-1"></a>var.t <span class="ot">=</span> <span class="fu">ugarchroll</span>(spec2, <span class="at">data =</span> bhp_ret, <span class="at">n.ahead =</span> <span class="dv">1</span>, <span class="at">forecast.length =</span> <span class="fu">ndays</span>(bhp_ret) <span class="sc">-</span></span>
+<span id="cb272-2"><a href="9.4-var-forecasts-using-out-of-sample.html#cb272-2" aria-hidden="true" tabindex="-1"></a>    <span class="dv">500</span>, <span class="at">refit.every =</span> <span class="dv">5</span>, <span class="at">window.size =</span> <span class="dv">500</span>, <span class="at">refit.window =</span> <span class="st">&quot;rolling&quot;</span>,</span>
+<span id="cb272-3"><a href="9.4-var-forecasts-using-out-of-sample.html#cb272-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">calculate.VaR =</span> <span class="cn">TRUE</span>, <span class="at">VaR.alpha =</span> <span class="fu">c</span>(<span class="fl">0.01</span>, <span class="fl">0.05</span>))</span></code></pre></div>
 <ul>
 <li>We can plot the 1% and 5% VaR forecasts against the actual returns using the following routine.</li>
 </ul>
-<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="9.4-var-forecasts-using-out-of-sample.html#cb274-1" aria-hidden="true" tabindex="-1"></a><span class="co"># note the plot method provides four plots with option-4 for the VaR</span></span>
-<span id="cb274-2"><a href="9.4-var-forecasts-using-out-of-sample.html#cb274-2" aria-hidden="true" tabindex="-1"></a><span class="co"># forecasts 1% Student-t GARCH VaR</span></span>
-<span id="cb274-3"><a href="9.4-var-forecasts-using-out-of-sample.html#cb274-3" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
-<span id="cb274-4"><a href="9.4-var-forecasts-using-out-of-sample.html#cb274-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(var.t, <span class="at">which =</span> <span class="dv">4</span>, <span class="at">VaR.alpha =</span> <span class="fl">0.01</span>)</span>
-<span id="cb274-5"><a href="9.4-var-forecasts-using-out-of-sample.html#cb274-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 5% Student-t GARCH VaR</span></span>
-<span id="cb274-6"><a href="9.4-var-forecasts-using-out-of-sample.html#cb274-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(var.t, <span class="at">which =</span> <span class="dv">4</span>, <span class="at">VaR.alpha =</span> <span class="fl">0.05</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="9.4-var-forecasts-using-out-of-sample.html#cb273-1" aria-hidden="true" tabindex="-1"></a><span class="co"># note the plot method provides four plots with option-4 for the VaR</span></span>
+<span id="cb273-2"><a href="9.4-var-forecasts-using-out-of-sample.html#cb273-2" aria-hidden="true" tabindex="-1"></a><span class="co"># forecasts 1% Student-t GARCH VaR</span></span>
+<span id="cb273-3"><a href="9.4-var-forecasts-using-out-of-sample.html#cb273-3" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
+<span id="cb273-4"><a href="9.4-var-forecasts-using-out-of-sample.html#cb273-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(var.t, <span class="at">which =</span> <span class="dv">4</span>, <span class="at">VaR.alpha =</span> <span class="fl">0.01</span>)</span>
+<span id="cb273-5"><a href="9.4-var-forecasts-using-out-of-sample.html#cb273-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 5% Student-t GARCH VaR</span></span>
+<span id="cb273-6"><a href="9.4-var-forecasts-using-out-of-sample.html#cb273-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(var.t, <span class="at">which =</span> <span class="dv">4</span>, <span class="at">VaR.alpha =</span> <span class="fl">0.05</span>)</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:var2"></span>
 <img src="01-Part_1_files/figure-html/var2-1.png" alt="Actual Return Vs 1% VaR forecasts" width="672" />
 <p class="caption">
@@ -456,9 +456,9 @@ Figure 9.3: Actual Return Vs 1% VaR forecasts
 <ul>
 <li>Finally backtesting can be obtained using the <code>report</code> method</li>
 </ul>
-<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="9.4-var-forecasts-using-out-of-sample.html#cb275-1" aria-hidden="true" tabindex="-1"></a><span class="co"># backtest for VaR forecasts</span></span>
-<span id="cb275-2"><a href="9.4-var-forecasts-using-out-of-sample.html#cb275-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb275-3"><a href="9.4-var-forecasts-using-out-of-sample.html#cb275-3" aria-hidden="true" tabindex="-1"></a><span class="fu">report</span>(var.t, <span class="at">VaR.alpha =</span> <span class="fl">0.05</span>)  <span class="co">#default value of alpha is 0.01</span></span></code></pre></div>
+<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="9.4-var-forecasts-using-out-of-sample.html#cb274-1" aria-hidden="true" tabindex="-1"></a><span class="co"># backtest for VaR forecasts</span></span>
+<span id="cb274-2"><a href="9.4-var-forecasts-using-out-of-sample.html#cb274-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb274-3"><a href="9.4-var-forecasts-using-out-of-sample.html#cb274-3" aria-hidden="true" tabindex="-1"></a><span class="fu">report</span>(var.t, <span class="at">VaR.alpha =</span> <span class="fl">0.05</span>)  <span class="co">#default value of alpha is 0.01</span></span></code></pre></div>
 <pre><code>VaR Backtest Report
 ===========================================
 Model:              sGARCH-std
@@ -468,23 +468,23 @@ Data:
 ==========================================
 alpha:              5%
 Expected Exceed:    7.7
-Actual VaR Exceed:  15
-Actual %:           9.7%
+Actual VaR Exceed:  6
+Actual %:           3.9%
 
 Unconditional Coverage (Kupiec)
 Null-Hypothesis:    Correct Exceedances
-LR.uc Statistic:    5.775
+LR.uc Statistic:    0.426
 LR.uc Critical:     3.841
-LR.uc p-value:      0.016
-Reject Null:        YES
+LR.uc p-value:      0.514
+Reject Null:        NO
 
 Conditional Coverage (Christoffersen)
 Null-Hypothesis:    Correct Exceedances and
                     Independence of Failures
-LR.cc Statistic:    10.264
+LR.cc Statistic:    0.916
 LR.cc Critical:     5.991
-LR.cc p-value:      0.006
-Reject Null:        YES</code></pre>
+LR.cc p-value:      0.633
+Reject Null:        NO</code></pre>
 
 </div>
 <!-- </div> -->
@@ -498,7 +498,6 @@ Reject Null:        YES</code></pre>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -539,7 +538,7 @@ gitbook.start({
 },
 "download": null,
 "search": {
-"engine": "lunr",
+"engine": "fuse",
 "options": null
 },
 "toc": {

@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>14.4 Data Pre-processing | R for Data Analytics</title>
   <meta name="description" content="This is a collection of examples on using R for Data Analytics" />
-  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="14.4 Data Pre-processing | R for Data Analytics" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Abhay Singh" />
 
 
-<meta name="date" content="2021-08-30" />
+<meta name="date" content="2021-10-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,8 +33,9 @@
   <link rel="shortcut icon" href="rforda.png" type="image/x-icon" />
 <link rel="prev" href="14.3-download-data.html"/>
 <link rel="next" href="14.5-some-visualisation.html"/>
-<script src="libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -50,16 +51,15 @@
 
 
 
-
 <link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
-<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
-<script src="libs/plotly-binding-4.9.4.1/plotly.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.10.0/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
 <link href="libs/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet" />
 <script src="libs/crosstalk-1.1.1/js/crosstalk.min.js"></script>
-<link href="libs/plotly-htmlwidgets-css-1.57.1/plotly-htmlwidgets.css" rel="stylesheet" />
-<script src="libs/plotly-main-1.57.1/plotly-latest.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-2.5.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-2.5.1/plotly-latest.min.js"></script>
 <link href="libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 <link href="libs/wordcloud2-0.0.1/wordcloud.css" rel="stylesheet" />
@@ -263,24 +263,24 @@ div.csl-indent {
 <li class="chapter" data-level="6.3" data-path="6.3-plot-maps.html"><a href="6.3-plot-maps.html"><i class="fa fa-check"></i><b>6.3</b> Plot Maps</a></li>
 </ul></li>
 <li class="part"><span><b>Part II</b></span></li>
-<li class="chapter" data-level="7" data-path="7-technical-analysis-using-r.html"><a href="7-technical-analysis-using-r.html"><i class="fa fa-check"></i><b>7</b> Technical Analysis using R</a>
+<li class="chapter" data-level="7" data-path="7-linear-regression.html"><a href="7-linear-regression.html"><i class="fa fa-check"></i><b>7</b> Linear Regression</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="7.1-technical-analysis-ta-using-r.html"><a href="7.1-technical-analysis-ta-using-r.html"><i class="fa fa-check"></i><b>7.1</b> Technical Analysis (TA) using R</a></li>
-<li class="chapter" data-level="7.2" data-path="7.2-technical-charts.html"><a href="7.2-technical-charts.html"><i class="fa fa-check"></i><b>7.2</b> Technical Charts</a>
-<ul>
-<li class="chapter" data-level="7.2.1" data-path="7.2-technical-charts.html"><a href="7.2-technical-charts.html#candlesticks-and-ohlc-chart"><i class="fa fa-check"></i><b>7.2.1</b> Candlesticks and OHLC chart</a></li>
-<li class="chapter" data-level="7.2.2" data-path="7.2-technical-charts.html"><a href="7.2-technical-charts.html#line-chart"><i class="fa fa-check"></i><b>7.2.2</b> Line chart</a></li>
-<li class="chapter" data-level="7.2.3" data-path="7.2-technical-charts.html"><a href="7.2-technical-charts.html#candlestick-chart"><i class="fa fa-check"></i><b>7.2.3</b> Candlestick chart</a></li>
-<li class="chapter" data-level="7.2.4" data-path="7.2-technical-charts.html"><a href="7.2-technical-charts.html#add-technical-indicators"><i class="fa fa-check"></i><b>7.2.4</b> Add technical indicators</a></li>
-<li class="chapter" data-level="7.2.5" data-path="7.2-technical-charts.html"><a href="7.2-technical-charts.html#adding-indicators-sequentially"><i class="fa fa-check"></i><b>7.2.5</b> Adding indicators sequentially</a></li>
+<li class="chapter" data-level="7.1" data-path="7.1-investment-beta-using-r-single-index-model.html"><a href="7.1-investment-beta-using-r-single-index-model.html"><i class="fa fa-check"></i><b>7.1</b> Investment <span class="math inline">\(\beta\)</span> using R (Single Index Model)</a></li>
+<li class="chapter" data-level="7.2" data-path="7.2-data-preprocessing-1.html"><a href="7.2-data-preprocessing-1.html"><i class="fa fa-check"></i><b>7.2</b> Data preprocessing</a></li>
+<li class="chapter" data-level="7.3" data-path="7.3-visualisation.html"><a href="7.3-visualisation.html"><i class="fa fa-check"></i><b>7.3</b> Visualisation</a></li>
+<li class="chapter" data-level="7.4" data-path="7.4-regression-analysis-using-lm.html"><a href="7.4-regression-analysis-using-lm.html"><i class="fa fa-check"></i><b>7.4</b> Regression analysis using lm</a></li>
 </ul></li>
-</ul></li>
-<li class="chapter" data-level="8" data-path="8-linear-regression.html"><a href="8-linear-regression.html"><i class="fa fa-check"></i><b>8</b> Linear Regression</a>
+<li class="chapter" data-level="8" data-path="8-technical-analysis-using-r.html"><a href="8-technical-analysis-using-r.html"><i class="fa fa-check"></i><b>8</b> Technical Analysis using R</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="8.1-investment-beta-using-r-single-index-model.html"><a href="8.1-investment-beta-using-r-single-index-model.html"><i class="fa fa-check"></i><b>8.1</b> Investment <span class="math inline">\(\beta\)</span> using R (Single Index Model)</a></li>
-<li class="chapter" data-level="8.2" data-path="8.2-data-preprocessing-1.html"><a href="8.2-data-preprocessing-1.html"><i class="fa fa-check"></i><b>8.2</b> Data preprocessing</a></li>
-<li class="chapter" data-level="8.3" data-path="8.3-visualisation.html"><a href="8.3-visualisation.html"><i class="fa fa-check"></i><b>8.3</b> Visualisation</a></li>
-<li class="chapter" data-level="8.4" data-path="8.4-regression-analysis-using-lm.html"><a href="8.4-regression-analysis-using-lm.html"><i class="fa fa-check"></i><b>8.4</b> Regression analysis using lm</a></li>
+<li class="chapter" data-level="8.1" data-path="8.1-technical-analysis-ta-using-r.html"><a href="8.1-technical-analysis-ta-using-r.html"><i class="fa fa-check"></i><b>8.1</b> Technical Analysis (TA) using R</a></li>
+<li class="chapter" data-level="8.2" data-path="8.2-technical-charts.html"><a href="8.2-technical-charts.html"><i class="fa fa-check"></i><b>8.2</b> Technical Charts</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="8.2-technical-charts.html"><a href="8.2-technical-charts.html#candlesticks-and-ohlc-chart"><i class="fa fa-check"></i><b>8.2.1</b> Candlesticks and OHLC chart</a></li>
+<li class="chapter" data-level="8.2.2" data-path="8.2-technical-charts.html"><a href="8.2-technical-charts.html#line-chart"><i class="fa fa-check"></i><b>8.2.2</b> Line chart</a></li>
+<li class="chapter" data-level="8.2.3" data-path="8.2-technical-charts.html"><a href="8.2-technical-charts.html#candlestick-chart"><i class="fa fa-check"></i><b>8.2.3</b> Candlestick chart</a></li>
+<li class="chapter" data-level="8.2.4" data-path="8.2-technical-charts.html"><a href="8.2-technical-charts.html#add-technical-indicators"><i class="fa fa-check"></i><b>8.2.4</b> Add technical indicators</a></li>
+<li class="chapter" data-level="8.2.5" data-path="8.2-technical-charts.html"><a href="8.2-technical-charts.html#adding-indicators-sequentially"><i class="fa fa-check"></i><b>8.2.5</b> Adding indicators sequentially</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="9-forecasting-var-using-garch-models.html"><a href="9-forecasting-var-using-garch-models.html"><i class="fa fa-check"></i><b>9</b> Forecasting VaR using GARCH Models</a>
 <ul>
@@ -441,81 +441,81 @@ div.csl-indent {
 <li>Stemming can also be conducting (avoided in this example)</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb374"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb374-1"><a href="14.4-data-pre-processing.html#cb374-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tm)</span>
-<span id="cb374-2"><a href="14.4-data-pre-processing.html#cb374-2" aria-hidden="true" tabindex="-1"></a>rt <span class="ot">=</span> <span class="fu">readRDS</span>(<span class="st">&quot;tweets_auspol.rds&quot;</span>)</span>
-<span id="cb374-3"><a href="14.4-data-pre-processing.html#cb374-3" aria-hidden="true" tabindex="-1"></a><span class="co"># encoding</span></span>
-<span id="cb374-4"><a href="14.4-data-pre-processing.html#cb374-4" aria-hidden="true" tabindex="-1"></a>rt<span class="sc">$</span>text <span class="ot">&lt;-</span> <span class="fu">sapply</span>(rt<span class="sc">$</span>text, <span class="cf">function</span>(row) <span class="fu">iconv</span>(row, <span class="st">&quot;latin1&quot;</span>, <span class="st">&quot;ASCII&quot;</span>, <span class="at">sub =</span> <span class="st">&quot;&quot;</span>))</span>
-<span id="cb374-5"><a href="14.4-data-pre-processing.html#cb374-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb374-6"><a href="14.4-data-pre-processing.html#cb374-6" aria-hidden="true" tabindex="-1"></a><span class="co"># build a corpus, and specify the source to be character vectors</span></span>
-<span id="cb374-7"><a href="14.4-data-pre-processing.html#cb374-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb374-8"><a href="14.4-data-pre-processing.html#cb374-8" aria-hidden="true" tabindex="-1"></a>myCorpus <span class="ot">=</span> <span class="fu">Corpus</span>(<span class="fu">VectorSource</span>(rt<span class="sc">$</span>text))</span>
-<span id="cb374-9"><a href="14.4-data-pre-processing.html#cb374-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb374-10"><a href="14.4-data-pre-processing.html#cb374-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb374-11"><a href="14.4-data-pre-processing.html#cb374-11" aria-hidden="true" tabindex="-1"></a><span class="co"># convert to lower case</span></span>
-<span id="cb374-12"><a href="14.4-data-pre-processing.html#cb374-12" aria-hidden="true" tabindex="-1"></a>myCorpus <span class="ot">=</span> <span class="fu">tm_map</span>(myCorpus, <span class="fu">content_transformer</span>(tolower))</span>
-<span id="cb374-13"><a href="14.4-data-pre-processing.html#cb374-13" aria-hidden="true" tabindex="-1"></a><span class="co"># remove punctuation</span></span>
-<span id="cb374-14"><a href="14.4-data-pre-processing.html#cb374-14" aria-hidden="true" tabindex="-1"></a>myCorpus <span class="ot">&lt;-</span> <span class="fu">tm_map</span>(myCorpus, removePunctuation)</span>
-<span id="cb374-15"><a href="14.4-data-pre-processing.html#cb374-15" aria-hidden="true" tabindex="-1"></a><span class="co"># remove numbers</span></span>
-<span id="cb374-16"><a href="14.4-data-pre-processing.html#cb374-16" aria-hidden="true" tabindex="-1"></a>myCorpus <span class="ot">&lt;-</span> <span class="fu">tm_map</span>(myCorpus, removeNumbers)</span>
-<span id="cb374-17"><a href="14.4-data-pre-processing.html#cb374-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb374-18"><a href="14.4-data-pre-processing.html#cb374-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb374-19"><a href="14.4-data-pre-processing.html#cb374-19" aria-hidden="true" tabindex="-1"></a><span class="co"># remove URLs</span></span>
-<span id="cb374-20"><a href="14.4-data-pre-processing.html#cb374-20" aria-hidden="true" tabindex="-1"></a>removeURL <span class="ot">=</span> <span class="cf">function</span>(x) <span class="fu">gsub</span>(<span class="st">&quot;http[^[:space:]]*&quot;</span>, <span class="st">&quot;&quot;</span>, x)</span>
-<span id="cb374-21"><a href="14.4-data-pre-processing.html#cb374-21" aria-hidden="true" tabindex="-1"></a>removeURLs <span class="ot">=</span> <span class="cf">function</span>(x) <span class="fu">gsub</span>(<span class="st">&quot;https[^[:space:]]*&quot;</span>, <span class="st">&quot;&quot;</span>, x)</span>
-<span id="cb374-22"><a href="14.4-data-pre-processing.html#cb374-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb374-23"><a href="14.4-data-pre-processing.html#cb374-23" aria-hidden="true" tabindex="-1"></a><span class="co"># remove hashtags</span></span>
-<span id="cb374-24"><a href="14.4-data-pre-processing.html#cb374-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb374-25"><a href="14.4-data-pre-processing.html#cb374-25" aria-hidden="true" tabindex="-1"></a>removehash <span class="ot">=</span> <span class="cf">function</span>(x) <span class="fu">gsub</span>(<span class="st">&quot;#</span><span class="sc">\\</span><span class="st">S+&quot;</span>, <span class="st">&quot;&quot;</span>, x)</span>
-<span id="cb374-26"><a href="14.4-data-pre-processing.html#cb374-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb374-27"><a href="14.4-data-pre-processing.html#cb374-27" aria-hidden="true" tabindex="-1"></a><span class="co"># remove @</span></span>
-<span id="cb374-28"><a href="14.4-data-pre-processing.html#cb374-28" aria-hidden="true" tabindex="-1"></a>removeats <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">gsub</span>(<span class="st">&quot;@</span><span class="sc">\\</span><span class="st">w+&quot;</span>, <span class="st">&quot;&quot;</span>, x)  <span class="co">#only removes the &#39;@&#39;</span></span>
-<span id="cb374-29"><a href="14.4-data-pre-processing.html#cb374-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb374-30"><a href="14.4-data-pre-processing.html#cb374-30" aria-hidden="true" tabindex="-1"></a><span class="co"># remove numbers and punctuations</span></span>
-<span id="cb374-31"><a href="14.4-data-pre-processing.html#cb374-31" aria-hidden="true" tabindex="-1"></a>removeNumPunct <span class="ot">=</span> <span class="cf">function</span>(x) <span class="fu">gsub</span>(<span class="st">&quot;[^[:alpha:][:space:]]*&quot;</span>, <span class="st">&quot;&quot;</span>, x)</span>
-<span id="cb374-32"><a href="14.4-data-pre-processing.html#cb374-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb374-33"><a href="14.4-data-pre-processing.html#cb374-33" aria-hidden="true" tabindex="-1"></a><span class="co"># leading and trailing white spaces</span></span>
-<span id="cb374-34"><a href="14.4-data-pre-processing.html#cb374-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb374-35"><a href="14.4-data-pre-processing.html#cb374-35" aria-hidden="true" tabindex="-1"></a>wspace1 <span class="ot">=</span> <span class="cf">function</span>(x) <span class="fu">gsub</span>(<span class="st">&quot;^[[:space:]]*&quot;</span>, <span class="st">&quot;&quot;</span>, x)  <span class="do">## Remove leading whitespaces</span></span>
-<span id="cb374-36"><a href="14.4-data-pre-processing.html#cb374-36" aria-hidden="true" tabindex="-1"></a>wspace2 <span class="ot">=</span> <span class="cf">function</span>(x) <span class="fu">gsub</span>(<span class="st">&quot;[[:space:]]*$&quot;</span>, <span class="st">&quot;&quot;</span>, x)  <span class="do">## Remove trailing whitespaces</span></span>
-<span id="cb374-37"><a href="14.4-data-pre-processing.html#cb374-37" aria-hidden="true" tabindex="-1"></a>wspace3 <span class="ot">=</span> <span class="cf">function</span>(x) <span class="fu">gsub</span>(<span class="st">&quot; +&quot;</span>, <span class="st">&quot; &quot;</span>, x)  <span class="do">## Remove extra whitespaces</span></span>
-<span id="cb374-38"><a href="14.4-data-pre-processing.html#cb374-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb374-39"><a href="14.4-data-pre-processing.html#cb374-39" aria-hidden="true" tabindex="-1"></a>removeIms <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">gsub</span>(<span class="st">&quot;im&quot;</span>, <span class="st">&quot;&quot;</span>, x)</span>
-<span id="cb374-40"><a href="14.4-data-pre-processing.html#cb374-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb374-41"><a href="14.4-data-pre-processing.html#cb374-41" aria-hidden="true" tabindex="-1"></a>myCorpus <span class="ot">=</span> <span class="fu">tm_map</span>(myCorpus, <span class="fu">content_transformer</span>(removeURL))  <span class="co">#url</span></span>
-<span id="cb374-42"><a href="14.4-data-pre-processing.html#cb374-42" aria-hidden="true" tabindex="-1"></a>myCorpus <span class="ot">=</span> <span class="fu">tm_map</span>(myCorpus, <span class="fu">content_transformer</span>(removeURLs))  <span class="co">#url</span></span>
-<span id="cb374-43"><a href="14.4-data-pre-processing.html#cb374-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb374-44"><a href="14.4-data-pre-processing.html#cb374-44" aria-hidden="true" tabindex="-1"></a>myCorpus <span class="ot">&lt;-</span> <span class="fu">tm_map</span>(myCorpus, <span class="fu">content_transformer</span>(removehash))  <span class="co">#hashtag</span></span>
-<span id="cb374-45"><a href="14.4-data-pre-processing.html#cb374-45" aria-hidden="true" tabindex="-1"></a>myCorpus <span class="ot">&lt;-</span> <span class="fu">tm_map</span>(myCorpus, <span class="fu">content_transformer</span>(removeats))  <span class="co">#mentions</span></span>
-<span id="cb374-46"><a href="14.4-data-pre-processing.html#cb374-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb374-47"><a href="14.4-data-pre-processing.html#cb374-47" aria-hidden="true" tabindex="-1"></a>myCorpus <span class="ot">=</span> <span class="fu">tm_map</span>(myCorpus, <span class="fu">content_transformer</span>(removeNumPunct))  <span class="co">#number and punctuation (just in case some are left over)</span></span>
-<span id="cb374-48"><a href="14.4-data-pre-processing.html#cb374-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb374-49"><a href="14.4-data-pre-processing.html#cb374-49" aria-hidden="true" tabindex="-1"></a>myCorpus <span class="ot">=</span> <span class="fu">tm_map</span>(myCorpus, <span class="fu">content_transformer</span>(removeIms))  <span class="co">#Ims</span></span>
-<span id="cb374-50"><a href="14.4-data-pre-processing.html#cb374-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb374-51"><a href="14.4-data-pre-processing.html#cb374-51" aria-hidden="true" tabindex="-1"></a>myCorpus <span class="ot">=</span> <span class="fu">tm_map</span>(myCorpus, <span class="fu">content_transformer</span>(wspace1))</span>
-<span id="cb374-52"><a href="14.4-data-pre-processing.html#cb374-52" aria-hidden="true" tabindex="-1"></a>myCorpus <span class="ot">=</span> <span class="fu">tm_map</span>(myCorpus, <span class="fu">content_transformer</span>(wspace2))</span>
-<span id="cb374-53"><a href="14.4-data-pre-processing.html#cb374-53" aria-hidden="true" tabindex="-1"></a>myCorpus <span class="ot">=</span> <span class="fu">tm_map</span>(myCorpus, <span class="fu">content_transformer</span>(wspace3))  <span class="co">#other white spaces</span></span>
-<span id="cb374-54"><a href="14.4-data-pre-processing.html#cb374-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb374-55"><a href="14.4-data-pre-processing.html#cb374-55" aria-hidden="true" tabindex="-1"></a><span class="co"># remove extra whitespace</span></span>
-<span id="cb374-56"><a href="14.4-data-pre-processing.html#cb374-56" aria-hidden="true" tabindex="-1"></a>myCorpus <span class="ot">=</span> <span class="fu">tm_map</span>(myCorpus, stripWhitespace)</span>
-<span id="cb374-57"><a href="14.4-data-pre-processing.html#cb374-57" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb374-58"><a href="14.4-data-pre-processing.html#cb374-58" aria-hidden="true" tabindex="-1"></a><span class="co"># remove extra stopwords</span></span>
-<span id="cb374-59"><a href="14.4-data-pre-processing.html#cb374-59" aria-hidden="true" tabindex="-1"></a>myStopwords <span class="ot">=</span> <span class="fu">c</span>(<span class="fu">stopwords</span>(<span class="st">&quot;English&quot;</span>), <span class="fu">stopwords</span>(<span class="st">&quot;SMART&quot;</span>), <span class="st">&quot;rt&quot;</span>, <span class="st">&quot;ht&quot;</span>, <span class="st">&quot;via&quot;</span>, <span class="st">&quot;amp&quot;</span>,</span>
-<span id="cb374-60"><a href="14.4-data-pre-processing.html#cb374-60" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;the&quot;</span>, <span class="st">&quot;australia&quot;</span>, <span class="st">&quot;australians&quot;</span>, <span class="st">&quot;australian&quot;</span>, <span class="st">&quot;auspol&quot;</span>)</span>
-<span id="cb374-61"><a href="14.4-data-pre-processing.html#cb374-61" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb374-62"><a href="14.4-data-pre-processing.html#cb374-62" aria-hidden="true" tabindex="-1"></a>myCorpus <span class="ot">=</span> <span class="fu">tm_map</span>(myCorpus, removeWords, myStopwords)</span>
-<span id="cb374-63"><a href="14.4-data-pre-processing.html#cb374-63" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb374-64"><a href="14.4-data-pre-processing.html#cb374-64" aria-hidden="true" tabindex="-1"></a><span class="co"># generally a good idea to save the processed corpus now</span></span>
-<span id="cb374-65"><a href="14.4-data-pre-processing.html#cb374-65" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(myCorpus, <span class="at">file =</span> <span class="st">&quot;auspol_sep.RData&quot;</span>)</span>
-<span id="cb374-66"><a href="14.4-data-pre-processing.html#cb374-66" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb374-67"><a href="14.4-data-pre-processing.html#cb374-67" aria-hidden="true" tabindex="-1"></a>data_tw2 <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">text =</span> <span class="fu">get</span>(<span class="st">&quot;content&quot;</span>, myCorpus), <span class="at">row.names =</span> <span class="cn">NULL</span>)</span>
-<span id="cb374-68"><a href="14.4-data-pre-processing.html#cb374-68" aria-hidden="true" tabindex="-1"></a>data_tw2 <span class="ot">=</span> <span class="fu">cbind</span>(data_tw2, <span class="at">ID =</span> rt<span class="sc">$</span>status_id)</span>
-<span id="cb374-69"><a href="14.4-data-pre-processing.html#cb374-69" aria-hidden="true" tabindex="-1"></a>data_tw2 <span class="ot">=</span> <span class="fu">cbind</span>(<span class="at">Date =</span> <span class="fu">as.Date</span>(rt<span class="sc">$</span>created_at), data_tw2)</span>
-<span id="cb374-70"><a href="14.4-data-pre-processing.html#cb374-70" aria-hidden="true" tabindex="-1"></a><span class="co"># look at the data frame, still some white spaces left so let&#39;s get rid of them</span></span>
-<span id="cb374-71"><a href="14.4-data-pre-processing.html#cb374-71" aria-hidden="true" tabindex="-1"></a>data_tw2<span class="sc">$</span>text <span class="ot">=</span> <span class="fu">gsub</span>(<span class="st">&quot;</span><span class="sc">\r</span><span class="st">?</span><span class="sc">\n</span><span class="st">|</span><span class="sc">\r</span><span class="st">&quot;</span>, <span class="st">&quot;&quot;</span>, data_tw2<span class="sc">$</span>text)</span>
-<span id="cb374-72"><a href="14.4-data-pre-processing.html#cb374-72" aria-hidden="true" tabindex="-1"></a>data_tw2<span class="sc">$</span>text <span class="ot">=</span> <span class="fu">gsub</span>(<span class="st">&quot; +&quot;</span>, <span class="st">&quot; &quot;</span>, data_tw2<span class="sc">$</span>text)</span>
-<span id="cb374-73"><a href="14.4-data-pre-processing.html#cb374-73" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data_tw2)</span>
-<span id="cb374-74"><a href="14.4-data-pre-processing.html#cb374-74" aria-hidden="true" tabindex="-1"></a><span class="co"># save data</span></span>
-<span id="cb374-75"><a href="14.4-data-pre-processing.html#cb374-75" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(data_tw2, <span class="at">file =</span> <span class="st">&quot;processed_data.rds&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb373"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb373-1"><a href="14.4-data-pre-processing.html#cb373-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tm)</span>
+<span id="cb373-2"><a href="14.4-data-pre-processing.html#cb373-2" aria-hidden="true" tabindex="-1"></a>rt <span class="ot">=</span> <span class="fu">readRDS</span>(<span class="st">&quot;tweets_auspol.rds&quot;</span>)</span>
+<span id="cb373-3"><a href="14.4-data-pre-processing.html#cb373-3" aria-hidden="true" tabindex="-1"></a><span class="co"># encoding</span></span>
+<span id="cb373-4"><a href="14.4-data-pre-processing.html#cb373-4" aria-hidden="true" tabindex="-1"></a>rt<span class="sc">$</span>text <span class="ot">&lt;-</span> <span class="fu">sapply</span>(rt<span class="sc">$</span>text, <span class="cf">function</span>(row) <span class="fu">iconv</span>(row, <span class="st">&quot;latin1&quot;</span>, <span class="st">&quot;ASCII&quot;</span>, <span class="at">sub =</span> <span class="st">&quot;&quot;</span>))</span>
+<span id="cb373-5"><a href="14.4-data-pre-processing.html#cb373-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb373-6"><a href="14.4-data-pre-processing.html#cb373-6" aria-hidden="true" tabindex="-1"></a><span class="co"># build a corpus, and specify the source to be character vectors</span></span>
+<span id="cb373-7"><a href="14.4-data-pre-processing.html#cb373-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb373-8"><a href="14.4-data-pre-processing.html#cb373-8" aria-hidden="true" tabindex="-1"></a>myCorpus <span class="ot">=</span> <span class="fu">Corpus</span>(<span class="fu">VectorSource</span>(rt<span class="sc">$</span>text))</span>
+<span id="cb373-9"><a href="14.4-data-pre-processing.html#cb373-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb373-10"><a href="14.4-data-pre-processing.html#cb373-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb373-11"><a href="14.4-data-pre-processing.html#cb373-11" aria-hidden="true" tabindex="-1"></a><span class="co"># convert to lower case</span></span>
+<span id="cb373-12"><a href="14.4-data-pre-processing.html#cb373-12" aria-hidden="true" tabindex="-1"></a>myCorpus <span class="ot">=</span> <span class="fu">tm_map</span>(myCorpus, <span class="fu">content_transformer</span>(tolower))</span>
+<span id="cb373-13"><a href="14.4-data-pre-processing.html#cb373-13" aria-hidden="true" tabindex="-1"></a><span class="co"># remove punctuation</span></span>
+<span id="cb373-14"><a href="14.4-data-pre-processing.html#cb373-14" aria-hidden="true" tabindex="-1"></a>myCorpus <span class="ot">&lt;-</span> <span class="fu">tm_map</span>(myCorpus, removePunctuation)</span>
+<span id="cb373-15"><a href="14.4-data-pre-processing.html#cb373-15" aria-hidden="true" tabindex="-1"></a><span class="co"># remove numbers</span></span>
+<span id="cb373-16"><a href="14.4-data-pre-processing.html#cb373-16" aria-hidden="true" tabindex="-1"></a>myCorpus <span class="ot">&lt;-</span> <span class="fu">tm_map</span>(myCorpus, removeNumbers)</span>
+<span id="cb373-17"><a href="14.4-data-pre-processing.html#cb373-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb373-18"><a href="14.4-data-pre-processing.html#cb373-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb373-19"><a href="14.4-data-pre-processing.html#cb373-19" aria-hidden="true" tabindex="-1"></a><span class="co"># remove URLs</span></span>
+<span id="cb373-20"><a href="14.4-data-pre-processing.html#cb373-20" aria-hidden="true" tabindex="-1"></a>removeURL <span class="ot">=</span> <span class="cf">function</span>(x) <span class="fu">gsub</span>(<span class="st">&quot;http[^[:space:]]*&quot;</span>, <span class="st">&quot;&quot;</span>, x)</span>
+<span id="cb373-21"><a href="14.4-data-pre-processing.html#cb373-21" aria-hidden="true" tabindex="-1"></a>removeURLs <span class="ot">=</span> <span class="cf">function</span>(x) <span class="fu">gsub</span>(<span class="st">&quot;https[^[:space:]]*&quot;</span>, <span class="st">&quot;&quot;</span>, x)</span>
+<span id="cb373-22"><a href="14.4-data-pre-processing.html#cb373-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb373-23"><a href="14.4-data-pre-processing.html#cb373-23" aria-hidden="true" tabindex="-1"></a><span class="co"># remove hashtags</span></span>
+<span id="cb373-24"><a href="14.4-data-pre-processing.html#cb373-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb373-25"><a href="14.4-data-pre-processing.html#cb373-25" aria-hidden="true" tabindex="-1"></a>removehash <span class="ot">=</span> <span class="cf">function</span>(x) <span class="fu">gsub</span>(<span class="st">&quot;#</span><span class="sc">\\</span><span class="st">S+&quot;</span>, <span class="st">&quot;&quot;</span>, x)</span>
+<span id="cb373-26"><a href="14.4-data-pre-processing.html#cb373-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb373-27"><a href="14.4-data-pre-processing.html#cb373-27" aria-hidden="true" tabindex="-1"></a><span class="co"># remove @</span></span>
+<span id="cb373-28"><a href="14.4-data-pre-processing.html#cb373-28" aria-hidden="true" tabindex="-1"></a>removeats <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">gsub</span>(<span class="st">&quot;@</span><span class="sc">\\</span><span class="st">w+&quot;</span>, <span class="st">&quot;&quot;</span>, x)  <span class="co">#only removes the &#39;@&#39;</span></span>
+<span id="cb373-29"><a href="14.4-data-pre-processing.html#cb373-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb373-30"><a href="14.4-data-pre-processing.html#cb373-30" aria-hidden="true" tabindex="-1"></a><span class="co"># remove numbers and punctuations</span></span>
+<span id="cb373-31"><a href="14.4-data-pre-processing.html#cb373-31" aria-hidden="true" tabindex="-1"></a>removeNumPunct <span class="ot">=</span> <span class="cf">function</span>(x) <span class="fu">gsub</span>(<span class="st">&quot;[^[:alpha:][:space:]]*&quot;</span>, <span class="st">&quot;&quot;</span>, x)</span>
+<span id="cb373-32"><a href="14.4-data-pre-processing.html#cb373-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb373-33"><a href="14.4-data-pre-processing.html#cb373-33" aria-hidden="true" tabindex="-1"></a><span class="co"># leading and trailing white spaces</span></span>
+<span id="cb373-34"><a href="14.4-data-pre-processing.html#cb373-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb373-35"><a href="14.4-data-pre-processing.html#cb373-35" aria-hidden="true" tabindex="-1"></a>wspace1 <span class="ot">=</span> <span class="cf">function</span>(x) <span class="fu">gsub</span>(<span class="st">&quot;^[[:space:]]*&quot;</span>, <span class="st">&quot;&quot;</span>, x)  <span class="do">## Remove leading whitespaces</span></span>
+<span id="cb373-36"><a href="14.4-data-pre-processing.html#cb373-36" aria-hidden="true" tabindex="-1"></a>wspace2 <span class="ot">=</span> <span class="cf">function</span>(x) <span class="fu">gsub</span>(<span class="st">&quot;[[:space:]]*$&quot;</span>, <span class="st">&quot;&quot;</span>, x)  <span class="do">## Remove trailing whitespaces</span></span>
+<span id="cb373-37"><a href="14.4-data-pre-processing.html#cb373-37" aria-hidden="true" tabindex="-1"></a>wspace3 <span class="ot">=</span> <span class="cf">function</span>(x) <span class="fu">gsub</span>(<span class="st">&quot; +&quot;</span>, <span class="st">&quot; &quot;</span>, x)  <span class="do">## Remove extra whitespaces</span></span>
+<span id="cb373-38"><a href="14.4-data-pre-processing.html#cb373-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb373-39"><a href="14.4-data-pre-processing.html#cb373-39" aria-hidden="true" tabindex="-1"></a>removeIms <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">gsub</span>(<span class="st">&quot;im&quot;</span>, <span class="st">&quot;&quot;</span>, x)</span>
+<span id="cb373-40"><a href="14.4-data-pre-processing.html#cb373-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb373-41"><a href="14.4-data-pre-processing.html#cb373-41" aria-hidden="true" tabindex="-1"></a>myCorpus <span class="ot">=</span> <span class="fu">tm_map</span>(myCorpus, <span class="fu">content_transformer</span>(removeURL))  <span class="co">#url</span></span>
+<span id="cb373-42"><a href="14.4-data-pre-processing.html#cb373-42" aria-hidden="true" tabindex="-1"></a>myCorpus <span class="ot">=</span> <span class="fu">tm_map</span>(myCorpus, <span class="fu">content_transformer</span>(removeURLs))  <span class="co">#url</span></span>
+<span id="cb373-43"><a href="14.4-data-pre-processing.html#cb373-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb373-44"><a href="14.4-data-pre-processing.html#cb373-44" aria-hidden="true" tabindex="-1"></a>myCorpus <span class="ot">&lt;-</span> <span class="fu">tm_map</span>(myCorpus, <span class="fu">content_transformer</span>(removehash))  <span class="co">#hashtag</span></span>
+<span id="cb373-45"><a href="14.4-data-pre-processing.html#cb373-45" aria-hidden="true" tabindex="-1"></a>myCorpus <span class="ot">&lt;-</span> <span class="fu">tm_map</span>(myCorpus, <span class="fu">content_transformer</span>(removeats))  <span class="co">#mentions</span></span>
+<span id="cb373-46"><a href="14.4-data-pre-processing.html#cb373-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb373-47"><a href="14.4-data-pre-processing.html#cb373-47" aria-hidden="true" tabindex="-1"></a>myCorpus <span class="ot">=</span> <span class="fu">tm_map</span>(myCorpus, <span class="fu">content_transformer</span>(removeNumPunct))  <span class="co">#number and punctuation (just in case some are left over)</span></span>
+<span id="cb373-48"><a href="14.4-data-pre-processing.html#cb373-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb373-49"><a href="14.4-data-pre-processing.html#cb373-49" aria-hidden="true" tabindex="-1"></a>myCorpus <span class="ot">=</span> <span class="fu">tm_map</span>(myCorpus, <span class="fu">content_transformer</span>(removeIms))  <span class="co">#Ims</span></span>
+<span id="cb373-50"><a href="14.4-data-pre-processing.html#cb373-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb373-51"><a href="14.4-data-pre-processing.html#cb373-51" aria-hidden="true" tabindex="-1"></a>myCorpus <span class="ot">=</span> <span class="fu">tm_map</span>(myCorpus, <span class="fu">content_transformer</span>(wspace1))</span>
+<span id="cb373-52"><a href="14.4-data-pre-processing.html#cb373-52" aria-hidden="true" tabindex="-1"></a>myCorpus <span class="ot">=</span> <span class="fu">tm_map</span>(myCorpus, <span class="fu">content_transformer</span>(wspace2))</span>
+<span id="cb373-53"><a href="14.4-data-pre-processing.html#cb373-53" aria-hidden="true" tabindex="-1"></a>myCorpus <span class="ot">=</span> <span class="fu">tm_map</span>(myCorpus, <span class="fu">content_transformer</span>(wspace3))  <span class="co">#other white spaces</span></span>
+<span id="cb373-54"><a href="14.4-data-pre-processing.html#cb373-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb373-55"><a href="14.4-data-pre-processing.html#cb373-55" aria-hidden="true" tabindex="-1"></a><span class="co"># remove extra whitespace</span></span>
+<span id="cb373-56"><a href="14.4-data-pre-processing.html#cb373-56" aria-hidden="true" tabindex="-1"></a>myCorpus <span class="ot">=</span> <span class="fu">tm_map</span>(myCorpus, stripWhitespace)</span>
+<span id="cb373-57"><a href="14.4-data-pre-processing.html#cb373-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb373-58"><a href="14.4-data-pre-processing.html#cb373-58" aria-hidden="true" tabindex="-1"></a><span class="co"># remove extra stopwords</span></span>
+<span id="cb373-59"><a href="14.4-data-pre-processing.html#cb373-59" aria-hidden="true" tabindex="-1"></a>myStopwords <span class="ot">=</span> <span class="fu">c</span>(<span class="fu">stopwords</span>(<span class="st">&quot;English&quot;</span>), <span class="fu">stopwords</span>(<span class="st">&quot;SMART&quot;</span>), <span class="st">&quot;rt&quot;</span>, <span class="st">&quot;ht&quot;</span>, <span class="st">&quot;via&quot;</span>, <span class="st">&quot;amp&quot;</span>,</span>
+<span id="cb373-60"><a href="14.4-data-pre-processing.html#cb373-60" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;the&quot;</span>, <span class="st">&quot;australia&quot;</span>, <span class="st">&quot;australians&quot;</span>, <span class="st">&quot;australian&quot;</span>, <span class="st">&quot;auspol&quot;</span>)</span>
+<span id="cb373-61"><a href="14.4-data-pre-processing.html#cb373-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb373-62"><a href="14.4-data-pre-processing.html#cb373-62" aria-hidden="true" tabindex="-1"></a>myCorpus <span class="ot">=</span> <span class="fu">tm_map</span>(myCorpus, removeWords, myStopwords)</span>
+<span id="cb373-63"><a href="14.4-data-pre-processing.html#cb373-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb373-64"><a href="14.4-data-pre-processing.html#cb373-64" aria-hidden="true" tabindex="-1"></a><span class="co"># generally a good idea to save the processed corpus now</span></span>
+<span id="cb373-65"><a href="14.4-data-pre-processing.html#cb373-65" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(myCorpus, <span class="at">file =</span> <span class="st">&quot;auspol_sep.RData&quot;</span>)</span>
+<span id="cb373-66"><a href="14.4-data-pre-processing.html#cb373-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb373-67"><a href="14.4-data-pre-processing.html#cb373-67" aria-hidden="true" tabindex="-1"></a>data_tw2 <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">text =</span> <span class="fu">get</span>(<span class="st">&quot;content&quot;</span>, myCorpus), <span class="at">row.names =</span> <span class="cn">NULL</span>)</span>
+<span id="cb373-68"><a href="14.4-data-pre-processing.html#cb373-68" aria-hidden="true" tabindex="-1"></a>data_tw2 <span class="ot">=</span> <span class="fu">cbind</span>(data_tw2, <span class="at">ID =</span> rt<span class="sc">$</span>status_id)</span>
+<span id="cb373-69"><a href="14.4-data-pre-processing.html#cb373-69" aria-hidden="true" tabindex="-1"></a>data_tw2 <span class="ot">=</span> <span class="fu">cbind</span>(<span class="at">Date =</span> <span class="fu">as.Date</span>(rt<span class="sc">$</span>created_at), data_tw2)</span>
+<span id="cb373-70"><a href="14.4-data-pre-processing.html#cb373-70" aria-hidden="true" tabindex="-1"></a><span class="co"># look at the data frame, still some white spaces left so let&#39;s get rid of them</span></span>
+<span id="cb373-71"><a href="14.4-data-pre-processing.html#cb373-71" aria-hidden="true" tabindex="-1"></a>data_tw2<span class="sc">$</span>text <span class="ot">=</span> <span class="fu">gsub</span>(<span class="st">&quot;</span><span class="sc">\r</span><span class="st">?</span><span class="sc">\n</span><span class="st">|</span><span class="sc">\r</span><span class="st">&quot;</span>, <span class="st">&quot;&quot;</span>, data_tw2<span class="sc">$</span>text)</span>
+<span id="cb373-72"><a href="14.4-data-pre-processing.html#cb373-72" aria-hidden="true" tabindex="-1"></a>data_tw2<span class="sc">$</span>text <span class="ot">=</span> <span class="fu">gsub</span>(<span class="st">&quot; +&quot;</span>, <span class="st">&quot; &quot;</span>, data_tw2<span class="sc">$</span>text)</span>
+<span id="cb373-73"><a href="14.4-data-pre-processing.html#cb373-73" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data_tw2)</span>
+<span id="cb373-74"><a href="14.4-data-pre-processing.html#cb373-74" aria-hidden="true" tabindex="-1"></a><span class="co"># save data</span></span>
+<span id="cb373-75"><a href="14.4-data-pre-processing.html#cb373-75" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(data_tw2, <span class="at">file =</span> <span class="st">&quot;processed_data.rds&quot;</span>)</span></code></pre></div>
 </div>
             </section>
 
@@ -527,7 +527,6 @@ div.csl-indent {
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -568,7 +567,7 @@ gitbook.start({
 },
 "download": null,
 "search": {
-"engine": "lunr",
+"engine": "fuse",
 "options": null
 },
 "toc": {

@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>10.6 Efficient (Minimum Variance) Portfolio using R packages | R for Data Analytics</title>
   <meta name="description" content="This is a collection of examples on using R for Data Analytics" />
-  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="10.6 Efficient (Minimum Variance) Portfolio using R packages | R for Data Analytics" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Abhay Singh" />
 
 
-<meta name="date" content="2021-08-30" />
+<meta name="date" content="2021-10-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,8 +33,9 @@
   <link rel="shortcut icon" href="rforda.png" type="image/x-icon" />
 <link rel="prev" href="10.5-using-r-to-construct-multi-asset-portfolio.html"/>
 <link rel="next" href="10.7-evaluating-portfoios-risk-adjusted-performance.html"/>
-<script src="libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -50,16 +51,15 @@
 
 
 
-
 <link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
-<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
-<script src="libs/plotly-binding-4.9.4.1/plotly.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.10.0/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
 <link href="libs/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet" />
 <script src="libs/crosstalk-1.1.1/js/crosstalk.min.js"></script>
-<link href="libs/plotly-htmlwidgets-css-1.57.1/plotly-htmlwidgets.css" rel="stylesheet" />
-<script src="libs/plotly-main-1.57.1/plotly-latest.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-2.5.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-2.5.1/plotly-latest.min.js"></script>
 <link href="libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 <link href="libs/wordcloud2-0.0.1/wordcloud.css" rel="stylesheet" />
@@ -263,24 +263,24 @@ div.csl-indent {
 <li class="chapter" data-level="6.3" data-path="6.3-plot-maps.html"><a href="6.3-plot-maps.html"><i class="fa fa-check"></i><b>6.3</b> Plot Maps</a></li>
 </ul></li>
 <li class="part"><span><b>Part II</b></span></li>
-<li class="chapter" data-level="7" data-path="7-technical-analysis-using-r.html"><a href="7-technical-analysis-using-r.html"><i class="fa fa-check"></i><b>7</b> Technical Analysis using R</a>
+<li class="chapter" data-level="7" data-path="7-linear-regression.html"><a href="7-linear-regression.html"><i class="fa fa-check"></i><b>7</b> Linear Regression</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="7.1-technical-analysis-ta-using-r.html"><a href="7.1-technical-analysis-ta-using-r.html"><i class="fa fa-check"></i><b>7.1</b> Technical Analysis (TA) using R</a></li>
-<li class="chapter" data-level="7.2" data-path="7.2-technical-charts.html"><a href="7.2-technical-charts.html"><i class="fa fa-check"></i><b>7.2</b> Technical Charts</a>
-<ul>
-<li class="chapter" data-level="7.2.1" data-path="7.2-technical-charts.html"><a href="7.2-technical-charts.html#candlesticks-and-ohlc-chart"><i class="fa fa-check"></i><b>7.2.1</b> Candlesticks and OHLC chart</a></li>
-<li class="chapter" data-level="7.2.2" data-path="7.2-technical-charts.html"><a href="7.2-technical-charts.html#line-chart"><i class="fa fa-check"></i><b>7.2.2</b> Line chart</a></li>
-<li class="chapter" data-level="7.2.3" data-path="7.2-technical-charts.html"><a href="7.2-technical-charts.html#candlestick-chart"><i class="fa fa-check"></i><b>7.2.3</b> Candlestick chart</a></li>
-<li class="chapter" data-level="7.2.4" data-path="7.2-technical-charts.html"><a href="7.2-technical-charts.html#add-technical-indicators"><i class="fa fa-check"></i><b>7.2.4</b> Add technical indicators</a></li>
-<li class="chapter" data-level="7.2.5" data-path="7.2-technical-charts.html"><a href="7.2-technical-charts.html#adding-indicators-sequentially"><i class="fa fa-check"></i><b>7.2.5</b> Adding indicators sequentially</a></li>
+<li class="chapter" data-level="7.1" data-path="7.1-investment-beta-using-r-single-index-model.html"><a href="7.1-investment-beta-using-r-single-index-model.html"><i class="fa fa-check"></i><b>7.1</b> Investment <span class="math inline">\(\beta\)</span> using R (Single Index Model)</a></li>
+<li class="chapter" data-level="7.2" data-path="7.2-data-preprocessing-1.html"><a href="7.2-data-preprocessing-1.html"><i class="fa fa-check"></i><b>7.2</b> Data preprocessing</a></li>
+<li class="chapter" data-level="7.3" data-path="7.3-visualisation.html"><a href="7.3-visualisation.html"><i class="fa fa-check"></i><b>7.3</b> Visualisation</a></li>
+<li class="chapter" data-level="7.4" data-path="7.4-regression-analysis-using-lm.html"><a href="7.4-regression-analysis-using-lm.html"><i class="fa fa-check"></i><b>7.4</b> Regression analysis using lm</a></li>
 </ul></li>
-</ul></li>
-<li class="chapter" data-level="8" data-path="8-linear-regression.html"><a href="8-linear-regression.html"><i class="fa fa-check"></i><b>8</b> Linear Regression</a>
+<li class="chapter" data-level="8" data-path="8-technical-analysis-using-r.html"><a href="8-technical-analysis-using-r.html"><i class="fa fa-check"></i><b>8</b> Technical Analysis using R</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="8.1-investment-beta-using-r-single-index-model.html"><a href="8.1-investment-beta-using-r-single-index-model.html"><i class="fa fa-check"></i><b>8.1</b> Investment <span class="math inline">\(\beta\)</span> using R (Single Index Model)</a></li>
-<li class="chapter" data-level="8.2" data-path="8.2-data-preprocessing-1.html"><a href="8.2-data-preprocessing-1.html"><i class="fa fa-check"></i><b>8.2</b> Data preprocessing</a></li>
-<li class="chapter" data-level="8.3" data-path="8.3-visualisation.html"><a href="8.3-visualisation.html"><i class="fa fa-check"></i><b>8.3</b> Visualisation</a></li>
-<li class="chapter" data-level="8.4" data-path="8.4-regression-analysis-using-lm.html"><a href="8.4-regression-analysis-using-lm.html"><i class="fa fa-check"></i><b>8.4</b> Regression analysis using lm</a></li>
+<li class="chapter" data-level="8.1" data-path="8.1-technical-analysis-ta-using-r.html"><a href="8.1-technical-analysis-ta-using-r.html"><i class="fa fa-check"></i><b>8.1</b> Technical Analysis (TA) using R</a></li>
+<li class="chapter" data-level="8.2" data-path="8.2-technical-charts.html"><a href="8.2-technical-charts.html"><i class="fa fa-check"></i><b>8.2</b> Technical Charts</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="8.2-technical-charts.html"><a href="8.2-technical-charts.html#candlesticks-and-ohlc-chart"><i class="fa fa-check"></i><b>8.2.1</b> Candlesticks and OHLC chart</a></li>
+<li class="chapter" data-level="8.2.2" data-path="8.2-technical-charts.html"><a href="8.2-technical-charts.html#line-chart"><i class="fa fa-check"></i><b>8.2.2</b> Line chart</a></li>
+<li class="chapter" data-level="8.2.3" data-path="8.2-technical-charts.html"><a href="8.2-technical-charts.html#candlestick-chart"><i class="fa fa-check"></i><b>8.2.3</b> Candlestick chart</a></li>
+<li class="chapter" data-level="8.2.4" data-path="8.2-technical-charts.html"><a href="8.2-technical-charts.html#add-technical-indicators"><i class="fa fa-check"></i><b>8.2.4</b> Add technical indicators</a></li>
+<li class="chapter" data-level="8.2.5" data-path="8.2-technical-charts.html"><a href="8.2-technical-charts.html#adding-indicators-sequentially"><i class="fa fa-check"></i><b>8.2.5</b> Adding indicators sequentially</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="9-forecasting-var-using-garch-models.html"><a href="9-forecasting-var-using-garch-models.html"><i class="fa fa-check"></i><b>9</b> Forecasting VaR using GARCH Models</a>
 <ul>
@@ -432,29 +432,29 @@ div.csl-indent {
 <li>Full investment: Allocate in all the assets (minimum 0 and maximum 1 weight)</li>
 <li>Long only: Only buy, no short position (positive weights only)</li>
 </ul>
-<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb282-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(PortfolioAnalytics)</span>
-<span id="cb282-2"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb282-2" aria-hidden="true" tabindex="-1"></a><span class="co"># initialise with asset names uses time series data</span></span>
-<span id="cb282-3"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb282-3" aria-hidden="true" tabindex="-1"></a>data_p2 <span class="ot">=</span> <span class="fu">zoo</span>(ret1[, <span class="sc">-</span><span class="dv">1</span>], <span class="at">order.by =</span> <span class="fu">as.Date</span>(ret1<span class="sc">$</span>Date))</span>
-<span id="cb282-4"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb282-4" aria-hidden="true" tabindex="-1"></a><span class="co"># create specification</span></span>
-<span id="cb282-5"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb282-5" aria-hidden="true" tabindex="-1"></a>port <span class="ot">=</span> <span class="fu">portfolio.spec</span>(<span class="at">assets =</span> <span class="fu">c</span>(<span class="fu">colnames</span>(data_p2)))</span>
-<span id="cb282-6"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb282-6" aria-hidden="true" tabindex="-1"></a><span class="co"># add long only constraint</span></span>
-<span id="cb282-7"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb282-7" aria-hidden="true" tabindex="-1"></a>port <span class="ot">=</span> <span class="fu">add.constraint</span>(<span class="at">portfolio =</span> port, <span class="at">type =</span> <span class="st">&quot;long_only&quot;</span>)</span>
-<span id="cb282-8"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb282-8" aria-hidden="true" tabindex="-1"></a><span class="co"># add full investment contraint</span></span>
-<span id="cb282-9"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb282-9" aria-hidden="true" tabindex="-1"></a>port <span class="ot">=</span> <span class="fu">add.constraint</span>(<span class="at">portfolio =</span> port, <span class="at">type =</span> <span class="st">&quot;full_investment&quot;</span>)</span>
-<span id="cb282-10"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb282-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb282-11"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb282-11" aria-hidden="true" tabindex="-1"></a><span class="co"># objective: manimise risk</span></span>
-<span id="cb282-12"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb282-12" aria-hidden="true" tabindex="-1"></a>port_rnd <span class="ot">=</span> <span class="fu">add.objective</span>(<span class="at">portfolio =</span> port, <span class="at">type =</span> <span class="st">&quot;risk&quot;</span>, <span class="at">name =</span> <span class="st">&quot;StdDev&quot;</span>)</span>
-<span id="cb282-13"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb282-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb282-14"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb282-14" aria-hidden="true" tabindex="-1"></a><span class="co"># objective: maximise return</span></span>
-<span id="cb282-15"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb282-15" aria-hidden="true" tabindex="-1"></a>port_rnd <span class="ot">=</span> <span class="fu">add.objective</span>(<span class="at">portfolio =</span> port_rnd, <span class="at">type =</span> <span class="st">&quot;return&quot;</span>, <span class="at">name =</span> <span class="st">&quot;mean&quot;</span>)</span>
-<span id="cb282-16"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb282-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb282-17"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb282-17" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. optimise random portfolios</span></span>
-<span id="cb282-18"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb282-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb282-19"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb282-19" aria-hidden="true" tabindex="-1"></a>rand_p <span class="ot">=</span> <span class="fu">optimize.portfolio</span>(<span class="at">R =</span> data_p2, <span class="at">portfolio =</span> port_rnd, <span class="at">optimize_method =</span> <span class="st">&quot;random&quot;</span>,</span>
-<span id="cb282-20"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb282-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">trace =</span> <span class="cn">TRUE</span>, <span class="at">search_size =</span> <span class="dv">1000</span>)</span>
-<span id="cb282-21"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb282-21" aria-hidden="true" tabindex="-1"></a><span class="co"># plot</span></span>
-<span id="cb282-22"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb282-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb282-23"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb282-23" aria-hidden="true" tabindex="-1"></a><span class="fu">chart.RiskReward</span>(rand_p, <span class="at">risk.col =</span> <span class="st">&quot;StdDev&quot;</span>, <span class="at">return.col =</span> <span class="st">&quot;mean&quot;</span>, <span class="at">chart.assets =</span> <span class="cn">TRUE</span>)  <span class="co">#also plots the equally weighted portfolio</span></span></code></pre></div>
+<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb281-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(PortfolioAnalytics)</span>
+<span id="cb281-2"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb281-2" aria-hidden="true" tabindex="-1"></a><span class="co"># initialise with asset names uses time series data</span></span>
+<span id="cb281-3"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb281-3" aria-hidden="true" tabindex="-1"></a>data_p2 <span class="ot">=</span> <span class="fu">zoo</span>(ret1[, <span class="sc">-</span><span class="dv">1</span>], <span class="at">order.by =</span> <span class="fu">as.Date</span>(ret1<span class="sc">$</span>Date))</span>
+<span id="cb281-4"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb281-4" aria-hidden="true" tabindex="-1"></a><span class="co"># create specification</span></span>
+<span id="cb281-5"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb281-5" aria-hidden="true" tabindex="-1"></a>port <span class="ot">=</span> <span class="fu">portfolio.spec</span>(<span class="at">assets =</span> <span class="fu">c</span>(<span class="fu">colnames</span>(data_p2)))</span>
+<span id="cb281-6"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb281-6" aria-hidden="true" tabindex="-1"></a><span class="co"># add long only constraint</span></span>
+<span id="cb281-7"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb281-7" aria-hidden="true" tabindex="-1"></a>port <span class="ot">=</span> <span class="fu">add.constraint</span>(<span class="at">portfolio =</span> port, <span class="at">type =</span> <span class="st">&quot;long_only&quot;</span>)</span>
+<span id="cb281-8"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb281-8" aria-hidden="true" tabindex="-1"></a><span class="co"># add full investment contraint</span></span>
+<span id="cb281-9"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb281-9" aria-hidden="true" tabindex="-1"></a>port <span class="ot">=</span> <span class="fu">add.constraint</span>(<span class="at">portfolio =</span> port, <span class="at">type =</span> <span class="st">&quot;full_investment&quot;</span>)</span>
+<span id="cb281-10"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb281-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb281-11"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb281-11" aria-hidden="true" tabindex="-1"></a><span class="co"># objective: manimise risk</span></span>
+<span id="cb281-12"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb281-12" aria-hidden="true" tabindex="-1"></a>port_rnd <span class="ot">=</span> <span class="fu">add.objective</span>(<span class="at">portfolio =</span> port, <span class="at">type =</span> <span class="st">&quot;risk&quot;</span>, <span class="at">name =</span> <span class="st">&quot;StdDev&quot;</span>)</span>
+<span id="cb281-13"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb281-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb281-14"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb281-14" aria-hidden="true" tabindex="-1"></a><span class="co"># objective: maximise return</span></span>
+<span id="cb281-15"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb281-15" aria-hidden="true" tabindex="-1"></a>port_rnd <span class="ot">=</span> <span class="fu">add.objective</span>(<span class="at">portfolio =</span> port_rnd, <span class="at">type =</span> <span class="st">&quot;return&quot;</span>, <span class="at">name =</span> <span class="st">&quot;mean&quot;</span>)</span>
+<span id="cb281-16"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb281-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb281-17"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb281-17" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. optimise random portfolios</span></span>
+<span id="cb281-18"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb281-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb281-19"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb281-19" aria-hidden="true" tabindex="-1"></a>rand_p <span class="ot">=</span> <span class="fu">optimize.portfolio</span>(<span class="at">R =</span> data_p2, <span class="at">portfolio =</span> port_rnd, <span class="at">optimize_method =</span> <span class="st">&quot;random&quot;</span>,</span>
+<span id="cb281-20"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb281-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">trace =</span> <span class="cn">TRUE</span>, <span class="at">search_size =</span> <span class="dv">1000</span>)</span>
+<span id="cb281-21"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb281-21" aria-hidden="true" tabindex="-1"></a><span class="co"># plot</span></span>
+<span id="cb281-22"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb281-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb281-23"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb281-23" aria-hidden="true" tabindex="-1"></a><span class="fu">chart.RiskReward</span>(rand_p, <span class="at">risk.col =</span> <span class="st">&quot;StdDev&quot;</span>, <span class="at">return.col =</span> <span class="st">&quot;mean&quot;</span>, <span class="at">chart.assets =</span> <span class="cn">TRUE</span>)  <span class="co">#also plots the equally weighted portfolio</span></span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:efp1"></span>
 <img src="01-Part_2_portfolio_files/figure-html/efp1-1.png" alt="Mean-Variance Portfolios" width="672" />
 <p class="caption">
@@ -467,10 +467,10 @@ Figure 10.5: Mean-Variance Portfolios
 <li>Minimise the level of Standard Deviation for the portfolio</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb283-1" aria-hidden="true" tabindex="-1"></a>port_msd <span class="ot">=</span> <span class="fu">add.objective</span>(<span class="at">portfolio =</span> port, <span class="at">type =</span> <span class="st">&quot;risk&quot;</span>, <span class="at">name =</span> <span class="st">&quot;StdDev&quot;</span>)</span>
-<span id="cb283-2"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb283-2" aria-hidden="true" tabindex="-1"></a>minvar1 <span class="ot">=</span> <span class="fu">optimize.portfolio</span>(<span class="at">R =</span> data_p2, <span class="at">portfolio =</span> port_msd, <span class="at">optimize_method =</span> <span class="st">&quot;ROI&quot;</span>,</span>
-<span id="cb283-3"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb283-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">trace =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb283-4"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb283-4" aria-hidden="true" tabindex="-1"></a>minvar1</span></code></pre></div>
+<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb282-1" aria-hidden="true" tabindex="-1"></a>port_msd <span class="ot">=</span> <span class="fu">add.objective</span>(<span class="at">portfolio =</span> port, <span class="at">type =</span> <span class="st">&quot;risk&quot;</span>, <span class="at">name =</span> <span class="st">&quot;StdDev&quot;</span>)</span>
+<span id="cb282-2"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb282-2" aria-hidden="true" tabindex="-1"></a>minvar1 <span class="ot">=</span> <span class="fu">optimize.portfolio</span>(<span class="at">R =</span> data_p2, <span class="at">portfolio =</span> port_msd, <span class="at">optimize_method =</span> <span class="st">&quot;ROI&quot;</span>,</span>
+<span id="cb282-3"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb282-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">trace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb282-4"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb282-4" aria-hidden="true" tabindex="-1"></a>minvar1</span></code></pre></div>
 <pre><code>***********************************
 PortfolioAnalytics Optimization
 ***********************************
@@ -486,19 +486,19 @@ Optimal Weights:
 Objective Measure:
 StdDev 
   1.32 </code></pre>
-<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb285-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot</span></span>
-<span id="cb285-2"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb285-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(minvar1, <span class="at">risk.col =</span> <span class="st">&quot;StdDev&quot;</span>, <span class="at">main =</span> <span class="st">&quot;Mean Variance Portfolio&quot;</span>, <span class="at">chart.assets =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb284-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot</span></span>
+<span id="cb284-2"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb284-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(minvar1, <span class="at">risk.col =</span> <span class="st">&quot;StdDev&quot;</span>, <span class="at">main =</span> <span class="st">&quot;Mean Variance Portfolio&quot;</span>, <span class="at">chart.assets =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:efp2-1"></span>
 <img src="01-Part_2_portfolio_files/figure-html/efp2-1.png" alt="Mean Variance Portfolio Risk/Return" width="672" />
 <p class="caption">
 Figure 10.6: Mean Variance Portfolio Risk/Return
 </p>
 </div>
-<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb286-1" aria-hidden="true" tabindex="-1"></a><span class="co"># efficient frontier</span></span>
-<span id="cb286-2"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb286-2" aria-hidden="true" tabindex="-1"></a>minvar_ef <span class="ot">=</span> <span class="fu">create.EfficientFrontier</span>(<span class="at">R =</span> data_p2, <span class="at">portfolio =</span> port_msd,</span>
-<span id="cb286-3"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb286-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">type =</span> <span class="st">&quot;mean-StdDev&quot;</span>)</span>
-<span id="cb286-4"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb286-4" aria-hidden="true" tabindex="-1"></a><span class="fu">chart.EfficientFrontier</span>(minvar_ef, <span class="at">match.col =</span> <span class="st">&quot;StdDev&quot;</span>, <span class="at">type =</span> <span class="st">&quot;l&quot;</span>, <span class="at">tangent.line =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb286-5"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb286-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">chart.assets =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb285-1" aria-hidden="true" tabindex="-1"></a><span class="co"># efficient frontier</span></span>
+<span id="cb285-2"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb285-2" aria-hidden="true" tabindex="-1"></a>minvar_ef <span class="ot">=</span> <span class="fu">create.EfficientFrontier</span>(<span class="at">R =</span> data_p2, <span class="at">portfolio =</span> port_msd,</span>
+<span id="cb285-3"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb285-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">type =</span> <span class="st">&quot;mean-StdDev&quot;</span>)</span>
+<span id="cb285-4"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb285-4" aria-hidden="true" tabindex="-1"></a><span class="fu">chart.EfficientFrontier</span>(minvar_ef, <span class="at">match.col =</span> <span class="st">&quot;StdDev&quot;</span>, <span class="at">type =</span> <span class="st">&quot;l&quot;</span>, <span class="at">tangent.line =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb285-5"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb285-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">chart.assets =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:efp2-2"></span>
 <img src="01-Part_2_portfolio_files/figure-html/efp2-2.png" alt="Efficient Frontier" width="672" />
 <p class="caption">
@@ -511,14 +511,14 @@ Figure 10.7: Efficient Frontier
 <li>An ebook is available with further details on the fPortfolio package see here <a href="https://www.rmetrics.org/ebooks-portfolio" class="uri">https://www.rmetrics.org/ebooks-portfolio</a></li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb287-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fPortfolio)</span>
-<span id="cb287-2"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb287-2" aria-hidden="true" tabindex="-1"></a>data_p2 <span class="ot">=</span> <span class="fu">as.timeSeries</span>(data_p2)</span>
-<span id="cb287-3"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb287-3" aria-hidden="true" tabindex="-1"></a>pspec <span class="ot">=</span> <span class="fu">portfolioSpec</span>()  <span class="co">#initial specification</span></span>
-<span id="cb287-4"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb287-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb287-5"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb287-5" aria-hidden="true" tabindex="-1"></a><span class="fu">setNFrontierPoints</span>(pspec) <span class="ot">=</span> <span class="dv">500</span>  <span class="co">#random portfolios for the efficient frontier</span></span>
-<span id="cb287-6"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb287-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb287-7"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb287-7" aria-hidden="true" tabindex="-1"></a>eff_front2 <span class="ot">=</span> <span class="fu">portfolioFrontier</span>(data_p2, <span class="at">constraints =</span> <span class="st">&quot;LongOnly&quot;</span>)  <span class="co">#strategy</span></span>
-<span id="cb287-8"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb287-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(eff_front2, <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb286-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fPortfolio)</span>
+<span id="cb286-2"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb286-2" aria-hidden="true" tabindex="-1"></a>data_p2 <span class="ot">=</span> <span class="fu">as.timeSeries</span>(data_p2)</span>
+<span id="cb286-3"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb286-3" aria-hidden="true" tabindex="-1"></a>pspec <span class="ot">=</span> <span class="fu">portfolioSpec</span>()  <span class="co">#initial specification</span></span>
+<span id="cb286-4"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb286-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb286-5"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb286-5" aria-hidden="true" tabindex="-1"></a><span class="fu">setNFrontierPoints</span>(pspec) <span class="ot">=</span> <span class="dv">500</span>  <span class="co">#random portfolios for the efficient frontier</span></span>
+<span id="cb286-6"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb286-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb286-7"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb286-7" aria-hidden="true" tabindex="-1"></a>eff_front2 <span class="ot">=</span> <span class="fu">portfolioFrontier</span>(data_p2, <span class="at">constraints =</span> <span class="st">&quot;LongOnly&quot;</span>)  <span class="co">#strategy</span></span>
+<span id="cb286-8"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb286-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(eff_front2, <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>))</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:efp3"></span>
 <img src="01-Part_2_portfolio_files/figure-html/efp3-1.png" alt="Efficient frontier plot (fPortfolio)" width="672" />
 <p class="caption">
@@ -529,15 +529,15 @@ Figure 10.8: Efficient frontier plot (fPortfolio)
 <li>Another function (allows to add different points and lines from other portfolios)</li>
 <li>Also plots of the weights in different portfolios</li>
 </ul>
-<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb288-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tailoredFrontierPlot</span>(eff_front2, <span class="at">sharpeRatio =</span> <span class="cn">FALSE</span>, <span class="at">risk =</span> <span class="st">&quot;Sigma&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb287-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tailoredFrontierPlot</span>(eff_front2, <span class="at">sharpeRatio =</span> <span class="cn">FALSE</span>, <span class="at">risk =</span> <span class="st">&quot;Sigma&quot;</span>)</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:efp4-1"></span>
 <img src="01-Part_2_portfolio_files/figure-html/efp4-1.png" alt="Efficient Frontier" width="672" />
 <p class="caption">
 Figure 10.9: Efficient Frontier
 </p>
 </div>
-<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb289-1" aria-hidden="true" tabindex="-1"></a><span class="co"># weights</span></span>
-<span id="cb289-2"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb289-2" aria-hidden="true" tabindex="-1"></a><span class="fu">weightsPlot</span>(eff_front2)</span></code></pre></div>
+<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb288-1" aria-hidden="true" tabindex="-1"></a><span class="co"># weights</span></span>
+<span id="cb288-2"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb288-2" aria-hidden="true" tabindex="-1"></a><span class="fu">weightsPlot</span>(eff_front2)</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:efp4-2"></span>
 <img src="01-Part_2_portfolio_files/figure-html/efp4-2.png" alt="Weights Plot" width="672" />
 <p class="caption">
@@ -552,7 +552,7 @@ Figure 10.10: Weights Plot
 <li>Uses previous constraints (Long Only)</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb290-1" aria-hidden="true" tabindex="-1"></a>(<span class="at">minvar2 =</span> <span class="fu">minvariancePortfolio</span>(data_p2))</span></code></pre></div>
+<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb289-1" aria-hidden="true" tabindex="-1"></a>(<span class="at">minvar2 =</span> <span class="fu">minvariancePortfolio</span>(data_p2))</span></code></pre></div>
 <pre><code>
 Title:
  MV Minimum Variance Portfolio 
@@ -574,13 +574,13 @@ Target Returns and Risks:
 0.0382 1.3204 3.2805 2.0550 
 
 Description:
- Mon Aug 30 17:26:47 2021 by user: RMachine </code></pre>
+ Thu Oct 21 13:08:18 2021 by user: RMachine </code></pre>
 <ul>
 <li>Target Return</li>
 </ul>
-<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb292-1" aria-hidden="true" tabindex="-1"></a>mu <span class="ot">=</span> <span class="fu">mean</span>(<span class="fu">colMeans</span>(data_p2))  <span class="co">#target return</span></span>
-<span id="cb292-2"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb292-2" aria-hidden="true" tabindex="-1"></a><span class="fu">setTargetReturn</span>(pspec) <span class="ot">=</span> mu</span>
-<span id="cb292-3"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb292-3" aria-hidden="true" tabindex="-1"></a>(<span class="at">eff_port2 =</span> <span class="fu">efficientPortfolio</span>(data_p2, pspec))</span></code></pre></div>
+<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb291-1" aria-hidden="true" tabindex="-1"></a>mu <span class="ot">=</span> <span class="fu">mean</span>(<span class="fu">colMeans</span>(data_p2))  <span class="co">#target return</span></span>
+<span id="cb291-2"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb291-2" aria-hidden="true" tabindex="-1"></a><span class="fu">setTargetReturn</span>(pspec) <span class="ot">=</span> mu</span>
+<span id="cb291-3"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb291-3" aria-hidden="true" tabindex="-1"></a>(<span class="at">eff_port2 =</span> <span class="fu">efficientPortfolio</span>(data_p2, pspec))</span></code></pre></div>
 <pre><code>
 Title:
  MV Efficient Portfolio 
@@ -602,7 +602,7 @@ Target Returns and Risks:
 0.0521 1.3608 3.4011 1.9698 
 
 Description:
- Mon Aug 30 17:26:47 2021 by user: RMachine </code></pre>
+ Thu Oct 21 13:08:18 2021 by user: RMachine </code></pre>
 </div>
 <div id="portfolio-with-box-constraints" class="section level3" number="10.6.2">
 <h3><span class="header-section-number">10.6.2</span> Portfolio with Box Constraints</h3>
@@ -611,12 +611,12 @@ Description:
 <li>This can be achieved using both packages.</li>
 <li>Here we demonstrate using the fPortfolio package. See help(box_constraints) for PortfolioAnalytics package</li>
 </ul>
-<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb294-1" aria-hidden="true" tabindex="-1"></a>pspec2 <span class="ot">=</span> <span class="fu">portfolioSpec</span>()</span>
-<span id="cb294-2"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb294-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb294-3"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb294-3" aria-hidden="true" tabindex="-1"></a><span class="fu">setNFrontierPoints</span>(pspec) <span class="ot">=</span> <span class="dv">500</span></span>
-<span id="cb294-4"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb294-4" aria-hidden="true" tabindex="-1"></a>boxconstraints <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;minW[1:5]=0.1&quot;</span>, <span class="st">&quot;maxW[1:5]=1&quot;</span>)  <span class="co">#for minimum asset weights and maximum asset weights</span></span>
-<span id="cb294-5"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb294-5" aria-hidden="true" tabindex="-1"></a>eff_front3 <span class="ot">=</span> <span class="fu">portfolioFrontier</span>(data_p2, <span class="at">spec =</span> pspec2, <span class="at">constraints =</span> boxconstraints)</span>
-<span id="cb294-6"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb294-6" aria-hidden="true" tabindex="-1"></a>eff_front3</span></code></pre></div>
+<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb293-1" aria-hidden="true" tabindex="-1"></a>pspec2 <span class="ot">=</span> <span class="fu">portfolioSpec</span>()</span>
+<span id="cb293-2"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb293-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb293-3"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb293-3" aria-hidden="true" tabindex="-1"></a><span class="fu">setNFrontierPoints</span>(pspec) <span class="ot">=</span> <span class="dv">500</span></span>
+<span id="cb293-4"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb293-4" aria-hidden="true" tabindex="-1"></a>boxconstraints <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;minW[1:5]=0.1&quot;</span>, <span class="st">&quot;maxW[1:5]=1&quot;</span>)  <span class="co">#for minimum asset weights and maximum asset weights</span></span>
+<span id="cb293-5"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb293-5" aria-hidden="true" tabindex="-1"></a>eff_front3 <span class="ot">=</span> <span class="fu">portfolioFrontier</span>(data_p2, <span class="at">spec =</span> pspec2, <span class="at">constraints =</span> boxconstraints)</span>
+<span id="cb293-6"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb293-6" aria-hidden="true" tabindex="-1"></a>eff_front3</span></code></pre></div>
 <pre><code>
 Title:
  MV Portfolio Frontier 
@@ -651,15 +651,15 @@ Target Returns and Risks:
 24 0.0644 1.5223 3.7541 2.2943
 
 Description:
- Mon Aug 30 17:26:47 2021 by user: RMachine </code></pre>
-<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb296-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(eff_front2, <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>))</span></code></pre></div>
+ Thu Oct 21 13:08:18 2021 by user: RMachine </code></pre>
+<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb295-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(eff_front2, <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>))</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:effp5"></span>
 <img src="01-Part_2_portfolio_files/figure-html/effp5-1.png" alt="Frontier Plot (box constraints)" width="672" />
 <p class="caption">
 Figure 10.11: Frontier Plot (box constraints)
 </p>
 </div>
-<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb297-1"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb297-1" aria-hidden="true" tabindex="-1"></a>(<span class="at">minvar3 =</span> <span class="fu">minvariancePortfolio</span>(<span class="at">data =</span> data_p2, <span class="at">spec =</span> pspec2, <span class="at">constraints =</span> boxconstraints))</span></code></pre></div>
+<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="10.6-efficient-minimum-variance-portfolio-using-r-packages.html#cb296-1" aria-hidden="true" tabindex="-1"></a>(<span class="at">minvar3 =</span> <span class="fu">minvariancePortfolio</span>(<span class="at">data =</span> data_p2, <span class="at">spec =</span> pspec2, <span class="at">constraints =</span> boxconstraints))</span></code></pre></div>
 <pre><code>
 Title:
  MV Minimum Variance Portfolio 
@@ -681,7 +681,7 @@ Target Returns and Risks:
 0.0412 1.3280 3.3025 2.0801 
 
 Description:
- Mon Aug 30 17:26:48 2021 by user: RMachine </code></pre>
+ Thu Oct 21 13:08:19 2021 by user: RMachine </code></pre>
 </div>
 </div>
             </section>
@@ -694,7 +694,6 @@ Description:
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -735,7 +734,7 @@ gitbook.start({
 },
 "download": null,
 "search": {
-"engine": "lunr",
+"engine": "fuse",
 "options": null
 },
 "toc": {

@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>9.1 Value at Risk | R for Data Analytics</title>
   <meta name="description" content="This is a collection of examples on using R for Data Analytics" />
-  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="9.1 Value at Risk | R for Data Analytics" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Abhay Singh" />
 
 
-<meta name="date" content="2021-08-30" />
+<meta name="date" content="2021-10-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,8 +33,9 @@
   <link rel="shortcut icon" href="rforda.png" type="image/x-icon" />
 <link rel="prev" href="9-forecasting-var-using-garch-models.html"/>
 <link rel="next" href="9.2-volatility-modelling-forecasting-using-garch.html"/>
-<script src="libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -50,16 +51,15 @@
 
 
 
-
 <link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
-<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
-<script src="libs/plotly-binding-4.9.4.1/plotly.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.10.0/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
 <link href="libs/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet" />
 <script src="libs/crosstalk-1.1.1/js/crosstalk.min.js"></script>
-<link href="libs/plotly-htmlwidgets-css-1.57.1/plotly-htmlwidgets.css" rel="stylesheet" />
-<script src="libs/plotly-main-1.57.1/plotly-latest.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-2.5.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-2.5.1/plotly-latest.min.js"></script>
 <link href="libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 <link href="libs/wordcloud2-0.0.1/wordcloud.css" rel="stylesheet" />
@@ -263,24 +263,24 @@ div.csl-indent {
 <li class="chapter" data-level="6.3" data-path="6.3-plot-maps.html"><a href="6.3-plot-maps.html"><i class="fa fa-check"></i><b>6.3</b> Plot Maps</a></li>
 </ul></li>
 <li class="part"><span><b>Part II</b></span></li>
-<li class="chapter" data-level="7" data-path="7-technical-analysis-using-r.html"><a href="7-technical-analysis-using-r.html"><i class="fa fa-check"></i><b>7</b> Technical Analysis using R</a>
+<li class="chapter" data-level="7" data-path="7-linear-regression.html"><a href="7-linear-regression.html"><i class="fa fa-check"></i><b>7</b> Linear Regression</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="7.1-technical-analysis-ta-using-r.html"><a href="7.1-technical-analysis-ta-using-r.html"><i class="fa fa-check"></i><b>7.1</b> Technical Analysis (TA) using R</a></li>
-<li class="chapter" data-level="7.2" data-path="7.2-technical-charts.html"><a href="7.2-technical-charts.html"><i class="fa fa-check"></i><b>7.2</b> Technical Charts</a>
-<ul>
-<li class="chapter" data-level="7.2.1" data-path="7.2-technical-charts.html"><a href="7.2-technical-charts.html#candlesticks-and-ohlc-chart"><i class="fa fa-check"></i><b>7.2.1</b> Candlesticks and OHLC chart</a></li>
-<li class="chapter" data-level="7.2.2" data-path="7.2-technical-charts.html"><a href="7.2-technical-charts.html#line-chart"><i class="fa fa-check"></i><b>7.2.2</b> Line chart</a></li>
-<li class="chapter" data-level="7.2.3" data-path="7.2-technical-charts.html"><a href="7.2-technical-charts.html#candlestick-chart"><i class="fa fa-check"></i><b>7.2.3</b> Candlestick chart</a></li>
-<li class="chapter" data-level="7.2.4" data-path="7.2-technical-charts.html"><a href="7.2-technical-charts.html#add-technical-indicators"><i class="fa fa-check"></i><b>7.2.4</b> Add technical indicators</a></li>
-<li class="chapter" data-level="7.2.5" data-path="7.2-technical-charts.html"><a href="7.2-technical-charts.html#adding-indicators-sequentially"><i class="fa fa-check"></i><b>7.2.5</b> Adding indicators sequentially</a></li>
+<li class="chapter" data-level="7.1" data-path="7.1-investment-beta-using-r-single-index-model.html"><a href="7.1-investment-beta-using-r-single-index-model.html"><i class="fa fa-check"></i><b>7.1</b> Investment <span class="math inline">\(\beta\)</span> using R (Single Index Model)</a></li>
+<li class="chapter" data-level="7.2" data-path="7.2-data-preprocessing-1.html"><a href="7.2-data-preprocessing-1.html"><i class="fa fa-check"></i><b>7.2</b> Data preprocessing</a></li>
+<li class="chapter" data-level="7.3" data-path="7.3-visualisation.html"><a href="7.3-visualisation.html"><i class="fa fa-check"></i><b>7.3</b> Visualisation</a></li>
+<li class="chapter" data-level="7.4" data-path="7.4-regression-analysis-using-lm.html"><a href="7.4-regression-analysis-using-lm.html"><i class="fa fa-check"></i><b>7.4</b> Regression analysis using lm</a></li>
 </ul></li>
-</ul></li>
-<li class="chapter" data-level="8" data-path="8-linear-regression.html"><a href="8-linear-regression.html"><i class="fa fa-check"></i><b>8</b> Linear Regression</a>
+<li class="chapter" data-level="8" data-path="8-technical-analysis-using-r.html"><a href="8-technical-analysis-using-r.html"><i class="fa fa-check"></i><b>8</b> Technical Analysis using R</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="8.1-investment-beta-using-r-single-index-model.html"><a href="8.1-investment-beta-using-r-single-index-model.html"><i class="fa fa-check"></i><b>8.1</b> Investment <span class="math inline">\(\beta\)</span> using R (Single Index Model)</a></li>
-<li class="chapter" data-level="8.2" data-path="8.2-data-preprocessing-1.html"><a href="8.2-data-preprocessing-1.html"><i class="fa fa-check"></i><b>8.2</b> Data preprocessing</a></li>
-<li class="chapter" data-level="8.3" data-path="8.3-visualisation.html"><a href="8.3-visualisation.html"><i class="fa fa-check"></i><b>8.3</b> Visualisation</a></li>
-<li class="chapter" data-level="8.4" data-path="8.4-regression-analysis-using-lm.html"><a href="8.4-regression-analysis-using-lm.html"><i class="fa fa-check"></i><b>8.4</b> Regression analysis using lm</a></li>
+<li class="chapter" data-level="8.1" data-path="8.1-technical-analysis-ta-using-r.html"><a href="8.1-technical-analysis-ta-using-r.html"><i class="fa fa-check"></i><b>8.1</b> Technical Analysis (TA) using R</a></li>
+<li class="chapter" data-level="8.2" data-path="8.2-technical-charts.html"><a href="8.2-technical-charts.html"><i class="fa fa-check"></i><b>8.2</b> Technical Charts</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="8.2-technical-charts.html"><a href="8.2-technical-charts.html#candlesticks-and-ohlc-chart"><i class="fa fa-check"></i><b>8.2.1</b> Candlesticks and OHLC chart</a></li>
+<li class="chapter" data-level="8.2.2" data-path="8.2-technical-charts.html"><a href="8.2-technical-charts.html#line-chart"><i class="fa fa-check"></i><b>8.2.2</b> Line chart</a></li>
+<li class="chapter" data-level="8.2.3" data-path="8.2-technical-charts.html"><a href="8.2-technical-charts.html#candlestick-chart"><i class="fa fa-check"></i><b>8.2.3</b> Candlestick chart</a></li>
+<li class="chapter" data-level="8.2.4" data-path="8.2-technical-charts.html"><a href="8.2-technical-charts.html#add-technical-indicators"><i class="fa fa-check"></i><b>8.2.4</b> Add technical indicators</a></li>
+<li class="chapter" data-level="8.2.5" data-path="8.2-technical-charts.html"><a href="8.2-technical-charts.html#adding-indicators-sequentially"><i class="fa fa-check"></i><b>8.2.5</b> Adding indicators sequentially</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="9-forecasting-var-using-garch-models.html"><a href="9-forecasting-var-using-garch-models.html"><i class="fa fa-check"></i><b>9</b> Forecasting VaR using GARCH Models</a>
 <ul>
@@ -441,16 +441,28 @@ P[r_{t}&lt;-VaR_{t}[I_{t-1}]=\theta
 <li>Despite the appealing simplicity of VaR in its offering of a simple summary of the downside risk of an asset portfolio, there is no single way to calculate it (see <span class="citation"><a href="#ref-Manganelli2001" role="doc-biblioref">Manganelli and Engle</a> (<a href="#ref-Manganelli2001" role="doc-biblioref">2001</a>)</span> ) for an overview on VaR methods in finance).</li>
 </ul>
 <p>1% VaR</p>
-<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="9.1-value-at-risk.html#cb267-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate normal density</span></span>
-<span id="cb267-2"><a href="9.1-value-at-risk.html#cb267-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb267-3"><a href="9.1-value-at-risk.html#cb267-3" aria-hidden="true" tabindex="-1"></a>den1_r <span class="ot">=</span> data_lm1<span class="sc">$</span>bhp</span>
-<span id="cb267-4"><a href="9.1-value-at-risk.html#cb267-4" aria-hidden="true" tabindex="-1"></a>den1_bhp <span class="ot">=</span> <span class="fu">dnorm</span>(<span class="at">x =</span> den1_r, <span class="at">mean =</span> <span class="fu">mean</span>(den1_r), <span class="at">sd =</span> <span class="fu">sd</span>(den1_r))</span>
-<span id="cb267-5"><a href="9.1-value-at-risk.html#cb267-5" aria-hidden="true" tabindex="-1"></a>data_rd <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">x =</span> den1_r, <span class="at">y =</span> den1_bhp)</span>
-<span id="cb267-6"><a href="9.1-value-at-risk.html#cb267-6" aria-hidden="true" tabindex="-1"></a><span class="co"># normal quantile</span></span>
-<span id="cb267-7"><a href="9.1-value-at-risk.html#cb267-7" aria-hidden="true" tabindex="-1"></a>var1 <span class="ot">=</span> <span class="fu">quantile</span>(den1_r, <span class="fl">0.01</span>)</span>
-<span id="cb267-8"><a href="9.1-value-at-risk.html#cb267-8" aria-hidden="true" tabindex="-1"></a>p3 <span class="ot">=</span> <span class="fu">ggplot</span>(data_rd, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span> <span class="fu">geom_line</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span> <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> var1,</span>
-<span id="cb267-9"><a href="9.1-value-at-risk.html#cb267-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span> <span class="fu">theme_bw</span>() <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Normal Distribution and 1% (Empirical) VaR&quot;</span>)</span>
-<span id="cb267-10"><a href="9.1-value-at-risk.html#cb267-10" aria-hidden="true" tabindex="-1"></a>p3</span></code></pre></div>
+<ul>
+<li>Convert the prices to returns</li>
+</ul>
+<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="9.1-value-at-risk.html#cb266-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb266-2"><a href="9.1-value-at-risk.html#cb266-2" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate normal density for the returns</span></span>
+<span id="cb266-3"><a href="9.1-value-at-risk.html#cb266-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb266-4"><a href="9.1-value-at-risk.html#cb266-4" aria-hidden="true" tabindex="-1"></a><span class="co"># prices to returns</span></span>
+<span id="cb266-5"><a href="9.1-value-at-risk.html#cb266-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb266-6"><a href="9.1-value-at-risk.html#cb266-6" aria-hidden="true" tabindex="-1"></a>bhp2 <span class="ot">=</span> BHP<span class="sc">$</span>BHP.AX.Close</span>
+<span id="cb266-7"><a href="9.1-value-at-risk.html#cb266-7" aria-hidden="true" tabindex="-1"></a><span class="co"># covert to returns</span></span>
+<span id="cb266-8"><a href="9.1-value-at-risk.html#cb266-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb266-9"><a href="9.1-value-at-risk.html#cb266-9" aria-hidden="true" tabindex="-1"></a>bhp_ret <span class="ot">=</span> <span class="fu">dailyReturn</span>(bhp2, <span class="at">type =</span> <span class="st">&quot;log&quot;</span>)</span>
+<span id="cb266-10"><a href="9.1-value-at-risk.html#cb266-10" aria-hidden="true" tabindex="-1"></a>den1_r <span class="ot">=</span> <span class="fu">coredata</span>(bhp_ret)</span>
+<span id="cb266-11"><a href="9.1-value-at-risk.html#cb266-11" aria-hidden="true" tabindex="-1"></a>den1_bhp <span class="ot">=</span> <span class="fu">dnorm</span>(<span class="at">x =</span> den1_r, <span class="at">mean =</span> <span class="fu">mean</span>(den1_r), <span class="at">sd =</span> <span class="fu">sd</span>(den1_r))</span>
+<span id="cb266-12"><a href="9.1-value-at-risk.html#cb266-12" aria-hidden="true" tabindex="-1"></a>data_rd <span class="ot">=</span> <span class="fu">data.frame</span>(den1_r, den1_bhp)</span>
+<span id="cb266-13"><a href="9.1-value-at-risk.html#cb266-13" aria-hidden="true" tabindex="-1"></a><span class="co"># change column names</span></span>
+<span id="cb266-14"><a href="9.1-value-at-risk.html#cb266-14" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(data_rd) <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;x&quot;</span>, <span class="st">&quot;y&quot;</span>)</span>
+<span id="cb266-15"><a href="9.1-value-at-risk.html#cb266-15" aria-hidden="true" tabindex="-1"></a><span class="co"># normal quantile</span></span>
+<span id="cb266-16"><a href="9.1-value-at-risk.html#cb266-16" aria-hidden="true" tabindex="-1"></a>var1 <span class="ot">=</span> <span class="fu">quantile</span>(den1_r, <span class="fl">0.01</span>)</span>
+<span id="cb266-17"><a href="9.1-value-at-risk.html#cb266-17" aria-hidden="true" tabindex="-1"></a>p3 <span class="ot">=</span> <span class="fu">ggplot</span>(data_rd, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span> <span class="fu">geom_line</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span> <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> var1,</span>
+<span id="cb266-18"><a href="9.1-value-at-risk.html#cb266-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span> <span class="fu">theme_bw</span>() <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Normal Distribution and 1% (Empirical) VaR&quot;</span>)</span>
+<span id="cb266-19"><a href="9.1-value-at-risk.html#cb266-19" aria-hidden="true" tabindex="-1"></a>p3</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:var1"></span>
 <img src="01-Part_1_files/figure-html/var1-1.png" alt="1% VaR" width="672" />
 <p class="caption">
@@ -488,7 +500,6 @@ Manganelli, Simone, and Robert F Engle. 2001. <span>“Value at Risk Models in F
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -529,7 +540,7 @@ gitbook.start({
 },
 "download": null,
 "search": {
-"engine": "lunr",
+"engine": "fuse",
 "options": null
 },
 "toc": {

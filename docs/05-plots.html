@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Topic 5 Graphics in R (Part-I) | R for Data Analytics</title>
+  <meta name="description" content="This is a collection of examples on using R for Data Analytics" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Topic 5 Graphics in R (Part-I) | R for Data Analytics" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is a collection of examples on using R for Data Analytics" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Topic 5 Graphics in R (Part-I) | R for Data Analytics" />
+  
+  <meta name="twitter:description" content="This is a collection of examples on using R for Data Analytics" />
+  
+
+<meta name="author" content="Abhay Singh" />
+
+
+<meta name="date" content="2022-11-07" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  <link rel="shortcut icon" href="rforda.png" type="image/x-icon" />
+<link rel="prev" href="04-Data_Exploration.html"/>
+<link rel="next" href="06-plotsRmd.html"/>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.10.0/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-2.5.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-2.5.1/plotly-latest.min.js"></script>
+<link href="libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<link href="libs/wordcloud2-0.0.1/wordcloud.css" rel="stylesheet" />
+<script src="libs/wordcloud2-0.0.1/wordcloud2-all.js"></script>
+<script src="libs/wordcloud2-0.0.1/hover.js"></script>
+<script src="libs/wordcloud2-binding-0.2.1/wordcloud2.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">R for Data Analytics</a></li>
+
+<li class="divider"></li>
+<li><a href="index.html#preface" id="toc-preface">Preface</a></li>
+<li><a href="index.html#about-the-author" id="toc-about-the-author">About the author</a></li>
+<li><a href="01-intro.html#part-i" id="toc-part-i">Part I</a></li>
+<li><a href="01-intro.html#what-is-r" id="toc-what-is-r"><span class="toc-section-number">1</span> What is R?</a>
+<ul>
+<li><a href="01-intro.html#why-should-we-learn-r" id="toc-why-should-we-learn-r"><span class="toc-section-number">1.1</span> Why should we learn R?</a></li>
+<li><a href="01-intro.html#Rinstall" id="toc-Rinstall"><span class="toc-section-number">1.2</span> Installing R and RStudio on Windows</a></li>
+<li><a href="01-intro.html#rstudio-guiide" id="toc-rstudio-guiide"><span class="toc-section-number">1.3</span> RStudio GUI/IDE</a></li>
+<li><a href="01-intro.html#installing-packages" id="toc-installing-packages"><span class="toc-section-number">1.4</span> Installing Packages</a></li>
+<li><a href="01-intro.html#getting-help" id="toc-getting-help"><span class="toc-section-number">1.5</span> Getting Help</a></li>
+<li><a href="01-intro.html#task-views-in-r-introduction-installation" id="toc-task-views-in-r-introduction-installation"><span class="toc-section-number">1.6</span> Task Views in R-Introduction &amp; Installation</a></li>
+<li><a href="01-intro.html#r-core-packages" id="toc-r-core-packages"><span class="toc-section-number">1.7</span> R core packages</a></li>
+<li><a href="01-intro.html#example-1-hello-r" id="toc-example-1-hello-r"><span class="toc-section-number">1.8</span> Example-1 Hello R!</a></li>
+</ul></li>
+<li><a href="02-data.html#r-data-types-and-data-structures" id="toc-r-data-types-and-data-structures"><span class="toc-section-number">2</span> R Data Types and Data Structures</a>
+<ul>
+<li><a href="02-data.html#data-types" id="toc-data-types"><span class="toc-section-number">2.1</span> Data Types</a>
+<ul>
+<li><a href="02-data.html#double" id="toc-double"><span class="toc-section-number">2.1.1</span> Double</a></li>
+<li><a href="02-data.html#integer" id="toc-integer"><span class="toc-section-number">2.1.2</span> Integer</a></li>
+<li><a href="02-data.html#logical" id="toc-logical"><span class="toc-section-number">2.1.3</span> Logical</a></li>
+<li><a href="02-data.html#character" id="toc-character"><span class="toc-section-number">2.1.4</span> Character</a></li>
+<li><a href="02-data.html#factor" id="toc-factor"><span class="toc-section-number">2.1.5</span> Factor</a></li>
+<li><a href="02-data.html#date-time" id="toc-date-time"><span class="toc-section-number">2.1.6</span> Date &amp; Time</a></li>
+</ul></li>
+<li><a href="02-data.html#data-structures-in-r" id="toc-data-structures-in-r"><span class="toc-section-number">2.2</span> Data Structures in R</a>
+<ul>
+<li><a href="02-data.html#vector" id="toc-vector"><span class="toc-section-number">2.2.1</span> Vector</a></li>
+<li><a href="02-data.html#matrices" id="toc-matrices"><span class="toc-section-number">2.2.2</span> Matrices</a></li>
+<li><a href="02-data.html#arrays" id="toc-arrays"><span class="toc-section-number">2.2.3</span> Arrays</a></li>
+<li><a href="02-data.html#data-frames" id="toc-data-frames"><span class="toc-section-number">2.2.4</span> Data Frames</a></li>
+<li><a href="02-data.html#lists" id="toc-lists"><span class="toc-section-number">2.2.5</span> Lists</a></li>
+</ul></li>
+<li><a href="02-data.html#data-importexport-in-r" id="toc-data-importexport-in-r"><span class="toc-section-number">2.3</span> Data Import/Export in R</a>
+<ul>
+<li><a href="02-data.html#reading-data-from-a-text-file" id="toc-reading-data-from-a-text-file"><span class="toc-section-number">2.3.1</span> Reading Data from a Text File</a></li>
+<li><a href="02-data.html#reading-data-from-csv-files" id="toc-reading-data-from-csv-files"><span class="toc-section-number">2.3.2</span> Reading Data from CSV files</a></li>
+<li><a href="02-data.html#reading-from-excel-files" id="toc-reading-from-excel-files"><span class="toc-section-number">2.3.3</span> Reading from Excel Files</a></li>
+<li><a href="02-data.html#reading-from-data-files-from-other-statistical-systems" id="toc-reading-from-data-files-from-other-statistical-systems"><span class="toc-section-number">2.3.4</span> Reading from Data Files from other Statistical Systems</a></li>
+<li><a href="02-data.html#importing-data-using-rstudio" id="toc-importing-data-using-rstudio"><span class="toc-section-number">2.3.5</span> Importing Data using RStudio</a></li>
+</ul></li>
+</ul></li>
+<li><a href="03-programming_data_preprocessing.html#r-programming---short-introduction" id="toc-r-programming---short-introduction"><span class="toc-section-number">3</span> R Programming - Short Introduction</a>
+<ul>
+<li><a href="03-programming_data_preprocessing.html#programming-control-flow" id="toc-programming-control-flow"><span class="toc-section-number">3.1</span> Programming Control Flow</a>
+<ul>
+<li><a href="03-programming_data_preprocessing.html#if-else-conditional-statements" id="toc-if-else-conditional-statements"><span class="toc-section-number">3.1.1</span> if-else Conditional Statements</a></li>
+<li><a href="03-programming_data_preprocessing.html#loops" id="toc-loops"><span class="toc-section-number">3.1.2</span> Loops</a></li>
+<li><a href="03-programming_data_preprocessing.html#mathttwhile-loop" id="toc-mathttwhile-loop"><span class="toc-section-number">3.1.3</span> <span class="math inline">\(\mathtt{while}\)</span> loop</a></li>
+<li><a href="03-programming_data_preprocessing.html#mathttrepeat-loop" id="toc-mathttrepeat-loop"><span class="toc-section-number">3.1.4</span> <span class="math inline">\(\mathtt{repeat}\)</span> loop</a></li>
+</ul></li>
+<li><a href="03-programming_data_preprocessing.html#functions-in-r" id="toc-functions-in-r"><span class="toc-section-number">3.2</span> Functions in R</a></li>
+</ul></li>
+<li><a href="04-Data_Exploration.html#data-exploration" id="toc-data-exploration"><span class="toc-section-number">4</span> Data Exploration</a>
+<ul>
+<li><a href="04-Data_Exploration.html#data-preprocessing" id="toc-data-preprocessing"><span class="toc-section-number">4.1</span> Data Preprocessing</a>
+<ul>
+<li><a href="04-Data_Exploration.html#extracting-data" id="toc-extracting-data"><span class="toc-section-number">4.1.1</span> Extracting Data</a></li>
+<li><a href="04-Data_Exploration.html#combining-data-frames" id="toc-combining-data-frames"><span class="toc-section-number">4.1.2</span> Combining Data Frames</a></li>
+<li><a href="04-Data_Exploration.html#sub-setting-and-logical-data-selection" id="toc-sub-setting-and-logical-data-selection"><span class="toc-section-number">4.1.3</span> Sub setting and Logical Data Selection</a></li>
+</ul></li>
+<li><a href="04-Data_Exploration.html#data-transformation-from-wide-to-long-or-vice-versa" id="toc-data-transformation-from-wide-to-long-or-vice-versa"><span class="toc-section-number">4.2</span> Data Transformation from Wide to Long (or vice versa)</a></li>
+<li><a href="04-Data_Exploration.html#summary-statistics" id="toc-summary-statistics"><span class="toc-section-number">4.3</span> Summary Statistics</a>
+<ul>
+<li><a href="04-Data_Exploration.html#example-descriptive-statistics-of-stock-returns" id="toc-example-descriptive-statistics-of-stock-returns"><span class="toc-section-number">4.3.1</span> Example-Descriptive Statistics of Stock Returns</a></li>
+</ul></li>
+</ul></li>
+<li><a href="05-plots.html#graphics-in-r-part-i" id="toc-graphics-in-r-part-i"><span class="toc-section-number">5</span> Graphics in R (Part-I)</a>
+<ul>
+<li><a href="05-plots.html#basic-plots-in-r" id="toc-basic-plots-in-r"><span class="toc-section-number">5.1</span> Basic Plots in R</a>
+<ul>
+<li><a href="05-plots.html#scatter-plot" id="toc-scatter-plot"><span class="toc-section-number">5.1.1</span> Scatter Plot</a></li>
+<li><a href="05-plots.html#line-plot" id="toc-line-plot"><span class="toc-section-number">5.1.2</span> Line Plot</a></li>
+<li><a href="05-plots.html#bar-plot" id="toc-bar-plot"><span class="toc-section-number">5.1.3</span> Bar Plot</a></li>
+<li><a href="05-plots.html#pie-chart" id="toc-pie-chart"><span class="toc-section-number">5.1.4</span> Pie Chart</a></li>
+<li><a href="05-plots.html#scatter-plot-1" id="toc-scatter-plot-1"><span class="toc-section-number">5.1.5</span> Scatter Plot</a></li>
+</ul></li>
+<li><a href="05-plots.html#r-graphical-parameters" id="toc-r-graphical-parameters"><span class="toc-section-number">5.2</span> R Graphical Parameters</a></li>
+<li><a href="05-plots.html#introduction-to-ggplot2" id="toc-introduction-to-ggplot2"><span class="toc-section-number">5.3</span> Introduction to ggplot2</a>
+<ul>
+<li><a href="05-plots.html#mathttqplot" id="toc-mathttqplot"><span class="toc-section-number">5.3.1</span> <span class="math inline">\(\mathtt{qplot}\)</span></a></li>
+<li><a href="05-plots.html#layered-graphics-using-mathttggplot" id="toc-layered-graphics-using-mathttggplot"><span class="toc-section-number">5.3.2</span> Layered graphics using <span class="math inline">\(\mathtt{ggplot}\)</span></a></li>
+<li><a href="05-plots.html#arranging-plots-using-gridextra" id="toc-arranging-plots-using-gridextra"><span class="toc-section-number">5.3.3</span> Arranging plots using gridExtra</a></li>
+</ul></li>
+</ul></li>
+<li><a href="06-plotsRmd.html#graphics-in-r-part-ii" id="toc-graphics-in-r-part-ii"><span class="toc-section-number">6</span> Graphics in R (Part-II)</a>
+<ul>
+<li><a href="06-plotsRmd.html#interactive-plots-using-plotly" id="toc-interactive-plots-using-plotly"><span class="toc-section-number">6.1</span> Interactive Plots using Plotly</a></li>
+<li><a href="06-plotsRmd.html#animation-using-gganimate" id="toc-animation-using-gganimate"><span class="toc-section-number">6.2</span> Animation using gganimate</a></li>
+<li><a href="06-plotsRmd.html#plot-maps" id="toc-plot-maps"><span class="toc-section-number">6.3</span> Plot Maps</a></li>
+</ul></li>
+<li><a href="062-regression_1.html#part-ii" id="toc-part-ii">Part II</a></li>
+<li><a href="062-regression_1.html#linear-regression" id="toc-linear-regression"><span class="toc-section-number">7</span> Linear Regression</a>
+<ul>
+<li><a href="062-regression_1.html#investment-beta-using-r-single-index-model" id="toc-investment-beta-using-r-single-index-model"><span class="toc-section-number">7.1</span> Investment <span class="math inline">\(\beta\)</span> using R (Single Index Model)</a></li>
+<li><a href="062-regression_1.html#data-preprocessing-1" id="toc-data-preprocessing-1"><span class="toc-section-number">7.2</span> Data preprocessing</a></li>
+<li><a href="062-regression_1.html#visualisation" id="toc-visualisation"><span class="toc-section-number">7.3</span> Visualisation</a></li>
+<li><a href="062-regression_1.html#regression-analysis-using-lm" id="toc-regression-analysis-using-lm"><span class="toc-section-number">7.4</span> Regression analysis using lm</a></li>
+</ul></li>
+<li><a href="062-regression_1.html#multiple-regression" id="toc-multiple-regression"><span class="toc-section-number">8</span> Multiple Regression</a>
+<ul>
+<li><a href="062-regression_1.html#fama-french-three-factor-model" id="toc-fama-french-three-factor-model"><span class="toc-section-number">8.1</span> Fama-French Three Factor Model</a>
+<ul>
+<li><a href="062-regression_1.html#data-preprocessing-2" id="toc-data-preprocessing-2"><span class="toc-section-number">8.1.1</span> Data Preprocessing</a></li>
+<li><a href="062-regression_1.html#regression-analysis" id="toc-regression-analysis"><span class="toc-section-number">8.1.2</span> Regression Analysis</a></li>
+<li><a href="062-regression_1.html#visualisation-1" id="toc-visualisation-1"><span class="toc-section-number">8.1.3</span> Visualisation</a></li>
+</ul></li>
+</ul></li>
+<li><a href="062-regression_1.html#panel-regression" id="toc-panel-regression"><span class="toc-section-number">9</span> Panel Regression</a>
+<ul>
+<li><a href="062-regression_1.html#fixed-and-random-effects-using-the-plm-package" id="toc-fixed-and-random-effects-using-the-plm-package"><span class="toc-section-number">9.1</span> Fixed and Random effects using the <code>plm</code> package</a></li>
+<li><a href="062-regression_1.html#fixed-effects-model" id="toc-fixed-effects-model"><span class="toc-section-number">9.2</span> Fixed Effects Model</a></li>
+<li><a href="062-regression_1.html#random-effects-model" id="toc-random-effects-model"><span class="toc-section-number">9.3</span> Random Effects Model</a></li>
+<li><a href="062-regression_1.html#testing" id="toc-testing"><span class="toc-section-number">9.4</span> Testing</a>
+<ul>
+<li><a href="062-regression_1.html#panel-or-ols" id="toc-panel-or-ols"><span class="toc-section-number">9.4.1</span> Panel or OLS</a></li>
+<li><a href="062-regression_1.html#fixed-effect-or-random-effect" id="toc-fixed-effect-or-random-effect"><span class="toc-section-number">9.4.2</span> Fixed Effect or Random Effect</a></li>
+</ul></li>
+</ul></li>
+<li><a href="01-Part_1.html#technical-analysis-using-r" id="toc-technical-analysis-using-r"><span class="toc-section-number">10</span> Technical Analysis using R</a>
+<ul>
+<li><a href="01-Part_1.html#technical-analysis-ta-using-r" id="toc-technical-analysis-ta-using-r"><span class="toc-section-number">10.1</span> Technical Analysis (TA) using R</a></li>
+<li><a href="01-Part_1.html#technical-charts" id="toc-technical-charts"><span class="toc-section-number">10.2</span> Technical Charts</a>
+<ul>
+<li><a href="01-Part_1.html#candlesticks-and-ohlc-chart" id="toc-candlesticks-and-ohlc-chart"><span class="toc-section-number">10.2.1</span> Candlesticks and OHLC chart</a></li>
+<li><a href="01-Part_1.html#line-chart" id="toc-line-chart"><span class="toc-section-number">10.2.2</span> Line chart</a></li>
+<li><a href="01-Part_1.html#candlestick-chart" id="toc-candlestick-chart"><span class="toc-section-number">10.2.3</span> Candlestick chart</a></li>
+<li><a href="01-Part_1.html#add-technical-indicators" id="toc-add-technical-indicators"><span class="toc-section-number">10.2.4</span> Add technical indicators</a></li>
+<li><a href="01-Part_1.html#adding-indicators-sequentially" id="toc-adding-indicators-sequentially"><span class="toc-section-number">10.2.5</span> Adding indicators sequentially</a></li>
+</ul></li>
+</ul></li>
+<li><a href="01-Part_1.html#forecasting-var-using-garch-models" id="toc-forecasting-var-using-garch-models"><span class="toc-section-number">11</span> Forecasting VaR using GARCH Models</a>
+<ul>
+<li><a href="01-Part_1.html#value-at-risk" id="toc-value-at-risk"><span class="toc-section-number">11.1</span> Value at Risk</a></li>
+<li><a href="01-Part_1.html#volatility-modelling-forecasting-using-garch" id="toc-volatility-modelling-forecasting-using-garch"><span class="toc-section-number">11.2</span> Volatility Modelling &amp; Forecasting using GARCH</a></li>
+<li><a href="01-Part_1.html#garch11-to-forecast-var" id="toc-garch11-to-forecast-var"><span class="toc-section-number">11.3</span> GARCH(1,1) to forecast VaR</a></li>
+<li><a href="01-Part_1.html#var-forecasts-using-out-of-sample" id="toc-var-forecasts-using-out-of-sample"><span class="toc-section-number">11.4</span> VaR forecasts using out of sample</a></li>
+</ul></li>
+<li><a href="01-Part_2_portfolio.html#portfolio-modelling-using-r" id="toc-portfolio-modelling-using-r"><span class="toc-section-number">12</span> Portfolio Modelling using R</a>
+<ul>
+<li><a href="01-Part_2_portfolio.html#portfolio-analysis-quick-intro" id="toc-portfolio-analysis-quick-intro"><span class="toc-section-number">12.1</span> Portfolio Analysis (Quick Intro)</a></li>
+<li><a href="01-Part_2_portfolio.html#mean-variance-portfolio-important-concepts" id="toc-mean-variance-portfolio-important-concepts"><span class="toc-section-number">12.2</span> Mean Variance Portfolio: Important concepts</a>
+<ul>
+<li><a href="01-Part_2_portfolio.html#expected-return" id="toc-expected-return">Expected Return</a></li>
+<li><a href="01-Part_2_portfolio.html#risk" id="toc-risk">Risk</a></li>
+<li><a href="01-Part_2_portfolio.html#covariance-of-returns" id="toc-covariance-of-returns">Covariance of Returns</a></li>
+<li><a href="01-Part_2_portfolio.html#correlation" id="toc-correlation">Correlation</a></li>
+<li><a href="01-Part_2_portfolio.html#portfolio-return" id="toc-portfolio-return">Portfolio Return</a></li>
+<li><a href="01-Part_2_portfolio.html#portfolio-risk" id="toc-portfolio-risk">Portfolio Risk</a></li>
+<li><a href="01-Part_2_portfolio.html#portfolio-risk-for-n-assets" id="toc-portfolio-risk-for-n-assets">Portfolio Risk for <em>N</em> Assets</a></li>
+</ul></li>
+<li><a href="01-Part_2_portfolio.html#diversification-markowitz-minimum-variance-portfolio" id="toc-diversification-markowitz-minimum-variance-portfolio"><span class="toc-section-number">12.3</span> Diversification &amp; Markowitz Minimum Variance Portfolio</a></li>
+<li><a href="01-Part_2_portfolio.html#minimum-variance-portfolio" id="toc-minimum-variance-portfolio"><span class="toc-section-number">12.4</span> Minimum Variance Portfolio</a>
+<ul>
+<li><a href="01-Part_2_portfolio.html#efficient-weights-for-two-assets" id="toc-efficient-weights-for-two-assets"><span class="toc-section-number">12.4.1</span> Efficient Weights for Two Assets</a></li>
+<li><a href="01-Part_2_portfolio.html#portfolio-with-n-risky-assets" id="toc-portfolio-with-n-risky-assets"><span class="toc-section-number">12.4.2</span> Portfolio with N Risky Assets</a></li>
+</ul></li>
+<li><a href="01-Part_2_portfolio.html#using-r-to-construct-multi-asset-portfolio" id="toc-using-r-to-construct-multi-asset-portfolio"><span class="toc-section-number">12.5</span> Using R to Construct Multi-Asset Portfolio</a>
+<ul>
+<li><a href="01-Part_2_portfolio.html#data" id="toc-data"><span class="toc-section-number">12.5.1</span> Data</a></li>
+<li><a href="01-Part_2_portfolio.html#portfolios-with-random-weights" id="toc-portfolios-with-random-weights"><span class="toc-section-number">12.5.2</span> Portfolios with random weights</a></li>
+</ul></li>
+<li><a href="01-Part_2_portfolio.html#efficient-minimum-variance-portfolio-using-r-packages" id="toc-efficient-minimum-variance-portfolio-using-r-packages"><span class="toc-section-number">12.6</span> Efficient (Minimum Variance) Portfolio using R packages</a>
+<ul>
+<li><a href="01-Part_2_portfolio.html#minimum-variance-and-portfolio-for-a-given-level-of-return" id="toc-minimum-variance-and-portfolio-for-a-given-level-of-return"><span class="toc-section-number">12.6.1</span> Minimum Variance and portfolio for a given level of return</a></li>
+<li><a href="01-Part_2_portfolio.html#portfolio-with-box-constraints" id="toc-portfolio-with-box-constraints"><span class="toc-section-number">12.6.2</span> Portfolio with Box Constraints</a></li>
+</ul></li>
+<li><a href="01-Part_2_portfolio.html#evaluating-portfoios-risk-adjusted-performance" id="toc-evaluating-portfoios-risk-adjusted-performance"><span class="toc-section-number">12.7</span> Evaluating Portfoios: Risk Adjusted Performance</a>
+<ul>
+<li><a href="01-Part_2_portfolio.html#sharpe-ratio" id="toc-sharpe-ratio"><span class="toc-section-number">12.7.1</span> Sharpe Ratio</a></li>
+<li><a href="01-Part_2_portfolio.html#roys-safety-ratio" id="toc-roys-safety-ratio"><span class="toc-section-number">12.7.2</span> Roy’s Safety Ratio</a></li>
+<li><a href="01-Part_2_portfolio.html#treynors-ratio" id="toc-treynors-ratio"><span class="toc-section-number">12.7.3</span> Treynor’s Ratio</a></li>
+<li><a href="01-Part_2_portfolio.html#sharpe-ratio-portfolio-in-r" id="toc-sharpe-ratio-portfolio-in-r"><span class="toc-section-number">12.7.4</span> Sharpe Ratio (Portfolio) in R</a></li>
+</ul></li>
+</ul></li>
+<li><a href="04-Part_3-1.html#part-iii" id="toc-part-iii">Part III</a></li>
+<li><a href="04-Part_3-1.html#machine-learning-using-r-introduction-to-data-splitting-sampling-resampling" id="toc-machine-learning-using-r-introduction-to-data-splitting-sampling-resampling"><span class="toc-section-number">13</span> Machine Learning using R-Introduction to Data Splitting, Sampling &amp; Resampling</a>
+<ul>
+<li><a href="04-Part_3-1.html#machine-learning-process-quick-intro" id="toc-machine-learning-process-quick-intro"><span class="toc-section-number">13.1</span> Machine Learning Process (Quick Intro)</a></li>
+<li><a href="04-Part_3-1.html#data-splitting-sampling" id="toc-data-splitting-sampling"><span class="toc-section-number">13.2</span> Data Splitting: Sampling</a></li>
+<li><a href="04-Part_3-1.html#random-sampling" id="toc-random-sampling"><span class="toc-section-number">13.3</span> Random Sampling</a>
+<ul>
+<li><a href="04-Part_3-1.html#base-r" id="toc-base-r"><span class="toc-section-number">13.3.1</span> Base R</a></li>
+<li><a href="04-Part_3-1.html#using-the-caret-package" id="toc-using-the-caret-package"><span class="toc-section-number">13.3.2</span> Using the <code>caret</code> package</a></li>
+<li><a href="04-Part_3-1.html#using-the-rsample-package" id="toc-using-the-rsample-package"><span class="toc-section-number">13.3.3</span> Using the <code>rsample</code> package</a></li>
+</ul></li>
+<li><a href="04-Part_3-1.html#stratified-sampling" id="toc-stratified-sampling"><span class="toc-section-number">13.4</span> Stratified Sampling</a></li>
+<li><a href="04-Part_3-1.html#resampling" id="toc-resampling"><span class="toc-section-number">13.5</span> Resampling</a></li>
+<li><a href="04-Part_3-1.html#k-fold-cross-validation" id="toc-k-fold-cross-validation"><span class="toc-section-number">13.6</span> K-fold Cross Validation</a>
+<ul>
+<li><a href="04-Part_3-1.html#k-fold-cv-in-r" id="toc-k-fold-cv-in-r">K-fold CV in R</a></li>
+</ul></li>
+<li><a href="04-Part_3-1.html#cv-for-time-series-data" id="toc-cv-for-time-series-data"><span class="toc-section-number">13.7</span> CV for time series data</a>
+<ul>
+<li><a href="04-Part_3-1.html#cv-for-time-series-in-r" id="toc-cv-for-time-series-in-r">CV for time series in R</a></li>
+</ul></li>
+<li><a href="04-Part_3-1.html#bootstrapping" id="toc-bootstrapping"><span class="toc-section-number">13.8</span> Bootstrapping</a>
+<ul>
+<li><a href="04-Part_3-1.html#bootsrapping-in-r" id="toc-bootsrapping-in-r">Bootsrapping in R</a></li>
+</ul></li>
+</ul></li>
+<li><a href="04-Part_3_logistic.html#logistic-regression-k-nearest-neighbour-knn-for-classification" id="toc-logistic-regression-k-nearest-neighbour-knn-for-classification"><span class="toc-section-number">14</span> Logistic Regression &amp; K-Nearest Neighbour (kNN) for Classification</a>
+<ul>
+<li><a href="04-Part_3_logistic.html#logistic-regression" id="toc-logistic-regression"><span class="toc-section-number">14.1</span> Logistic Regression</a></li>
+<li><a href="04-Part_3_logistic.html#k-nearest-neighbour" id="toc-k-nearest-neighbour"><span class="toc-section-number">14.2</span> K-Nearest Neighbour</a>
+<ul>
+<li><a href="04-Part_3_logistic.html#nearest-neighbour-classification-quick-introduction" id="toc-nearest-neighbour-classification-quick-introduction">Nearest Neighbour classification (Quick Introduction)</a></li>
+<li><a href="04-Part_3_logistic.html#k-nn-algorithm" id="toc-k-nn-algorithm">k-NN Algorithm</a></li>
+</ul></li>
+<li><a href="04-Part_3_logistic.html#forecasting-stock-price-movement-using-ml" id="toc-forecasting-stock-price-movement-using-ml"><span class="toc-section-number">14.3</span> Forecasting Stock Price Movement using ML</a>
+<ul>
+<li><a href="04-Part_3_logistic.html#data-indicators" id="toc-data-indicators"><span class="toc-section-number">14.3.1</span> Data &amp; Indicators</a></li>
+<li><a href="04-Part_3_logistic.html#visualise-the-data" id="toc-visualise-the-data"><span class="toc-section-number">14.3.2</span> Visualise the data</a></li>
+<li><a href="04-Part_3_logistic.html#using-logistic-regression" id="toc-using-logistic-regression"><span class="toc-section-number">14.3.3</span> Using Logistic Regression</a></li>
+<li><a href="04-Part_3_logistic.html#using-k-nn" id="toc-using-k-nn"><span class="toc-section-number">14.3.4</span> Using K-NN</a></li>
+</ul></li>
+</ul></li>
+<li><a href="04-Part_2.html#decision-trees-using-r" id="toc-decision-trees-using-r"><span class="toc-section-number">15</span> Decision Trees using R</a>
+<ul>
+<li><a href="04-Part_2.html#import-data-and-pre-processing" id="toc-import-data-and-pre-processing"><span class="toc-section-number">15.1</span> Import Data and Pre-processing</a></li>
+<li><a href="04-Part_2.html#visualisation-some-features" id="toc-visualisation-some-features"><span class="toc-section-number">15.2</span> Visualisation some features</a></li>
+<li><a href="04-Part_2.html#creating-training-and-testing-set-and-control" id="toc-creating-training-and-testing-set-and-control"><span class="toc-section-number">15.3</span> Creating Training and Testing Set and Control</a></li>
+<li><a href="04-Part_2.html#train-the-model-on-the-training-set" id="toc-train-the-model-on-the-training-set"><span class="toc-section-number">15.4</span> Train the model on the training set</a></li>
+<li><a href="04-Part_2.html#prediction-and-accuracy" id="toc-prediction-and-accuracy"><span class="toc-section-number">15.5</span> Prediction and Accuracy</a>
+<ul>
+<li><a href="04-Part_2.html#model-1" id="toc-model-1"><span class="toc-section-number">15.5.1</span> Model-1</a></li>
+<li><a href="04-Part_2.html#model-2" id="toc-model-2"><span class="toc-section-number">15.5.2</span> Model-2</a></li>
+</ul></li>
+<li><a href="04-Part_2.html#feature-interpretation" id="toc-feature-interpretation"><span class="toc-section-number">15.6</span> Feature Interpretation</a></li>
+<li><a href="04-Part_2.html#tree-visualisation" id="toc-tree-visualisation"><span class="toc-section-number">15.7</span> Tree visualisation</a></li>
+</ul></li>
+<li><a href="05-method2.html#text-mining-using-r" id="toc-text-mining-using-r"><span class="toc-section-number">16</span> Text Mining using R</a>
+<ul>
+<li><a href="05-method2.html#introduction-to-text-mining" id="toc-introduction-to-text-mining"><span class="toc-section-number">16.1</span> Introduction to Text Mining</a>
+<ul>
+<li><a href="05-method2.html#text-data" id="toc-text-data"><span class="toc-section-number">16.1.1</span> Text Data</a></li>
+<li><a href="05-method2.html#generic-text-mining-system" id="toc-generic-text-mining-system"><span class="toc-section-number">16.1.2</span> Generic Text Mining System</a></li>
+<li><a href="05-method2.html#data-pre-processing-in-text-mining" id="toc-data-pre-processing-in-text-mining"><span class="toc-section-number">16.1.3</span> Data pre-processing in Text Mining</a></li>
+</ul></li>
+<li><a href="05-method2.html#mining-twitter-text-data-using-r" id="toc-mining-twitter-text-data-using-r"><span class="toc-section-number">16.2</span> Mining Twitter Text Data using R</a>
+<ul>
+<li><a href="05-method2.html#obtaining-twitter-data" id="toc-obtaining-twitter-data"><span class="toc-section-number">16.2.1</span> Obtaining Twitter Data</a></li>
+</ul></li>
+<li><a href="05-method2.html#download-data" id="toc-download-data"><span class="toc-section-number">16.3</span> Download Data</a></li>
+<li><a href="05-method2.html#data-pre-processing" id="toc-data-pre-processing"><span class="toc-section-number">16.4</span> Data Pre-processing</a></li>
+<li><a href="05-method2.html#some-visualisation" id="toc-some-visualisation"><span class="toc-section-number">16.5</span> Some Visualisation</a></li>
+<li><a href="05-method2.html#sentiment-analysis" id="toc-sentiment-analysis"><span class="toc-section-number">16.6</span> Sentiment Analysis</a>
+<ul>
+<li><a href="05-method2.html#method" id="toc-method"><span class="toc-section-number">16.6.1</span> Method</a></li>
+</ul></li>
+<li><a href="05-method2.html#topic-modelling" id="toc-topic-modelling"><span class="toc-section-number">16.7</span> Topic Modelling</a></li>
+</ul></li>
+<li><a href="06-summary.html#work-in-progress" id="toc-work-in-progress"><span class="toc-section-number">17</span> Work in Progress</a></li>
+<li><a href="07-references.html#references" id="toc-references">References</a></li>
+<li class="divider"></li>
+<li> <img src="firebrick3RA_img.png" height="60" width="60" style="position:bottom:0px;right:0px;"/></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R for Data Analytics</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="graphics-in-r-part-i" class="section level1" number="5">
+<h1><span class="header-section-number">Topic 5</span> Graphics in R (Part-I)</h1>
+<div id="basic-plots-in-r" class="section level2" number="5.1">
+<h2><span class="header-section-number">5.1</span> Basic Plots in R</h2>
+<div id="scatter-plot" class="section level3" number="5.1.1">
+<h3><span class="header-section-number">5.1.1</span> Scatter Plot</h3>
+<ul>
+<li>One of the most popular and most frequently used functions to build a new plot in R is the <span class="math inline">\(\mathtt{plot}\)</span> function.</li>
+<li>Plot is a high level generic graphic function which depends on the class of the first argument (usually the data object). For example if the first argument is of the class zoo which is a timeseries object the <span class="math inline">\(\mathtt{plot}\)</span> function will call <span class="math inline">\(\mathtt{plot.zoo}\)</span> from the R package zoo. This time series plot can be a single timeseries line plot or multiple time series stacked plot.</li>
+</ul>
+<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="05-plots.html#cb203-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate two random normal vectors</span></span>
+<span id="cb203-2"><a href="05-plots.html#cb203-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)</span>
+<span id="cb203-3"><a href="05-plots.html#cb203-3" aria-hidden="true" tabindex="-1"></a>y <span class="ot">=</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)</span>
+<span id="cb203-4"><a href="05-plots.html#cb203-4" aria-hidden="true" tabindex="-1"></a><span class="co"># plot x and y using the plot() function</span></span>
+<span id="cb203-5"><a href="05-plots.html#cb203-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, y)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-2"></span>
+<img src="05-plots_files/figure-html/unnamed-chunk-2-1.png" alt="Simple Scatter Plot" width="672" />
+<p class="caption">
+Figure 5.1: Simple Scatter Plot
+</p>
+</div>
+<ul>
+<li>There are various other arguments which can be modified to change the overall presentation of the plot and even the type of plot.</li>
+</ul>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="05-plots.html#cb204-1" aria-hidden="true" tabindex="-1"></a><span class="fu">args</span>(plot.default)</span></code></pre></div>
+<pre><code>function (x, y = NULL, type = &quot;p&quot;, xlim = NULL, ylim = NULL, 
+    log = &quot;&quot;, main = NULL, sub = NULL, xlab = NULL, ylab = NULL, 
+    ann = par(&quot;ann&quot;), axes = TRUE, frame.plot = axes, panel.first = NULL, 
+    panel.last = NULL, asp = NA, xgap.axis = NA, ygap.axis = NA, 
+    ...) 
+NULL</code></pre>
+<ul>
+<li>The following example uses the argument <span class="math inline">\(\mathtt{main}\)</span> in the <span class="math inline">\(\mathtt{plot}\)</span> function to include a title on the plot along with axis tiles using the arguments <span class="math inline">\(\mathtt{xlab}\)</span> and <span class="math inline">\(\mathtt{ylab}\)</span>.</li>
+</ul>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="05-plots.html#cb206-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, y, <span class="at">main =</span> <span class="st">&quot;Figure-2&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;Normal X&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Normal Y&quot;</span>)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-4"></span>
+<img src="05-plots_files/figure-html/unnamed-chunk-4-1.png" alt="Simple Scatter Plot with Title" width="672" />
+<p class="caption">
+Figure 5.2: Simple Scatter Plot with Title
+</p>
+</div>
+</div>
+<div id="line-plot" class="section level3" number="5.1.2">
+<h3><span class="header-section-number">5.1.2</span> Line Plot</h3>
+<ul>
+<li>The following example demonstrates how to create a line plot using Microsoft prices given in the data file <span class="math inline">\(\mathtt{data\_fin.RData}\)</span>.</li>
+</ul>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="05-plots.html#cb207-1" aria-hidden="true" tabindex="-1"></a><span class="co"># change the working directory to the folder containing data_fin.csv or provide</span></span>
+<span id="cb207-2"><a href="05-plots.html#cb207-2" aria-hidden="true" tabindex="-1"></a><span class="co"># the full path with the filename</span></span>
+<span id="cb207-3"><a href="05-plots.html#cb207-3" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;data/data_fin.RData&quot;</span>)</span>
+<span id="cb207-4"><a href="05-plots.html#cb207-4" aria-hidden="true" tabindex="-1"></a><span class="co"># column names</span></span>
+<span id="cb207-5"><a href="05-plots.html#cb207-5" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(FinData)</span></code></pre></div>
+<pre><code> [1] &quot;Date&quot;  &quot;DJI&quot;   &quot;AXP&quot;   &quot;MMM&quot;   &quot;ATT&quot;   &quot;BA&quot;    &quot;CAT&quot;   &quot;CISCO&quot; &quot;DD&quot;   
+[10] &quot;XOM&quot;   &quot;GE&quot;    &quot;GS&quot;    &quot;HD&quot;    &quot;IBM&quot;   &quot;INTC&quot;  &quot;JNJ&quot;   &quot;JPM&quot;   &quot;MRK&quot;  
+[19] &quot;MCD&quot;   &quot;MSFT&quot;  &quot;NKE&quot;  </code></pre>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="05-plots.html#cb209-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot a line plot for Dow Jones stock index prices</span></span>
+<span id="cb209-2"><a href="05-plots.html#cb209-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(FinData<span class="sc">$</span>MSFT, <span class="at">type =</span> <span class="st">&quot;l&quot;</span>, <span class="at">main =</span> <span class="st">&quot;Microsoft Prices&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Prices&quot;</span>)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-5"></span>
+<img src="05-plots_files/figure-html/unnamed-chunk-5-1.png" alt="Line Chart" width="672" />
+<p class="caption">
+Figure 5.3: Line Chart
+</p>
+</div>
+<ul>
+<li>Plotting it as Time Series data</li>
+<li>Various R packages provide functionality to plot specific data types. For example, <span class="math inline">\(\mathtt{zoo}\)</span> can be used to plot time series data.</li>
+</ul>
+<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="05-plots.html#cb210-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(zoo)</span>
+<span id="cb210-2"><a href="05-plots.html#cb210-2" aria-hidden="true" tabindex="-1"></a><span class="co"># convert data to class zoo</span></span>
+<span id="cb210-3"><a href="05-plots.html#cb210-3" aria-hidden="true" tabindex="-1"></a>FinData.ts <span class="ot">=</span> <span class="fu">zoo</span>(FinData[, <span class="dv">2</span><span class="sc">:</span><span class="dv">5</span>], <span class="at">order.by =</span> FinData<span class="sc">$</span>Date)</span>
+<span id="cb210-4"><a href="05-plots.html#cb210-4" aria-hidden="true" tabindex="-1"></a><span class="co"># plot multiple stacked plot</span></span>
+<span id="cb210-5"><a href="05-plots.html#cb210-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(FinData.ts, <span class="at">col =</span> <span class="fu">gray.colors</span>(<span class="dv">4</span>))  <span class="co">#figure-4</span></span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-6"></span>
+<img src="05-plots_files/figure-html/unnamed-chunk-6-1.png" alt="Time Series Plot" width="672" />
+<p class="caption">
+Figure 5.4: Time Series Plot
+</p>
+</div>
+</div>
+<div id="bar-plot" class="section level3" number="5.1.3">
+<h3><span class="header-section-number">5.1.3</span> Bar Plot</h3>
+<ul>
+<li>The function <span class="math inline">\(\mathtt{barplot}\)</span> creates bar graphs in R.</li>
+<li>The main data argument in this function is <span class="math inline">\(\mathtt{height}\)</span> which can be a vector or a matrix of values describing the bars which make up the plot. If <span class="math inline">\(\mathtt{height}\)</span>is a matrix the bar graph can be a stacked graph or a juxtaposed graph with <span class="math inline">\(\mathtt{besides=TRUE}\)</span></li>
+</ul>
+<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="05-plots.html#cb211-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;data/GDP_Yearly.RData&quot;</span>)</span>
+<span id="cb211-2"><a href="05-plots.html#cb211-2" aria-hidden="true" tabindex="-1"></a>par1 <span class="ot">=</span> <span class="fu">par</span>()</span>
+<span id="cb211-3"><a href="05-plots.html#cb211-3" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">ask =</span> F)</span>
+<span id="cb211-4"><a href="05-plots.html#cb211-4" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="at">height =</span> GDP<span class="sc">$</span>Australia, <span class="at">names.arg =</span> GDP<span class="sc">$</span>Year, <span class="at">ylab =</span> <span class="st">&quot;GDP Per Capita&quot;</span>)  <span class="co">#figure-5</span></span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-7"></span>
+<img src="05-plots_files/figure-html/unnamed-chunk-7-1.png" alt="Bar Graph with argument height as vector" width="672" />
+<p class="caption">
+Figure 5.5: Bar Graph with argument height as vector
+</p>
+</div>
+<ul>
+<li><p>It is also possible to create a yearly vertical stacked or yearly horizontal grouped bar plot for the GDP data.</p></li>
+<li><p>The data has to be first converted into a matrix to create stacked or grouped barplots.</p></li>
+<li><p>In this example the argument <span class="math inline">\(\mathtt{legend}\)</span> specifies the names (Years) to appear in the legend and the argument <span class="math inline">\(\mathtt{args.legend}\)</span> specifies the position (x=”top”), alignment (horiz=TRUE) and distance from the margin (inset=-0.1).</p></li>
+</ul>
+<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="05-plots.html#cb212-1" aria-hidden="true" tabindex="-1"></a><span class="co"># convert data to matrix</span></span>
+<span id="cb212-2"><a href="05-plots.html#cb212-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">=</span> <span class="fu">as.matrix</span>(GDP[, <span class="dv">2</span><span class="sc">:</span><span class="dv">12</span>])</span>
+<span id="cb212-3"><a href="05-plots.html#cb212-3" aria-hidden="true" tabindex="-1"></a><span class="co"># create row names</span></span>
+<span id="cb212-4"><a href="05-plots.html#cb212-4" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(data) <span class="ot">=</span> GDP<span class="sc">$</span>Year</span>
+<span id="cb212-5"><a href="05-plots.html#cb212-5" aria-hidden="true" tabindex="-1"></a><span class="co"># plot a stacked bar plot with legend showing the years</span></span>
+<span id="cb212-6"><a href="05-plots.html#cb212-6" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="at">height =</span> data[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, ], <span class="at">beside =</span> <span class="cn">FALSE</span>, <span class="at">col =</span> <span class="fu">rainbow</span>(<span class="dv">5</span>), <span class="at">legend =</span> <span class="fu">rownames</span>(data[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,</span>
+<span id="cb212-7"><a href="05-plots.html#cb212-7" aria-hidden="true" tabindex="-1"></a>    ]), <span class="at">args.legend =</span> <span class="fu">list</span>(<span class="at">x =</span> <span class="st">&quot;top&quot;</span>, <span class="at">horiz =</span> <span class="cn">TRUE</span>, <span class="at">inset =</span> <span class="sc">-</span><span class="fl">0.1</span>), <span class="at">cex.names =</span> <span class="fl">0.6</span>)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-8"></span>
+<img src="05-plots_files/figure-html/unnamed-chunk-8-1.png" alt="Vertical Stacked Barplot" width="672" />
+<p class="caption">
+Figure 5.6: Vertical Stacked Barplot
+</p>
+</div>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="05-plots.html#cb213-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(par1)</span></code></pre></div>
+</div>
+<div id="pie-chart" class="section level3" number="5.1.4">
+<h3><span class="header-section-number">5.1.4</span> Pie Chart</h3>
+<ul>
+<li>R provides the function <span class="math inline">\(\mathtt{pie}\)</span> to create pie graphs. <span class="math inline">\(\mathtt{labels}\)</span> in <a href="05-plots.html#fig:piechart">5.7</a></li>
+</ul>
+<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="05-plots.html#cb214-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pie</span>(<span class="at">x =</span> data[<span class="dv">1</span>, ], <span class="at">labels =</span> <span class="fu">colnames</span>(data))</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:piechart"></span>
+<img src="05-plots_files/figure-html/piechart-1.png" alt="Pie Chart" width="672" />
+<p class="caption">
+Figure 5.7: Pie Chart
+</p>
+</div>
+</div>
+<div id="scatter-plot-1" class="section level3" number="5.1.5">
+<h3><span class="header-section-number">5.1.5</span> Scatter Plot</h3>
+<ul>
+<li>The basic <span class="math inline">\(\mathtt{plot}\)</span> function plots a scatter plot for bivariate or univariate data. It is also possible to create a scatterplot for multivariate data using the <span class="math inline">\(\mathtt{pairs}\)</span> function.</li>
+</ul>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="05-plots.html#cb215-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pairs</span>(data[, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>])</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:scatterplot1"></span>
+<img src="05-plots_files/figure-html/scatterplot1-1.png" alt="Scatterplot" width="672" />
+<p class="caption">
+Figure 5.8: Scatterplot
+</p>
+</div>
+<ul>
+<li>A subset can also be selected using formula method, for example the following R code will generate a scatterplot with only Australia, UK and USA.</li>
+</ul>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="05-plots.html#cb216-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pairs</span>(<span class="sc">~</span>Australia <span class="sc">+</span> UK <span class="sc">+</span> USA, <span class="at">data =</span> data)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:scatterplot2"></span>
+<img src="05-plots_files/figure-html/scatterplot2-1.png" alt="Scatterplot (subset)" width="672" />
+<p class="caption">
+Figure 5.9: Scatterplot (subset)
+</p>
+</div>
+</div>
+</div>
+<div id="r-graphical-parameters" class="section level2" number="5.2">
+<h2><span class="header-section-number">5.2</span> R Graphical Parameters</h2>
+<ul>
+<li><p>The <span class="math inline">\(\mathtt{par}\)</span> function facilitates access and modification of a large list of parameters such as color, margin, number of rows and columns on a graphic device etc (see <span class="math inline">\(\mathtt{help(par)}\)</span> for a list of such parameters).</p></li>
+<li><p>R provides various margin parameters to tweak inner and outer margins of a graphical device.</p></li>
+</ul>
+<div class="figure"><span style="display:block;" id="fig:margins1"></span>
+<img src="figure-6_15.png" alt="Graph Margins" width="436" />
+<p class="caption">
+Figure 5.10: Graph Margins
+</p>
+</div>
+<ul>
+<li><p>A modification to par always changes the global values of graphic parameters and hence its is a good practice to first store the default parameters in a separate object (variable) which can be later used to restore default graphic parameters.</p></li>
+<li><p>These margins can be altered using or parameters with the first setting the margins in inches and the second in unit of text lines. Setting one of these will adjust the other accordingly.</p></li>
+<li><p>The following example (output not shown here) changes the margins to <span class="math inline">\(\mathtt{c(5,4,7,2)}\)</span> from the default of <span class="math inline">\(\mathtt{c(5,4,4,2)+0.1}\)</span> to accommodate a title on top of the figure.</p></li>
+</ul>
+<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="05-plots.html#cb217-1" aria-hidden="true" tabindex="-1"></a><span class="co"># first save the default parameters</span></span>
+<span id="cb217-2"><a href="05-plots.html#cb217-2" aria-hidden="true" tabindex="-1"></a>par.old <span class="ot">=</span> <span class="fu">par</span>()</span>
+<span id="cb217-3"><a href="05-plots.html#cb217-3" aria-hidden="true" tabindex="-1"></a><span class="co"># change the margins</span></span>
+<span id="cb217-4"><a href="05-plots.html#cb217-4" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">4</span>, <span class="dv">7</span>, <span class="dv">2</span>))</span>
+<span id="cb217-5"><a href="05-plots.html#cb217-5" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the bargraph</span></span>
+<span id="cb217-6"><a href="05-plots.html#cb217-6" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="at">height =</span> data[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, ], <span class="at">beside =</span> <span class="cn">FALSE</span>, <span class="at">col =</span> <span class="fu">rainbow</span>(<span class="dv">5</span>), <span class="at">legend =</span> <span class="fu">rownames</span>(data[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,</span>
+<span id="cb217-7"><a href="05-plots.html#cb217-7" aria-hidden="true" tabindex="-1"></a>    ]), <span class="at">args.legend =</span> <span class="fu">list</span>(<span class="at">x =</span> <span class="st">&quot;top&quot;</span>, <span class="at">horiz =</span> <span class="cn">TRUE</span>, <span class="at">inset =</span> <span class="sc">-</span><span class="fl">0.1</span>), <span class="at">cex.names =</span> <span class="fl">0.6</span>)</span>
+<span id="cb217-8"><a href="05-plots.html#cb217-8" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="st">&quot;Bar Plot </span><span class="sc">\n</span><span class="st">(with custom margins)&quot;</span>)</span>
+<span id="cb217-9"><a href="05-plots.html#cb217-9" aria-hidden="true" tabindex="-1"></a><span class="co"># set parameters to default</span></span>
+<span id="cb217-10"><a href="05-plots.html#cb217-10" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(par.old)</span></code></pre></div>
+<ul>
+<li>A multiple plot grid can be created by altering <span class="math inline">\(\mathtt{mfrow}\)</span> or <span class="math inline">\(\mathtt{mfcol}\)</span> parameter which specifies the number of rows and columns in a grid.</li>
+</ul>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="05-plots.html#cb218-1" aria-hidden="true" tabindex="-1"></a><span class="co"># first save the default parameters</span></span>
+<span id="cb218-2"><a href="05-plots.html#cb218-2" aria-hidden="true" tabindex="-1"></a>par.old <span class="ot">=</span> <span class="fu">par</span>()</span>
+<span id="cb218-3"><a href="05-plots.html#cb218-3" aria-hidden="true" tabindex="-1"></a><span class="co"># creat a 2X2 grid</span></span>
+<span id="cb218-4"><a href="05-plots.html#cb218-4" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb218-5"><a href="05-plots.html#cb218-5" aria-hidden="true" tabindex="-1"></a><span class="co"># scatterplot</span></span>
+<span id="cb218-6"><a href="05-plots.html#cb218-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, y, <span class="at">xlab =</span> <span class="st">&quot;Normal X&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Normal Y&quot;</span>)</span>
+<span id="cb218-7"><a href="05-plots.html#cb218-7" aria-hidden="true" tabindex="-1"></a><span class="co"># time series plot</span></span>
+<span id="cb218-8"><a href="05-plots.html#cb218-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(FinData.ts[, <span class="dv">1</span>])</span>
+<span id="cb218-9"><a href="05-plots.html#cb218-9" aria-hidden="true" tabindex="-1"></a><span class="co"># bar plot</span></span>
+<span id="cb218-10"><a href="05-plots.html#cb218-10" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="at">height =</span> GDP<span class="sc">$</span>Australia, <span class="at">names.arg =</span> GDP<span class="sc">$</span>Year, <span class="at">ylab =</span> <span class="st">&quot;GDP Per Capita (Australia)&quot;</span>)</span>
+<span id="cb218-11"><a href="05-plots.html#cb218-11" aria-hidden="true" tabindex="-1"></a><span class="co"># pie chart</span></span>
+<span id="cb218-12"><a href="05-plots.html#cb218-12" aria-hidden="true" tabindex="-1"></a><span class="fu">pie</span>(<span class="at">x =</span> data[<span class="dv">1</span><span class="sc">:</span><span class="dv">11</span>, <span class="dv">1</span>], <span class="at">labels =</span> <span class="fu">rownames</span>(data[<span class="dv">1</span><span class="sc">:</span><span class="dv">11</span>, ]))</span>
+<span id="cb218-13"><a href="05-plots.html#cb218-13" aria-hidden="true" tabindex="-1"></a><span class="co"># set parameters to default</span></span>
+<span id="cb218-14"><a href="05-plots.html#cb218-14" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(par.old)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:multiplot1"></span>
+<img src="05-plots_files/figure-html/multiplot1-1.png" alt="Multiple Plots in a Grid" width="672" />
+<p class="caption">
+Figure 5.11: Multiple Plots in a Grid
+</p>
+</div>
+</div>
+<div id="introduction-to-ggplot2" class="section level2" number="5.3">
+<h2><span class="header-section-number">5.3</span> Introduction to ggplot2</h2>
+<ul>
+<li><em>ggplot2</em> <span class="citation">(<a href="#ref-Wickham2009" role="doc-biblioref">Wickham 2009</a>)</span> is an R package which provides a large variety of plotting functionality to enable better and highly customisable graphs.</li>
+<li>These functions in ggplot2 are based on the grammar of graphics <span class="citation">(<a href="#ref-Wickham2010" role="doc-biblioref">Wickham 2010</a>)</span> which is a more formal and structured way to plotting, for a list of various possible graphs, customisation settings and procedures see <a href="https://ggplot2.tidyverse.org/" class="uri">https://ggplot2.tidyverse.org/</a></li>
+</ul>
+<div id="mathttqplot" class="section level3" number="5.3.1">
+<h3><span class="header-section-number">5.3.1</span> <span class="math inline">\(\mathtt{qplot}\)</span></h3>
+<ul>
+<li><p><span class="math inline">\(\mathtt{qplot}\)</span> stands for quick plot and it makes is easy to produce plots which may often require several lines of codes using base R graphics system.</p></li>
+<li><p><span class="math inline">\(\mathtt{qplot}\)</span> is particularly useful for beginners as they are just getting used to the <span class="math inline">\(\mathtt{plot}\)</span> function from the base package also the data arguments in <span class="math inline">\(\mathtt{qplot}\)</span> are same as in the <span class="math inline">\(\mathtt{plot}\)</span> function (see <span class="math inline">\(\mathtt{help(qplot)}\)</span> for other arguments to the function).</p></li>
+</ul>
+<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="05-plots.html#cb219-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)</span>
+<span id="cb219-2"><a href="05-plots.html#cb219-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">=</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)</span>
+<span id="cb219-3"><a href="05-plots.html#cb219-3" aria-hidden="true" tabindex="-1"></a><span class="co"># load the library</span></span>
+<span id="cb219-4"><a href="05-plots.html#cb219-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb219-5"><a href="05-plots.html#cb219-5" aria-hidden="true" tabindex="-1"></a><span class="co"># simple scatterplot using qplot</span></span>
+<span id="cb219-6"><a href="05-plots.html#cb219-6" aria-hidden="true" tabindex="-1"></a><span class="fu">qplot</span>(x, y)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:ggplot1"></span>
+<img src="05-plots_files/figure-html/ggplot1-1.png" alt="Scatterplot using qplot" width="672" />
+<p class="caption">
+Figure 5.12: Scatterplot using qplot
+</p>
+</div>
+<ul>
+<li><p>The argument geom, which stands for geometric objects drawn to represent data has to be changed to “line” create this line plot.</p></li>
+<li><p>Similarly there is an option to plot histograms using the argument <em>geom=“histogram”</em></p></li>
+</ul>
+<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="05-plots.html#cb220-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;data/data_fin.RData&quot;</span>)</span>
+<span id="cb220-2"><a href="05-plots.html#cb220-2" aria-hidden="true" tabindex="-1"></a><span class="co"># line plot using qplot</span></span>
+<span id="cb220-3"><a href="05-plots.html#cb220-3" aria-hidden="true" tabindex="-1"></a><span class="fu">qplot</span>(<span class="at">x =</span> FinData<span class="sc">$</span>Date, <span class="at">y =</span> FinData<span class="sc">$</span>DJI, <span class="at">geom =</span> <span class="st">&quot;line&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;Dates&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Prices&quot;</span>,</span>
+<span id="cb220-4"><a href="05-plots.html#cb220-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">main =</span> <span class="st">&quot;DJIA Price Timeseries&quot;</span>)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:ggplot2"></span>
+<img src="05-plots_files/figure-html/ggplot2-1.png" alt="Line Plot with lables using qplot" width="672" />
+<p class="caption">
+Figure 5.13: Line Plot with lables using qplot
+</p>
+</div>
+</div>
+<div id="layered-graphics-using-mathttggplot" class="section level3" number="5.3.2">
+<h3><span class="header-section-number">5.3.2</span> Layered graphics using <span class="math inline">\(\mathtt{ggplot}\)</span></h3>
+<ul>
+<li><p>The <span class="math inline">\(\mathtt{qplot}\)</span> function is just sufficient for creating various plots with better presentation compared to base R plots but the true capabilities of ggplot2 are realised by the function <span class="math inline">\(\mathtt{ggplot}\)</span>.</p></li>
+<li><p>It is important to note that <span class="math inline">\(\mathtt{ggplot}\)</span> function requires the data in “long” format and hence it is required to first transform the dataset to “long” from “wide” format as in ggplot2, groups are identified by rows, not by columns.</p></li>
+</ul>
+<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="05-plots.html#cb221-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read &#39;long&#39; format data</span></span>
+<span id="cb221-2"><a href="05-plots.html#cb221-2" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;data/GDP_l.RData&quot;</span>)</span>
+<span id="cb221-3"><a href="05-plots.html#cb221-3" aria-hidden="true" tabindex="-1"></a><span class="co"># data snapshot</span></span>
+<span id="cb221-4"><a href="05-plots.html#cb221-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(GDP_l)</span></code></pre></div>
+<pre><code>  Year   Country      GDP
+1 1990 Australia 18247.39
+2 1991 Australia 18837.19
+3 1992 Australia 18599.00
+4 1993 Australia 17658.08
+5 1994 Australia 18080.70
+6 1995 Australia 20375.30</code></pre>
+<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="05-plots.html#cb223-1" aria-hidden="true" tabindex="-1"></a><span class="co"># creating the aesthetics using ggplot</span></span>
+<span id="cb223-2"><a href="05-plots.html#cb223-2" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">=</span> <span class="fu">ggplot</span>(GDP_l, <span class="fu">aes</span>(Country, GDP, <span class="at">fill =</span> Year))</span></code></pre></div>
+<ul>
+<li>A plot can be created by adding another layer to p1</li>
+</ul>
+<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="05-plots.html#cb224-1" aria-hidden="true" tabindex="-1"></a><span class="co"># figure</span></span>
+<span id="cb224-2"><a href="05-plots.html#cb224-2" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">+</span> <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:ggplot4"></span>
+<img src="05-plots_files/figure-html/ggplot4-1.png" alt="Bar Chart Using ggplot function" width="672" />
+<p class="caption">
+Figure 5.14: Bar Chart Using ggplot function
+</p>
+</div>
+<ul>
+<li>To draw a line chart using <span class="math inline">\(\mathtt{ggplot}\)</span>, <span class="math inline">\(\mathtt{geom\_line()}\)</span></li>
+</ul>
+<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="05-plots.html#cb225-1" aria-hidden="true" tabindex="-1"></a><span class="co"># change the aesthetics to show time on X-axis and GDP values on Y-axis the</span></span>
+<span id="cb225-2"><a href="05-plots.html#cb225-2" aria-hidden="true" tabindex="-1"></a><span class="co"># colour line fill be according to the country</span></span>
+<span id="cb225-3"><a href="05-plots.html#cb225-3" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">=</span> <span class="fu">ggplot</span>(GDP_l, <span class="fu">aes</span>(Year, GDP, <span class="at">colour =</span> Country, <span class="at">group =</span> Country))</span>
+<span id="cb225-4"><a href="05-plots.html#cb225-4" aria-hidden="true" tabindex="-1"></a>p2 <span class="sc">+</span> <span class="fu">geom_line</span>()</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:ggplot5"></span>
+<img src="05-plots_files/figure-html/ggplot5-1.png" alt="Line Chart Using ggplot" width="960" />
+<p class="caption">
+Figure 5.15: Line Chart Using ggplot
+</p>
+</div>
+<ul>
+<li><p>These lines can also be drawn in separate panels using faceting. Faceting creates a subplot for each group side by side.</p></li>
+<li><p>Faceting can be used to either to split the data into vertical groups using <span class="math inline">\(\mathtt{facet\_grid}\)</span> or horizontal groups using <span class="math inline">\(\mathtt{facet\_wrap}\)</span>.</p></li>
+<li><p>Figure plots GDP for each country in a separate subplot using grid faceting.</p></li>
+</ul>
+<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="05-plots.html#cb226-1" aria-hidden="true" tabindex="-1"></a><span class="co"># change the aesthetics to show time on X-axis and GDP values on Y-axis the</span></span>
+<span id="cb226-2"><a href="05-plots.html#cb226-2" aria-hidden="true" tabindex="-1"></a><span class="co"># colour line fill be according to the country</span></span>
+<span id="cb226-3"><a href="05-plots.html#cb226-3" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">=</span> <span class="fu">ggplot</span>(GDP_l, <span class="fu">aes</span>(Year, GDP, <span class="at">colour =</span> Country, <span class="at">group =</span> Country))</span>
+<span id="cb226-4"><a href="05-plots.html#cb226-4" aria-hidden="true" tabindex="-1"></a>p2 <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span> <span class="fu">facet_grid</span>(Country <span class="sc">~</span> .)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:ggplot6"></span>
+<img src="05-plots_files/figure-html/ggplot6-1.png" alt="Faceting in ggplot (Line Chart)" width="672" />
+<p class="caption">
+Figure 5.16: Faceting in ggplot (Line Chart)
+</p>
+</div>
+</div>
+<div id="arranging-plots-using-gridextra" class="section level3" number="5.3.3">
+<h3><span class="header-section-number">5.3.3</span> Arranging plots using gridExtra</h3>
+<ul>
+<li><p>There are a few pacakges which allow to arrange ggplots in a grid or a speacific order. gridExtra is one of them and is quite useful in arranging the plots.</p></li>
+<li><p>Look at the Vignette for egg package for more options. <a href="https://cran.r-project.org/web/packages/egg/vignettes/Ecosystem.html" class="uri">https://cran.r-project.org/web/packages/egg/vignettes/Ecosystem.html</a></p></li>
+<li><p>Let’s create three ggplots</p></li>
+</ul>
+<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="05-plots.html#cb227-1" aria-hidden="true" tabindex="-1"></a>p1<span class="fl">.1</span> <span class="ot">=</span> <span class="fu">ggplot</span>(GDP_l, <span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> GDP))</span>
+<span id="cb227-2"><a href="05-plots.html#cb227-2" aria-hidden="true" tabindex="-1"></a>p2<span class="fl">.1</span> <span class="ot">=</span> p1<span class="fl">.1</span> <span class="sc">+</span> <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">fill =</span> Country), <span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>, <span class="at">position =</span> <span class="st">&quot;dodge&quot;</span>)</span></code></pre></div>
+<ul>
+<li>Stacked bar chart (previous example)</li>
+</ul>
+<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="05-plots.html#cb228-1" aria-hidden="true" tabindex="-1"></a>p1<span class="fl">.2</span> <span class="ot">=</span> <span class="fu">ggplot</span>(GDP_l[GDP_l<span class="sc">$</span>Country <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Australia&quot;</span>, <span class="st">&quot;UK&quot;</span>, <span class="st">&quot;USA&quot;</span>), ], <span class="fu">aes</span>(Year,</span>
+<span id="cb228-2"><a href="05-plots.html#cb228-2" aria-hidden="true" tabindex="-1"></a>    GDP))</span>
+<span id="cb228-3"><a href="05-plots.html#cb228-3" aria-hidden="true" tabindex="-1"></a>p2<span class="fl">.2</span> <span class="ot">=</span> p1<span class="fl">.2</span> <span class="sc">+</span> <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">fill =</span> Country)) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;GDP for Aus, US and UK&quot;</span>)  <span class="co">#using labs to modify title</span></span>
+<span id="cb228-4"><a href="05-plots.html#cb228-4" aria-hidden="true" tabindex="-1"></a>p2<span class="fl">.2</span></span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:ggplot8"></span>
+<img src="05-plots_files/figure-html/ggplot8-1.png" alt="Bar Chart with Selected Data" width="672" />
+<p class="caption">
+Figure 5.17: Bar Chart with Selected Data
+</p>
+</div>
+<ul>
+<li>Stock data</li>
+</ul>
+<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="05-plots.html#cb229-1" aria-hidden="true" tabindex="-1"></a>p1<span class="fl">.3</span> <span class="ot">=</span> <span class="fu">ggplot</span>(FinData, <span class="fu">aes</span>(<span class="at">x =</span> Date, <span class="at">y =</span> DJI))</span>
+<span id="cb229-2"><a href="05-plots.html#cb229-2" aria-hidden="true" tabindex="-1"></a>p2<span class="fl">.3</span> <span class="ot">=</span> p1<span class="fl">.3</span> <span class="sc">+</span> <span class="fu">geom_path</span>(<span class="at">colour =</span> <span class="st">&quot;darkblue&quot;</span>) <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">colour =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span> <span class="fu">theme_linedraw</span>()  <span class="co">#changing theme</span></span>
+<span id="cb229-3"><a href="05-plots.html#cb229-3" aria-hidden="true" tabindex="-1"></a>p2<span class="fl">.3</span></span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:ggplot9"></span>
+<img src="05-plots_files/figure-html/ggplot9-1.png" alt="Stock Series Plot with Smooth Curve" width="672" />
+<p class="caption">
+Figure 5.18: Stock Series Plot with Smooth Curve
+</p>
+</div>
+<ul>
+<li>Now use gridExtra to put these together</li>
+</ul>
+<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb230-1"><a href="05-plots.html#cb230-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gridExtra)</span>
+<span id="cb230-2"><a href="05-plots.html#cb230-2" aria-hidden="true" tabindex="-1"></a>fig1 <span class="ot">=</span> <span class="fu">grid.arrange</span>(p2<span class="fl">.1</span>, p2<span class="fl">.2</span>, p2<span class="fl">.3</span>, <span class="at">nrow =</span> <span class="dv">3</span>, <span class="at">heights =</span> <span class="fu">c</span>(<span class="dv">20</span>, <span class="dv">12</span>, <span class="dv">12</span>), <span class="at">top =</span> <span class="st">&quot;Combined plots in three rows&quot;</span>)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:ggplot10"></span>
+<img src="05-plots_files/figure-html/ggplot10-1.png" alt="Combined plots" width="672" />
+<p class="caption">
+Figure 5.19: Combined plots
+</p>
+</div>
+<ul>
+<li>The plots can be saved using the <span class="math inline">\(\mathtt{ggsave}\)</span> function</li>
+</ul>
+<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="05-plots.html#cb231-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="at">filename =</span> <span class="st">&quot;combined_plot.pdf&quot;</span>, <span class="at">plot =</span> fig1)</span></code></pre></div>
+
+</div>
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-Wickham2009" class="csl-entry">
+Wickham, Hadley. 2009. <em>Ggplot2: Elegant Graphics for Data Analysis</em>. Springer.
+</div>
+<div id="ref-Wickham2010" class="csl-entry">
+———. 2010. <span>“A Layered Grammar of Graphics.”</span> <em>Journal of Computational and Graphical Statistics</em> 19 (1): 3–28.
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="04-Data_Exploration.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="06-plotsRmd.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

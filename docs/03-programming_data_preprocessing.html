@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Topic 3 R Programming - Short Introduction | R for Data Analytics</title>
+  <meta name="description" content="This is a collection of examples on using R for Data Analytics" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Topic 3 R Programming - Short Introduction | R for Data Analytics" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is a collection of examples on using R for Data Analytics" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Topic 3 R Programming - Short Introduction | R for Data Analytics" />
+  
+  <meta name="twitter:description" content="This is a collection of examples on using R for Data Analytics" />
+  
+
+<meta name="author" content="Abhay Singh" />
+
+
+<meta name="date" content="2022-11-07" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  <link rel="shortcut icon" href="rforda.png" type="image/x-icon" />
+<link rel="prev" href="02-data.html"/>
+<link rel="next" href="04-Data_Exploration.html"/>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.10.0/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-2.5.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-2.5.1/plotly-latest.min.js"></script>
+<link href="libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<link href="libs/wordcloud2-0.0.1/wordcloud.css" rel="stylesheet" />
+<script src="libs/wordcloud2-0.0.1/wordcloud2-all.js"></script>
+<script src="libs/wordcloud2-0.0.1/hover.js"></script>
+<script src="libs/wordcloud2-binding-0.2.1/wordcloud2.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">R for Data Analytics</a></li>
+
+<li class="divider"></li>
+<li><a href="index.html#preface" id="toc-preface">Preface</a></li>
+<li><a href="index.html#about-the-author" id="toc-about-the-author">About the author</a></li>
+<li><a href="01-intro.html#part-i" id="toc-part-i">Part I</a></li>
+<li><a href="01-intro.html#what-is-r" id="toc-what-is-r"><span class="toc-section-number">1</span> What is R?</a>
+<ul>
+<li><a href="01-intro.html#why-should-we-learn-r" id="toc-why-should-we-learn-r"><span class="toc-section-number">1.1</span> Why should we learn R?</a></li>
+<li><a href="01-intro.html#Rinstall" id="toc-Rinstall"><span class="toc-section-number">1.2</span> Installing R and RStudio on Windows</a></li>
+<li><a href="01-intro.html#rstudio-guiide" id="toc-rstudio-guiide"><span class="toc-section-number">1.3</span> RStudio GUI/IDE</a></li>
+<li><a href="01-intro.html#installing-packages" id="toc-installing-packages"><span class="toc-section-number">1.4</span> Installing Packages</a></li>
+<li><a href="01-intro.html#getting-help" id="toc-getting-help"><span class="toc-section-number">1.5</span> Getting Help</a></li>
+<li><a href="01-intro.html#task-views-in-r-introduction-installation" id="toc-task-views-in-r-introduction-installation"><span class="toc-section-number">1.6</span> Task Views in R-Introduction &amp; Installation</a></li>
+<li><a href="01-intro.html#r-core-packages" id="toc-r-core-packages"><span class="toc-section-number">1.7</span> R core packages</a></li>
+<li><a href="01-intro.html#example-1-hello-r" id="toc-example-1-hello-r"><span class="toc-section-number">1.8</span> Example-1 Hello R!</a></li>
+</ul></li>
+<li><a href="02-data.html#r-data-types-and-data-structures" id="toc-r-data-types-and-data-structures"><span class="toc-section-number">2</span> R Data Types and Data Structures</a>
+<ul>
+<li><a href="02-data.html#data-types" id="toc-data-types"><span class="toc-section-number">2.1</span> Data Types</a>
+<ul>
+<li><a href="02-data.html#double" id="toc-double"><span class="toc-section-number">2.1.1</span> Double</a></li>
+<li><a href="02-data.html#integer" id="toc-integer"><span class="toc-section-number">2.1.2</span> Integer</a></li>
+<li><a href="02-data.html#logical" id="toc-logical"><span class="toc-section-number">2.1.3</span> Logical</a></li>
+<li><a href="02-data.html#character" id="toc-character"><span class="toc-section-number">2.1.4</span> Character</a></li>
+<li><a href="02-data.html#factor" id="toc-factor"><span class="toc-section-number">2.1.5</span> Factor</a></li>
+<li><a href="02-data.html#date-time" id="toc-date-time"><span class="toc-section-number">2.1.6</span> Date &amp; Time</a></li>
+</ul></li>
+<li><a href="02-data.html#data-structures-in-r" id="toc-data-structures-in-r"><span class="toc-section-number">2.2</span> Data Structures in R</a>
+<ul>
+<li><a href="02-data.html#vector" id="toc-vector"><span class="toc-section-number">2.2.1</span> Vector</a></li>
+<li><a href="02-data.html#matrices" id="toc-matrices"><span class="toc-section-number">2.2.2</span> Matrices</a></li>
+<li><a href="02-data.html#arrays" id="toc-arrays"><span class="toc-section-number">2.2.3</span> Arrays</a></li>
+<li><a href="02-data.html#data-frames" id="toc-data-frames"><span class="toc-section-number">2.2.4</span> Data Frames</a></li>
+<li><a href="02-data.html#lists" id="toc-lists"><span class="toc-section-number">2.2.5</span> Lists</a></li>
+</ul></li>
+<li><a href="02-data.html#data-importexport-in-r" id="toc-data-importexport-in-r"><span class="toc-section-number">2.3</span> Data Import/Export in R</a>
+<ul>
+<li><a href="02-data.html#reading-data-from-a-text-file" id="toc-reading-data-from-a-text-file"><span class="toc-section-number">2.3.1</span> Reading Data from a Text File</a></li>
+<li><a href="02-data.html#reading-data-from-csv-files" id="toc-reading-data-from-csv-files"><span class="toc-section-number">2.3.2</span> Reading Data from CSV files</a></li>
+<li><a href="02-data.html#reading-from-excel-files" id="toc-reading-from-excel-files"><span class="toc-section-number">2.3.3</span> Reading from Excel Files</a></li>
+<li><a href="02-data.html#reading-from-data-files-from-other-statistical-systems" id="toc-reading-from-data-files-from-other-statistical-systems"><span class="toc-section-number">2.3.4</span> Reading from Data Files from other Statistical Systems</a></li>
+<li><a href="02-data.html#importing-data-using-rstudio" id="toc-importing-data-using-rstudio"><span class="toc-section-number">2.3.5</span> Importing Data using RStudio</a></li>
+</ul></li>
+</ul></li>
+<li><a href="03-programming_data_preprocessing.html#r-programming---short-introduction" id="toc-r-programming---short-introduction"><span class="toc-section-number">3</span> R Programming - Short Introduction</a>
+<ul>
+<li><a href="03-programming_data_preprocessing.html#programming-control-flow" id="toc-programming-control-flow"><span class="toc-section-number">3.1</span> Programming Control Flow</a>
+<ul>
+<li><a href="03-programming_data_preprocessing.html#if-else-conditional-statements" id="toc-if-else-conditional-statements"><span class="toc-section-number">3.1.1</span> if-else Conditional Statements</a></li>
+<li><a href="03-programming_data_preprocessing.html#loops" id="toc-loops"><span class="toc-section-number">3.1.2</span> Loops</a></li>
+<li><a href="03-programming_data_preprocessing.html#mathttwhile-loop" id="toc-mathttwhile-loop"><span class="toc-section-number">3.1.3</span> <span class="math inline">\(\mathtt{while}\)</span> loop</a></li>
+<li><a href="03-programming_data_preprocessing.html#mathttrepeat-loop" id="toc-mathttrepeat-loop"><span class="toc-section-number">3.1.4</span> <span class="math inline">\(\mathtt{repeat}\)</span> loop</a></li>
+</ul></li>
+<li><a href="03-programming_data_preprocessing.html#functions-in-r" id="toc-functions-in-r"><span class="toc-section-number">3.2</span> Functions in R</a></li>
+</ul></li>
+<li><a href="04-Data_Exploration.html#data-exploration" id="toc-data-exploration"><span class="toc-section-number">4</span> Data Exploration</a>
+<ul>
+<li><a href="04-Data_Exploration.html#data-preprocessing" id="toc-data-preprocessing"><span class="toc-section-number">4.1</span> Data Preprocessing</a>
+<ul>
+<li><a href="04-Data_Exploration.html#extracting-data" id="toc-extracting-data"><span class="toc-section-number">4.1.1</span> Extracting Data</a></li>
+<li><a href="04-Data_Exploration.html#combining-data-frames" id="toc-combining-data-frames"><span class="toc-section-number">4.1.2</span> Combining Data Frames</a></li>
+<li><a href="04-Data_Exploration.html#sub-setting-and-logical-data-selection" id="toc-sub-setting-and-logical-data-selection"><span class="toc-section-number">4.1.3</span> Sub setting and Logical Data Selection</a></li>
+</ul></li>
+<li><a href="04-Data_Exploration.html#data-transformation-from-wide-to-long-or-vice-versa" id="toc-data-transformation-from-wide-to-long-or-vice-versa"><span class="toc-section-number">4.2</span> Data Transformation from Wide to Long (or vice versa)</a></li>
+<li><a href="04-Data_Exploration.html#summary-statistics" id="toc-summary-statistics"><span class="toc-section-number">4.3</span> Summary Statistics</a>
+<ul>
+<li><a href="04-Data_Exploration.html#example-descriptive-statistics-of-stock-returns" id="toc-example-descriptive-statistics-of-stock-returns"><span class="toc-section-number">4.3.1</span> Example-Descriptive Statistics of Stock Returns</a></li>
+</ul></li>
+</ul></li>
+<li><a href="05-plots.html#graphics-in-r-part-i" id="toc-graphics-in-r-part-i"><span class="toc-section-number">5</span> Graphics in R (Part-I)</a>
+<ul>
+<li><a href="05-plots.html#basic-plots-in-r" id="toc-basic-plots-in-r"><span class="toc-section-number">5.1</span> Basic Plots in R</a>
+<ul>
+<li><a href="05-plots.html#scatter-plot" id="toc-scatter-plot"><span class="toc-section-number">5.1.1</span> Scatter Plot</a></li>
+<li><a href="05-plots.html#line-plot" id="toc-line-plot"><span class="toc-section-number">5.1.2</span> Line Plot</a></li>
+<li><a href="05-plots.html#bar-plot" id="toc-bar-plot"><span class="toc-section-number">5.1.3</span> Bar Plot</a></li>
+<li><a href="05-plots.html#pie-chart" id="toc-pie-chart"><span class="toc-section-number">5.1.4</span> Pie Chart</a></li>
+<li><a href="05-plots.html#scatter-plot-1" id="toc-scatter-plot-1"><span class="toc-section-number">5.1.5</span> Scatter Plot</a></li>
+</ul></li>
+<li><a href="05-plots.html#r-graphical-parameters" id="toc-r-graphical-parameters"><span class="toc-section-number">5.2</span> R Graphical Parameters</a></li>
+<li><a href="05-plots.html#introduction-to-ggplot2" id="toc-introduction-to-ggplot2"><span class="toc-section-number">5.3</span> Introduction to ggplot2</a>
+<ul>
+<li><a href="05-plots.html#mathttqplot" id="toc-mathttqplot"><span class="toc-section-number">5.3.1</span> <span class="math inline">\(\mathtt{qplot}\)</span></a></li>
+<li><a href="05-plots.html#layered-graphics-using-mathttggplot" id="toc-layered-graphics-using-mathttggplot"><span class="toc-section-number">5.3.2</span> Layered graphics using <span class="math inline">\(\mathtt{ggplot}\)</span></a></li>
+<li><a href="05-plots.html#arranging-plots-using-gridextra" id="toc-arranging-plots-using-gridextra"><span class="toc-section-number">5.3.3</span> Arranging plots using gridExtra</a></li>
+</ul></li>
+</ul></li>
+<li><a href="06-plotsRmd.html#graphics-in-r-part-ii" id="toc-graphics-in-r-part-ii"><span class="toc-section-number">6</span> Graphics in R (Part-II)</a>
+<ul>
+<li><a href="06-plotsRmd.html#interactive-plots-using-plotly" id="toc-interactive-plots-using-plotly"><span class="toc-section-number">6.1</span> Interactive Plots using Plotly</a></li>
+<li><a href="06-plotsRmd.html#animation-using-gganimate" id="toc-animation-using-gganimate"><span class="toc-section-number">6.2</span> Animation using gganimate</a></li>
+<li><a href="06-plotsRmd.html#plot-maps" id="toc-plot-maps"><span class="toc-section-number">6.3</span> Plot Maps</a></li>
+</ul></li>
+<li><a href="062-regression_1.html#part-ii" id="toc-part-ii">Part II</a></li>
+<li><a href="062-regression_1.html#linear-regression" id="toc-linear-regression"><span class="toc-section-number">7</span> Linear Regression</a>
+<ul>
+<li><a href="062-regression_1.html#investment-beta-using-r-single-index-model" id="toc-investment-beta-using-r-single-index-model"><span class="toc-section-number">7.1</span> Investment <span class="math inline">\(\beta\)</span> using R (Single Index Model)</a></li>
+<li><a href="062-regression_1.html#data-preprocessing-1" id="toc-data-preprocessing-1"><span class="toc-section-number">7.2</span> Data preprocessing</a></li>
+<li><a href="062-regression_1.html#visualisation" id="toc-visualisation"><span class="toc-section-number">7.3</span> Visualisation</a></li>
+<li><a href="062-regression_1.html#regression-analysis-using-lm" id="toc-regression-analysis-using-lm"><span class="toc-section-number">7.4</span> Regression analysis using lm</a></li>
+</ul></li>
+<li><a href="062-regression_1.html#multiple-regression" id="toc-multiple-regression"><span class="toc-section-number">8</span> Multiple Regression</a>
+<ul>
+<li><a href="062-regression_1.html#fama-french-three-factor-model" id="toc-fama-french-three-factor-model"><span class="toc-section-number">8.1</span> Fama-French Three Factor Model</a>
+<ul>
+<li><a href="062-regression_1.html#data-preprocessing-2" id="toc-data-preprocessing-2"><span class="toc-section-number">8.1.1</span> Data Preprocessing</a></li>
+<li><a href="062-regression_1.html#regression-analysis" id="toc-regression-analysis"><span class="toc-section-number">8.1.2</span> Regression Analysis</a></li>
+<li><a href="062-regression_1.html#visualisation-1" id="toc-visualisation-1"><span class="toc-section-number">8.1.3</span> Visualisation</a></li>
+</ul></li>
+</ul></li>
+<li><a href="062-regression_1.html#panel-regression" id="toc-panel-regression"><span class="toc-section-number">9</span> Panel Regression</a>
+<ul>
+<li><a href="062-regression_1.html#fixed-and-random-effects-using-the-plm-package" id="toc-fixed-and-random-effects-using-the-plm-package"><span class="toc-section-number">9.1</span> Fixed and Random effects using the <code>plm</code> package</a></li>
+<li><a href="062-regression_1.html#fixed-effects-model" id="toc-fixed-effects-model"><span class="toc-section-number">9.2</span> Fixed Effects Model</a></li>
+<li><a href="062-regression_1.html#random-effects-model" id="toc-random-effects-model"><span class="toc-section-number">9.3</span> Random Effects Model</a></li>
+<li><a href="062-regression_1.html#testing" id="toc-testing"><span class="toc-section-number">9.4</span> Testing</a>
+<ul>
+<li><a href="062-regression_1.html#panel-or-ols" id="toc-panel-or-ols"><span class="toc-section-number">9.4.1</span> Panel or OLS</a></li>
+<li><a href="062-regression_1.html#fixed-effect-or-random-effect" id="toc-fixed-effect-or-random-effect"><span class="toc-section-number">9.4.2</span> Fixed Effect or Random Effect</a></li>
+</ul></li>
+</ul></li>
+<li><a href="01-Part_1.html#technical-analysis-using-r" id="toc-technical-analysis-using-r"><span class="toc-section-number">10</span> Technical Analysis using R</a>
+<ul>
+<li><a href="01-Part_1.html#technical-analysis-ta-using-r" id="toc-technical-analysis-ta-using-r"><span class="toc-section-number">10.1</span> Technical Analysis (TA) using R</a></li>
+<li><a href="01-Part_1.html#technical-charts" id="toc-technical-charts"><span class="toc-section-number">10.2</span> Technical Charts</a>
+<ul>
+<li><a href="01-Part_1.html#candlesticks-and-ohlc-chart" id="toc-candlesticks-and-ohlc-chart"><span class="toc-section-number">10.2.1</span> Candlesticks and OHLC chart</a></li>
+<li><a href="01-Part_1.html#line-chart" id="toc-line-chart"><span class="toc-section-number">10.2.2</span> Line chart</a></li>
+<li><a href="01-Part_1.html#candlestick-chart" id="toc-candlestick-chart"><span class="toc-section-number">10.2.3</span> Candlestick chart</a></li>
+<li><a href="01-Part_1.html#add-technical-indicators" id="toc-add-technical-indicators"><span class="toc-section-number">10.2.4</span> Add technical indicators</a></li>
+<li><a href="01-Part_1.html#adding-indicators-sequentially" id="toc-adding-indicators-sequentially"><span class="toc-section-number">10.2.5</span> Adding indicators sequentially</a></li>
+</ul></li>
+</ul></li>
+<li><a href="01-Part_1.html#forecasting-var-using-garch-models" id="toc-forecasting-var-using-garch-models"><span class="toc-section-number">11</span> Forecasting VaR using GARCH Models</a>
+<ul>
+<li><a href="01-Part_1.html#value-at-risk" id="toc-value-at-risk"><span class="toc-section-number">11.1</span> Value at Risk</a></li>
+<li><a href="01-Part_1.html#volatility-modelling-forecasting-using-garch" id="toc-volatility-modelling-forecasting-using-garch"><span class="toc-section-number">11.2</span> Volatility Modelling &amp; Forecasting using GARCH</a></li>
+<li><a href="01-Part_1.html#garch11-to-forecast-var" id="toc-garch11-to-forecast-var"><span class="toc-section-number">11.3</span> GARCH(1,1) to forecast VaR</a></li>
+<li><a href="01-Part_1.html#var-forecasts-using-out-of-sample" id="toc-var-forecasts-using-out-of-sample"><span class="toc-section-number">11.4</span> VaR forecasts using out of sample</a></li>
+</ul></li>
+<li><a href="01-Part_2_portfolio.html#portfolio-modelling-using-r" id="toc-portfolio-modelling-using-r"><span class="toc-section-number">12</span> Portfolio Modelling using R</a>
+<ul>
+<li><a href="01-Part_2_portfolio.html#portfolio-analysis-quick-intro" id="toc-portfolio-analysis-quick-intro"><span class="toc-section-number">12.1</span> Portfolio Analysis (Quick Intro)</a></li>
+<li><a href="01-Part_2_portfolio.html#mean-variance-portfolio-important-concepts" id="toc-mean-variance-portfolio-important-concepts"><span class="toc-section-number">12.2</span> Mean Variance Portfolio: Important concepts</a>
+<ul>
+<li><a href="01-Part_2_portfolio.html#expected-return" id="toc-expected-return">Expected Return</a></li>
+<li><a href="01-Part_2_portfolio.html#risk" id="toc-risk">Risk</a></li>
+<li><a href="01-Part_2_portfolio.html#covariance-of-returns" id="toc-covariance-of-returns">Covariance of Returns</a></li>
+<li><a href="01-Part_2_portfolio.html#correlation" id="toc-correlation">Correlation</a></li>
+<li><a href="01-Part_2_portfolio.html#portfolio-return" id="toc-portfolio-return">Portfolio Return</a></li>
+<li><a href="01-Part_2_portfolio.html#portfolio-risk" id="toc-portfolio-risk">Portfolio Risk</a></li>
+<li><a href="01-Part_2_portfolio.html#portfolio-risk-for-n-assets" id="toc-portfolio-risk-for-n-assets">Portfolio Risk for <em>N</em> Assets</a></li>
+</ul></li>
+<li><a href="01-Part_2_portfolio.html#diversification-markowitz-minimum-variance-portfolio" id="toc-diversification-markowitz-minimum-variance-portfolio"><span class="toc-section-number">12.3</span> Diversification &amp; Markowitz Minimum Variance Portfolio</a></li>
+<li><a href="01-Part_2_portfolio.html#minimum-variance-portfolio" id="toc-minimum-variance-portfolio"><span class="toc-section-number">12.4</span> Minimum Variance Portfolio</a>
+<ul>
+<li><a href="01-Part_2_portfolio.html#efficient-weights-for-two-assets" id="toc-efficient-weights-for-two-assets"><span class="toc-section-number">12.4.1</span> Efficient Weights for Two Assets</a></li>
+<li><a href="01-Part_2_portfolio.html#portfolio-with-n-risky-assets" id="toc-portfolio-with-n-risky-assets"><span class="toc-section-number">12.4.2</span> Portfolio with N Risky Assets</a></li>
+</ul></li>
+<li><a href="01-Part_2_portfolio.html#using-r-to-construct-multi-asset-portfolio" id="toc-using-r-to-construct-multi-asset-portfolio"><span class="toc-section-number">12.5</span> Using R to Construct Multi-Asset Portfolio</a>
+<ul>
+<li><a href="01-Part_2_portfolio.html#data" id="toc-data"><span class="toc-section-number">12.5.1</span> Data</a></li>
+<li><a href="01-Part_2_portfolio.html#portfolios-with-random-weights" id="toc-portfolios-with-random-weights"><span class="toc-section-number">12.5.2</span> Portfolios with random weights</a></li>
+</ul></li>
+<li><a href="01-Part_2_portfolio.html#efficient-minimum-variance-portfolio-using-r-packages" id="toc-efficient-minimum-variance-portfolio-using-r-packages"><span class="toc-section-number">12.6</span> Efficient (Minimum Variance) Portfolio using R packages</a>
+<ul>
+<li><a href="01-Part_2_portfolio.html#minimum-variance-and-portfolio-for-a-given-level-of-return" id="toc-minimum-variance-and-portfolio-for-a-given-level-of-return"><span class="toc-section-number">12.6.1</span> Minimum Variance and portfolio for a given level of return</a></li>
+<li><a href="01-Part_2_portfolio.html#portfolio-with-box-constraints" id="toc-portfolio-with-box-constraints"><span class="toc-section-number">12.6.2</span> Portfolio with Box Constraints</a></li>
+</ul></li>
+<li><a href="01-Part_2_portfolio.html#evaluating-portfoios-risk-adjusted-performance" id="toc-evaluating-portfoios-risk-adjusted-performance"><span class="toc-section-number">12.7</span> Evaluating Portfoios: Risk Adjusted Performance</a>
+<ul>
+<li><a href="01-Part_2_portfolio.html#sharpe-ratio" id="toc-sharpe-ratio"><span class="toc-section-number">12.7.1</span> Sharpe Ratio</a></li>
+<li><a href="01-Part_2_portfolio.html#roys-safety-ratio" id="toc-roys-safety-ratio"><span class="toc-section-number">12.7.2</span> Roy’s Safety Ratio</a></li>
+<li><a href="01-Part_2_portfolio.html#treynors-ratio" id="toc-treynors-ratio"><span class="toc-section-number">12.7.3</span> Treynor’s Ratio</a></li>
+<li><a href="01-Part_2_portfolio.html#sharpe-ratio-portfolio-in-r" id="toc-sharpe-ratio-portfolio-in-r"><span class="toc-section-number">12.7.4</span> Sharpe Ratio (Portfolio) in R</a></li>
+</ul></li>
+</ul></li>
+<li><a href="04-Part_3-1.html#part-iii" id="toc-part-iii">Part III</a></li>
+<li><a href="04-Part_3-1.html#machine-learning-using-r-introduction-to-data-splitting-sampling-resampling" id="toc-machine-learning-using-r-introduction-to-data-splitting-sampling-resampling"><span class="toc-section-number">13</span> Machine Learning using R-Introduction to Data Splitting, Sampling &amp; Resampling</a>
+<ul>
+<li><a href="04-Part_3-1.html#machine-learning-process-quick-intro" id="toc-machine-learning-process-quick-intro"><span class="toc-section-number">13.1</span> Machine Learning Process (Quick Intro)</a></li>
+<li><a href="04-Part_3-1.html#data-splitting-sampling" id="toc-data-splitting-sampling"><span class="toc-section-number">13.2</span> Data Splitting: Sampling</a></li>
+<li><a href="04-Part_3-1.html#random-sampling" id="toc-random-sampling"><span class="toc-section-number">13.3</span> Random Sampling</a>
+<ul>
+<li><a href="04-Part_3-1.html#base-r" id="toc-base-r"><span class="toc-section-number">13.3.1</span> Base R</a></li>
+<li><a href="04-Part_3-1.html#using-the-caret-package" id="toc-using-the-caret-package"><span class="toc-section-number">13.3.2</span> Using the <code>caret</code> package</a></li>
+<li><a href="04-Part_3-1.html#using-the-rsample-package" id="toc-using-the-rsample-package"><span class="toc-section-number">13.3.3</span> Using the <code>rsample</code> package</a></li>
+</ul></li>
+<li><a href="04-Part_3-1.html#stratified-sampling" id="toc-stratified-sampling"><span class="toc-section-number">13.4</span> Stratified Sampling</a></li>
+<li><a href="04-Part_3-1.html#resampling" id="toc-resampling"><span class="toc-section-number">13.5</span> Resampling</a></li>
+<li><a href="04-Part_3-1.html#k-fold-cross-validation" id="toc-k-fold-cross-validation"><span class="toc-section-number">13.6</span> K-fold Cross Validation</a>
+<ul>
+<li><a href="04-Part_3-1.html#k-fold-cv-in-r" id="toc-k-fold-cv-in-r">K-fold CV in R</a></li>
+</ul></li>
+<li><a href="04-Part_3-1.html#cv-for-time-series-data" id="toc-cv-for-time-series-data"><span class="toc-section-number">13.7</span> CV for time series data</a>
+<ul>
+<li><a href="04-Part_3-1.html#cv-for-time-series-in-r" id="toc-cv-for-time-series-in-r">CV for time series in R</a></li>
+</ul></li>
+<li><a href="04-Part_3-1.html#bootstrapping" id="toc-bootstrapping"><span class="toc-section-number">13.8</span> Bootstrapping</a>
+<ul>
+<li><a href="04-Part_3-1.html#bootsrapping-in-r" id="toc-bootsrapping-in-r">Bootsrapping in R</a></li>
+</ul></li>
+</ul></li>
+<li><a href="04-Part_3_logistic.html#logistic-regression-k-nearest-neighbour-knn-for-classification" id="toc-logistic-regression-k-nearest-neighbour-knn-for-classification"><span class="toc-section-number">14</span> Logistic Regression &amp; K-Nearest Neighbour (kNN) for Classification</a>
+<ul>
+<li><a href="04-Part_3_logistic.html#logistic-regression" id="toc-logistic-regression"><span class="toc-section-number">14.1</span> Logistic Regression</a></li>
+<li><a href="04-Part_3_logistic.html#k-nearest-neighbour" id="toc-k-nearest-neighbour"><span class="toc-section-number">14.2</span> K-Nearest Neighbour</a>
+<ul>
+<li><a href="04-Part_3_logistic.html#nearest-neighbour-classification-quick-introduction" id="toc-nearest-neighbour-classification-quick-introduction">Nearest Neighbour classification (Quick Introduction)</a></li>
+<li><a href="04-Part_3_logistic.html#k-nn-algorithm" id="toc-k-nn-algorithm">k-NN Algorithm</a></li>
+</ul></li>
+<li><a href="04-Part_3_logistic.html#forecasting-stock-price-movement-using-ml" id="toc-forecasting-stock-price-movement-using-ml"><span class="toc-section-number">14.3</span> Forecasting Stock Price Movement using ML</a>
+<ul>
+<li><a href="04-Part_3_logistic.html#data-indicators" id="toc-data-indicators"><span class="toc-section-number">14.3.1</span> Data &amp; Indicators</a></li>
+<li><a href="04-Part_3_logistic.html#visualise-the-data" id="toc-visualise-the-data"><span class="toc-section-number">14.3.2</span> Visualise the data</a></li>
+<li><a href="04-Part_3_logistic.html#using-logistic-regression" id="toc-using-logistic-regression"><span class="toc-section-number">14.3.3</span> Using Logistic Regression</a></li>
+<li><a href="04-Part_3_logistic.html#using-k-nn" id="toc-using-k-nn"><span class="toc-section-number">14.3.4</span> Using K-NN</a></li>
+</ul></li>
+</ul></li>
+<li><a href="04-Part_2.html#decision-trees-using-r" id="toc-decision-trees-using-r"><span class="toc-section-number">15</span> Decision Trees using R</a>
+<ul>
+<li><a href="04-Part_2.html#import-data-and-pre-processing" id="toc-import-data-and-pre-processing"><span class="toc-section-number">15.1</span> Import Data and Pre-processing</a></li>
+<li><a href="04-Part_2.html#visualisation-some-features" id="toc-visualisation-some-features"><span class="toc-section-number">15.2</span> Visualisation some features</a></li>
+<li><a href="04-Part_2.html#creating-training-and-testing-set-and-control" id="toc-creating-training-and-testing-set-and-control"><span class="toc-section-number">15.3</span> Creating Training and Testing Set and Control</a></li>
+<li><a href="04-Part_2.html#train-the-model-on-the-training-set" id="toc-train-the-model-on-the-training-set"><span class="toc-section-number">15.4</span> Train the model on the training set</a></li>
+<li><a href="04-Part_2.html#prediction-and-accuracy" id="toc-prediction-and-accuracy"><span class="toc-section-number">15.5</span> Prediction and Accuracy</a>
+<ul>
+<li><a href="04-Part_2.html#model-1" id="toc-model-1"><span class="toc-section-number">15.5.1</span> Model-1</a></li>
+<li><a href="04-Part_2.html#model-2" id="toc-model-2"><span class="toc-section-number">15.5.2</span> Model-2</a></li>
+</ul></li>
+<li><a href="04-Part_2.html#feature-interpretation" id="toc-feature-interpretation"><span class="toc-section-number">15.6</span> Feature Interpretation</a></li>
+<li><a href="04-Part_2.html#tree-visualisation" id="toc-tree-visualisation"><span class="toc-section-number">15.7</span> Tree visualisation</a></li>
+</ul></li>
+<li><a href="05-method2.html#text-mining-using-r" id="toc-text-mining-using-r"><span class="toc-section-number">16</span> Text Mining using R</a>
+<ul>
+<li><a href="05-method2.html#introduction-to-text-mining" id="toc-introduction-to-text-mining"><span class="toc-section-number">16.1</span> Introduction to Text Mining</a>
+<ul>
+<li><a href="05-method2.html#text-data" id="toc-text-data"><span class="toc-section-number">16.1.1</span> Text Data</a></li>
+<li><a href="05-method2.html#generic-text-mining-system" id="toc-generic-text-mining-system"><span class="toc-section-number">16.1.2</span> Generic Text Mining System</a></li>
+<li><a href="05-method2.html#data-pre-processing-in-text-mining" id="toc-data-pre-processing-in-text-mining"><span class="toc-section-number">16.1.3</span> Data pre-processing in Text Mining</a></li>
+</ul></li>
+<li><a href="05-method2.html#mining-twitter-text-data-using-r" id="toc-mining-twitter-text-data-using-r"><span class="toc-section-number">16.2</span> Mining Twitter Text Data using R</a>
+<ul>
+<li><a href="05-method2.html#obtaining-twitter-data" id="toc-obtaining-twitter-data"><span class="toc-section-number">16.2.1</span> Obtaining Twitter Data</a></li>
+</ul></li>
+<li><a href="05-method2.html#download-data" id="toc-download-data"><span class="toc-section-number">16.3</span> Download Data</a></li>
+<li><a href="05-method2.html#data-pre-processing" id="toc-data-pre-processing"><span class="toc-section-number">16.4</span> Data Pre-processing</a></li>
+<li><a href="05-method2.html#some-visualisation" id="toc-some-visualisation"><span class="toc-section-number">16.5</span> Some Visualisation</a></li>
+<li><a href="05-method2.html#sentiment-analysis" id="toc-sentiment-analysis"><span class="toc-section-number">16.6</span> Sentiment Analysis</a>
+<ul>
+<li><a href="05-method2.html#method" id="toc-method"><span class="toc-section-number">16.6.1</span> Method</a></li>
+</ul></li>
+<li><a href="05-method2.html#topic-modelling" id="toc-topic-modelling"><span class="toc-section-number">16.7</span> Topic Modelling</a></li>
+</ul></li>
+<li><a href="06-summary.html#work-in-progress" id="toc-work-in-progress"><span class="toc-section-number">17</span> Work in Progress</a></li>
+<li><a href="07-references.html#references" id="toc-references">References</a></li>
+<li class="divider"></li>
+<li> <img src="firebrick3RA_img.png" height="60" width="60" style="position:bottom:0px;right:0px;"/></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R for Data Analytics</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="r-programming---short-introduction" class="section level1" number="3">
+<h1><span class="header-section-number">Topic 3</span> R Programming - Short Introduction</h1>
+<p><em>you might not think that programmers are artists, but programming is an extremely creative profession. It’s logic-based creativity.</em>
+-John Romero</p>
+<ul>
+<li><p>Here we will cover the basic structures of R programming, including control flow (if else) and loops (iteration routines) followed by writing our first function.</p></li>
+<li><p>We will confine our discussion to the beginner’s level.</p></li>
+</ul>
+<div id="programming-control-flow" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> Programming Control Flow</h2>
+<ul>
+<li>Control flow (or flow control) is a well defined sequence of conditional statements, loops and statements which directs the R script (or code in generalised sense) to execute one thing or the other based on the conditions written in the program.</li>
+</ul>
+<div id="if-else-conditional-statements" class="section level3" number="3.1.1">
+<h3><span class="header-section-number">3.1.1</span> if-else Conditional Statements</h3>
+<ul>
+<li><p>We use if-else conditional statements when we want the R program to branch out in different directions based on a logical condition.</p></li>
+<li><p>The following example compares the mean of two stocks and assigns a variable with the greater mean.</p></li>
+</ul>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="03-programming_data_preprocessing.html#cb89-1" aria-hidden="true" tabindex="-1"></a>data_stocks <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/us_stocks.csv&quot;</span>)</span>
+<span id="cb89-2"><a href="03-programming_data_preprocessing.html#cb89-2" aria-hidden="true" tabindex="-1"></a><span class="co"># remove NAs from the data</span></span>
+<span id="cb89-3"><a href="03-programming_data_preprocessing.html#cb89-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb89-4"><a href="03-programming_data_preprocessing.html#cb89-4" aria-hidden="true" tabindex="-1"></a>data_stocks <span class="ot">=</span> <span class="fu">na.omit</span>(data_stocks)</span>
+<span id="cb89-5"><a href="03-programming_data_preprocessing.html#cb89-5" aria-hidden="true" tabindex="-1"></a>m_msft <span class="ot">=</span> <span class="fu">mean</span>(data_stocks<span class="sc">$</span>MSFT)</span>
+<span id="cb89-6"><a href="03-programming_data_preprocessing.html#cb89-6" aria-hidden="true" tabindex="-1"></a>m_aapl <span class="ot">=</span> <span class="fu">mean</span>(data_stocks<span class="sc">$</span>AAPL)</span>
+<span id="cb89-7"><a href="03-programming_data_preprocessing.html#cb89-7" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (m_msft <span class="sc">&gt;</span> m_aapl) {</span>
+<span id="cb89-8"><a href="03-programming_data_preprocessing.html#cb89-8" aria-hidden="true" tabindex="-1"></a>    g_mean <span class="ot">=</span> m_msft</span>
+<span id="cb89-9"><a href="03-programming_data_preprocessing.html#cb89-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">message</span>(<span class="st">&quot;Msft mean is higher&quot;</span>)</span>
+<span id="cb89-10"><a href="03-programming_data_preprocessing.html#cb89-10" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb89-11"><a href="03-programming_data_preprocessing.html#cb89-11" aria-hidden="true" tabindex="-1"></a>    g_mean <span class="ot">=</span> m_aapl</span>
+<span id="cb89-12"><a href="03-programming_data_preprocessing.html#cb89-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">message</span>(<span class="st">&quot;Aapl mean is higher&quot;</span>)</span>
+<span id="cb89-13"><a href="03-programming_data_preprocessing.html#cb89-13" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb89-14"><a href="03-programming_data_preprocessing.html#cb89-14" aria-hidden="true" tabindex="-1"></a>g_mean  <span class="co">#print greater mean</span></span></code></pre></div>
+<pre><code>[1] 207.7967</code></pre>
+<ul>
+<li><p>The if-else also works as a function call, the if-else call in the example above can be reduced to one line as follows.</p></li>
+<li><p>Note that the curly brackets in case of just one statement are optional. They are required in case of a block operation. Its easy to just use them to avoid confusion.</p></li>
+<li><p>R also has a function <span class="math inline">\(\mathtt{ifelse}\)</span> which does the same operation as in example above. See <span class="math inline">\(\mathtt{help(ifelse)}\)</span> for more details</p></li>
+</ul>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="03-programming_data_preprocessing.html#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="co"># arguments to ifelse</span></span>
+<span id="cb91-2"><a href="03-programming_data_preprocessing.html#cb91-2" aria-hidden="true" tabindex="-1"></a><span class="fu">args</span>(ifelse)</span></code></pre></div>
+<pre><code>function (test, yes, no) 
+NULL</code></pre>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="03-programming_data_preprocessing.html#cb93-1" aria-hidden="true" tabindex="-1"></a>g_mean <span class="ot">=</span> <span class="fu">ifelse</span>(m_msft <span class="sc">&gt;</span> m_aapl, m_msft, m_aapl)</span>
+<span id="cb93-2"><a href="03-programming_data_preprocessing.html#cb93-2" aria-hidden="true" tabindex="-1"></a>g_mean</span></code></pre></div>
+<pre><code>[1] 207.7967</code></pre>
+</div>
+<div id="loops" class="section level3" number="3.1.2">
+<h3><span class="header-section-number">3.1.2</span> Loops</h3>
+<ul>
+<li><p>Loops are the common feature in almost all the programming languages.</p></li>
+<li><p>R provides three basic loops using <span class="math inline">\(\mathtt{for}\)</span>, <span class="math inline">\(\mathtt{while}\)</span> and <span class="math inline">\(\mathtt{repeat}\)</span>.</p></li>
+</ul>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="03-programming_data_preprocessing.html#cb95-1" aria-hidden="true" tabindex="-1"></a><span class="co"># construct the loop</span></span>
+<span id="cb95-2"><a href="03-programming_data_preprocessing.html#cb95-2" aria-hidden="true" tabindex="-1"></a>j <span class="ot">=</span> <span class="dv">0</span></span>
+<span id="cb95-3"><a href="03-programming_data_preprocessing.html#cb95-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">15</span>) {</span>
+<span id="cb95-4"><a href="03-programming_data_preprocessing.html#cb95-4" aria-hidden="true" tabindex="-1"></a>    j <span class="ot">=</span> j <span class="sc">+</span> i  <span class="co">#add i to j </span></span>
+<span id="cb95-5"><a href="03-programming_data_preprocessing.html#cb95-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(j)  <span class="co">#print the sequential sum</span></span>
+<span id="cb95-6"><a href="03-programming_data_preprocessing.html#cb95-6" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<pre><code>[1] 1
+[1] 3
+[1] 6
+[1] 10
+[1] 15
+[1] 21
+[1] 28
+[1] 36
+[1] 45
+[1] 55
+[1] 66
+[1] 78
+[1] 91
+[1] 105
+[1] 120</code></pre>
+</div>
+<div id="mathttwhile-loop" class="section level3" number="3.1.3">
+<h3><span class="header-section-number">3.1.3</span> <span class="math inline">\(\mathtt{while}\)</span> loop</h3>
+<ul>
+<li><span class="math inline">\(\mathtt{while}\)</span> loop evaluates an expression or a function while a condition is TRUE. Lets repeat the above example using <span class="math inline">\(\mathtt{while}\)</span> loop</li>
+</ul>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="03-programming_data_preprocessing.html#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="co"># intialise j and i</span></span>
+<span id="cb97-2"><a href="03-programming_data_preprocessing.html#cb97-2" aria-hidden="true" tabindex="-1"></a>j <span class="ot">=</span> <span class="dv">0</span></span>
+<span id="cb97-3"><a href="03-programming_data_preprocessing.html#cb97-3" aria-hidden="true" tabindex="-1"></a>i <span class="ot">=</span> <span class="dv">1</span></span>
+<span id="cb97-4"><a href="03-programming_data_preprocessing.html#cb97-4" aria-hidden="true" tabindex="-1"></a><span class="co"># one can also use i&lt;=15</span></span>
+<span id="cb97-5"><a href="03-programming_data_preprocessing.html#cb97-5" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> (i <span class="sc">&lt;</span> <span class="dv">16</span>) {</span>
+<span id="cb97-6"><a href="03-programming_data_preprocessing.html#cb97-6" aria-hidden="true" tabindex="-1"></a>    j <span class="ot">=</span> j <span class="sc">+</span> i</span>
+<span id="cb97-7"><a href="03-programming_data_preprocessing.html#cb97-7" aria-hidden="true" tabindex="-1"></a>    i <span class="ot">=</span> i <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb97-8"><a href="03-programming_data_preprocessing.html#cb97-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(j)</span>
+<span id="cb97-9"><a href="03-programming_data_preprocessing.html#cb97-9" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<pre><code>[1] 1
+[1] 3
+[1] 6
+[1] 10
+[1] 15
+[1] 21
+[1] 28
+[1] 36
+[1] 45
+[1] 55
+[1] 66
+[1] 78
+[1] 91
+[1] 105
+[1] 120</code></pre>
+</div>
+<div id="mathttrepeat-loop" class="section level3" number="3.1.4">
+<h3><span class="header-section-number">3.1.4</span> <span class="math inline">\(\mathtt{repeat}\)</span> loop</h3>
+<ul>
+<li><span class="math inline">\(\mathtt{repeat}\)</span> repeats the same expression till it is broken due to a condition.</li>
+</ul>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="03-programming_data_preprocessing.html#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="co"># intialize</span></span>
+<span id="cb99-2"><a href="03-programming_data_preprocessing.html#cb99-2" aria-hidden="true" tabindex="-1"></a>j <span class="ot">=</span> <span class="dv">0</span></span>
+<span id="cb99-3"><a href="03-programming_data_preprocessing.html#cb99-3" aria-hidden="true" tabindex="-1"></a>i <span class="ot">=</span> <span class="dv">1</span></span>
+<span id="cb99-4"><a href="03-programming_data_preprocessing.html#cb99-4" aria-hidden="true" tabindex="-1"></a><span class="cf">repeat</span> {</span>
+<span id="cb99-5"><a href="03-programming_data_preprocessing.html#cb99-5" aria-hidden="true" tabindex="-1"></a>    j <span class="ot">=</span> j <span class="sc">+</span> i</span>
+<span id="cb99-6"><a href="03-programming_data_preprocessing.html#cb99-6" aria-hidden="true" tabindex="-1"></a>    i <span class="ot">=</span> i <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb99-7"><a href="03-programming_data_preprocessing.html#cb99-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(j)</span>
+<span id="cb99-8"><a href="03-programming_data_preprocessing.html#cb99-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (i <span class="sc">&gt;</span> <span class="dv">15</span>)</span>
+<span id="cb99-9"><a href="03-programming_data_preprocessing.html#cb99-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">break</span></span>
+<span id="cb99-10"><a href="03-programming_data_preprocessing.html#cb99-10" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<pre><code>[1] 1
+[1] 3
+[1] 6
+[1] 10
+[1] 15
+[1] 21
+[1] 28
+[1] 36
+[1] 45
+[1] 55
+[1] 66
+[1] 78
+[1] 91
+[1] 105
+[1] 120</code></pre>
+<p>Together all these three loops can be used for iterative operations. The loops come handy when you have to iterate medium to large data by row or column <a href="07-references.html#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a>.</p>
+</div>
+</div>
+<div id="functions-in-r" class="section level2" number="3.2">
+<h2><span class="header-section-number">3.2</span> Functions in R</h2>
+<ul>
+<li><p>In all research fields there are few statistical (or otherwise) calculations which are used frequently by the users, for example calculation of returns in finance research.</p></li>
+<li><p>R provides the facility of creating specific functions to evaluate a set of arguments and return an output value which are stored as R objects.</p></li>
+<li><p>The functions in R are created by the keyword <span class="math inline">\(\mathtt{function}\)</span> which takes the following syntax.</p></li>
+</ul>
+<p><span class="math display">\[\mathtt{function(arguments)}body\]</span></p>
+<ul>
+<li><p>The arguments are the values/defaults/variables which are used in the body of the function to evaluate an expression.</p></li>
+<li><p>The body of the function is enclosed in curly braces. The function is assigned to a named object and called by passing arguments to the object.</p></li>
+<li><p>The following example illustrates by creating a function to calculate mean for all the columns in the data set <span class="math inline">\(\mathtt{data\_stocks}\)</span></p></li>
+</ul>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="03-programming_data_preprocessing.html#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="co"># the following function takes 2 arguments, x a data frame, dates to indicate</span></span>
+<span id="cb101-2"><a href="03-programming_data_preprocessing.html#cb101-2" aria-hidden="true" tabindex="-1"></a><span class="co"># if there are dates in the first column</span></span>
+<span id="cb101-3"><a href="03-programming_data_preprocessing.html#cb101-3" aria-hidden="true" tabindex="-1"></a>cal_mean <span class="ot">=</span> <span class="cf">function</span>(x, <span class="at">dates =</span> <span class="cn">TRUE</span>) {</span>
+<span id="cb101-4"><a href="03-programming_data_preprocessing.html#cb101-4" aria-hidden="true" tabindex="-1"></a>    num_cols <span class="ot">=</span> <span class="fu">ncol</span>(x)  <span class="co">#calculate the number of columns</span></span>
+<span id="cb101-5"><a href="03-programming_data_preprocessing.html#cb101-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># num_cols=ifelse(dates==TRUE,num_cals-1,num_cals) lets use a list and a</span></span>
+<span id="cb101-6"><a href="03-programming_data_preprocessing.html#cb101-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># loop to refresh our concepts</span></span>
+<span id="cb101-7"><a href="03-programming_data_preprocessing.html#cb101-7" aria-hidden="true" tabindex="-1"></a>    m_stocks <span class="ot">=</span> <span class="fu">list</span>()  <span class="co">#creating an empty list</span></span>
+<span id="cb101-8"><a href="03-programming_data_preprocessing.html#cb101-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb101-9"><a href="03-programming_data_preprocessing.html#cb101-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># use for loop assign the starting value based on the dates column,we skip</span></span>
+<span id="cb101-10"><a href="03-programming_data_preprocessing.html#cb101-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># dates column if they are present (dates are basically row names to more</span></span>
+<span id="cb101-11"><a href="03-programming_data_preprocessing.html#cb101-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># generalised version will be to check for row names)</span></span>
+<span id="cb101-12"><a href="03-programming_data_preprocessing.html#cb101-12" aria-hidden="true" tabindex="-1"></a>    l <span class="ot">=</span> <span class="fu">ifelse</span>(dates <span class="sc">==</span> <span class="cn">TRUE</span>, <span class="dv">2</span>, <span class="dv">1</span>)</span>
+<span id="cb101-13"><a href="03-programming_data_preprocessing.html#cb101-13" aria-hidden="true" tabindex="-1"></a>    j <span class="ot">=</span> <span class="dv">1</span>  <span class="co">#starting point in the list m_stocks</span></span>
+<span id="cb101-14"><a href="03-programming_data_preprocessing.html#cb101-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (i <span class="cf">in</span> l<span class="sc">:</span>num_cols) {</span>
+<span id="cb101-15"><a href="03-programming_data_preprocessing.html#cb101-15" aria-hidden="true" tabindex="-1"></a>        m_stocks[[j]] <span class="ot">=</span> <span class="fu">mean</span>(x[, i])</span>
+<span id="cb101-16"><a href="03-programming_data_preprocessing.html#cb101-16" aria-hidden="true" tabindex="-1"></a>        j <span class="ot">=</span> j <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb101-17"><a href="03-programming_data_preprocessing.html#cb101-17" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb101-18"><a href="03-programming_data_preprocessing.html#cb101-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">names</span>(m_stocks) <span class="ot">=</span> <span class="fu">colnames</span>(x[, l<span class="sc">:</span>num_cols])</span>
+<span id="cb101-19"><a href="03-programming_data_preprocessing.html#cb101-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(m_stocks)</span>
+<span id="cb101-20"><a href="03-programming_data_preprocessing.html#cb101-20" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="03-programming_data_preprocessing.html#cb102-1" aria-hidden="true" tabindex="-1"></a><span class="co"># lets call the function cal_mean (output not shown)</span></span>
+<span id="cb102-2"><a href="03-programming_data_preprocessing.html#cb102-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cal_mean</span>(data_stocks, <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>$MSFT
+[1] 26.91177
+
+$IBM
+[1] 122.3303
+
+$AAPL
+[1] 207.7967
+
+$MCD
+[1] 58.95141
+
+$PG
+[1] 61.32512
+
+$GOOG
+[1] 469.9453</code></pre>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="03-programming_data_preprocessing.html#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="co"># lets call the function with no dates column</span></span>
+<span id="cb104-2"><a href="03-programming_data_preprocessing.html#cb104-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cal_mean</span>(data_stocks[, <span class="dv">2</span><span class="sc">:</span><span class="fu">ncol</span>(data_stocks)], <span class="cn">FALSE</span>)</span></code></pre></div>
+<pre><code>$MSFT
+[1] 26.91177
+
+$IBM
+[1] 122.3303
+
+$AAPL
+[1] 207.7967
+
+$MCD
+[1] 58.95141
+
+$PG
+[1] 61.32512
+
+$GOOG
+[1] 469.9453</code></pre>
+<div class="standard" id='magicparlabel-264'>
+<hr />
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="02-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="04-Data_Exploration.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -1,0 +1,1094 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Part IV | R for Data Analytics</title>
+  <meta name="description" content="This is a collection of examples on using R for Data Analytics" />
+  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Part IV | R for Data Analytics" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="This is a collection of examples on using R for Data Analytics" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Part IV | R for Data Analytics" />
+  
+  <meta name="twitter:description" content="This is a collection of examples on using R for Data Analytics" />
+  
+
+<meta name="author" content="Abhay Singh" />
+
+
+<meta name="date" content="2022-11-08" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  <link rel="shortcut icon" href="rforda.png" type="image/x-icon" />
+<link rel="prev" href="05-method2.html"/>
+<link rel="next" href="06-summary.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.10.1/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
+<link href="libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<link href="libs/wordcloud2-0.0.1/wordcloud.css" rel="stylesheet" />
+<script src="libs/wordcloud2-0.0.1/wordcloud2-all.js"></script>
+<script src="libs/wordcloud2-0.0.1/hover.js"></script>
+<script src="libs/wordcloud2-binding-0.2.1/wordcloud2.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">R for Data Analytics</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#about-the-author"><i class="fa fa-check"></i>About the author</a></li>
+<li class="chapter" data-level="" data-path="01-intro.html"><a href="01-intro.html"><i class="fa fa-check"></i>Part I</a></li>
+<li class="chapter" data-level="1" data-path="01-intro.html"><a href="01-intro.html#what-is-r"><i class="fa fa-check"></i><b>1</b> What is R?</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="01-intro.html"><a href="01-intro.html#why-should-we-learn-r"><i class="fa fa-check"></i><b>1.1</b> Why should we learn R?</a></li>
+<li class="chapter" data-level="1.2" data-path="01-intro.html"><a href="01-intro.html#Rinstall"><i class="fa fa-check"></i><b>1.2</b> Installing R and RStudio on Windows</a></li>
+<li class="chapter" data-level="1.3" data-path="01-intro.html"><a href="01-intro.html#rstudio-guiide"><i class="fa fa-check"></i><b>1.3</b> RStudio GUI/IDE</a></li>
+<li class="chapter" data-level="1.4" data-path="01-intro.html"><a href="01-intro.html#installing-packages"><i class="fa fa-check"></i><b>1.4</b> Installing Packages</a></li>
+<li class="chapter" data-level="1.5" data-path="01-intro.html"><a href="01-intro.html#getting-help"><i class="fa fa-check"></i><b>1.5</b> Getting Help</a></li>
+<li class="chapter" data-level="1.6" data-path="01-intro.html"><a href="01-intro.html#task-views-in-r-introduction-installation"><i class="fa fa-check"></i><b>1.6</b> Task Views in R-Introduction &amp; Installation</a></li>
+<li class="chapter" data-level="1.7" data-path="01-intro.html"><a href="01-intro.html#r-core-packages"><i class="fa fa-check"></i><b>1.7</b> R core packages</a></li>
+<li class="chapter" data-level="1.8" data-path="01-intro.html"><a href="01-intro.html#example-1-hello-r"><i class="fa fa-check"></i><b>1.8</b> Example-1 Hello R!</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="02-data.html"><a href="02-data.html"><i class="fa fa-check"></i><b>2</b> R Data Types and Data Structures</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="02-data.html"><a href="02-data.html#data-types"><i class="fa fa-check"></i><b>2.1</b> Data Types</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="02-data.html"><a href="02-data.html#double"><i class="fa fa-check"></i><b>2.1.1</b> Double</a></li>
+<li class="chapter" data-level="2.1.2" data-path="02-data.html"><a href="02-data.html#integer"><i class="fa fa-check"></i><b>2.1.2</b> Integer</a></li>
+<li class="chapter" data-level="2.1.3" data-path="02-data.html"><a href="02-data.html#logical"><i class="fa fa-check"></i><b>2.1.3</b> Logical</a></li>
+<li class="chapter" data-level="2.1.4" data-path="02-data.html"><a href="02-data.html#character"><i class="fa fa-check"></i><b>2.1.4</b> Character</a></li>
+<li class="chapter" data-level="2.1.5" data-path="02-data.html"><a href="02-data.html#factor"><i class="fa fa-check"></i><b>2.1.5</b> Factor</a></li>
+<li class="chapter" data-level="2.1.6" data-path="02-data.html"><a href="02-data.html#date-time"><i class="fa fa-check"></i><b>2.1.6</b> Date &amp; Time</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="02-data.html"><a href="02-data.html#data-structures-in-r"><i class="fa fa-check"></i><b>2.2</b> Data Structures in R</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="02-data.html"><a href="02-data.html#vector"><i class="fa fa-check"></i><b>2.2.1</b> Vector</a></li>
+<li class="chapter" data-level="2.2.2" data-path="02-data.html"><a href="02-data.html#matrices"><i class="fa fa-check"></i><b>2.2.2</b> Matrices</a></li>
+<li class="chapter" data-level="2.2.3" data-path="02-data.html"><a href="02-data.html#arrays"><i class="fa fa-check"></i><b>2.2.3</b> Arrays</a></li>
+<li class="chapter" data-level="2.2.4" data-path="02-data.html"><a href="02-data.html#data-frames"><i class="fa fa-check"></i><b>2.2.4</b> Data Frames</a></li>
+<li class="chapter" data-level="2.2.5" data-path="02-data.html"><a href="02-data.html#lists"><i class="fa fa-check"></i><b>2.2.5</b> Lists</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="02-data.html"><a href="02-data.html#data-importexport-in-r"><i class="fa fa-check"></i><b>2.3</b> Data Import/Export in R</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="02-data.html"><a href="02-data.html#reading-data-from-a-text-file"><i class="fa fa-check"></i><b>2.3.1</b> Reading Data from a Text File</a></li>
+<li class="chapter" data-level="2.3.2" data-path="02-data.html"><a href="02-data.html#reading-data-from-csv-files"><i class="fa fa-check"></i><b>2.3.2</b> Reading Data from CSV files</a></li>
+<li class="chapter" data-level="2.3.3" data-path="02-data.html"><a href="02-data.html#reading-from-excel-files"><i class="fa fa-check"></i><b>2.3.3</b> Reading from Excel Files</a></li>
+<li class="chapter" data-level="2.3.4" data-path="02-data.html"><a href="02-data.html#reading-from-data-files-from-other-statistical-systems"><i class="fa fa-check"></i><b>2.3.4</b> Reading from Data Files from other Statistical Systems</a></li>
+<li class="chapter" data-level="2.3.5" data-path="02-data.html"><a href="02-data.html#importing-data-using-rstudio"><i class="fa fa-check"></i><b>2.3.5</b> Importing Data using RStudio</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="03-programming_data_preprocessing.html"><a href="03-programming_data_preprocessing.html"><i class="fa fa-check"></i><b>3</b> R Programming - Short Introduction</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="03-programming_data_preprocessing.html"><a href="03-programming_data_preprocessing.html#programming-control-flow"><i class="fa fa-check"></i><b>3.1</b> Programming Control Flow</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="03-programming_data_preprocessing.html"><a href="03-programming_data_preprocessing.html#if-else-conditional-statements"><i class="fa fa-check"></i><b>3.1.1</b> if-else Conditional Statements</a></li>
+<li class="chapter" data-level="3.1.2" data-path="03-programming_data_preprocessing.html"><a href="03-programming_data_preprocessing.html#loops"><i class="fa fa-check"></i><b>3.1.2</b> Loops</a></li>
+<li class="chapter" data-level="3.1.3" data-path="03-programming_data_preprocessing.html"><a href="03-programming_data_preprocessing.html#mathttwhile-loop"><i class="fa fa-check"></i><b>3.1.3</b> <span class="math inline">\(\mathtt{while}\)</span> loop</a></li>
+<li class="chapter" data-level="3.1.4" data-path="03-programming_data_preprocessing.html"><a href="03-programming_data_preprocessing.html#mathttrepeat-loop"><i class="fa fa-check"></i><b>3.1.4</b> <span class="math inline">\(\mathtt{repeat}\)</span> loop</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="03-programming_data_preprocessing.html"><a href="03-programming_data_preprocessing.html#functions-in-r"><i class="fa fa-check"></i><b>3.2</b> Functions in R</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="04-Data_Exploration.html"><a href="04-Data_Exploration.html"><i class="fa fa-check"></i><b>4</b> Data Exploration</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="04-Data_Exploration.html"><a href="04-Data_Exploration.html#data-preprocessing"><i class="fa fa-check"></i><b>4.1</b> Data Preprocessing</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="04-Data_Exploration.html"><a href="04-Data_Exploration.html#extracting-data"><i class="fa fa-check"></i><b>4.1.1</b> Extracting Data</a></li>
+<li class="chapter" data-level="4.1.2" data-path="04-Data_Exploration.html"><a href="04-Data_Exploration.html#combining-data-frames"><i class="fa fa-check"></i><b>4.1.2</b> Combining Data Frames</a></li>
+<li class="chapter" data-level="4.1.3" data-path="04-Data_Exploration.html"><a href="04-Data_Exploration.html#sub-setting-and-logical-data-selection"><i class="fa fa-check"></i><b>4.1.3</b> Sub setting and Logical Data Selection</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="04-Data_Exploration.html"><a href="04-Data_Exploration.html#data-transformation-from-wide-to-long-or-vice-versa"><i class="fa fa-check"></i><b>4.2</b> Data Transformation from Wide to Long (or vice versa)</a></li>
+<li class="chapter" data-level="4.3" data-path="04-Data_Exploration.html"><a href="04-Data_Exploration.html#summary-statistics"><i class="fa fa-check"></i><b>4.3</b> Summary Statistics</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="04-Data_Exploration.html"><a href="04-Data_Exploration.html#example-descriptive-statistics-of-stock-returns"><i class="fa fa-check"></i><b>4.3.1</b> Example-Descriptive Statistics of Stock Returns</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="05-plots.html"><a href="05-plots.html"><i class="fa fa-check"></i><b>5</b> Graphics in R (Part-I)</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="05-plots.html"><a href="05-plots.html#basic-plots-in-r"><i class="fa fa-check"></i><b>5.1</b> Basic Plots in R</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="05-plots.html"><a href="05-plots.html#scatter-plot"><i class="fa fa-check"></i><b>5.1.1</b> Scatter Plot</a></li>
+<li class="chapter" data-level="5.1.2" data-path="05-plots.html"><a href="05-plots.html#line-plot"><i class="fa fa-check"></i><b>5.1.2</b> Line Plot</a></li>
+<li class="chapter" data-level="5.1.3" data-path="05-plots.html"><a href="05-plots.html#bar-plot"><i class="fa fa-check"></i><b>5.1.3</b> Bar Plot</a></li>
+<li class="chapter" data-level="5.1.4" data-path="05-plots.html"><a href="05-plots.html#pie-chart"><i class="fa fa-check"></i><b>5.1.4</b> Pie Chart</a></li>
+<li class="chapter" data-level="5.1.5" data-path="05-plots.html"><a href="05-plots.html#scatter-plot-1"><i class="fa fa-check"></i><b>5.1.5</b> Scatter Plot</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="05-plots.html"><a href="05-plots.html#r-graphical-parameters"><i class="fa fa-check"></i><b>5.2</b> R Graphical Parameters</a></li>
+<li class="chapter" data-level="5.3" data-path="05-plots.html"><a href="05-plots.html#introduction-to-ggplot2"><i class="fa fa-check"></i><b>5.3</b> Introduction to ggplot2</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="05-plots.html"><a href="05-plots.html#mathttqplot"><i class="fa fa-check"></i><b>5.3.1</b> <span class="math inline">\(\mathtt{qplot}\)</span></a></li>
+<li class="chapter" data-level="5.3.2" data-path="05-plots.html"><a href="05-plots.html#layered-graphics-using-mathttggplot"><i class="fa fa-check"></i><b>5.3.2</b> Layered graphics using <span class="math inline">\(\mathtt{ggplot}\)</span></a></li>
+<li class="chapter" data-level="5.3.3" data-path="05-plots.html"><a href="05-plots.html#arranging-plots-using-gridextra"><i class="fa fa-check"></i><b>5.3.3</b> Arranging plots using gridExtra</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="06-plotsRmd.html"><a href="06-plotsRmd.html"><i class="fa fa-check"></i><b>6</b> Graphics in R (Part-II)</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="06-plotsRmd.html"><a href="06-plotsRmd.html#interactive-plots-using-plotly"><i class="fa fa-check"></i><b>6.1</b> Interactive Plots using Plotly</a></li>
+<li class="chapter" data-level="6.2" data-path="06-plotsRmd.html"><a href="06-plotsRmd.html#animation-using-gganimate"><i class="fa fa-check"></i><b>6.2</b> Animation using gganimate</a></li>
+<li class="chapter" data-level="6.3" data-path="06-plotsRmd.html"><a href="06-plotsRmd.html#plot-maps"><i class="fa fa-check"></i><b>6.3</b> Plot Maps</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="062-regression_1.html"><a href="062-regression_1.html"><i class="fa fa-check"></i>Part II</a></li>
+<li class="chapter" data-level="7" data-path="062-regression_1.html"><a href="062-regression_1.html#linear-regression"><i class="fa fa-check"></i><b>7</b> Linear Regression</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="062-regression_1.html"><a href="062-regression_1.html#investment-beta-using-r-single-index-model"><i class="fa fa-check"></i><b>7.1</b> Investment <span class="math inline">\(\beta\)</span> using R (Single Index Model)</a></li>
+<li class="chapter" data-level="7.2" data-path="062-regression_1.html"><a href="062-regression_1.html#data-preprocessing-1"><i class="fa fa-check"></i><b>7.2</b> Data preprocessing</a></li>
+<li class="chapter" data-level="7.3" data-path="062-regression_1.html"><a href="062-regression_1.html#visualisation"><i class="fa fa-check"></i><b>7.3</b> Visualisation</a></li>
+<li class="chapter" data-level="7.4" data-path="062-regression_1.html"><a href="062-regression_1.html#regression-analysis-using-lm"><i class="fa fa-check"></i><b>7.4</b> Regression analysis using lm</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="062-regression_1.html"><a href="062-regression_1.html#multiple-regression"><i class="fa fa-check"></i><b>8</b> Multiple Regression</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="062-regression_1.html"><a href="062-regression_1.html#fama-french-three-factor-model"><i class="fa fa-check"></i><b>8.1</b> Fama-French Three Factor Model</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="062-regression_1.html"><a href="062-regression_1.html#data-preprocessing-2"><i class="fa fa-check"></i><b>8.1.1</b> Data Preprocessing</a></li>
+<li class="chapter" data-level="8.1.2" data-path="062-regression_1.html"><a href="062-regression_1.html#regression-analysis"><i class="fa fa-check"></i><b>8.1.2</b> Regression Analysis</a></li>
+<li class="chapter" data-level="8.1.3" data-path="062-regression_1.html"><a href="062-regression_1.html#visualisation-1"><i class="fa fa-check"></i><b>8.1.3</b> Visualisation</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="062-regression_1.html"><a href="062-regression_1.html#panel-regression"><i class="fa fa-check"></i><b>9</b> Panel Regression</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="062-regression_1.html"><a href="062-regression_1.html#fixed-and-random-effects-using-the-plm-package"><i class="fa fa-check"></i><b>9.1</b> Fixed and Random effects using the <code>plm</code> package</a></li>
+<li class="chapter" data-level="9.2" data-path="062-regression_1.html"><a href="062-regression_1.html#fixed-effects-model"><i class="fa fa-check"></i><b>9.2</b> Fixed Effects Model</a></li>
+<li class="chapter" data-level="9.3" data-path="062-regression_1.html"><a href="062-regression_1.html#random-effects-model"><i class="fa fa-check"></i><b>9.3</b> Random Effects Model</a></li>
+<li class="chapter" data-level="9.4" data-path="062-regression_1.html"><a href="062-regression_1.html#testing"><i class="fa fa-check"></i><b>9.4</b> Testing</a>
+<ul>
+<li class="chapter" data-level="9.4.1" data-path="062-regression_1.html"><a href="062-regression_1.html#panel-or-ols"><i class="fa fa-check"></i><b>9.4.1</b> Panel or OLS</a></li>
+<li class="chapter" data-level="9.4.2" data-path="062-regression_1.html"><a href="062-regression_1.html#fixed-effect-or-random-effect"><i class="fa fa-check"></i><b>9.4.2</b> Fixed Effect or Random Effect</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="01-Part_1.html"><a href="01-Part_1.html"><i class="fa fa-check"></i><b>10</b> Technical Analysis using R</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="01-Part_1.html"><a href="01-Part_1.html#technical-analysis-ta-using-r"><i class="fa fa-check"></i><b>10.1</b> Technical Analysis (TA) using R</a></li>
+<li class="chapter" data-level="10.2" data-path="01-Part_1.html"><a href="01-Part_1.html#technical-charts"><i class="fa fa-check"></i><b>10.2</b> Technical Charts</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="01-Part_1.html"><a href="01-Part_1.html#candlesticks-and-ohlc-chart"><i class="fa fa-check"></i><b>10.2.1</b> Candlesticks and OHLC chart</a></li>
+<li class="chapter" data-level="10.2.2" data-path="01-Part_1.html"><a href="01-Part_1.html#line-chart"><i class="fa fa-check"></i><b>10.2.2</b> Line chart</a></li>
+<li class="chapter" data-level="10.2.3" data-path="01-Part_1.html"><a href="01-Part_1.html#candlestick-chart"><i class="fa fa-check"></i><b>10.2.3</b> Candlestick chart</a></li>
+<li class="chapter" data-level="10.2.4" data-path="01-Part_1.html"><a href="01-Part_1.html#add-technical-indicators"><i class="fa fa-check"></i><b>10.2.4</b> Add technical indicators</a></li>
+<li class="chapter" data-level="10.2.5" data-path="01-Part_1.html"><a href="01-Part_1.html#adding-indicators-sequentially"><i class="fa fa-check"></i><b>10.2.5</b> Adding indicators sequentially</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="01-Part_1.html"><a href="01-Part_1.html#forecasting-var-using-garch-models"><i class="fa fa-check"></i><b>11</b> Forecasting VaR using GARCH Models</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="01-Part_1.html"><a href="01-Part_1.html#value-at-risk"><i class="fa fa-check"></i><b>11.1</b> Value at Risk</a></li>
+<li class="chapter" data-level="11.2" data-path="01-Part_1.html"><a href="01-Part_1.html#volatility-modelling-forecasting-using-garch"><i class="fa fa-check"></i><b>11.2</b> Volatility Modelling &amp; Forecasting using GARCH</a></li>
+<li class="chapter" data-level="11.3" data-path="01-Part_1.html"><a href="01-Part_1.html#garch11-to-forecast-var"><i class="fa fa-check"></i><b>11.3</b> GARCH(1,1) to forecast VaR</a></li>
+<li class="chapter" data-level="11.4" data-path="01-Part_1.html"><a href="01-Part_1.html#var-forecasts-using-out-of-sample"><i class="fa fa-check"></i><b>11.4</b> VaR forecasts using out of sample</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="01-Part_2_portfolio.html"><a href="01-Part_2_portfolio.html"><i class="fa fa-check"></i><b>12</b> Portfolio Modelling using R</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="01-Part_2_portfolio.html"><a href="01-Part_2_portfolio.html#portfolio-analysis-quick-intro"><i class="fa fa-check"></i><b>12.1</b> Portfolio Analysis (Quick Intro)</a></li>
+<li class="chapter" data-level="12.2" data-path="01-Part_2_portfolio.html"><a href="01-Part_2_portfolio.html#mean-variance-portfolio-important-concepts"><i class="fa fa-check"></i><b>12.2</b> Mean Variance Portfolio: Important concepts</a>
+<ul>
+<li class="chapter" data-level="" data-path="01-Part_2_portfolio.html"><a href="01-Part_2_portfolio.html#expected-return"><i class="fa fa-check"></i>Expected Return</a></li>
+<li class="chapter" data-level="" data-path="01-Part_2_portfolio.html"><a href="01-Part_2_portfolio.html#risk"><i class="fa fa-check"></i>Risk</a></li>
+<li class="chapter" data-level="" data-path="01-Part_2_portfolio.html"><a href="01-Part_2_portfolio.html#covariance-of-returns"><i class="fa fa-check"></i>Covariance of Returns</a></li>
+<li class="chapter" data-level="" data-path="01-Part_2_portfolio.html"><a href="01-Part_2_portfolio.html#correlation"><i class="fa fa-check"></i>Correlation</a></li>
+<li class="chapter" data-level="" data-path="01-Part_2_portfolio.html"><a href="01-Part_2_portfolio.html#portfolio-return"><i class="fa fa-check"></i>Portfolio Return</a></li>
+<li class="chapter" data-level="" data-path="01-Part_2_portfolio.html"><a href="01-Part_2_portfolio.html#portfolio-risk"><i class="fa fa-check"></i>Portfolio Risk</a></li>
+<li class="chapter" data-level="" data-path="01-Part_2_portfolio.html"><a href="01-Part_2_portfolio.html#portfolio-risk-for-n-assets"><i class="fa fa-check"></i>Portfolio Risk for <em>N</em> Assets</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="01-Part_2_portfolio.html"><a href="01-Part_2_portfolio.html#diversification-markowitz-minimum-variance-portfolio"><i class="fa fa-check"></i><b>12.3</b> Diversification &amp; Markowitz Minimum Variance Portfolio</a></li>
+<li class="chapter" data-level="12.4" data-path="01-Part_2_portfolio.html"><a href="01-Part_2_portfolio.html#minimum-variance-portfolio"><i class="fa fa-check"></i><b>12.4</b> Minimum Variance Portfolio</a>
+<ul>
+<li class="chapter" data-level="12.4.1" data-path="01-Part_2_portfolio.html"><a href="01-Part_2_portfolio.html#efficient-weights-for-two-assets"><i class="fa fa-check"></i><b>12.4.1</b> Efficient Weights for Two Assets</a></li>
+<li class="chapter" data-level="12.4.2" data-path="01-Part_2_portfolio.html"><a href="01-Part_2_portfolio.html#portfolio-with-n-risky-assets"><i class="fa fa-check"></i><b>12.4.2</b> Portfolio with N Risky Assets</a></li>
+</ul></li>
+<li class="chapter" data-level="12.5" data-path="01-Part_2_portfolio.html"><a href="01-Part_2_portfolio.html#using-r-to-construct-multi-asset-portfolio"><i class="fa fa-check"></i><b>12.5</b> Using R to Construct Multi-Asset Portfolio</a>
+<ul>
+<li class="chapter" data-level="12.5.1" data-path="01-Part_2_portfolio.html"><a href="01-Part_2_portfolio.html#data"><i class="fa fa-check"></i><b>12.5.1</b> Data</a></li>
+<li class="chapter" data-level="12.5.2" data-path="01-Part_2_portfolio.html"><a href="01-Part_2_portfolio.html#portfolios-with-random-weights"><i class="fa fa-check"></i><b>12.5.2</b> Portfolios with random weights</a></li>
+</ul></li>
+<li class="chapter" data-level="12.6" data-path="01-Part_2_portfolio.html"><a href="01-Part_2_portfolio.html#efficient-minimum-variance-portfolio-using-r-packages"><i class="fa fa-check"></i><b>12.6</b> Efficient (Minimum Variance) Portfolio using R packages</a>
+<ul>
+<li class="chapter" data-level="12.6.1" data-path="01-Part_2_portfolio.html"><a href="01-Part_2_portfolio.html#minimum-variance-and-portfolio-for-a-given-level-of-return"><i class="fa fa-check"></i><b>12.6.1</b> Minimum Variance and portfolio for a given level of return</a></li>
+<li class="chapter" data-level="12.6.2" data-path="01-Part_2_portfolio.html"><a href="01-Part_2_portfolio.html#portfolio-with-box-constraints"><i class="fa fa-check"></i><b>12.6.2</b> Portfolio with Box Constraints</a></li>
+</ul></li>
+<li class="chapter" data-level="12.7" data-path="01-Part_2_portfolio.html"><a href="01-Part_2_portfolio.html#evaluating-portfoios-risk-adjusted-performance"><i class="fa fa-check"></i><b>12.7</b> Evaluating Portfoios: Risk Adjusted Performance</a>
+<ul>
+<li class="chapter" data-level="12.7.1" data-path="01-Part_2_portfolio.html"><a href="01-Part_2_portfolio.html#sharpe-ratio"><i class="fa fa-check"></i><b>12.7.1</b> Sharpe Ratio</a></li>
+<li class="chapter" data-level="12.7.2" data-path="01-Part_2_portfolio.html"><a href="01-Part_2_portfolio.html#roys-safety-ratio"><i class="fa fa-check"></i><b>12.7.2</b> Roy’s Safety Ratio</a></li>
+<li class="chapter" data-level="12.7.3" data-path="01-Part_2_portfolio.html"><a href="01-Part_2_portfolio.html#treynors-ratio"><i class="fa fa-check"></i><b>12.7.3</b> Treynor’s Ratio</a></li>
+<li class="chapter" data-level="12.7.4" data-path="01-Part_2_portfolio.html"><a href="01-Part_2_portfolio.html#sharpe-ratio-portfolio-in-r"><i class="fa fa-check"></i><b>12.7.4</b> Sharpe Ratio (Portfolio) in R</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="04-Part_3-1.html"><a href="04-Part_3-1.html"><i class="fa fa-check"></i>Part III</a></li>
+<li class="chapter" data-level="13" data-path="04-Part_3-1.html"><a href="04-Part_3-1.html#machine-learning-using-r-introduction-to-data-splitting-sampling-resampling"><i class="fa fa-check"></i><b>13</b> Machine Learning using R-Introduction to Data Splitting, Sampling &amp; Resampling</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="04-Part_3-1.html"><a href="04-Part_3-1.html#machine-learning-process-quick-intro"><i class="fa fa-check"></i><b>13.1</b> Machine Learning Process (Quick Intro)</a></li>
+<li class="chapter" data-level="13.2" data-path="04-Part_3-1.html"><a href="04-Part_3-1.html#data-splitting-sampling"><i class="fa fa-check"></i><b>13.2</b> Data Splitting: Sampling</a></li>
+<li class="chapter" data-level="13.3" data-path="04-Part_3-1.html"><a href="04-Part_3-1.html#random-sampling"><i class="fa fa-check"></i><b>13.3</b> Random Sampling</a>
+<ul>
+<li class="chapter" data-level="13.3.1" data-path="04-Part_3-1.html"><a href="04-Part_3-1.html#base-r"><i class="fa fa-check"></i><b>13.3.1</b> Base R</a></li>
+<li class="chapter" data-level="13.3.2" data-path="04-Part_3-1.html"><a href="04-Part_3-1.html#using-the-caret-package"><i class="fa fa-check"></i><b>13.3.2</b> Using the <code>caret</code> package</a></li>
+<li class="chapter" data-level="13.3.3" data-path="04-Part_3-1.html"><a href="04-Part_3-1.html#using-the-rsample-package"><i class="fa fa-check"></i><b>13.3.3</b> Using the <code>rsample</code> package</a></li>
+</ul></li>
+<li class="chapter" data-level="13.4" data-path="04-Part_3-1.html"><a href="04-Part_3-1.html#stratified-sampling"><i class="fa fa-check"></i><b>13.4</b> Stratified Sampling</a></li>
+<li class="chapter" data-level="13.5" data-path="04-Part_3-1.html"><a href="04-Part_3-1.html#resampling"><i class="fa fa-check"></i><b>13.5</b> Resampling</a></li>
+<li class="chapter" data-level="13.6" data-path="04-Part_3-1.html"><a href="04-Part_3-1.html#k-fold-cross-validation"><i class="fa fa-check"></i><b>13.6</b> K-fold Cross Validation</a>
+<ul>
+<li class="chapter" data-level="" data-path="04-Part_3-1.html"><a href="04-Part_3-1.html#k-fold-cv-in-r"><i class="fa fa-check"></i>K-fold CV in R</a></li>
+</ul></li>
+<li class="chapter" data-level="13.7" data-path="04-Part_3-1.html"><a href="04-Part_3-1.html#cv-for-time-series-data"><i class="fa fa-check"></i><b>13.7</b> CV for time series data</a>
+<ul>
+<li class="chapter" data-level="" data-path="04-Part_3-1.html"><a href="04-Part_3-1.html#cv-for-time-series-in-r"><i class="fa fa-check"></i>CV for time series in R</a></li>
+</ul></li>
+<li class="chapter" data-level="13.8" data-path="04-Part_3-1.html"><a href="04-Part_3-1.html#bootstrapping"><i class="fa fa-check"></i><b>13.8</b> Bootstrapping</a>
+<ul>
+<li class="chapter" data-level="" data-path="04-Part_3-1.html"><a href="04-Part_3-1.html#bootsrapping-in-r"><i class="fa fa-check"></i>Bootsrapping in R</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="04-Part_3_logistic.html"><a href="04-Part_3_logistic.html"><i class="fa fa-check"></i><b>14</b> Logistic Regression &amp; K-Nearest Neighbour (kNN) for Classification</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="04-Part_3_logistic.html"><a href="04-Part_3_logistic.html#logistic-regression"><i class="fa fa-check"></i><b>14.1</b> Logistic Regression</a></li>
+<li class="chapter" data-level="14.2" data-path="04-Part_3_logistic.html"><a href="04-Part_3_logistic.html#k-nearest-neighbour"><i class="fa fa-check"></i><b>14.2</b> K-Nearest Neighbour</a>
+<ul>
+<li class="chapter" data-level="" data-path="04-Part_3_logistic.html"><a href="04-Part_3_logistic.html#nearest-neighbour-classification-quick-introduction"><i class="fa fa-check"></i>Nearest Neighbour classification (Quick Introduction)</a></li>
+<li class="chapter" data-level="" data-path="04-Part_3_logistic.html"><a href="04-Part_3_logistic.html#k-nn-algorithm"><i class="fa fa-check"></i>k-NN Algorithm</a></li>
+</ul></li>
+<li class="chapter" data-level="14.3" data-path="04-Part_3_logistic.html"><a href="04-Part_3_logistic.html#forecasting-stock-price-movement-using-ml"><i class="fa fa-check"></i><b>14.3</b> Forecasting Stock Price Movement using ML</a>
+<ul>
+<li class="chapter" data-level="14.3.1" data-path="04-Part_3_logistic.html"><a href="04-Part_3_logistic.html#data-indicators"><i class="fa fa-check"></i><b>14.3.1</b> Data &amp; Indicators</a></li>
+<li class="chapter" data-level="14.3.2" data-path="04-Part_3_logistic.html"><a href="04-Part_3_logistic.html#visualise-the-data"><i class="fa fa-check"></i><b>14.3.2</b> Visualise the data</a></li>
+<li class="chapter" data-level="14.3.3" data-path="04-Part_3_logistic.html"><a href="04-Part_3_logistic.html#using-logistic-regression"><i class="fa fa-check"></i><b>14.3.3</b> Using Logistic Regression</a></li>
+<li class="chapter" data-level="14.3.4" data-path="04-Part_3_logistic.html"><a href="04-Part_3_logistic.html#using-k-nn"><i class="fa fa-check"></i><b>14.3.4</b> Using K-NN</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="04-Part_2.html"><a href="04-Part_2.html"><i class="fa fa-check"></i><b>15</b> Decision Trees using R</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="04-Part_2.html"><a href="04-Part_2.html#import-data-and-pre-processing"><i class="fa fa-check"></i><b>15.1</b> Import Data and Pre-processing</a></li>
+<li class="chapter" data-level="15.2" data-path="04-Part_2.html"><a href="04-Part_2.html#visualisation-some-features"><i class="fa fa-check"></i><b>15.2</b> Visualisation some features</a></li>
+<li class="chapter" data-level="15.3" data-path="04-Part_2.html"><a href="04-Part_2.html#creating-training-and-testing-set-and-control"><i class="fa fa-check"></i><b>15.3</b> Creating Training and Testing Set and Control</a></li>
+<li class="chapter" data-level="15.4" data-path="04-Part_2.html"><a href="04-Part_2.html#train-the-model-on-the-training-set"><i class="fa fa-check"></i><b>15.4</b> Train the model on the training set</a></li>
+<li class="chapter" data-level="15.5" data-path="04-Part_2.html"><a href="04-Part_2.html#prediction-and-accuracy"><i class="fa fa-check"></i><b>15.5</b> Prediction and Accuracy</a>
+<ul>
+<li class="chapter" data-level="15.5.1" data-path="04-Part_2.html"><a href="04-Part_2.html#model-1"><i class="fa fa-check"></i><b>15.5.1</b> Model-1</a></li>
+<li class="chapter" data-level="15.5.2" data-path="04-Part_2.html"><a href="04-Part_2.html#model-2"><i class="fa fa-check"></i><b>15.5.2</b> Model-2</a></li>
+</ul></li>
+<li class="chapter" data-level="15.6" data-path="04-Part_2.html"><a href="04-Part_2.html#feature-interpretation"><i class="fa fa-check"></i><b>15.6</b> Feature Interpretation</a></li>
+<li class="chapter" data-level="15.7" data-path="04-Part_2.html"><a href="04-Part_2.html#tree-visualisation"><i class="fa fa-check"></i><b>15.7</b> Tree visualisation</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="05-method2.html"><a href="05-method2.html"><i class="fa fa-check"></i><b>16</b> Text Mining using R</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="05-method2.html"><a href="05-method2.html#introduction-to-text-mining"><i class="fa fa-check"></i><b>16.1</b> Introduction to Text Mining</a>
+<ul>
+<li class="chapter" data-level="16.1.1" data-path="05-method2.html"><a href="05-method2.html#text-data"><i class="fa fa-check"></i><b>16.1.1</b> Text Data</a></li>
+<li class="chapter" data-level="16.1.2" data-path="05-method2.html"><a href="05-method2.html#generic-text-mining-system"><i class="fa fa-check"></i><b>16.1.2</b> Generic Text Mining System</a></li>
+<li class="chapter" data-level="16.1.3" data-path="05-method2.html"><a href="05-method2.html#data-pre-processing-in-text-mining"><i class="fa fa-check"></i><b>16.1.3</b> Data pre-processing in Text Mining</a></li>
+</ul></li>
+<li class="chapter" data-level="16.2" data-path="05-method2.html"><a href="05-method2.html#mining-twitter-text-data-using-r"><i class="fa fa-check"></i><b>16.2</b> Mining Twitter Text Data using R</a>
+<ul>
+<li class="chapter" data-level="16.2.1" data-path="05-method2.html"><a href="05-method2.html#obtaining-twitter-data"><i class="fa fa-check"></i><b>16.2.1</b> Obtaining Twitter Data</a></li>
+</ul></li>
+<li class="chapter" data-level="16.3" data-path="05-method2.html"><a href="05-method2.html#download-data"><i class="fa fa-check"></i><b>16.3</b> Download Data</a></li>
+<li class="chapter" data-level="16.4" data-path="05-method2.html"><a href="05-method2.html#data-pre-processing"><i class="fa fa-check"></i><b>16.4</b> Data Pre-processing</a></li>
+<li class="chapter" data-level="16.5" data-path="05-method2.html"><a href="05-method2.html#some-visualisation"><i class="fa fa-check"></i><b>16.5</b> Some Visualisation</a></li>
+<li class="chapter" data-level="16.6" data-path="05-method2.html"><a href="05-method2.html#sentiment-analysis"><i class="fa fa-check"></i><b>16.6</b> Sentiment Analysis</a>
+<ul>
+<li class="chapter" data-level="16.6.1" data-path="05-method2.html"><a href="05-method2.html#method"><i class="fa fa-check"></i><b>16.6.1</b> Method</a></li>
+</ul></li>
+<li class="chapter" data-level="16.7" data-path="05-method2.html"><a href="05-method2.html#topic-modelling"><i class="fa fa-check"></i><b>16.7</b> Topic Modelling</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="06-method3.html"><a href="06-method3.html"><i class="fa fa-check"></i>Part IV</a></li>
+<li class="chapter" data-level="17" data-path="06-method3.html"><a href="06-method3.html#bibliometrix-analysis-using-r"><i class="fa fa-check"></i><b>17</b> Bibliometrix Analysis using R</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="06-method3.html"><a href="06-method3.html#introduction-to-bibliometric-analysis"><i class="fa fa-check"></i><b>17.1</b> Introduction to Bibliometric Analysis</a></li>
+<li class="chapter" data-level="17.2" data-path="06-method3.html"><a href="06-method3.html#r-and-bibliometric-analysis"><i class="fa fa-check"></i><b>17.2</b> R and Bibliometric analysis</a></li>
+<li class="chapter" data-level="17.3" data-path="06-method3.html"><a href="06-method3.html#bibliometrix-example"><i class="fa fa-check"></i><b>17.3</b> Bibliometrix Example</a></li>
+<li class="chapter" data-level="17.4" data-path="06-method3.html"><a href="06-method3.html#descriptive-analysis"><i class="fa fa-check"></i><b>17.4</b> Descriptive Analysis</a>
+<ul>
+<li class="chapter" data-level="17.4.1" data-path="06-method3.html"><a href="06-method3.html#productive-authors"><i class="fa fa-check"></i><b>17.4.1</b> Productive Authors</a></li>
+<li class="chapter" data-level="17.4.2" data-path="06-method3.html"><a href="06-method3.html#most-cited-papers"><i class="fa fa-check"></i><b>17.4.2</b> Most cited papers</a></li>
+</ul></li>
+<li class="chapter" data-level="17.5" data-path="06-method3.html"><a href="06-method3.html#information-plots"><i class="fa fa-check"></i><b>17.5</b> Information Plots</a>
+<ul>
+<li class="chapter" data-level="17.5.1" data-path="06-method3.html"><a href="06-method3.html#summary-plot-1-most-porductive-authors"><i class="fa fa-check"></i><b>17.5.1</b> Summary Plot-1 (Most Porductive Authors)</a></li>
+<li class="chapter" data-level="17.5.2" data-path="06-method3.html"><a href="06-method3.html#summary-plot-2-most-productive-countries"><i class="fa fa-check"></i><b>17.5.2</b> Summary Plot-2 (Most Productive Countries)</a></li>
+<li class="chapter" data-level="17.5.3" data-path="06-method3.html"><a href="06-method3.html#summary-plot-3-annual-scientific-production"><i class="fa fa-check"></i><b>17.5.3</b> Summary Plot-3 (Annual Scientific Production)</a></li>
+<li class="chapter" data-level="17.5.4" data-path="06-method3.html"><a href="06-method3.html#summary-plot-4-average-article-citation"><i class="fa fa-check"></i><b>17.5.4</b> Summary Plot-4 (Average Article Citation)</a></li>
+<li class="chapter" data-level="17.5.5" data-path="06-method3.html"><a href="06-method3.html#summary-plot-5-author-production-over-time"><i class="fa fa-check"></i><b>17.5.5</b> Summary Plot-5 (Author Production Over Time)</a></li>
+<li class="chapter" data-level="17.5.6" data-path="06-method3.html"><a href="06-method3.html#sankey-plot"><i class="fa fa-check"></i><b>17.5.6</b> Sankey plot</a></li>
+</ul></li>
+<li class="chapter" data-level="17.6" data-path="06-method3.html"><a href="06-method3.html#co-word-analysis"><i class="fa fa-check"></i><b>17.6</b> Co-word Analysis</a></li>
+<li class="chapter" data-level="17.7" data-path="06-method3.html"><a href="06-method3.html#author-collaboration-network"><i class="fa fa-check"></i><b>17.7</b> Author collaboration network</a></li>
+<li class="chapter" data-level="17.8" data-path="06-method3.html"><a href="06-method3.html#keyword-co-occurance"><i class="fa fa-check"></i><b>17.8</b> Keyword co-occurance</a></li>
+<li class="chapter" data-level="17.9" data-path="06-method3.html"><a href="06-method3.html#thematic-map"><i class="fa fa-check"></i><b>17.9</b> Thematic Map</a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="06-summary.html"><a href="06-summary.html"><i class="fa fa-check"></i><b>18</b> Work in Progress</a></li>
+<li class="chapter" data-level="" data-path="07-references.html"><a href="07-references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><img src="firebrick3RA_img.png" height="60" width="60" style="position:bottom:0px;right:0px;"/></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R for Data Analytics</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="part-iv" class="section level1 unnumbered hasAnchor">
+<h1>Part IV<a href="06-method3.html#part-iv" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+</div>
+<div id="bibliometrix-analysis-using-r" class="section level1 hasAnchor" number="17">
+<h1><span class="header-section-number">Topic 17</span> Bibliometrix Analysis using R<a href="06-method3.html#bibliometrix-analysis-using-r" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><img src="rforda.png" height="100" width="100" style="position:absolute;top:0px;right:0px;" /></p>
+<div id="introduction-to-bibliometric-analysis" class="section level2 hasAnchor" number="17.1">
+<h2><span class="header-section-number">17.1</span> Introduction to Bibliometric Analysis<a href="06-method3.html#introduction-to-bibliometric-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>Bibliometric analysis is a widely used method for explorative and analytical studies of large volumes of research data.</li>
+<li>The analysis is helpful in discovering various evolutionary variations in a specific field of study as well as highligting emerging topics in the field.</li>
+<li><em>Bibliometrics is the application of quantitative analysis and statistics to publications such as journal articles and their accompanying citation counts.</em> (<a href="https://en.wikipedia.org/wiki/Bibliometrix" class="uri">https://en.wikipedia.org/wiki/Bibliometrix</a>)</li>
+<li>Various methods are used to analyse the publication data to evaluate growth, maturity, leading authors, conceptual stuctures, trends, topical evolution etc.</li>
+</ul>
+</div>
+<div id="r-and-bibliometric-analysis" class="section level2 hasAnchor" number="17.2">
+<h2><span class="header-section-number">17.2</span> R and Bibliometric analysis<a href="06-method3.html#r-and-bibliometric-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>R’s package ecosystem is one of its major advantages, there are packages available for most widely used statistical and data analysis &amp; visualisation techniques used several packages added almost daily on new and upcoming methods published by academic researchers or industry practitioners.</p>
+<ul>
+<li><p>R provide packages for various areas of interest (see <a href="https://cran.r-project.org/web/views/" class="uri">https://cran.r-project.org/web/views/</a> for a list of task views grouping packages according to their functionality ) including systematic literature review or the related field of meta analysis.</p></li>
+<li><p>Bibliometrix (<span class="citation">Aria &amp; Cuccurullo (<a href="#ref-Aria2017" role="doc-biblioref">2017</a>)</span>), Revtools (<span class="citation">Westgate (<a href="#ref-Westgate2018" role="doc-biblioref">2018</a>)</span>) and Litsearchr (<span class="citation">E. Grames, Stillman, Tingley, &amp; Elphick (<a href="#ref-Grames2019" role="doc-biblioref">2019</a>)</span>,<span class="citation">E. M. Grames, Stillman, Tingley, &amp; Elphick (<a href="#ref-Grames2019a" role="doc-biblioref">2019</a>)</span>) of the Metaverse (<a href="https://rmetaverse.github.io/" class="uri">https://rmetaverse.github.io/</a>) project, Adjutant (<span class="citation">Crisan, Munzner, &amp; Gardy (<a href="#ref-crisan2018adjutant" role="doc-biblioref">2018</a>)</span>), Metagear (<span class="citation">Lajeunesse (<a href="#ref-Lajeunesse2016" role="doc-biblioref">2016</a>)</span>)) are a few providing various functionality.</p></li>
+<li><p>Bibliometrix is by far the most popular with several publications using the package</p></li>
+<li><p>The package webpage (<a href="http://www.bibliometrix.org/Papers.html" class="uri">http://www.bibliometrix.org/Papers.html</a>) provides a list of publications utilising the package. (for example see, <span class="citation">Lajeunesse (<a href="#ref-Lajeunesse2016" role="doc-biblioref">2016</a>)</span>; <span class="citation">Addor &amp; Melsen (<a href="#ref-Addor2019" role="doc-biblioref">2019</a>)</span>) and hence we will use the package to demonstrate some of its functionality.</p></li>
+<li><p><span class="citation">Linnenluecke, Marrone, &amp; Singh (<a href="#ref-Linnenluecke2020" role="doc-biblioref">2020</a>)</span>, <span class="citation">Ahadi, Singh, Bower, &amp; Garrett (<a href="#ref-Ahadi2022" role="doc-biblioref">2022</a>)</span> provide two examples of using Bibliometric analysis in a Systematic Literature Review</p></li>
+</ul>
+</div>
+<div id="bibliometrix-example" class="section level2 hasAnchor" number="17.3">
+<h2><span class="header-section-number">17.3</span> Bibliometrix Example<a href="06-method3.html#bibliometrix-example" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li><p>Bibliometrix (<a href="https://www.bibliometrix.org/" class="uri">https://www.bibliometrix.org/</a>) allows R users to import a bibliography database generated using SCOPUS and Web of Science stored either as a Bibtex (.bib) or Plain Text (.txt) file.</p></li>
+<li><p>The package has simple functions which allows for descriptive analyses as shown in table-1 to table-3.</p></li>
+<li><p>The analysis can also be easily visualised as shown in figure-17.1 to 17.5.</p></li>
+</ul>
+<div class="sourceCode" id="cb418"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb418-1"><a href="06-method3.html#cb418-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(bibliometrix)  <span class="co">#load the package</span></span>
+<span id="cb418-2"><a href="06-method3.html#cb418-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pander)  <span class="co">#other required packages</span></span>
+<span id="cb418-3"><a href="06-method3.html#cb418-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb418-4"><a href="06-method3.html#cb418-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span>
+<span id="cb418-5"><a href="06-method3.html#cb418-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb418-6"><a href="06-method3.html#cb418-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(bibliometrixData)</span>
+<span id="cb418-7"><a href="06-method3.html#cb418-7" aria-hidden="true" tabindex="-1"></a><span class="co"># use scopuscollection data from the package</span></span>
+<span id="cb418-8"><a href="06-method3.html#cb418-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb418-9"><a href="06-method3.html#cb418-9" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;scientometrics&quot;</span>)</span>
+<span id="cb418-10"><a href="06-method3.html#cb418-10" aria-hidden="true" tabindex="-1"></a><span class="co"># M=convert2df(file=&#39;scopus.bib&#39;,format=&#39;bibtex&#39;,dbsource = &#39;scopus&#39;)#convert</span></span>
+<span id="cb418-11"><a href="06-method3.html#cb418-11" aria-hidden="true" tabindex="-1"></a><span class="co"># external data to data frame</span></span></code></pre></div>
+</div>
+<div id="descriptive-analysis" class="section level2 hasAnchor" number="17.4">
+<h2><span class="header-section-number">17.4</span> Descriptive Analysis<a href="06-method3.html#descriptive-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb419"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb419-1"><a href="06-method3.html#cb419-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Descriptive analysis</span></span>
+<span id="cb419-2"><a href="06-method3.html#cb419-2" aria-hidden="true" tabindex="-1"></a>M <span class="ot">=</span> scientometrics  <span class="co">#just to reuse the other code</span></span>
+<span id="cb419-3"><a href="06-method3.html#cb419-3" aria-hidden="true" tabindex="-1"></a>res1 <span class="ot">=</span> <span class="fu">biblioAnalysis</span>(M, <span class="at">sep =</span> <span class="st">&quot;;&quot;</span>)</span>
+<span id="cb419-4"><a href="06-method3.html#cb419-4" aria-hidden="true" tabindex="-1"></a>s1 <span class="ot">=</span> <span class="fu">summary</span>(res1, <span class="at">k =</span> <span class="dv">10</span>, <span class="at">pause =</span> <span class="cn">FALSE</span>, <span class="at">verbose =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb419-5"><a href="06-method3.html#cb419-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb419-6"><a href="06-method3.html#cb419-6" aria-hidden="true" tabindex="-1"></a>d1 <span class="ot">=</span> s1<span class="sc">$</span>MainInformationDF  <span class="co">#main information </span></span>
+<span id="cb419-7"><a href="06-method3.html#cb419-7" aria-hidden="true" tabindex="-1"></a>d2 <span class="ot">=</span> s1<span class="sc">$</span>MostProdAuthors  <span class="co">#Most productive Authors </span></span>
+<span id="cb419-8"><a href="06-method3.html#cb419-8" aria-hidden="true" tabindex="-1"></a>d3 <span class="ot">=</span> s1<span class="sc">$</span>MostCitedPapers  <span class="co">#most cited papers </span></span>
+<span id="cb419-9"><a href="06-method3.html#cb419-9" aria-hidden="true" tabindex="-1"></a><span class="fu">pander</span>(d1, <span class="at">caption =</span> <span class="st">&quot;Summary Information&quot;</span>)</span></code></pre></div>
+<table style="width:62%;">
+<caption>Summary Information</caption>
+<colgroup>
+<col width="45%" />
+<col width="16%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Description</th>
+<th align="center">Results</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">MAIN INFORMATION ABOUT DATA</td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td align="center">Timespan</td>
+<td align="center">1985:2015</td>
+</tr>
+<tr class="odd">
+<td align="center">Sources (Journals, Books, etc)</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td align="center">Documents</td>
+<td align="center">147</td>
+</tr>
+<tr class="odd">
+<td align="center">Average years from publication</td>
+<td align="center">14.1</td>
+</tr>
+<tr class="even">
+<td align="center">Average citations per
+documents</td>
+<td align="center">14.81</td>
+</tr>
+<tr class="odd">
+<td align="center">Average citations per year per
+doc</td>
+<td align="center">0.8168</td>
+</tr>
+<tr class="even">
+<td align="center">References</td>
+<td align="center">4444</td>
+</tr>
+<tr class="odd">
+<td align="center">DOCUMENT TYPES</td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td align="center">article</td>
+<td align="center">125</td>
+</tr>
+<tr class="odd">
+<td align="center">article; proceedings paper</td>
+<td align="center">19</td>
+</tr>
+<tr class="even">
+<td align="center">review</td>
+<td align="center">3</td>
+</tr>
+<tr class="odd">
+<td align="center">DOCUMENT CONTENTS</td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td align="center">Keywords Plus (ID)</td>
+<td align="center">392</td>
+</tr>
+<tr class="odd">
+<td align="center">Author’s Keywords (DE)</td>
+<td align="center">342</td>
+</tr>
+<tr class="even">
+<td align="center">AUTHORS</td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td align="center">Authors</td>
+<td align="center">269</td>
+</tr>
+<tr class="even">
+<td align="center">Author Appearances</td>
+<td align="center">337</td>
+</tr>
+<tr class="odd">
+<td align="center">Authors of single-authored
+documents</td>
+<td align="center">32</td>
+</tr>
+<tr class="even">
+<td align="center">Authors of multi-authored
+documents</td>
+<td align="center">237</td>
+</tr>
+<tr class="odd">
+<td align="center">AUTHORS COLLABORATION</td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td align="center">Single-authored documents</td>
+<td align="center">38</td>
+</tr>
+<tr class="odd">
+<td align="center">Documents per Author</td>
+<td align="center">0.546</td>
+</tr>
+<tr class="even">
+<td align="center">Authors per Document</td>
+<td align="center">1.83</td>
+</tr>
+<tr class="odd">
+<td align="center">Co-Authors per Documents</td>
+<td align="center">2.29</td>
+</tr>
+<tr class="even">
+<td align="center">Collaboration Index</td>
+<td align="center">2.17</td>
+</tr>
+</tbody>
+</table>
+<div id="productive-authors" class="section level3 hasAnchor" number="17.4.1">
+<h3><span class="header-section-number">17.4.1</span> Productive Authors<a href="06-method3.html#productive-authors" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb420"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb420-1"><a href="06-method3.html#cb420-1" aria-hidden="true" tabindex="-1"></a>s1<span class="sc">$</span>MostProdAuthors</span></code></pre></div>
+<pre><code>   Authors        Articles Authors        Articles Fractionalized
+1  SMALL H               8 SMALL H                           6.33
+2  ZITT M                6 ZITT M                            3.00
+3  BASSECOULARD E        5 JARNEVING B                       2.50
+4  GLANZEL W             5 GLANZEL W                         2.17
+5  HUANG MH              5 BASSECOULARD E                    2.00
+6  THIJS B               4 LO SC                             2.00
+7  AHLGREN P             3 HUANG MH                          1.79
+8  CHEN DZ               3 THIJS B                           1.67
+9  JARNEVING B           3 LEYDESDORFF L                     1.50
+10 QIU JP                3 MILMAN BL                         1.50</code></pre>
+<div class="sourceCode" id="cb422"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb422-1"><a href="06-method3.html#cb422-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pander</span>(d2, <span class="at">caption =</span> <span class="st">&quot;Most Productive Authors&quot;</span>, <span class="at">table.split =</span> <span class="cn">Inf</span>)</span></code></pre></div>
+<table style="width:99%;">
+<caption>Most Productive Authors</caption>
+<colgroup>
+<col width="23%" />
+<col width="15%" />
+<col width="23%" />
+<col width="36%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Authors</th>
+<th align="center">Articles</th>
+<th align="center">Authors</th>
+<th align="center">Articles Fractionalized</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">SMALL H</td>
+<td align="center">8</td>
+<td align="center">SMALL H</td>
+<td align="center">6.33</td>
+</tr>
+<tr class="even">
+<td align="center">ZITT M</td>
+<td align="center">6</td>
+<td align="center">ZITT M</td>
+<td align="center">3.00</td>
+</tr>
+<tr class="odd">
+<td align="center">BASSECOULARD E</td>
+<td align="center">5</td>
+<td align="center">JARNEVING B</td>
+<td align="center">2.50</td>
+</tr>
+<tr class="even">
+<td align="center">GLANZEL W</td>
+<td align="center">5</td>
+<td align="center">GLANZEL W</td>
+<td align="center">2.17</td>
+</tr>
+<tr class="odd">
+<td align="center">HUANG MH</td>
+<td align="center">5</td>
+<td align="center">BASSECOULARD E</td>
+<td align="center">2.00</td>
+</tr>
+<tr class="even">
+<td align="center">THIJS B</td>
+<td align="center">4</td>
+<td align="center">LO SC</td>
+<td align="center">2.00</td>
+</tr>
+<tr class="odd">
+<td align="center">AHLGREN P</td>
+<td align="center">3</td>
+<td align="center">HUANG MH</td>
+<td align="center">1.79</td>
+</tr>
+<tr class="even">
+<td align="center">CHEN DZ</td>
+<td align="center">3</td>
+<td align="center">THIJS B</td>
+<td align="center">1.67</td>
+</tr>
+<tr class="odd">
+<td align="center">JARNEVING B</td>
+<td align="center">3</td>
+<td align="center">LEYDESDORFF L</td>
+<td align="center">1.50</td>
+</tr>
+<tr class="even">
+<td align="center">QIU JP</td>
+<td align="center">3</td>
+<td align="center">MILMAN BL</td>
+<td align="center">1.50</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="most-cited-papers" class="section level3 hasAnchor" number="17.4.2">
+<h3><span class="header-section-number">17.4.2</span> Most cited papers<a href="06-method3.html#most-cited-papers" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb423"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb423-1"><a href="06-method3.html#cb423-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pander</span>(d3, <span class="at">caption =</span> <span class="st">&quot;Most Cited Papers&quot;</span>)</span></code></pre></div>
+<table style="width:90%;">
+<caption>Most Cited Papers</caption>
+<colgroup>
+<col width="45%" />
+<col width="8%" />
+<col width="8%" />
+<col width="16%" />
+<col width="11%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Paper</th>
+<th align="center">DOI</th>
+<th align="center">TC</th>
+<th align="center">TCperYear</th>
+<th align="center">NTC</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">BOYACK KW, 2005,
+SCIENTOMETRICS</td>
+<td align="center"></td>
+<td align="center">283</td>
+<td align="center">15.72</td>
+<td align="center">3.997</td>
+</tr>
+<tr class="even">
+<td align="center">SMALL H, 1985,
+SCIENTOMETRICS-a</td>
+<td align="center"></td>
+<td align="center">148</td>
+<td align="center">3.89</td>
+<td align="center">1.065</td>
+</tr>
+<tr class="odd">
+<td align="center">VAN ECK NJ, 2010,
+SCIENTOMETRICS</td>
+<td align="center"></td>
+<td align="center">142</td>
+<td align="center">10.92</td>
+<td align="center">5.004</td>
+</tr>
+<tr class="even">
+<td align="center">SMALL H, 1985, SCIENTOMETRICS</td>
+<td align="center"></td>
+<td align="center">130</td>
+<td align="center">3.42</td>
+<td align="center">0.935</td>
+</tr>
+<tr class="odd">
+<td align="center">SMALL H, 2006, SCIENTOMETRICS</td>
+<td align="center"></td>
+<td align="center">83</td>
+<td align="center">4.88</td>
+<td align="center">3.487</td>
+</tr>
+<tr class="even">
+<td align="center">GMUR M, 2003, SCIENTOMETRICS</td>
+<td align="center"></td>
+<td align="center">78</td>
+<td align="center">3.90</td>
+<td align="center">2.806</td>
+</tr>
+<tr class="odd">
+<td align="center">ZITT M, 1994, SCIENTOMETRICS</td>
+<td align="center"></td>
+<td align="center">60</td>
+<td align="center">2.07</td>
+<td align="center">2.353</td>
+</tr>
+<tr class="even">
+<td align="center">GLANZEL W, 1996,
+SCIENTOMETRICS</td>
+<td align="center"></td>
+<td align="center">58</td>
+<td align="center">2.15</td>
+<td align="center">1.798</td>
+</tr>
+<tr class="odd">
+<td align="center">DING Y, 2000, SCIENTOMETRICS</td>
+<td align="center"></td>
+<td align="center">46</td>
+<td align="center">2.00</td>
+<td align="center">2.667</td>
+</tr>
+<tr class="even">
+<td align="center">PONZI LJ, 2002, SCIENTOMETRICS</td>
+<td align="center"></td>
+<td align="center">44</td>
+<td align="center">2.10</td>
+<td align="center">1.234</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="information-plots" class="section level2 hasAnchor" number="17.5">
+<h2><span class="header-section-number">17.5</span> Information Plots<a href="06-method3.html#information-plots" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb424"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb424-1"><a href="06-method3.html#cb424-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">=</span> <span class="fu">plot</span>(res1, <span class="at">pause =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div id="summary-plot-1-most-porductive-authors" class="section level3 hasAnchor" number="17.5.1">
+<h3><span class="header-section-number">17.5.1</span> Summary Plot-1 (Most Porductive Authors)<a href="06-method3.html#summary-plot-1-most-porductive-authors" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb425"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb425-1"><a href="06-method3.html#cb425-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb425-2"><a href="06-method3.html#cb425-2" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_bw</span>())</span>
+<span id="cb425-3"><a href="06-method3.html#cb425-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb425-4"><a href="06-method3.html#cb425-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb425-5"><a href="06-method3.html#cb425-5" aria-hidden="true" tabindex="-1"></a>p1[[<span class="dv">1</span>]] <span class="sc">+</span> <span class="fu">theme_bw</span>() <span class="sc">+</span> <span class="fu">scale_x_discrete</span>(<span class="at">limits =</span> <span class="fu">rev</span>(<span class="fu">levels</span>(<span class="fu">as.factor</span>(p1[[<span class="dv">1</span>]]<span class="sc">$</span>data<span class="sc">$</span>AU))))</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:bib1"></span>
+<img src="R_for_Analytics_files/figure-html/bib1-1.png" alt="Most Productive Authors" width="672" />
+<p class="caption">
+Figure 17.1: Most Productive Authors
+</p>
+</div>
+</div>
+<div id="summary-plot-2-most-productive-countries" class="section level3 hasAnchor" number="17.5.2">
+<h3><span class="header-section-number">17.5.2</span> Summary Plot-2 (Most Productive Countries)<a href="06-method3.html#summary-plot-2-most-productive-countries" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb426"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb426-1"><a href="06-method3.html#cb426-1" aria-hidden="true" tabindex="-1"></a>p1[[<span class="dv">2</span>]]</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:bib2"></span>
+<img src="R_for_Analytics_files/figure-html/bib2-1.png" alt="Most Productive Countries" width="672" />
+<p class="caption">
+Figure 17.2: Most Productive Countries
+</p>
+</div>
+</div>
+<div id="summary-plot-3-annual-scientific-production" class="section level3 hasAnchor" number="17.5.3">
+<h3><span class="header-section-number">17.5.3</span> Summary Plot-3 (Annual Scientific Production)<a href="06-method3.html#summary-plot-3-annual-scientific-production" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb427"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb427-1"><a href="06-method3.html#cb427-1" aria-hidden="true" tabindex="-1"></a>p1[[<span class="dv">3</span>]]</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:bib3"></span>
+<img src="R_for_Analytics_files/figure-html/bib3-1.png" alt="Annual Scientific Production" width="672" />
+<p class="caption">
+Figure 17.3: Annual Scientific Production
+</p>
+</div>
+</div>
+<div id="summary-plot-4-average-article-citation" class="section level3 hasAnchor" number="17.5.4">
+<h3><span class="header-section-number">17.5.4</span> Summary Plot-4 (Average Article Citation)<a href="06-method3.html#summary-plot-4-average-article-citation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb428"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb428-1"><a href="06-method3.html#cb428-1" aria-hidden="true" tabindex="-1"></a>p1[[<span class="dv">4</span>]]</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:bib4"></span>
+<img src="R_for_Analytics_files/figure-html/bib4-1.png" alt="Average Article Citation" width="672" />
+<p class="caption">
+Figure 17.4: Average Article Citation
+</p>
+</div>
+</div>
+<div id="summary-plot-5-author-production-over-time" class="section level3 hasAnchor" number="17.5.5">
+<h3><span class="header-section-number">17.5.5</span> Summary Plot-5 (Author Production Over Time)<a href="06-method3.html#summary-plot-5-author-production-over-time" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><p>A graph for author statistics over time can also be produced.</p></li>
+<li><p>Figure-17.5 shows a graph of top 10 authors over time. The information from these plots can be easily extracted to summarise them in a table.</p></li>
+</ul>
+<div class="sourceCode" id="cb429"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb429-1"><a href="06-method3.html#cb429-1" aria-hidden="true" tabindex="-1"></a>topAU <span class="ot">=</span> <span class="fu">authorProdOverTime</span>(M, <span class="at">k =</span> <span class="dv">10</span>, <span class="at">graph =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:bib5"></span>
+<img src="R_for_Analytics_files/figure-html/bib5-1.png" alt="Author Production Over Time" width="960" />
+<p class="caption">
+Figure 17.5: Author Production Over Time
+</p>
+</div>
+</div>
+<div id="sankey-plot" class="section level3 hasAnchor" number="17.5.6">
+<h3><span class="header-section-number">17.5.6</span> Sankey plot<a href="06-method3.html#sankey-plot" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Bibliometrix provides another useful function to plot a Sankey diagram to visualise multiple attributes at the same time. For example, figure-9 provides a three fields plot for Author, Author Keywords and Cited References.</li>
+</ul>
+<div class="sourceCode" id="cb430"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb430-1"><a href="06-method3.html#cb430-1" aria-hidden="true" tabindex="-1"></a><span class="fu">threeFieldsPlot</span>(M, <span class="at">fields =</span> <span class="fu">c</span>(<span class="st">&quot;DE&quot;</span>, <span class="st">&quot;AU&quot;</span>, <span class="st">&quot;AU_CO&quot;</span>))</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:bib6"></span>
+<div id="htmlwidget-ee42a1bfc52ca0f88eb1" style="width:20cm;height:15cm;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-ee42a1bfc52ca0f88eb1">{"x":{"visdat":{"125075b471d0":["function () ","plotlyVisDat"]},"cur_data":"125075b471d0","attrs":{"125075b471d0":{"arrangement":"snap","node":{"label":["bibliographic coupling","bibliometrics","co-citation analysis","co-citation","citation analysis","cluster analysis","author co-citation analysis","research fronts","science mapping","text mining","intellectual structure","document co-citation analysis","hybrid clustering","small h","zitt m","bassecoulard e","glanzel w","huang mh","thijs b","ahlgren p","chen dz","jarneving b","qiu jp","tsay my","zhang j","zhao ry","boyack kw","chang cp","chen cm","dastidar pg","dwivedi yk","guan jc","ingwersen p","china","usa","france","belgium","netherlands","sweden","hungary","germany","united kingdom","india","denmark","austria"],"x":[0,0,0,0,0,0,0,0,0,0,0,0,0,0.454545454545455,0.454545454545455,0.454545454545455,0.454545454545455,0.454545454545455,0.454545454545455,0.454545454545455,0.454545454545455,0.454545454545455,0.454545454545455,0.454545454545455,0.454545454545455,0.454545454545455,0.454545454545455,0.454545454545455,0.454545454545455,0.454545454545455,0.454545454545455,0.454545454545455,0.454545454545455,0.909090909090909,0.909090909090909,0.909090909090909,0.909090909090909,0.909090909090909,0.909090909090909,0.909090909090909,0.909090909090909,0.909090909090909,0.909090909090909,0.909090909090909,0.909090909090909],"y":[0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1],"color":["#A60A43","#AE1345","#B71C47","#BF2649","#C72F4B","#D0384D","#D7414E","#DB484C","#E04F4A","#E55648","#EA5D46","#F99354","#FA9D59","#FDB063","#FDB869","#FDBF6F","#FDC776","#FDCF7C","#FDD683","#FDDE89","#FBE28C","#F7E58E","#F3E890","#F0EC92","#ECEF94","#E8F296","#E4F498","#DBF09A","#D2EC9C","#C8E99D","#C0E59F","#B7E1A1","#ADDEA3","#A3DAA4","#99D6A4","#8ED2A4","#84CDA4","#79C9A4","#6FC5A4","#65C1A5","#5DB8A9","#4DA6B0","#459DB4","#4371B2","#5060AA"],"pad":4},"link":{"source":[7,0,1,8,0,1,8,0,5,9,12,0,3,7,0,5,9,12,0,5,8,0,0,1,6,0,3,5,6,11,2,0,3,7,2,3,4,10,16,17,18,20,22,23,24,25,27,28,30,31,13,22,23,24,26,28,14,15,16,18,19,19,21,16,18,16,30,29,32,16,18],"target":[13,14,14,14,15,15,15,16,16,16,16,17,17,17,18,18,18,18,19,19,19,20,22,22,22,23,24,24,25,25,26,27,27,27,28,30,30,30,33,33,33,33,33,33,33,33,33,33,33,33,34,34,34,34,34,34,35,35,36,36,37,38,38,39,39,40,41,42,43,44,44],"value":[1,1,1,1,1,1,1,3,1,3,3,2,2,2,3,1,3,3,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,2,1,2,1,1,1,13,1,11,5,6,8,5,4,1,2,4,10,1,2,2,5,3,11,10,6,6,1,5,3,5,4,3,2,4,3,1,1]},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"sankey"}},"layout":{"margin":{"b":100,"l":50,"t":100,"r":50,"pad":2},"annotations":[{"text":"DE","x":0,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"DE","x":0,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"DE","x":0,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"DE","x":0,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"DE","x":0,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"DE","x":0,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"DE","x":0,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"DE","x":0,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"DE","x":0,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"DE","x":0,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"DE","x":0,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"DE","x":0,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"DE","x":0,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"AU","x":0.454545454545455,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"AU","x":0.454545454545455,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"AU","x":0.454545454545455,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"AU","x":0.454545454545455,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"AU","x":0.454545454545455,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"AU","x":0.454545454545455,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"AU","x":0.454545454545455,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"AU","x":0.454545454545455,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"AU","x":0.454545454545455,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"AU","x":0.454545454545455,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"AU","x":0.454545454545455,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"AU","x":0.454545454545455,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"AU","x":0.454545454545455,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"AU","x":0.454545454545455,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"AU","x":0.454545454545455,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"AU","x":0.454545454545455,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"AU","x":0.454545454545455,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"AU","x":0.454545454545455,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"AU","x":0.454545454545455,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"AU","x":0.454545454545455,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"AU_CO","x":0.909090909090909,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"AU_CO","x":0.909090909090909,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"AU_CO","x":0.909090909090909,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"AU_CO","x":0.909090909090909,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"AU_CO","x":0.909090909090909,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"AU_CO","x":0.909090909090909,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"AU_CO","x":0.909090909090909,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"AU_CO","x":0.909090909090909,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"AU_CO","x":0.909090909090909,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"AU_CO","x":0.909090909090909,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"AU_CO","x":0.909090909090909,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"AU_CO","x":0.909090909090909,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}}],"hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"arrangement":"snap","node":{"label":["bibliographic coupling","bibliometrics","co-citation analysis","co-citation","citation analysis","cluster analysis","author co-citation analysis","research fronts","science mapping","text mining","intellectual structure","document co-citation analysis","hybrid clustering","small h","zitt m","bassecoulard e","glanzel w","huang mh","thijs b","ahlgren p","chen dz","jarneving b","qiu jp","tsay my","zhang j","zhao ry","boyack kw","chang cp","chen cm","dastidar pg","dwivedi yk","guan jc","ingwersen p","china","usa","france","belgium","netherlands","sweden","hungary","germany","united kingdom","india","denmark","austria"],"x":[0,0,0,0,0,0,0,0,0,0,0,0,0,0.454545454545455,0.454545454545455,0.454545454545455,0.454545454545455,0.454545454545455,0.454545454545455,0.454545454545455,0.454545454545455,0.454545454545455,0.454545454545455,0.454545454545455,0.454545454545455,0.454545454545455,0.454545454545455,0.454545454545455,0.454545454545455,0.454545454545455,0.454545454545455,0.454545454545455,0.454545454545455,0.909090909090909,0.909090909090909,0.909090909090909,0.909090909090909,0.909090909090909,0.909090909090909,0.909090909090909,0.909090909090909,0.909090909090909,0.909090909090909,0.909090909090909,0.909090909090909],"y":[0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1],"color":["#A60A43","#AE1345","#B71C47","#BF2649","#C72F4B","#D0384D","#D7414E","#DB484C","#E04F4A","#E55648","#EA5D46","#F99354","#FA9D59","#FDB063","#FDB869","#FDBF6F","#FDC776","#FDCF7C","#FDD683","#FDDE89","#FBE28C","#F7E58E","#F3E890","#F0EC92","#ECEF94","#E8F296","#E4F498","#DBF09A","#D2EC9C","#C8E99D","#C0E59F","#B7E1A1","#ADDEA3","#A3DAA4","#99D6A4","#8ED2A4","#84CDA4","#79C9A4","#6FC5A4","#65C1A5","#5DB8A9","#4DA6B0","#459DB4","#4371B2","#5060AA"],"pad":4},"link":{"source":[7,0,1,8,0,1,8,0,5,9,12,0,3,7,0,5,9,12,0,5,8,0,0,1,6,0,3,5,6,11,2,0,3,7,2,3,4,10,16,17,18,20,22,23,24,25,27,28,30,31,13,22,23,24,26,28,14,15,16,18,19,19,21,16,18,16,30,29,32,16,18],"target":[13,14,14,14,15,15,15,16,16,16,16,17,17,17,18,18,18,18,19,19,19,20,22,22,22,23,24,24,25,25,26,27,27,27,28,30,30,30,33,33,33,33,33,33,33,33,33,33,33,33,34,34,34,34,34,34,35,35,36,36,37,38,38,39,39,40,41,42,43,44,44],"value":[1,1,1,1,1,1,1,3,1,3,3,2,2,2,3,1,3,3,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,2,1,2,1,1,1,13,1,11,5,6,8,5,4,1,2,4,10,1,2,2,5,3,11,10,6,6,1,5,3,5,4,3,2,4,3,1,1]},"type":"sankey","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<p class="caption">
+Figure 17.6: Sankey Diagram
+</p>
+</div>
+</div>
+</div>
+<div id="co-word-analysis" class="section level2 hasAnchor" number="17.6">
+<h2><span class="header-section-number">17.6</span> Co-word Analysis<a href="06-method3.html#co-word-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>Analysis of the conceptual structure among the articles analysed.</li>
+<li>Bibliomentrix can conduct a co-word analysis to map the conceptual structure of a framework using the word co-occurrences in a bibliographic database.</li>
+<li>The analysis in Figure-2 is conducted using the Correspondence Analysis and K-Means clustering using Author’s keywords. This analysis includes Natural Language Processing and is conducted without stemming.</li>
+</ul>
+<div class="sourceCode" id="cb431"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb431-1"><a href="06-method3.html#cb431-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gridExtra)</span>
+<span id="cb431-2"><a href="06-method3.html#cb431-2" aria-hidden="true" tabindex="-1"></a>CS <span class="ot">=</span> <span class="fu">conceptualStructure</span>(M, <span class="at">field =</span> <span class="st">&quot;DE&quot;</span>, <span class="at">method =</span> <span class="st">&quot;CA&quot;</span>, <span class="at">minDegree =</span> <span class="dv">4</span>, <span class="at">clust =</span> <span class="st">&quot;auto&quot;</span>,</span>
+<span id="cb431-3"><a href="06-method3.html#cb431-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">stemming =</span> <span class="cn">FALSE</span>, <span class="at">labelsize =</span> <span class="dv">8</span>, <span class="at">documents =</span> <span class="dv">10</span>, <span class="at">graph =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb431-4"><a href="06-method3.html#cb431-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb431-5"><a href="06-method3.html#cb431-5" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.arrange</span>(CS[[<span class="dv">4</span>]], CS[[<span class="dv">5</span>]], <span class="at">ncol =</span> <span class="dv">2</span>, <span class="at">nrow =</span> <span class="dv">1</span>)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:bib7"></span>
+<img src="R_for_Analytics_files/figure-html/bib7-1.png" alt="Conceptual Structures-1" width="960" />
+<p class="caption">
+Figure 17.7: Conceptual Structures-1
+</p>
+</div>
+</div>
+<div id="author-collaboration-network" class="section level2 hasAnchor" number="17.7">
+<h2><span class="header-section-number">17.7</span> Author collaboration network<a href="06-method3.html#author-collaboration-network" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb432"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb432-1"><a href="06-method3.html#cb432-1" aria-hidden="true" tabindex="-1"></a>NetMatrix <span class="ot">&lt;-</span> <span class="fu">biblioNetwork</span>(M, <span class="at">analysis =</span> <span class="st">&quot;collaboration&quot;</span>, <span class="at">network =</span> <span class="st">&quot;authors&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;;&quot;</span>)</span>
+<span id="cb432-2"><a href="06-method3.html#cb432-2" aria-hidden="true" tabindex="-1"></a>net <span class="ot">=</span> <span class="fu">networkPlot</span>(NetMatrix, <span class="at">n =</span> <span class="dv">50</span>, <span class="at">Title =</span> <span class="st">&quot;Author collaboration&quot;</span>, <span class="at">type =</span> <span class="st">&quot;auto&quot;</span>,</span>
+<span id="cb432-3"><a href="06-method3.html#cb432-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> <span class="dv">10</span>, <span class="at">size.cex =</span> T, <span class="at">edgesize =</span> <span class="dv">3</span>, <span class="at">labelsize =</span> <span class="fl">0.6</span>)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:bib8"></span>
+<img src="R_for_Analytics_files/figure-html/bib8-1.png" alt="Author Collaboration Network" width="1152" />
+<p class="caption">
+Figure 17.8: Author Collaboration Network
+</p>
+</div>
+</div>
+<div id="keyword-co-occurance" class="section level2 hasAnchor" number="17.8">
+<h2><span class="header-section-number">17.8</span> Keyword co-occurance<a href="06-method3.html#keyword-co-occurance" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb433"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb433-1"><a href="06-method3.html#cb433-1" aria-hidden="true" tabindex="-1"></a>Netmatrix2 <span class="ot">=</span> <span class="fu">biblioNetwork</span>(M, <span class="at">analysis =</span> <span class="st">&quot;co-occurrences&quot;</span>, <span class="at">network =</span> <span class="st">&quot;keywords&quot;</span>,</span>
+<span id="cb433-2"><a href="06-method3.html#cb433-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">sep =</span> <span class="st">&quot;;&quot;</span>)</span>
+<span id="cb433-3"><a href="06-method3.html#cb433-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb433-4"><a href="06-method3.html#cb433-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the network</span></span>
+<span id="cb433-5"><a href="06-method3.html#cb433-5" aria-hidden="true" tabindex="-1"></a>net <span class="ot">=</span> <span class="fu">networkPlot</span>(Netmatrix2, <span class="at">normalize =</span> <span class="st">&quot;association&quot;</span>, <span class="at">weighted =</span> T, <span class="at">n =</span> <span class="dv">50</span>, <span class="at">Title =</span> <span class="st">&quot;Keyword Co-occurrences&quot;</span>,</span>
+<span id="cb433-6"><a href="06-method3.html#cb433-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">type =</span> <span class="st">&quot;fruchterman&quot;</span>, <span class="at">size =</span> T, <span class="at">edgesize =</span> <span class="dv">5</span>, <span class="at">labelsize =</span> <span class="fl">0.7</span>)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:bib9"></span>
+<img src="R_for_Analytics_files/figure-html/bib9-1.png" alt="Keyword co-occurance" width="1152" />
+<p class="caption">
+Figure 17.9: Keyword co-occurance
+</p>
+</div>
+</div>
+<div id="thematic-map" class="section level2 hasAnchor" number="17.9">
+<h2><span class="header-section-number">17.9</span> Thematic Map<a href="06-method3.html#thematic-map" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Co-word analysis draws clusters of keywords. They are considered as themes, whose density and centrality can be used in classifying themes and mapping in a two-dimensional diagram.</p>
+<p>Thematic map is a very intuitive plot and we can analyze themes according to the quadrant in which they are placed: (1) upper-right quadrant: motor-themes; (2) lower-right quadrant: basic themes; (3) lower-left quadrant: emerging or disappearing themes; (4) upper-left quadrant: very specialized/niche themes.</p>
+<div class="sourceCode" id="cb434"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb434-1"><a href="06-method3.html#cb434-1" aria-hidden="true" tabindex="-1"></a>Map <span class="ot">=</span> <span class="fu">thematicMap</span>(M, <span class="at">field =</span> <span class="st">&quot;ID&quot;</span>, <span class="at">n =</span> <span class="dv">1000</span>, <span class="at">minfreq =</span> <span class="dv">5</span>, <span class="at">stemming =</span> <span class="cn">FALSE</span>, <span class="at">size =</span> <span class="fl">0.5</span>,</span>
+<span id="cb434-2"><a href="06-method3.html#cb434-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">n.labels =</span> <span class="dv">4</span>, <span class="at">repel =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb434-3"><a href="06-method3.html#cb434-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(Map<span class="sc">$</span>map)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:ThematicMap"></span>
+<img src="R_for_Analytics_files/figure-html/ThematicMap-1.png" alt="Thematic Map" width="1152" />
+<p class="caption">
+Figure 17.10: Thematic Map
+</p>
+</div>
+<blockquote>
+<p>Finally there is a shiny based GUI also available <code>biblioshiny()</code></p>
+</blockquote>
+
+</div>
+</div>
+<h3>References<a href="07-references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="refs" class="references csl-bib-body hanging-indent" line-spacing="2">
+<div id="ref-Addor2019" class="csl-entry">
+Addor, N., &amp; Melsen, L. (2019). Legacy, rather than adequacy, drives the selection of hydrological models. <em>Water Resources Research</em>, <em>55</em>(1), 378–390.
+</div>
+<div id="ref-Ahadi2022" class="csl-entry">
+Ahadi, A., Singh, A., Bower, M., &amp; Garrett, M. (2022). Text mining in education&amp;mdash;a bibliometrics-based systematic review. <em>Education Sciences</em>, <em>12</em>(3). <a href="https://doi.org/10.3390/educsci12030210">https://doi.org/10.3390/educsci12030210</a>
+</div>
+<div id="ref-Aria2017" class="csl-entry">
+Aria, M., &amp; Cuccurullo, C. (2017). Bibliometrix: An r-tool for comprehensive science mapping analysis. <em>Journal of Informetrics</em>, <em>11</em>(4), 959–975. Retrieved from <a href="https://doi.org/10.1016/j.joi.2017.08.007">https://doi.org/10.1016/j.joi.2017.08.007</a>
+</div>
+<div id="ref-crisan2018adjutant" class="csl-entry">
+Crisan, A., Munzner, T., &amp; Gardy, J. L. (2018). Adjutant: An r-based tool to support topic discovery for systematic and literature reviews. <em>Bioinformatics</em>, <em>35</em>(6), 1070–1072.
+</div>
+<div id="ref-Grames2019a" class="csl-entry">
+Grames, E. M., Stillman, A. N., Tingley, M. W., &amp; Elphick, C. S. (2019). An automated approach to identifying search terms for systematic reviews using keyword co-occurrence networks. <em>Methods in Ecology and Evolution</em>, <em>0</em>(ja). <a href="https://doi.org/10.1111/2041-210X.13268">https://doi.org/10.1111/2041-210X.13268</a>
+</div>
+<div id="ref-Grames2019" class="csl-entry">
+Grames, E., Stillman, A., Tingley, M., &amp; Elphick, C. (2019). <em>Litsearchr: Automated search term selection and search strategy for systematic reviews</em>.
+</div>
+<div id="ref-Lajeunesse2016" class="csl-entry">
+Lajeunesse, M. J. (2016). Facilitating systematic reviews, data extraction and meta-analysis with the metagear package for r. <em>Methods in Ecology and Evolution</em>, <em>7</em>(3), 323–330.
+</div>
+<div id="ref-Linnenluecke2020" class="csl-entry">
+Linnenluecke, M. K., Marrone, M., &amp; Singh, A. K. (2020). Conducting systematic literature reviews and bibliometric analyses. <em>Australian Journal of Management</em>, <em>45</em>(2), 175–194. <a href="https://doi.org/10.1177/0312896219877678">https://doi.org/10.1177/0312896219877678</a>
+</div>
+<div id="ref-Westgate2018" class="csl-entry">
+Westgate, M. J. (2018). Revtools: Bibliographic data visualization for evidence synthesis in r. <em>bioArXiv</em>. <a href="https://doi.org/10.1101/262881">https://doi.org/10.1101/262881</a>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="05-method2.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="06-summary.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

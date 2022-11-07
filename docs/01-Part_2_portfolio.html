@@ -1,0 +1,1400 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Topic 12 Portfolio Modelling using R | R for Data Analytics</title>
+  <meta name="description" content="This is a collection of examples on using R for Data Analytics" />
+  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Topic 12 Portfolio Modelling using R | R for Data Analytics" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="This is a collection of examples on using R for Data Analytics" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Topic 12 Portfolio Modelling using R | R for Data Analytics" />
+  
+  <meta name="twitter:description" content="This is a collection of examples on using R for Data Analytics" />
+  
+
+<meta name="author" content="Abhay Singh" />
+
+
+<meta name="date" content="2022-11-08" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  <link rel="shortcut icon" href="rforda.png" type="image/x-icon" />
+<link rel="prev" href="01-Part_1.html"/>
+<link rel="next" href="04-Part_3-1.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.10.1/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
+<link href="libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<link href="libs/wordcloud2-0.0.1/wordcloud.css" rel="stylesheet" />
+<script src="libs/wordcloud2-0.0.1/wordcloud2-all.js"></script>
+<script src="libs/wordcloud2-0.0.1/hover.js"></script>
+<script src="libs/wordcloud2-binding-0.2.1/wordcloud2.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">R for Data Analytics</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#about-the-author"><i class="fa fa-check"></i>About the author</a></li>
+<li class="chapter" data-level="" data-path="01-intro.html"><a href="01-intro.html"><i class="fa fa-check"></i>Part I</a></li>
+<li class="chapter" data-level="1" data-path="01-intro.html"><a href="01-intro.html#what-is-r"><i class="fa fa-check"></i><b>1</b> What is R?</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="01-intro.html"><a href="01-intro.html#why-should-we-learn-r"><i class="fa fa-check"></i><b>1.1</b> Why should we learn R?</a></li>
+<li class="chapter" data-level="1.2" data-path="01-intro.html"><a href="01-intro.html#Rinstall"><i class="fa fa-check"></i><b>1.2</b> Installing R and RStudio on Windows</a></li>
+<li class="chapter" data-level="1.3" data-path="01-intro.html"><a href="01-intro.html#rstudio-guiide"><i class="fa fa-check"></i><b>1.3</b> RStudio GUI/IDE</a></li>
+<li class="chapter" data-level="1.4" data-path="01-intro.html"><a href="01-intro.html#installing-packages"><i class="fa fa-check"></i><b>1.4</b> Installing Packages</a></li>
+<li class="chapter" data-level="1.5" data-path="01-intro.html"><a href="01-intro.html#getting-help"><i class="fa fa-check"></i><b>1.5</b> Getting Help</a></li>
+<li class="chapter" data-level="1.6" data-path="01-intro.html"><a href="01-intro.html#task-views-in-r-introduction-installation"><i class="fa fa-check"></i><b>1.6</b> Task Views in R-Introduction &amp; Installation</a></li>
+<li class="chapter" data-level="1.7" data-path="01-intro.html"><a href="01-intro.html#r-core-packages"><i class="fa fa-check"></i><b>1.7</b> R core packages</a></li>
+<li class="chapter" data-level="1.8" data-path="01-intro.html"><a href="01-intro.html#example-1-hello-r"><i class="fa fa-check"></i><b>1.8</b> Example-1 Hello R!</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="02-data.html"><a href="02-data.html"><i class="fa fa-check"></i><b>2</b> R Data Types and Data Structures</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="02-data.html"><a href="02-data.html#data-types"><i class="fa fa-check"></i><b>2.1</b> Data Types</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="02-data.html"><a href="02-data.html#double"><i class="fa fa-check"></i><b>2.1.1</b> Double</a></li>
+<li class="chapter" data-level="2.1.2" data-path="02-data.html"><a href="02-data.html#integer"><i class="fa fa-check"></i><b>2.1.2</b> Integer</a></li>
+<li class="chapter" data-level="2.1.3" data-path="02-data.html"><a href="02-data.html#logical"><i class="fa fa-check"></i><b>2.1.3</b> Logical</a></li>
+<li class="chapter" data-level="2.1.4" data-path="02-data.html"><a href="02-data.html#character"><i class="fa fa-check"></i><b>2.1.4</b> Character</a></li>
+<li class="chapter" data-level="2.1.5" data-path="02-data.html"><a href="02-data.html#factor"><i class="fa fa-check"></i><b>2.1.5</b> Factor</a></li>
+<li class="chapter" data-level="2.1.6" data-path="02-data.html"><a href="02-data.html#date-time"><i class="fa fa-check"></i><b>2.1.6</b> Date &amp; Time</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="02-data.html"><a href="02-data.html#data-structures-in-r"><i class="fa fa-check"></i><b>2.2</b> Data Structures in R</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="02-data.html"><a href="02-data.html#vector"><i class="fa fa-check"></i><b>2.2.1</b> Vector</a></li>
+<li class="chapter" data-level="2.2.2" data-path="02-data.html"><a href="02-data.html#matrices"><i class="fa fa-check"></i><b>2.2.2</b> Matrices</a></li>
+<li class="chapter" data-level="2.2.3" data-path="02-data.html"><a href="02-data.html#arrays"><i class="fa fa-check"></i><b>2.2.3</b> Arrays</a></li>
+<li class="chapter" data-level="2.2.4" data-path="02-data.html"><a href="02-data.html#data-frames"><i class="fa fa-check"></i><b>2.2.4</b> Data Frames</a></li>
+<li class="chapter" data-level="2.2.5" data-path="02-data.html"><a href="02-data.html#lists"><i class="fa fa-check"></i><b>2.2.5</b> Lists</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="02-data.html"><a href="02-data.html#data-importexport-in-r"><i class="fa fa-check"></i><b>2.3</b> Data Import/Export in R</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="02-data.html"><a href="02-data.html#reading-data-from-a-text-file"><i class="fa fa-check"></i><b>2.3.1</b> Reading Data from a Text File</a></li>
+<li class="chapter" data-level="2.3.2" data-path="02-data.html"><a href="02-data.html#reading-data-from-csv-files"><i class="fa fa-check"></i><b>2.3.2</b> Reading Data from CSV files</a></li>
+<li class="chapter" data-level="2.3.3" data-path="02-data.html"><a href="02-data.html#reading-from-excel-files"><i class="fa fa-check"></i><b>2.3.3</b> Reading from Excel Files</a></li>
+<li class="chapter" data-level="2.3.4" data-path="02-data.html"><a href="02-data.html#reading-from-data-files-from-other-statistical-systems"><i class="fa fa-check"></i><b>2.3.4</b> Reading from Data Files from other Statistical Systems</a></li>
+<li class="chapter" data-level="2.3.5" data-path="02-data.html"><a href="02-data.html#importing-data-using-rstudio"><i class="fa fa-check"></i><b>2.3.5</b> Importing Data using RStudio</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="03-programming_data_preprocessing.html"><a href="03-programming_data_preprocessing.html"><i class="fa fa-check"></i><b>3</b> R Programming - Short Introduction</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="03-programming_data_preprocessing.html"><a href="03-programming_data_preprocessing.html#programming-control-flow"><i class="fa fa-check"></i><b>3.1</b> Programming Control Flow</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="03-programming_data_preprocessing.html"><a href="03-programming_data_preprocessing.html#if-else-conditional-statements"><i class="fa fa-check"></i><b>3.1.1</b> if-else Conditional Statements</a></li>
+<li class="chapter" data-level="3.1.2" data-path="03-programming_data_preprocessing.html"><a href="03-programming_data_preprocessing.html#loops"><i class="fa fa-check"></i><b>3.1.2</b> Loops</a></li>
+<li class="chapter" data-level="3.1.3" data-path="03-programming_data_preprocessing.html"><a href="03-programming_data_preprocessing.html#mathttwhile-loop"><i class="fa fa-check"></i><b>3.1.3</b> <span class="math inline">\(\mathtt{while}\)</span> loop</a></li>
+<li class="chapter" data-level="3.1.4" data-path="03-programming_data_preprocessing.html"><a href="03-programming_data_preprocessing.html#mathttrepeat-loop"><i class="fa fa-check"></i><b>3.1.4</b> <span class="math inline">\(\mathtt{repeat}\)</span> loop</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="03-programming_data_preprocessing.html"><a href="03-programming_data_preprocessing.html#functions-in-r"><i class="fa fa-check"></i><b>3.2</b> Functions in R</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="04-Data_Exploration.html"><a href="04-Data_Exploration.html"><i class="fa fa-check"></i><b>4</b> Data Exploration</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="04-Data_Exploration.html"><a href="04-Data_Exploration.html#data-preprocessing"><i class="fa fa-check"></i><b>4.1</b> Data Preprocessing</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="04-Data_Exploration.html"><a href="04-Data_Exploration.html#extracting-data"><i class="fa fa-check"></i><b>4.1.1</b> Extracting Data</a></li>
+<li class="chapter" data-level="4.1.2" data-path="04-Data_Exploration.html"><a href="04-Data_Exploration.html#combining-data-frames"><i class="fa fa-check"></i><b>4.1.2</b> Combining Data Frames</a></li>
+<li class="chapter" data-level="4.1.3" data-path="04-Data_Exploration.html"><a href="04-Data_Exploration.html#sub-setting-and-logical-data-selection"><i class="fa fa-check"></i><b>4.1.3</b> Sub setting and Logical Data Selection</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="04-Data_Exploration.html"><a href="04-Data_Exploration.html#data-transformation-from-wide-to-long-or-vice-versa"><i class="fa fa-check"></i><b>4.2</b> Data Transformation from Wide to Long (or vice versa)</a></li>
+<li class="chapter" data-level="4.3" data-path="04-Data_Exploration.html"><a href="04-Data_Exploration.html#summary-statistics"><i class="fa fa-check"></i><b>4.3</b> Summary Statistics</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="04-Data_Exploration.html"><a href="04-Data_Exploration.html#example-descriptive-statistics-of-stock-returns"><i class="fa fa-check"></i><b>4.3.1</b> Example-Descriptive Statistics of Stock Returns</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="05-plots.html"><a href="05-plots.html"><i class="fa fa-check"></i><b>5</b> Graphics in R (Part-I)</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="05-plots.html"><a href="05-plots.html#basic-plots-in-r"><i class="fa fa-check"></i><b>5.1</b> Basic Plots in R</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="05-plots.html"><a href="05-plots.html#scatter-plot"><i class="fa fa-check"></i><b>5.1.1</b> Scatter Plot</a></li>
+<li class="chapter" data-level="5.1.2" data-path="05-plots.html"><a href="05-plots.html#line-plot"><i class="fa fa-check"></i><b>5.1.2</b> Line Plot</a></li>
+<li class="chapter" data-level="5.1.3" data-path="05-plots.html"><a href="05-plots.html#bar-plot"><i class="fa fa-check"></i><b>5.1.3</b> Bar Plot</a></li>
+<li class="chapter" data-level="5.1.4" data-path="05-plots.html"><a href="05-plots.html#pie-chart"><i class="fa fa-check"></i><b>5.1.4</b> Pie Chart</a></li>
+<li class="chapter" data-level="5.1.5" data-path="05-plots.html"><a href="05-plots.html#scatter-plot-1"><i class="fa fa-check"></i><b>5.1.5</b> Scatter Plot</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="05-plots.html"><a href="05-plots.html#r-graphical-parameters"><i class="fa fa-check"></i><b>5.2</b> R Graphical Parameters</a></li>
+<li class="chapter" data-level="5.3" data-path="05-plots.html"><a href="05-plots.html#introduction-to-ggplot2"><i class="fa fa-check"></i><b>5.3</b> Introduction to ggplot2</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="05-plots.html"><a href="05-plots.html#mathttqplot"><i class="fa fa-check"></i><b>5.3.1</b> <span class="math inline">\(\mathtt{qplot}\)</span></a></li>
+<li class="chapter" data-level="5.3.2" data-path="05-plots.html"><a href="05-plots.html#layered-graphics-using-mathttggplot"><i class="fa fa-check"></i><b>5.3.2</b> Layered graphics using <span class="math inline">\(\mathtt{ggplot}\)</span></a></li>
+<li class="chapter" data-level="5.3.3" data-path="05-plots.html"><a href="05-plots.html#arranging-plots-using-gridextra"><i class="fa fa-check"></i><b>5.3.3</b> Arranging plots using gridExtra</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="06-plotsRmd.html"><a href="06-plotsRmd.html"><i class="fa fa-check"></i><b>6</b> Graphics in R (Part-II)</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="06-plotsRmd.html"><a href="06-plotsRmd.html#interactive-plots-using-plotly"><i class="fa fa-check"></i><b>6.1</b> Interactive Plots using Plotly</a></li>
+<li class="chapter" data-level="6.2" data-path="06-plotsRmd.html"><a href="06-plotsRmd.html#animation-using-gganimate"><i class="fa fa-check"></i><b>6.2</b> Animation using gganimate</a></li>
+<li class="chapter" data-level="6.3" data-path="06-plotsRmd.html"><a href="06-plotsRmd.html#plot-maps"><i class="fa fa-check"></i><b>6.3</b> Plot Maps</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="062-regression_1.html"><a href="062-regression_1.html"><i class="fa fa-check"></i>Part II</a></li>
+<li class="chapter" data-level="7" data-path="062-regression_1.html"><a href="062-regression_1.html#linear-regression"><i class="fa fa-check"></i><b>7</b> Linear Regression</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="062-regression_1.html"><a href="062-regression_1.html#investment-beta-using-r-single-index-model"><i class="fa fa-check"></i><b>7.1</b> Investment <span class="math inline">\(\beta\)</span> using R (Single Index Model)</a></li>
+<li class="chapter" data-level="7.2" data-path="062-regression_1.html"><a href="062-regression_1.html#data-preprocessing-1"><i class="fa fa-check"></i><b>7.2</b> Data preprocessing</a></li>
+<li class="chapter" data-level="7.3" data-path="062-regression_1.html"><a href="062-regression_1.html#visualisation"><i class="fa fa-check"></i><b>7.3</b> Visualisation</a></li>
+<li class="chapter" data-level="7.4" data-path="062-regression_1.html"><a href="062-regression_1.html#regression-analysis-using-lm"><i class="fa fa-check"></i><b>7.4</b> Regression analysis using lm</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="062-regression_1.html"><a href="062-regression_1.html#multiple-regression"><i class="fa fa-check"></i><b>8</b> Multiple Regression</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="062-regression_1.html"><a href="062-regression_1.html#fama-french-three-factor-model"><i class="fa fa-check"></i><b>8.1</b> Fama-French Three Factor Model</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="062-regression_1.html"><a href="062-regression_1.html#data-preprocessing-2"><i class="fa fa-check"></i><b>8.1.1</b> Data Preprocessing</a></li>
+<li class="chapter" data-level="8.1.2" data-path="062-regression_1.html"><a href="062-regression_1.html#regression-analysis"><i class="fa fa-check"></i><b>8.1.2</b> Regression Analysis</a></li>
+<li class="chapter" data-level="8.1.3" data-path="062-regression_1.html"><a href="062-regression_1.html#visualisation-1"><i class="fa fa-check"></i><b>8.1.3</b> Visualisation</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="062-regression_1.html"><a href="062-regression_1.html#panel-regression"><i class="fa fa-check"></i><b>9</b> Panel Regression</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="062-regression_1.html"><a href="062-regression_1.html#fixed-and-random-effects-using-the-plm-package"><i class="fa fa-check"></i><b>9.1</b> Fixed and Random effects using the <code>plm</code> package</a></li>
+<li class="chapter" data-level="9.2" data-path="062-regression_1.html"><a href="062-regression_1.html#fixed-effects-model"><i class="fa fa-check"></i><b>9.2</b> Fixed Effects Model</a></li>
+<li class="chapter" data-level="9.3" data-path="062-regression_1.html"><a href="062-regression_1.html#random-effects-model"><i class="fa fa-check"></i><b>9.3</b> Random Effects Model</a></li>
+<li class="chapter" data-level="9.4" data-path="062-regression_1.html"><a href="062-regression_1.html#testing"><i class="fa fa-check"></i><b>9.4</b> Testing</a>
+<ul>
+<li class="chapter" data-level="9.4.1" data-path="062-regression_1.html"><a href="062-regression_1.html#panel-or-ols"><i class="fa fa-check"></i><b>9.4.1</b> Panel or OLS</a></li>
+<li class="chapter" data-level="9.4.2" data-path="062-regression_1.html"><a href="062-regression_1.html#fixed-effect-or-random-effect"><i class="fa fa-check"></i><b>9.4.2</b> Fixed Effect or Random Effect</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="01-Part_1.html"><a href="01-Part_1.html"><i class="fa fa-check"></i><b>10</b> Technical Analysis using R</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="01-Part_1.html"><a href="01-Part_1.html#technical-analysis-ta-using-r"><i class="fa fa-check"></i><b>10.1</b> Technical Analysis (TA) using R</a></li>
+<li class="chapter" data-level="10.2" data-path="01-Part_1.html"><a href="01-Part_1.html#technical-charts"><i class="fa fa-check"></i><b>10.2</b> Technical Charts</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="01-Part_1.html"><a href="01-Part_1.html#candlesticks-and-ohlc-chart"><i class="fa fa-check"></i><b>10.2.1</b> Candlesticks and OHLC chart</a></li>
+<li class="chapter" data-level="10.2.2" data-path="01-Part_1.html"><a href="01-Part_1.html#line-chart"><i class="fa fa-check"></i><b>10.2.2</b> Line chart</a></li>
+<li class="chapter" data-level="10.2.3" data-path="01-Part_1.html"><a href="01-Part_1.html#candlestick-chart"><i class="fa fa-check"></i><b>10.2.3</b> Candlestick chart</a></li>
+<li class="chapter" data-level="10.2.4" data-path="01-Part_1.html"><a href="01-Part_1.html#add-technical-indicators"><i class="fa fa-check"></i><b>10.2.4</b> Add technical indicators</a></li>
+<li class="chapter" data-level="10.2.5" data-path="01-Part_1.html"><a href="01-Part_1.html#adding-indicators-sequentially"><i class="fa fa-check"></i><b>10.2.5</b> Adding indicators sequentially</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="01-Part_1.html"><a href="01-Part_1.html#forecasting-var-using-garch-models"><i class="fa fa-check"></i><b>11</b> Forecasting VaR using GARCH Models</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="01-Part_1.html"><a href="01-Part_1.html#value-at-risk"><i class="fa fa-check"></i><b>11.1</b> Value at Risk</a></li>
+<li class="chapter" data-level="11.2" data-path="01-Part_1.html"><a href="01-Part_1.html#volatility-modelling-forecasting-using-garch"><i class="fa fa-check"></i><b>11.2</b> Volatility Modelling &amp; Forecasting using GARCH</a></li>
+<li class="chapter" data-level="11.3" data-path="01-Part_1.html"><a href="01-Part_1.html#garch11-to-forecast-var"><i class="fa fa-check"></i><b>11.3</b> GARCH(1,1) to forecast VaR</a></li>
+<li class="chapter" data-level="11.4" data-path="01-Part_1.html"><a href="01-Part_1.html#var-forecasts-using-out-of-sample"><i class="fa fa-check"></i><b>11.4</b> VaR forecasts using out of sample</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="01-Part_2_portfolio.html"><a href="01-Part_2_portfolio.html"><i class="fa fa-check"></i><b>12</b> Portfolio Modelling using R</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="01-Part_2_portfolio.html"><a href="01-Part_2_portfolio.html#portfolio-analysis-quick-intro"><i class="fa fa-check"></i><b>12.1</b> Portfolio Analysis (Quick Intro)</a></li>
+<li class="chapter" data-level="12.2" data-path="01-Part_2_portfolio.html"><a href="01-Part_2_portfolio.html#mean-variance-portfolio-important-concepts"><i class="fa fa-check"></i><b>12.2</b> Mean Variance Portfolio: Important concepts</a>
+<ul>
+<li class="chapter" data-level="" data-path="01-Part_2_portfolio.html"><a href="01-Part_2_portfolio.html#expected-return"><i class="fa fa-check"></i>Expected Return</a></li>
+<li class="chapter" data-level="" data-path="01-Part_2_portfolio.html"><a href="01-Part_2_portfolio.html#risk"><i class="fa fa-check"></i>Risk</a></li>
+<li class="chapter" data-level="" data-path="01-Part_2_portfolio.html"><a href="01-Part_2_portfolio.html#covariance-of-returns"><i class="fa fa-check"></i>Covariance of Returns</a></li>
+<li class="chapter" data-level="" data-path="01-Part_2_portfolio.html"><a href="01-Part_2_portfolio.html#correlation"><i class="fa fa-check"></i>Correlation</a></li>
+<li class="chapter" data-level="" data-path="01-Part_2_portfolio.html"><a href="01-Part_2_portfolio.html#portfolio-return"><i class="fa fa-check"></i>Portfolio Return</a></li>
+<li class="chapter" data-level="" data-path="01-Part_2_portfolio.html"><a href="01-Part_2_portfolio.html#portfolio-risk"><i class="fa fa-check"></i>Portfolio Risk</a></li>
+<li class="chapter" data-level="" data-path="01-Part_2_portfolio.html"><a href="01-Part_2_portfolio.html#portfolio-risk-for-n-assets"><i class="fa fa-check"></i>Portfolio Risk for <em>N</em> Assets</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="01-Part_2_portfolio.html"><a href="01-Part_2_portfolio.html#diversification-markowitz-minimum-variance-portfolio"><i class="fa fa-check"></i><b>12.3</b> Diversification &amp; Markowitz Minimum Variance Portfolio</a></li>
+<li class="chapter" data-level="12.4" data-path="01-Part_2_portfolio.html"><a href="01-Part_2_portfolio.html#minimum-variance-portfolio"><i class="fa fa-check"></i><b>12.4</b> Minimum Variance Portfolio</a>
+<ul>
+<li class="chapter" data-level="12.4.1" data-path="01-Part_2_portfolio.html"><a href="01-Part_2_portfolio.html#efficient-weights-for-two-assets"><i class="fa fa-check"></i><b>12.4.1</b> Efficient Weights for Two Assets</a></li>
+<li class="chapter" data-level="12.4.2" data-path="01-Part_2_portfolio.html"><a href="01-Part_2_portfolio.html#portfolio-with-n-risky-assets"><i class="fa fa-check"></i><b>12.4.2</b> Portfolio with N Risky Assets</a></li>
+</ul></li>
+<li class="chapter" data-level="12.5" data-path="01-Part_2_portfolio.html"><a href="01-Part_2_portfolio.html#using-r-to-construct-multi-asset-portfolio"><i class="fa fa-check"></i><b>12.5</b> Using R to Construct Multi-Asset Portfolio</a>
+<ul>
+<li class="chapter" data-level="12.5.1" data-path="01-Part_2_portfolio.html"><a href="01-Part_2_portfolio.html#data"><i class="fa fa-check"></i><b>12.5.1</b> Data</a></li>
+<li class="chapter" data-level="12.5.2" data-path="01-Part_2_portfolio.html"><a href="01-Part_2_portfolio.html#portfolios-with-random-weights"><i class="fa fa-check"></i><b>12.5.2</b> Portfolios with random weights</a></li>
+</ul></li>
+<li class="chapter" data-level="12.6" data-path="01-Part_2_portfolio.html"><a href="01-Part_2_portfolio.html#efficient-minimum-variance-portfolio-using-r-packages"><i class="fa fa-check"></i><b>12.6</b> Efficient (Minimum Variance) Portfolio using R packages</a>
+<ul>
+<li class="chapter" data-level="12.6.1" data-path="01-Part_2_portfolio.html"><a href="01-Part_2_portfolio.html#minimum-variance-and-portfolio-for-a-given-level-of-return"><i class="fa fa-check"></i><b>12.6.1</b> Minimum Variance and portfolio for a given level of return</a></li>
+<li class="chapter" data-level="12.6.2" data-path="01-Part_2_portfolio.html"><a href="01-Part_2_portfolio.html#portfolio-with-box-constraints"><i class="fa fa-check"></i><b>12.6.2</b> Portfolio with Box Constraints</a></li>
+</ul></li>
+<li class="chapter" data-level="12.7" data-path="01-Part_2_portfolio.html"><a href="01-Part_2_portfolio.html#evaluating-portfoios-risk-adjusted-performance"><i class="fa fa-check"></i><b>12.7</b> Evaluating Portfoios: Risk Adjusted Performance</a>
+<ul>
+<li class="chapter" data-level="12.7.1" data-path="01-Part_2_portfolio.html"><a href="01-Part_2_portfolio.html#sharpe-ratio"><i class="fa fa-check"></i><b>12.7.1</b> Sharpe Ratio</a></li>
+<li class="chapter" data-level="12.7.2" data-path="01-Part_2_portfolio.html"><a href="01-Part_2_portfolio.html#roys-safety-ratio"><i class="fa fa-check"></i><b>12.7.2</b> Roy’s Safety Ratio</a></li>
+<li class="chapter" data-level="12.7.3" data-path="01-Part_2_portfolio.html"><a href="01-Part_2_portfolio.html#treynors-ratio"><i class="fa fa-check"></i><b>12.7.3</b> Treynor’s Ratio</a></li>
+<li class="chapter" data-level="12.7.4" data-path="01-Part_2_portfolio.html"><a href="01-Part_2_portfolio.html#sharpe-ratio-portfolio-in-r"><i class="fa fa-check"></i><b>12.7.4</b> Sharpe Ratio (Portfolio) in R</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="04-Part_3-1.html"><a href="04-Part_3-1.html"><i class="fa fa-check"></i>Part III</a></li>
+<li class="chapter" data-level="13" data-path="04-Part_3-1.html"><a href="04-Part_3-1.html#machine-learning-using-r-introduction-to-data-splitting-sampling-resampling"><i class="fa fa-check"></i><b>13</b> Machine Learning using R-Introduction to Data Splitting, Sampling &amp; Resampling</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="04-Part_3-1.html"><a href="04-Part_3-1.html#machine-learning-process-quick-intro"><i class="fa fa-check"></i><b>13.1</b> Machine Learning Process (Quick Intro)</a></li>
+<li class="chapter" data-level="13.2" data-path="04-Part_3-1.html"><a href="04-Part_3-1.html#data-splitting-sampling"><i class="fa fa-check"></i><b>13.2</b> Data Splitting: Sampling</a></li>
+<li class="chapter" data-level="13.3" data-path="04-Part_3-1.html"><a href="04-Part_3-1.html#random-sampling"><i class="fa fa-check"></i><b>13.3</b> Random Sampling</a>
+<ul>
+<li class="chapter" data-level="13.3.1" data-path="04-Part_3-1.html"><a href="04-Part_3-1.html#base-r"><i class="fa fa-check"></i><b>13.3.1</b> Base R</a></li>
+<li class="chapter" data-level="13.3.2" data-path="04-Part_3-1.html"><a href="04-Part_3-1.html#using-the-caret-package"><i class="fa fa-check"></i><b>13.3.2</b> Using the <code>caret</code> package</a></li>
+<li class="chapter" data-level="13.3.3" data-path="04-Part_3-1.html"><a href="04-Part_3-1.html#using-the-rsample-package"><i class="fa fa-check"></i><b>13.3.3</b> Using the <code>rsample</code> package</a></li>
+</ul></li>
+<li class="chapter" data-level="13.4" data-path="04-Part_3-1.html"><a href="04-Part_3-1.html#stratified-sampling"><i class="fa fa-check"></i><b>13.4</b> Stratified Sampling</a></li>
+<li class="chapter" data-level="13.5" data-path="04-Part_3-1.html"><a href="04-Part_3-1.html#resampling"><i class="fa fa-check"></i><b>13.5</b> Resampling</a></li>
+<li class="chapter" data-level="13.6" data-path="04-Part_3-1.html"><a href="04-Part_3-1.html#k-fold-cross-validation"><i class="fa fa-check"></i><b>13.6</b> K-fold Cross Validation</a>
+<ul>
+<li class="chapter" data-level="" data-path="04-Part_3-1.html"><a href="04-Part_3-1.html#k-fold-cv-in-r"><i class="fa fa-check"></i>K-fold CV in R</a></li>
+</ul></li>
+<li class="chapter" data-level="13.7" data-path="04-Part_3-1.html"><a href="04-Part_3-1.html#cv-for-time-series-data"><i class="fa fa-check"></i><b>13.7</b> CV for time series data</a>
+<ul>
+<li class="chapter" data-level="" data-path="04-Part_3-1.html"><a href="04-Part_3-1.html#cv-for-time-series-in-r"><i class="fa fa-check"></i>CV for time series in R</a></li>
+</ul></li>
+<li class="chapter" data-level="13.8" data-path="04-Part_3-1.html"><a href="04-Part_3-1.html#bootstrapping"><i class="fa fa-check"></i><b>13.8</b> Bootstrapping</a>
+<ul>
+<li class="chapter" data-level="" data-path="04-Part_3-1.html"><a href="04-Part_3-1.html#bootsrapping-in-r"><i class="fa fa-check"></i>Bootsrapping in R</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="04-Part_3_logistic.html"><a href="04-Part_3_logistic.html"><i class="fa fa-check"></i><b>14</b> Logistic Regression &amp; K-Nearest Neighbour (kNN) for Classification</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="04-Part_3_logistic.html"><a href="04-Part_3_logistic.html#logistic-regression"><i class="fa fa-check"></i><b>14.1</b> Logistic Regression</a></li>
+<li class="chapter" data-level="14.2" data-path="04-Part_3_logistic.html"><a href="04-Part_3_logistic.html#k-nearest-neighbour"><i class="fa fa-check"></i><b>14.2</b> K-Nearest Neighbour</a>
+<ul>
+<li class="chapter" data-level="" data-path="04-Part_3_logistic.html"><a href="04-Part_3_logistic.html#nearest-neighbour-classification-quick-introduction"><i class="fa fa-check"></i>Nearest Neighbour classification (Quick Introduction)</a></li>
+<li class="chapter" data-level="" data-path="04-Part_3_logistic.html"><a href="04-Part_3_logistic.html#k-nn-algorithm"><i class="fa fa-check"></i>k-NN Algorithm</a></li>
+</ul></li>
+<li class="chapter" data-level="14.3" data-path="04-Part_3_logistic.html"><a href="04-Part_3_logistic.html#forecasting-stock-price-movement-using-ml"><i class="fa fa-check"></i><b>14.3</b> Forecasting Stock Price Movement using ML</a>
+<ul>
+<li class="chapter" data-level="14.3.1" data-path="04-Part_3_logistic.html"><a href="04-Part_3_logistic.html#data-indicators"><i class="fa fa-check"></i><b>14.3.1</b> Data &amp; Indicators</a></li>
+<li class="chapter" data-level="14.3.2" data-path="04-Part_3_logistic.html"><a href="04-Part_3_logistic.html#visualise-the-data"><i class="fa fa-check"></i><b>14.3.2</b> Visualise the data</a></li>
+<li class="chapter" data-level="14.3.3" data-path="04-Part_3_logistic.html"><a href="04-Part_3_logistic.html#using-logistic-regression"><i class="fa fa-check"></i><b>14.3.3</b> Using Logistic Regression</a></li>
+<li class="chapter" data-level="14.3.4" data-path="04-Part_3_logistic.html"><a href="04-Part_3_logistic.html#using-k-nn"><i class="fa fa-check"></i><b>14.3.4</b> Using K-NN</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="04-Part_2.html"><a href="04-Part_2.html"><i class="fa fa-check"></i><b>15</b> Decision Trees using R</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="04-Part_2.html"><a href="04-Part_2.html#import-data-and-pre-processing"><i class="fa fa-check"></i><b>15.1</b> Import Data and Pre-processing</a></li>
+<li class="chapter" data-level="15.2" data-path="04-Part_2.html"><a href="04-Part_2.html#visualisation-some-features"><i class="fa fa-check"></i><b>15.2</b> Visualisation some features</a></li>
+<li class="chapter" data-level="15.3" data-path="04-Part_2.html"><a href="04-Part_2.html#creating-training-and-testing-set-and-control"><i class="fa fa-check"></i><b>15.3</b> Creating Training and Testing Set and Control</a></li>
+<li class="chapter" data-level="15.4" data-path="04-Part_2.html"><a href="04-Part_2.html#train-the-model-on-the-training-set"><i class="fa fa-check"></i><b>15.4</b> Train the model on the training set</a></li>
+<li class="chapter" data-level="15.5" data-path="04-Part_2.html"><a href="04-Part_2.html#prediction-and-accuracy"><i class="fa fa-check"></i><b>15.5</b> Prediction and Accuracy</a>
+<ul>
+<li class="chapter" data-level="15.5.1" data-path="04-Part_2.html"><a href="04-Part_2.html#model-1"><i class="fa fa-check"></i><b>15.5.1</b> Model-1</a></li>
+<li class="chapter" data-level="15.5.2" data-path="04-Part_2.html"><a href="04-Part_2.html#model-2"><i class="fa fa-check"></i><b>15.5.2</b> Model-2</a></li>
+</ul></li>
+<li class="chapter" data-level="15.6" data-path="04-Part_2.html"><a href="04-Part_2.html#feature-interpretation"><i class="fa fa-check"></i><b>15.6</b> Feature Interpretation</a></li>
+<li class="chapter" data-level="15.7" data-path="04-Part_2.html"><a href="04-Part_2.html#tree-visualisation"><i class="fa fa-check"></i><b>15.7</b> Tree visualisation</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="05-method2.html"><a href="05-method2.html"><i class="fa fa-check"></i><b>16</b> Text Mining using R</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="05-method2.html"><a href="05-method2.html#introduction-to-text-mining"><i class="fa fa-check"></i><b>16.1</b> Introduction to Text Mining</a>
+<ul>
+<li class="chapter" data-level="16.1.1" data-path="05-method2.html"><a href="05-method2.html#text-data"><i class="fa fa-check"></i><b>16.1.1</b> Text Data</a></li>
+<li class="chapter" data-level="16.1.2" data-path="05-method2.html"><a href="05-method2.html#generic-text-mining-system"><i class="fa fa-check"></i><b>16.1.2</b> Generic Text Mining System</a></li>
+<li class="chapter" data-level="16.1.3" data-path="05-method2.html"><a href="05-method2.html#data-pre-processing-in-text-mining"><i class="fa fa-check"></i><b>16.1.3</b> Data pre-processing in Text Mining</a></li>
+</ul></li>
+<li class="chapter" data-level="16.2" data-path="05-method2.html"><a href="05-method2.html#mining-twitter-text-data-using-r"><i class="fa fa-check"></i><b>16.2</b> Mining Twitter Text Data using R</a>
+<ul>
+<li class="chapter" data-level="16.2.1" data-path="05-method2.html"><a href="05-method2.html#obtaining-twitter-data"><i class="fa fa-check"></i><b>16.2.1</b> Obtaining Twitter Data</a></li>
+</ul></li>
+<li class="chapter" data-level="16.3" data-path="05-method2.html"><a href="05-method2.html#download-data"><i class="fa fa-check"></i><b>16.3</b> Download Data</a></li>
+<li class="chapter" data-level="16.4" data-path="05-method2.html"><a href="05-method2.html#data-pre-processing"><i class="fa fa-check"></i><b>16.4</b> Data Pre-processing</a></li>
+<li class="chapter" data-level="16.5" data-path="05-method2.html"><a href="05-method2.html#some-visualisation"><i class="fa fa-check"></i><b>16.5</b> Some Visualisation</a></li>
+<li class="chapter" data-level="16.6" data-path="05-method2.html"><a href="05-method2.html#sentiment-analysis"><i class="fa fa-check"></i><b>16.6</b> Sentiment Analysis</a>
+<ul>
+<li class="chapter" data-level="16.6.1" data-path="05-method2.html"><a href="05-method2.html#method"><i class="fa fa-check"></i><b>16.6.1</b> Method</a></li>
+</ul></li>
+<li class="chapter" data-level="16.7" data-path="05-method2.html"><a href="05-method2.html#topic-modelling"><i class="fa fa-check"></i><b>16.7</b> Topic Modelling</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="06-method3.html"><a href="06-method3.html"><i class="fa fa-check"></i>Part IV</a></li>
+<li class="chapter" data-level="17" data-path="06-method3.html"><a href="06-method3.html#bibliometrix-analysis-using-r"><i class="fa fa-check"></i><b>17</b> Bibliometrix Analysis using R</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="06-method3.html"><a href="06-method3.html#introduction-to-bibliometric-analysis"><i class="fa fa-check"></i><b>17.1</b> Introduction to Bibliometric Analysis</a></li>
+<li class="chapter" data-level="17.2" data-path="06-method3.html"><a href="06-method3.html#r-and-bibliometric-analysis"><i class="fa fa-check"></i><b>17.2</b> R and Bibliometric analysis</a></li>
+<li class="chapter" data-level="17.3" data-path="06-method3.html"><a href="06-method3.html#bibliometrix-example"><i class="fa fa-check"></i><b>17.3</b> Bibliometrix Example</a></li>
+<li class="chapter" data-level="17.4" data-path="06-method3.html"><a href="06-method3.html#descriptive-analysis"><i class="fa fa-check"></i><b>17.4</b> Descriptive Analysis</a>
+<ul>
+<li class="chapter" data-level="17.4.1" data-path="06-method3.html"><a href="06-method3.html#productive-authors"><i class="fa fa-check"></i><b>17.4.1</b> Productive Authors</a></li>
+<li class="chapter" data-level="17.4.2" data-path="06-method3.html"><a href="06-method3.html#most-cited-papers"><i class="fa fa-check"></i><b>17.4.2</b> Most cited papers</a></li>
+</ul></li>
+<li class="chapter" data-level="17.5" data-path="06-method3.html"><a href="06-method3.html#information-plots"><i class="fa fa-check"></i><b>17.5</b> Information Plots</a>
+<ul>
+<li class="chapter" data-level="17.5.1" data-path="06-method3.html"><a href="06-method3.html#summary-plot-1-most-porductive-authors"><i class="fa fa-check"></i><b>17.5.1</b> Summary Plot-1 (Most Porductive Authors)</a></li>
+<li class="chapter" data-level="17.5.2" data-path="06-method3.html"><a href="06-method3.html#summary-plot-2-most-productive-countries"><i class="fa fa-check"></i><b>17.5.2</b> Summary Plot-2 (Most Productive Countries)</a></li>
+<li class="chapter" data-level="17.5.3" data-path="06-method3.html"><a href="06-method3.html#summary-plot-3-annual-scientific-production"><i class="fa fa-check"></i><b>17.5.3</b> Summary Plot-3 (Annual Scientific Production)</a></li>
+<li class="chapter" data-level="17.5.4" data-path="06-method3.html"><a href="06-method3.html#summary-plot-4-average-article-citation"><i class="fa fa-check"></i><b>17.5.4</b> Summary Plot-4 (Average Article Citation)</a></li>
+<li class="chapter" data-level="17.5.5" data-path="06-method3.html"><a href="06-method3.html#summary-plot-5-author-production-over-time"><i class="fa fa-check"></i><b>17.5.5</b> Summary Plot-5 (Author Production Over Time)</a></li>
+<li class="chapter" data-level="17.5.6" data-path="06-method3.html"><a href="06-method3.html#sankey-plot"><i class="fa fa-check"></i><b>17.5.6</b> Sankey plot</a></li>
+</ul></li>
+<li class="chapter" data-level="17.6" data-path="06-method3.html"><a href="06-method3.html#co-word-analysis"><i class="fa fa-check"></i><b>17.6</b> Co-word Analysis</a></li>
+<li class="chapter" data-level="17.7" data-path="06-method3.html"><a href="06-method3.html#author-collaboration-network"><i class="fa fa-check"></i><b>17.7</b> Author collaboration network</a></li>
+<li class="chapter" data-level="17.8" data-path="06-method3.html"><a href="06-method3.html#keyword-co-occurance"><i class="fa fa-check"></i><b>17.8</b> Keyword co-occurance</a></li>
+<li class="chapter" data-level="17.9" data-path="06-method3.html"><a href="06-method3.html#thematic-map"><i class="fa fa-check"></i><b>17.9</b> Thematic Map</a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="06-summary.html"><a href="06-summary.html"><i class="fa fa-check"></i><b>18</b> Work in Progress</a></li>
+<li class="chapter" data-level="" data-path="07-references.html"><a href="07-references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><img src="firebrick3RA_img.png" height="60" width="60" style="position:bottom:0px;right:0px;"/></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R for Data Analytics</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="portfolio-modelling-using-r" class="section level1 hasAnchor" number="12">
+<h1><span class="header-section-number">Topic 12</span> Portfolio Modelling using R<a href="01-Part_2_portfolio.html#portfolio-modelling-using-r" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><img src="darkmagentaRA_img.png" height="100" width="100" style="position:absolute;top:0px;right:0px;" /></p>
+<p>This topic provides an introduction to using R for Financial Portfolio Modelling. The chapter will discuss using R for creating multi asset Mean-Variance portfolios.</p>
+<div id="portfolio-analysis-quick-intro" class="section level2 hasAnchor" number="12.1">
+<h2><span class="header-section-number">12.1</span> Portfolio Analysis (Quick Intro)<a href="01-Part_2_portfolio.html#portfolio-analysis-quick-intro" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li><p>Investment is a process of maximising wealth.</p></li>
+<li><p>We want to maximise expected return</p></li>
+<li><p>We want to minimise the risk</p></li>
+<li><p>Risk Premium: Difference between returns of a risky asset and risk free asset <span class="math inline">\(R_{p}-R_{f}\)</span></p></li>
+<li><p>Diversification: Process of diversifying risk in a portfolio.</p></li>
+<li><p>See Chatper-16 from <span class="citation">Ruppert (<a href="#ref-Ruppert2015" role="doc-biblioref">2015</a>)</span> for further details.</p></li>
+</ul>
+</div>
+<div id="mean-variance-portfolio-important-concepts" class="section level2 hasAnchor" number="12.2">
+<h2><span class="header-section-number">12.2</span> Mean Variance Portfolio: Important concepts<a href="01-Part_2_portfolio.html#mean-variance-portfolio-important-concepts" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="expected-return" class="section level3 unnumbered hasAnchor">
+<h3>Expected Return<a href="01-Part_2_portfolio.html#expected-return" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Expected return for a group of <em>n</em> assets is calculated as</li>
+</ul>
+<span class="math display" id="eq:mpt1">\[\begin{equation}
+E(R)=\sum_{i=1}^{n}p_{i}r_{i}
+\tag{12.1}
+
+\end{equation}\]</span>
+<ul>
+<li>Portfolio construction should use discrete returns and not logarithmic returns</li>
+</ul>
+</div>
+<div id="risk" class="section level3 unnumbered hasAnchor">
+<h3>Risk<a href="01-Part_2_portfolio.html#risk" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Risk is generally defined as the “dispersion of outcomes around the expected value”</li>
+<li>Variance and Standard Deviation measure dispersion</li>
+<li>The variance of a random variable <em>X</em> is</li>
+</ul>
+<span class="math display" id="eq:mpt2">\[\begin{equation}
+\sigma_{X}^{2}=E(X-E(X)]^{2}=\sum_{i=1}^{n}p_{i}[x_{i}-E(X)]^{2}
+\tag{12.2}
+
+\end{equation}\]</span>
+<p>where</p>
+<ul>
+<li><em>E(X)</em> is the expected value of a random variable X. This will be financial returns of a security.</li>
+<li><span class="math inline">\(p_{i}\)</span> is the probability of the occurrence of <span class="math inline">\(x_{i}\)</span></li>
+<li>expression applies to the variance of a single asset where <span class="math inline">\(x_{i}=r_{i}\)</span></li>
+</ul>
+</div>
+<div id="covariance-of-returns" class="section level3 unnumbered hasAnchor">
+<h3>Covariance of Returns<a href="01-Part_2_portfolio.html#covariance-of-returns" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>One of the measures of association between two (or more) random variables.</li>
+<li>The covariance is positive if the variables tend to move in the same direction, while it is negative if they tend to move in opposite directions.</li>
+<li>Denoted by <span class="math inline">\(\sigma_{i,j}\)</span> or <span class="math inline">\(Cov(r_{i},r_{j})\)</span></li>
+</ul>
+<span class="math display" id="eq:mpt3">\[\begin{equation}
+Cov(r_{i},r_{j})=E\{[r_{i}-E(r_{i})][r_{j}-E(r_{j})]\}=\sum_{s=1}^{n}p_{s}\{[r_{is}-E(r_{i})][r_{js}-E(r_{j})]\}
+\tag{12.3}
+
+\end{equation}\]</span>
+</div>
+<div id="correlation" class="section level3 unnumbered hasAnchor">
+<h3>Correlation<a href="01-Part_2_portfolio.html#correlation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Standardised by standard deviation lies between -1 and 1</li>
+</ul>
+<span class="math display" id="eq:mpt4">\[\begin{equation}
+\rho_{XY}=\frac{Cov(r_{i},r_{j})}{\sigma_{i}\sigma_{j}}
+\tag{12.4}
+
+\end{equation}\]</span>
+<ul>
+<li>Within the context of portfolio analysis, diversification can be defined as combining securities with less than perfectly positively correlated returns.</li>
+<li>In order for the portfolio analyst to construct a diversified portfolio, the analyst must know the correlation coefficients between all securities under consideration.</li>
+</ul>
+</div>
+<div id="portfolio-return" class="section level3 unnumbered hasAnchor">
+<h3>Portfolio Return<a href="01-Part_2_portfolio.html#portfolio-return" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Its a weighted average</p>
+<span class="math display" id="eq:mpt5">\[\begin{equation}
+R_{p}=\sum_{i=1}^{n}w_{i}r_{i}
+\tag{12.5}
+
+\end{equation}\]</span>
+</div>
+<div id="portfolio-risk" class="section level3 unnumbered hasAnchor">
+<h3>Portfolio Risk<a href="01-Part_2_portfolio.html#portfolio-risk" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Not a simple weighted average, correlation has to be accounted for.</p>
+<span class="math display" id="eq:mpt6">\[\begin{equation}
+
+\sigma_{p}^{2}=E[r_{p}-E(r_{p})]^{2}
+
+\tag{12.6}
+
+\end{equation}\]</span>
+<p>where <span class="math inline">\(r_{p}=(w_{1}r_{1}+w_{2}r_{2})\)</span> for a two asset portfolio. After substitution.</p>
+<span class="math display" id="eq:mpt7">\[\begin{equation}
+\sigma_{p}^{2}=E\{w_{1}r_{1}+w_{2}r_{2}-[w_{1}E(r_{1})+w_{2}E(r_{2})]\}^{2}
+\tag{12.7}
+\end{equation}\]</span>
+<p>After rearranging and expansion</p>
+<span class="math display" id="eq:mpt8">\[\begin{equation}
+\sigma_{p}^{2}=E\{w_{1}^{2}[r_{1}-E(r_{1})]^{2}+w_{2}^{2}[r_{2}-E(r_{2})]^{2}+2w_{1}w_{2}[r_{1}-E(r_{1})][r_{2}-E(r_{2})]\}\tag{12.8}
+\end{equation}\]</span>
+<span class="math display" id="eq:mpt9">\[\begin{equation}
+\sigma_{p}^{2}=w_{1}^{2}\sigma_{1}^{2}+w_{2}^{2}\sigma_{2}^{2}+2w_{1}w_{2}\sigma_{12}
+\tag{12.9}
+\end{equation}\]</span>
+<p>where <span class="math inline">\(\sigma_{12}=Cov(r_{1},r_{2})\)</span></p>
+</div>
+<div id="portfolio-risk-for-n-assets" class="section level3 unnumbered hasAnchor">
+<h3>Portfolio Risk for <em>N</em> Assets<a href="01-Part_2_portfolio.html#portfolio-risk-for-n-assets" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Here we consider 3 assets but the method is generalisable to N assets.</p>
+<ul>
+<li>Matrix of mean returns</li>
+</ul>
+<span class="math display" id="eq:mpt10">\[\begin{equation}
+\mu=\left(\begin{array}{c}
+\mu_{a}\\
+\mu_{b}\\
+\mu_{c}
+\end{array}\right)\tag{12.10}
+\end{equation}\]</span>
+<ul>
+<li>Matrix of weights</li>
+</ul>
+<span class="math display" id="eq:mpt11">\[\begin{equation}
+w=\left(\begin{array}{c}
+w_{a}\\
+w_{b}\\
+w_{c}
+\end{array}\right)
+\tag{12.11}
+\end{equation}\]</span>
+<p><span class="math inline">\(\sum w=1\)</span></p>
+<ul>
+<li>Variance-covariance matrix</li>
+</ul>
+<span class="math display" id="eq:mpt12">\[\begin{equation}
+\Sigma=\left(\begin{array}{ccc}
+\sigma_{a}^{2} &amp; \sigma_{ab} &amp; \sigma_{ac}\\
+\sigma_{ab} &amp; \sigma_{b}^{2} &amp; \sigma_{bc}\\
+\sigma_{ac} &amp; \sigma_{bc} &amp; \sigma_{c}^{2}
+\end{array}\right)
+\tag{12.12}
+\end{equation}\]</span>
+<ul>
+<li>Portfolio expected return</li>
+</ul>
+<span class="math display" id="eq:mpt12">\[\begin{equation}
+\mu_{p}=w^{\prime}\mu
+\tag{12.12}
+\end{equation}\]</span>
+<ul>
+<li>Portfolio variance</li>
+</ul>
+<span class="math display" id="eq:mpt13">\[\begin{equation}
+\sigma_{p}^{2}=w^{\prime}\Sigma w
+\tag{12.13}
+\end{equation}\]</span>
+<p>See chapter-2 and 3 of <span class="citation">Francis &amp; Kim (<a href="#ref-Francis2013" role="doc-biblioref">2013</a>)</span> for further details</p>
+</div>
+</div>
+<div id="diversification-markowitz-minimum-variance-portfolio" class="section level2 hasAnchor" number="12.3">
+<h2><span class="header-section-number">12.3</span> Diversification &amp; Markowitz Minimum Variance Portfolio<a href="01-Part_2_portfolio.html#diversification-markowitz-minimum-variance-portfolio" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><em>Chapter-4 from <span class="citation">Szylar (<a href="#ref-Szylar2013" role="doc-biblioref">2013</a>)</span> provides an easy to follow introduction and futher details.</em></p>
+<blockquote>
+<p><strong>Objective:</strong> Rational investors; maximise the expected return for a given risk, and they minimise the risk for a given return.</p>
+</blockquote>
+<ul>
+<li>A minimum variance set is the set of all portfolios that have the least volatility for each level of possible expected return.</li>
+<li>An efficient set (frontier) is the part of the minimum variance frontier that offers the highest expected return for each level of standard deviation.</li>
+<li>Given the level of risk or standard deviation, investors prefer positions with higher expected return and given the expected return, they prefer the positions of lower risk.</li>
+<li>Taking this into account, we can determine the minimum variance set.</li>
+<li>The point where the standard deviation is at its lowest is the global minimum variance portfolio (GMV).</li>
+<li>Portfolios that lie from the GMV portfolio upwards provide investors with the best risk–return combinations and thus are the candidates for the optimal portfolio.</li>
+<li>These portfolios are called the efficient set (frontier); and in order to be on the efficient frontier, the portfolios have to satisfy the following criterion:</li>
+<li>Given a particular level of standard deviation, the portfolios in the efficient set have the highest attainable expected rate of return.</li>
+</ul>
+<div class="figure"><span style="display:block;" id="fig:mpt1"></span>
+<img src="eff_front1.png" alt="Efficient Frontier" width="426" />
+<p class="caption">
+Figure 12.1: Efficient Frontier
+</p>
+</div>
+</div>
+<div id="minimum-variance-portfolio" class="section level2 hasAnchor" number="12.4">
+<h2><span class="header-section-number">12.4</span> Minimum Variance Portfolio<a href="01-Part_2_portfolio.html#minimum-variance-portfolio" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>Markowitz (<span class="citation">H. Markowitz (<a href="#ref-Markowitz1952" role="doc-biblioref">1952</a>)</span>, <span class="citation">H. M. Markowitz (<a href="#ref-Markowitz1991" role="doc-biblioref">1991</a>)</span>) seminal work on Modern Portfolio Theory.</li>
+</ul>
+<p>• A minimum variance (risk) portfolio</p>
+<span class="math display" id="eq:mpt14">\[\begin{equation}
+Minimise\,\sigma_{p}^{2}=w^{\prime}\Sigma w
+\tag{12.14}
+\end{equation}\]</span>
+<p>subject to</p>
+<span class="math display" id="eq:mpt15">\[\begin{equation}
+w^{\prime}\mu=\mu_{p}
+\tag{12.15}
+\end{equation}\]</span>
+<p>and</p>
+<span class="math display" id="eq:mpt16">\[\begin{equation}
+w^{\prime}1=1
+\tag{12.16}
+\end{equation}\]</span>
+<ul>
+<li><p>The above constraints apply to long only portfolios. Summation of weights can be different for long and short combination</p></li>
+<li><p>Portfolio can be formed for a target return and minimum risk or just for minimum risk or with maximum return with minimum risk (mean variance)</p></li>
+<li><p>With different stocks and asset types, individual weight limits can be imposed.</p></li>
+</ul>
+<div id="efficient-weights-for-two-assets" class="section level3 hasAnchor" number="12.4.1">
+<h3><span class="header-section-number">12.4.1</span> Efficient Weights for Two Assets<a href="01-Part_2_portfolio.html#efficient-weights-for-two-assets" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>For a portfolio with Two Risk Assets, the mean variance portfolio weights are calculated as</li>
+</ul>
+<span class="math display" id="eq:mpt17">\[\begin{equation}
+w_{1}=\frac{\sigma_{2}^{2}-Cov(r_{1},r_{2})}{\sigma_{1}^{2}+\sigma_{2}^{2}-2Cov(r_{1},r_{2})}\\\\
+w_{2}=1-w_{1}
+\tag{12.17}
+\end{equation}\]</span>
+<span class="math display" id="eq:mpt18">\[\begin{equation}
+w_{2}=1-w_{1}
+\tag{12.18}
+\end{equation}\]</span>
+<p>The above is derived after taking the first derivative of the portfolio variance w.r.t the weight of asset 1,<span class="math inline">\(w_{1}\)</span>. Set that derivative equal to zero and solve for <span class="math inline">\(w_{1}\)</span>.</p>
+<span class="math display" id="eq:mpt19">\[\begin{equation}
+
+\frac{\partial\sigma_{p}^{2}}{\partial w_{1}}=\frac{\partial}{\partial w_{1}}\left[w_{1}^{2}\sigma_{1}^{2}+(1-w_{1})^{2}\sigma_{2}^{2}+2w_{1}(1-w_{1})\sigma_{12}\right]
+
+\tag{12.19}
+\end{equation}\]</span>
+</div>
+<div id="portfolio-with-n-risky-assets" class="section level3 hasAnchor" number="12.4.2">
+<h3><span class="header-section-number">12.4.2</span> Portfolio with N Risky Assets<a href="01-Part_2_portfolio.html#portfolio-with-n-risky-assets" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><p>Optimisation using Quadratic Programming-Brief overview</p></li>
+<li><p>To recap: Given a target return <span class="math inline">\(\mu_{p}\)</span>, the efficient portfolio minimises</p></li>
+</ul>
+<span class="math display" id="eq:mpt20">\[\begin{equation}
+Minimise\,\sigma_{p}^{2}=w^{\prime}\Sigma w
+\tag{12.20}
+\end{equation}\]</span>
+<p>subject to</p>
+<p><span class="math display">\[w^{\prime}\mu=\mu_{p}\]</span></p>
+<p>and</p>
+<p><span class="math display">\[w^{\prime}1=1\]</span></p>
+<ul>
+<li><p>Quadratic Programming is used to minimise a quadratic objective function subject to linear constraints.We focus on the implementation on the technique for optimisation not the mathematical details. Students are expected to learn how to use the method in R</p></li>
+<li><p>In applications to portfolio optimization, the objective function is the variance of the portfolio return.</p></li>
+<li><p>The objective function is a function of N variables, such as the weights of N assets, that are denoted by an N × 1 vector x. Suppose that the quadratic objective function to be minimized is</p></li>
+</ul>
+<p><span class="math display" id="eq:mpt21">\[\begin{equation}
+\frac{1}{2}x^{\prime}Dx-d^{\,\prime}x
+\tag{12.21}
+\end{equation}\]</span></p>
+<p>where D is an <span class="math inline">\(N\mathtt{X}N\)</span> matrix and d is an <span class="math inline">\(N\mathtt{x}1\)</span> vector. The factor of 1/2 is used make the optimisation consistent with R</p>
+<ul>
+<li><p>Two types of linear constraints on x ; inequality and equality</p>
+<ul>
+<li>Inequality constraint</li>
+</ul></li>
+</ul>
+<p><span class="math display">\[A_{neq}^{\prime}x\geq b_{neq}\]</span></p>
+<ul>
+<li>Equality</li>
+</ul>
+<p><span class="math display">\[A_{eq}^{\prime}x=b_{eq}\]</span></p>
+<ul>
+<li><p>To apply quadratic programming</p>
+<ul>
+<li><span class="math inline">\(x=w\)</span></li>
+<li><span class="math inline">\(D=2\Sigma\)</span></li>
+<li>d is an <span class="math inline">\(N\mathtt{x}1\)</span> vector of zeros so that <a href="01-Part_2_portfolio.html#eq:mpt21">(12.21)</a> is <span class="math inline">\(w^{\prime}\Sigma w\)</span>, the return variance of the portfolio.</li>
+</ul></li>
+</ul>
+<p>– R package quadprog has a function called solve.QP to achieve this.</p>
+<p>– R package tseries has portfolio.optim function using the solve.QP to make it easier</p>
+</div>
+</div>
+<div id="using-r-to-construct-multi-asset-portfolio" class="section level2 hasAnchor" number="12.5">
+<h2><span class="header-section-number">12.5</span> Using R to Construct Multi-Asset Portfolio<a href="01-Part_2_portfolio.html#using-r-to-construct-multi-asset-portfolio" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>This section will contruct a five (5) stock portfolio using prices downloaded from Yahoo finance</li>
+<li>The exercise first creates random weight portfolios then uses two packages PortfolioAnalytics and fPortfolio for risk-return efficient portfolios.</li>
+</ul>
+<div id="data" class="section level3 hasAnchor" number="12.5.1">
+<h3><span class="header-section-number">12.5.1</span> Data<a href="01-Part_2_portfolio.html#data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Download 2 year daily prices for BHP.AX, ANZ.AX, WOW.AX, TLS.AX and CSL.AX</li>
+<li><em>Stocks are chosen from different sectors</em></li>
+</ul>
+<div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb311-1"><a href="01-Part_2_portfolio.html#cb311-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(quantmod)</span>
+<span id="cb311-2"><a href="01-Part_2_portfolio.html#cb311-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(TTR)</span>
+<span id="cb311-3"><a href="01-Part_2_portfolio.html#cb311-3" aria-hidden="true" tabindex="-1"></a><span class="co"># create a vector of stocks</span></span>
+<span id="cb311-4"><a href="01-Part_2_portfolio.html#cb311-4" aria-hidden="true" tabindex="-1"></a>s1 <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;BHP.AX&quot;</span>, <span class="st">&quot;ANZ.AX&quot;</span>, <span class="st">&quot;WOW.AX&quot;</span>, <span class="st">&quot;TLS.AX&quot;</span>, <span class="st">&quot;CSL.AX&quot;</span>)</span>
+<span id="cb311-5"><a href="01-Part_2_portfolio.html#cb311-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb311-6"><a href="01-Part_2_portfolio.html#cb311-6" aria-hidden="true" tabindex="-1"></a><span class="co"># download prices and create returns from Adjusted Prices</span></span>
+<span id="cb311-7"><a href="01-Part_2_portfolio.html#cb311-7" aria-hidden="true" tabindex="-1"></a>data1 <span class="ot">=</span> <span class="fu">lapply</span>(s1, <span class="at">FUN =</span> <span class="cf">function</span>(x) {</span>
+<span id="cb311-8"><a href="01-Part_2_portfolio.html#cb311-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ROC</span>(<span class="fu">Ad</span>(<span class="fu">getSymbols</span>(x, <span class="at">from =</span> <span class="st">&quot;2019-07-01&quot;</span>, <span class="at">to =</span> <span class="st">&quot;2021-06-30&quot;</span>, <span class="at">auto.assign =</span> <span class="cn">FALSE</span>)),</span>
+<span id="cb311-9"><a href="01-Part_2_portfolio.html#cb311-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">type =</span> <span class="st">&quot;discrete&quot;</span>) <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb311-10"><a href="01-Part_2_portfolio.html#cb311-10" aria-hidden="true" tabindex="-1"></a>})  <span class="co">#%returns</span></span>
+<span id="cb311-11"><a href="01-Part_2_portfolio.html#cb311-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb311-12"><a href="01-Part_2_portfolio.html#cb311-12" aria-hidden="true" tabindex="-1"></a><span class="co"># convert to data frame</span></span>
+<span id="cb311-13"><a href="01-Part_2_portfolio.html#cb311-13" aria-hidden="true" tabindex="-1"></a>ret1 <span class="ot">=</span> <span class="fu">as.data.frame</span>(<span class="fu">do.call</span>(merge, data1))</span>
+<span id="cb311-14"><a href="01-Part_2_portfolio.html#cb311-14" aria-hidden="true" tabindex="-1"></a><span class="co"># change columna names</span></span>
+<span id="cb311-15"><a href="01-Part_2_portfolio.html#cb311-15" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(ret1) <span class="ot">=</span> <span class="fu">gsub</span>(<span class="st">&quot;.AX.Adjusted&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="fu">colnames</span>(ret1))</span>
+<span id="cb311-16"><a href="01-Part_2_portfolio.html#cb311-16" aria-hidden="true" tabindex="-1"></a><span class="co"># remove the first row of missing values</span></span>
+<span id="cb311-17"><a href="01-Part_2_portfolio.html#cb311-17" aria-hidden="true" tabindex="-1"></a>ret1 <span class="ot">=</span> ret1[<span class="sc">-</span><span class="dv">1</span>, ]</span>
+<span id="cb311-18"><a href="01-Part_2_portfolio.html#cb311-18" aria-hidden="true" tabindex="-1"></a><span class="co"># add dates column</span></span>
+<span id="cb311-19"><a href="01-Part_2_portfolio.html#cb311-19" aria-hidden="true" tabindex="-1"></a>ret1 <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">Date =</span> <span class="fu">as.Date</span>(<span class="fu">row.names</span>(ret1)), ret1)</span>
+<span id="cb311-20"><a href="01-Part_2_portfolio.html#cb311-20" aria-hidden="true" tabindex="-1"></a><span class="fu">row.names</span>(ret1) <span class="ot">=</span> <span class="cn">NULL</span></span>
+<span id="cb311-21"><a href="01-Part_2_portfolio.html#cb311-21" aria-hidden="true" tabindex="-1"></a><span class="co"># save the dataframe (not necessarily required, only for</span></span>
+<span id="cb311-22"><a href="01-Part_2_portfolio.html#cb311-22" aria-hidden="true" tabindex="-1"></a><span class="co"># reproducibility)</span></span>
+<span id="cb311-23"><a href="01-Part_2_portfolio.html#cb311-23" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(ret1, <span class="at">file =</span> <span class="st">&quot;data/port_ret.Rds&quot;</span>)</span></code></pre></div>
+<ul>
+<li>Plot the data</li>
+</ul>
+<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb312-1"><a href="01-Part_2_portfolio.html#cb312-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pander)</span>
+<span id="cb312-2"><a href="01-Part_2_portfolio.html#cb312-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb312-3"><a href="01-Part_2_portfolio.html#cb312-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb312-4"><a href="01-Part_2_portfolio.html#cb312-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggthemes)</span>
+<span id="cb312-5"><a href="01-Part_2_portfolio.html#cb312-5" aria-hidden="true" tabindex="-1"></a>ret1 <span class="ot">=</span> <span class="fu">readRDS</span>(<span class="st">&quot;data/port_ret.Rds&quot;</span>)</span>
+<span id="cb312-6"><a href="01-Part_2_portfolio.html#cb312-6" aria-hidden="true" tabindex="-1"></a><span class="co"># overview</span></span>
+<span id="cb312-7"><a href="01-Part_2_portfolio.html#cb312-7" aria-hidden="true" tabindex="-1"></a><span class="fu">pander</span>(<span class="fu">head</span>(ret1), <span class="at">split.table =</span> <span class="cn">Inf</span>)</span></code></pre></div>
+<table style="width:89%;">
+<colgroup>
+<col width="18%" />
+<col width="13%" />
+<col width="15%" />
+<col width="13%" />
+<col width="13%" />
+<col width="13%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Date</th>
+<th align="center">BHP</th>
+<th align="center">ANZ</th>
+<th align="center">WOW</th>
+<th align="center">TLS</th>
+<th align="center">CSL</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">2019-07-02</td>
+<td align="center">0.8637</td>
+<td align="center">-1.45</td>
+<td align="center">-0.2726</td>
+<td align="center">-0.5222</td>
+<td align="center">0.6696</td>
+</tr>
+<tr class="even">
+<td align="center">2019-07-03</td>
+<td align="center">0.09515</td>
+<td align="center">-0.287</td>
+<td align="center">2.703</td>
+<td align="center">1.312</td>
+<td align="center">-0.3486</td>
+</tr>
+<tr class="odd">
+<td align="center">2019-07-04</td>
+<td align="center">-0.5466</td>
+<td align="center">1.331</td>
+<td align="center">0.7096</td>
+<td align="center">0</td>
+<td align="center">1.781</td>
+</tr>
+<tr class="even">
+<td align="center">2019-07-05</td>
+<td align="center">-1.338</td>
+<td align="center">-0.03551</td>
+<td align="center">0.734</td>
+<td align="center">0.5181</td>
+<td align="center">1.596</td>
+</tr>
+<tr class="odd">
+<td align="center">2019-07-08</td>
+<td align="center">-1.768</td>
+<td align="center">-0.9591</td>
+<td align="center">-1.137</td>
+<td align="center">-0.7732</td>
+<td align="center">-1.491</td>
+</tr>
+<tr class="even">
+<td align="center">2019-07-09</td>
+<td align="center">1.159</td>
+<td align="center">-0.6815</td>
+<td align="center">0.6486</td>
+<td align="center">0.7792</td>
+<td align="center">-0.5874</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb313-1"><a href="01-Part_2_portfolio.html#cb313-1" aria-hidden="true" tabindex="-1"></a><span class="co"># convert to long</span></span>
+<span id="cb313-2"><a href="01-Part_2_portfolio.html#cb313-2" aria-hidden="true" tabindex="-1"></a>ret_long <span class="ot">=</span> <span class="fu">pivot_longer</span>(ret1, <span class="at">cols =</span> <span class="sc">-</span><span class="fu">c</span>(Date), <span class="at">values_to =</span> <span class="st">&quot;Return&quot;</span>, <span class="at">names_to =</span> <span class="st">&quot;Stock&quot;</span>)</span>
+<span id="cb313-3"><a href="01-Part_2_portfolio.html#cb313-3" aria-hidden="true" tabindex="-1"></a><span class="co"># plot</span></span>
+<span id="cb313-4"><a href="01-Part_2_portfolio.html#cb313-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb313-5"><a href="01-Part_2_portfolio.html#cb313-5" aria-hidden="true" tabindex="-1"></a>port_p1 <span class="ot">=</span> <span class="fu">ggplot</span>(ret_long, <span class="fu">aes</span>(Date, Return, <span class="at">color =</span> Stock)) <span class="sc">+</span> <span class="fu">geom_path</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
+<span id="cb313-6"><a href="01-Part_2_portfolio.html#cb313-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_grid</span>(Stock <span class="sc">~</span> .) <span class="sc">+</span> <span class="fu">theme_minimal</span>() <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Date&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Returns&quot;</span>)</span>
+<span id="cb313-7"><a href="01-Part_2_portfolio.html#cb313-7" aria-hidden="true" tabindex="-1"></a>port_p1  <span class="co">#covid crisis period is evident in the plot</span></span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:portp1"></span>
+<img src="R_for_Analytics_files/figure-html/portp1-1.png" alt="Simple returns" width="672" />
+<p class="caption">
+Figure 12.2: Simple returns
+</p>
+</div>
+</div>
+<div id="portfolios-with-random-weights" class="section level3 hasAnchor" number="12.5.2">
+<h3><span class="header-section-number">12.5.2</span> Portfolios with random weights<a href="01-Part_2_portfolio.html#portfolios-with-random-weights" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Calculate the mean returns</li>
+<li>Calculate variance-covariance matrix</li>
+<li>Create series of random weights</li>
+<li>Create series of rerturns and risks</li>
+<li>Create plot</li>
+</ul>
+<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb314-1"><a href="01-Part_2_portfolio.html#cb314-1" aria-hidden="true" tabindex="-1"></a>np1 <span class="ot">=</span> <span class="dv">200</span>  <span class="co">#number of portfolios</span></span>
+<span id="cb314-2"><a href="01-Part_2_portfolio.html#cb314-2" aria-hidden="true" tabindex="-1"></a>ret2 <span class="ot">=</span> ret1[, <span class="sc">-</span><span class="dv">1</span>]  <span class="co">#excluding dates</span></span>
+<span id="cb314-3"><a href="01-Part_2_portfolio.html#cb314-3" aria-hidden="true" tabindex="-1"></a>mu1 <span class="ot">=</span> <span class="fu">colMeans</span>(ret2)  <span class="co">#mean returns</span></span>
+<span id="cb314-4"><a href="01-Part_2_portfolio.html#cb314-4" aria-hidden="true" tabindex="-1"></a>na1 <span class="ot">=</span> <span class="fu">ncol</span>(ret2)  <span class="co">#number of assets</span></span>
+<span id="cb314-5"><a href="01-Part_2_portfolio.html#cb314-5" aria-hidden="true" tabindex="-1"></a>varc1 <span class="ot">=</span> <span class="fu">cov</span>(ret2)</span>
+<span id="cb314-6"><a href="01-Part_2_portfolio.html#cb314-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb314-7"><a href="01-Part_2_portfolio.html#cb314-7" aria-hidden="true" tabindex="-1"></a>riskp1 <span class="ot">=</span> <span class="cn">NULL</span>  <span class="co">#vector to store risk</span></span>
+<span id="cb314-8"><a href="01-Part_2_portfolio.html#cb314-8" aria-hidden="true" tabindex="-1"></a>retp1 <span class="ot">=</span> <span class="cn">NULL</span>  <span class="co">#vector to store returns</span></span>
+<span id="cb314-9"><a href="01-Part_2_portfolio.html#cb314-9" aria-hidden="true" tabindex="-1"></a><span class="co"># using loops here (not aiming for efficiency but demonstration)</span></span>
+<span id="cb314-10"><a href="01-Part_2_portfolio.html#cb314-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb314-11"><a href="01-Part_2_portfolio.html#cb314-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>np1) {</span>
+<span id="cb314-12"><a href="01-Part_2_portfolio.html#cb314-12" aria-hidden="true" tabindex="-1"></a>    w <span class="ot">=</span> <span class="fu">diff</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="fu">sort</span>(<span class="fu">runif</span>(na1 <span class="sc">-</span> <span class="dv">1</span>)), <span class="dv">1</span>))  <span class="co"># random weights</span></span>
+<span id="cb314-13"><a href="01-Part_2_portfolio.html#cb314-13" aria-hidden="true" tabindex="-1"></a>    r1 <span class="ot">=</span> <span class="fu">t</span>(w) <span class="sc">%*%</span> mu1  <span class="co">#matrix multiplication</span></span>
+<span id="cb314-14"><a href="01-Part_2_portfolio.html#cb314-14" aria-hidden="true" tabindex="-1"></a>    sd1 <span class="ot">=</span> <span class="fu">t</span>(w) <span class="sc">%*%</span> varc1 <span class="sc">%*%</span> w</span>
+<span id="cb314-15"><a href="01-Part_2_portfolio.html#cb314-15" aria-hidden="true" tabindex="-1"></a>    retp1 <span class="ot">=</span> <span class="fu">rbind</span>(retp1, r1)</span>
+<span id="cb314-16"><a href="01-Part_2_portfolio.html#cb314-16" aria-hidden="true" tabindex="-1"></a>    riskp1 <span class="ot">=</span> <span class="fu">rbind</span>(riskp1, sd1)</span>
+<span id="cb314-17"><a href="01-Part_2_portfolio.html#cb314-17" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb314-18"><a href="01-Part_2_portfolio.html#cb314-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb314-19"><a href="01-Part_2_portfolio.html#cb314-19" aria-hidden="true" tabindex="-1"></a><span class="co"># create a data frame of risk and return</span></span>
+<span id="cb314-20"><a href="01-Part_2_portfolio.html#cb314-20" aria-hidden="true" tabindex="-1"></a>d_p1 <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">Ret =</span> retp1, <span class="at">Risk =</span> riskp1)</span>
+<span id="cb314-21"><a href="01-Part_2_portfolio.html#cb314-21" aria-hidden="true" tabindex="-1"></a><span class="co"># simple plot</span></span>
+<span id="cb314-22"><a href="01-Part_2_portfolio.html#cb314-22" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(d_p1<span class="sc">$</span>Risk, d_p1<span class="sc">$</span>Ret, <span class="at">xlab =</span> <span class="st">&quot;Risk&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Return&quot;</span>, <span class="at">main =</span> <span class="st">&quot;Frontier Portfolios&quot;</span>,</span>
+<span id="cb314-23"><a href="01-Part_2_portfolio.html#cb314-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:rp1"></span>
+<img src="R_for_Analytics_files/figure-html/rp1-1.png" alt="Random Portfolios" width="672" />
+<p class="caption">
+Figure 12.3: Random Portfolios
+</p>
+</div>
+<ul>
+<li>Use ggplot2</li>
+</ul>
+<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb315-1"><a href="01-Part_2_portfolio.html#cb315-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb315-2"><a href="01-Part_2_portfolio.html#cb315-2" aria-hidden="true" tabindex="-1"></a><span class="co"># first layer</span></span>
+<span id="cb315-3"><a href="01-Part_2_portfolio.html#cb315-3" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">=</span> <span class="fu">ggplot</span>(d_p1, <span class="fu">aes</span>(Risk, Ret, <span class="at">colour =</span> Ret))</span>
+<span id="cb315-4"><a href="01-Part_2_portfolio.html#cb315-4" aria-hidden="true" tabindex="-1"></a><span class="co"># scatter plot</span></span>
+<span id="cb315-5"><a href="01-Part_2_portfolio.html#cb315-5" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">=</span> p1 <span class="sc">+</span> <span class="fu">geom_point</span>()</span>
+<span id="cb315-6"><a href="01-Part_2_portfolio.html#cb315-6" aria-hidden="true" tabindex="-1"></a><span class="co"># scatter plot with density and identified port risk return (highest</span></span>
+<span id="cb315-7"><a href="01-Part_2_portfolio.html#cb315-7" aria-hidden="true" tabindex="-1"></a><span class="co"># lowest returns and min risk)</span></span>
+<span id="cb315-8"><a href="01-Part_2_portfolio.html#cb315-8" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fu">c</span>(<span class="fu">max</span>(d_p1<span class="sc">$</span>Ret), <span class="fu">median</span>(d_p1<span class="sc">$</span>Ret),</span>
+<span id="cb315-9"><a href="01-Part_2_portfolio.html#cb315-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">min</span>(d_p1<span class="sc">$</span>Ret)), <span class="at">colour =</span> <span class="fu">c</span>(<span class="st">&quot;darkgreen&quot;</span>, <span class="st">&quot;darkgray&quot;</span>, <span class="st">&quot;darkred&quot;</span>), <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb315-10"><a href="01-Part_2_portfolio.html#cb315-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> d_p1[(d_p1<span class="sc">$</span>Risk <span class="sc">==</span> <span class="fu">min</span>(d_p1<span class="sc">$</span>Risk)), ][, <span class="dv">2</span>]) <span class="sc">+</span></span>
+<span id="cb315-11"><a href="01-Part_2_portfolio.html#cb315-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">colour =</span> <span class="st">&quot;Portfolio Return&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Portfolio Risk&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Portfolio Return&quot;</span>,</span>
+<span id="cb315-12"><a href="01-Part_2_portfolio.html#cb315-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">title =</span> <span class="st">&quot;Random Feasible Portfolios&quot;</span>) <span class="sc">+</span> <span class="fu">theme_bw</span>()</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:rp2"></span>
+<img src="R_for_Analytics_files/figure-html/rp2-1.png" alt="Random Portfolios" width="672" />
+<p class="caption">
+Figure 12.4: Random Portfolios
+</p>
+</div>
+</div>
+</div>
+<div id="efficient-minimum-variance-portfolio-using-r-packages" class="section level2 hasAnchor" number="12.6">
+<h2><span class="header-section-number">12.6</span> Efficient (Minimum Variance) Portfolio using R packages<a href="01-Part_2_portfolio.html#efficient-minimum-variance-portfolio-using-r-packages" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>R’s PortfolioAnalytics package provides various tools for portfolio anlaytics including minimum variance portfolio optimisation</li>
+<li>Create random portfolios based on risk (Std. Dev.) and reward (mean return)</li>
+<li>Full investment: Allocate in all the assets (minimum 0 and maximum 1 weight)</li>
+<li>Long only: Only buy, no short position (positive weights only)</li>
+</ul>
+<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb316-1"><a href="01-Part_2_portfolio.html#cb316-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(PortfolioAnalytics)</span>
+<span id="cb316-2"><a href="01-Part_2_portfolio.html#cb316-2" aria-hidden="true" tabindex="-1"></a><span class="co"># initialise with asset names uses time series data</span></span>
+<span id="cb316-3"><a href="01-Part_2_portfolio.html#cb316-3" aria-hidden="true" tabindex="-1"></a>data_p2 <span class="ot">=</span> <span class="fu">zoo</span>(ret1[, <span class="sc">-</span><span class="dv">1</span>], <span class="at">order.by =</span> <span class="fu">as.Date</span>(ret1<span class="sc">$</span>Date))</span>
+<span id="cb316-4"><a href="01-Part_2_portfolio.html#cb316-4" aria-hidden="true" tabindex="-1"></a><span class="co"># create specification</span></span>
+<span id="cb316-5"><a href="01-Part_2_portfolio.html#cb316-5" aria-hidden="true" tabindex="-1"></a>port <span class="ot">=</span> <span class="fu">portfolio.spec</span>(<span class="at">assets =</span> <span class="fu">c</span>(<span class="fu">colnames</span>(data_p2)))</span>
+<span id="cb316-6"><a href="01-Part_2_portfolio.html#cb316-6" aria-hidden="true" tabindex="-1"></a><span class="co"># add long only constraint</span></span>
+<span id="cb316-7"><a href="01-Part_2_portfolio.html#cb316-7" aria-hidden="true" tabindex="-1"></a>port <span class="ot">=</span> <span class="fu">add.constraint</span>(<span class="at">portfolio =</span> port, <span class="at">type =</span> <span class="st">&quot;long_only&quot;</span>)</span>
+<span id="cb316-8"><a href="01-Part_2_portfolio.html#cb316-8" aria-hidden="true" tabindex="-1"></a><span class="co"># add full investment contraint</span></span>
+<span id="cb316-9"><a href="01-Part_2_portfolio.html#cb316-9" aria-hidden="true" tabindex="-1"></a>port <span class="ot">=</span> <span class="fu">add.constraint</span>(<span class="at">portfolio =</span> port, <span class="at">type =</span> <span class="st">&quot;full_investment&quot;</span>)</span>
+<span id="cb316-10"><a href="01-Part_2_portfolio.html#cb316-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb316-11"><a href="01-Part_2_portfolio.html#cb316-11" aria-hidden="true" tabindex="-1"></a><span class="co"># objective: manimise risk</span></span>
+<span id="cb316-12"><a href="01-Part_2_portfolio.html#cb316-12" aria-hidden="true" tabindex="-1"></a>port_rnd <span class="ot">=</span> <span class="fu">add.objective</span>(<span class="at">portfolio =</span> port, <span class="at">type =</span> <span class="st">&quot;risk&quot;</span>, <span class="at">name =</span> <span class="st">&quot;StdDev&quot;</span>)</span>
+<span id="cb316-13"><a href="01-Part_2_portfolio.html#cb316-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb316-14"><a href="01-Part_2_portfolio.html#cb316-14" aria-hidden="true" tabindex="-1"></a><span class="co"># objective: maximise return</span></span>
+<span id="cb316-15"><a href="01-Part_2_portfolio.html#cb316-15" aria-hidden="true" tabindex="-1"></a>port_rnd <span class="ot">=</span> <span class="fu">add.objective</span>(<span class="at">portfolio =</span> port_rnd, <span class="at">type =</span> <span class="st">&quot;return&quot;</span>, <span class="at">name =</span> <span class="st">&quot;mean&quot;</span>)</span>
+<span id="cb316-16"><a href="01-Part_2_portfolio.html#cb316-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb316-17"><a href="01-Part_2_portfolio.html#cb316-17" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. optimise random portfolios</span></span>
+<span id="cb316-18"><a href="01-Part_2_portfolio.html#cb316-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb316-19"><a href="01-Part_2_portfolio.html#cb316-19" aria-hidden="true" tabindex="-1"></a>rand_p <span class="ot">=</span> <span class="fu">optimize.portfolio</span>(<span class="at">R =</span> data_p2, <span class="at">portfolio =</span> port_rnd, <span class="at">optimize_method =</span> <span class="st">&quot;random&quot;</span>,</span>
+<span id="cb316-20"><a href="01-Part_2_portfolio.html#cb316-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">trace =</span> <span class="cn">TRUE</span>, <span class="at">search_size =</span> <span class="dv">1000</span>)</span>
+<span id="cb316-21"><a href="01-Part_2_portfolio.html#cb316-21" aria-hidden="true" tabindex="-1"></a><span class="co"># plot</span></span>
+<span id="cb316-22"><a href="01-Part_2_portfolio.html#cb316-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb316-23"><a href="01-Part_2_portfolio.html#cb316-23" aria-hidden="true" tabindex="-1"></a><span class="fu">chart.RiskReward</span>(rand_p, <span class="at">risk.col =</span> <span class="st">&quot;StdDev&quot;</span>, <span class="at">return.col =</span> <span class="st">&quot;mean&quot;</span>, <span class="at">chart.assets =</span> <span class="cn">TRUE</span>)  <span class="co">#also plots the equally weighted portfolio</span></span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:efp1"></span>
+<img src="R_for_Analytics_files/figure-html/efp1-1.png" alt="Mean-Variance Portfolios" width="672" />
+<p class="caption">
+Figure 12.5: Mean-Variance Portfolios
+</p>
+</div>
+<ul>
+<li>Optimise for minimum risk
+<ul>
+<li>Minimise the level of Standard Deviation for the portfolio</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb317-1"><a href="01-Part_2_portfolio.html#cb317-1" aria-hidden="true" tabindex="-1"></a>port_msd <span class="ot">=</span> <span class="fu">add.objective</span>(<span class="at">portfolio =</span> port, <span class="at">type =</span> <span class="st">&quot;risk&quot;</span>, <span class="at">name =</span> <span class="st">&quot;StdDev&quot;</span>)</span>
+<span id="cb317-2"><a href="01-Part_2_portfolio.html#cb317-2" aria-hidden="true" tabindex="-1"></a>minvar1 <span class="ot">=</span> <span class="fu">optimize.portfolio</span>(<span class="at">R =</span> data_p2, <span class="at">portfolio =</span> port_msd, <span class="at">optimize_method =</span> <span class="st">&quot;ROI&quot;</span>,</span>
+<span id="cb317-3"><a href="01-Part_2_portfolio.html#cb317-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">trace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb317-4"><a href="01-Part_2_portfolio.html#cb317-4" aria-hidden="true" tabindex="-1"></a>minvar1</span></code></pre></div>
+<pre><code>***********************************
+PortfolioAnalytics Optimization
+***********************************
+
+Call:
+optimize.portfolio(R = data_p2, portfolio = port_msd, optimize_method = &quot;ROI&quot;, 
+    trace = TRUE)
+
+Optimal Weights:
+   BHP    ANZ    WOW    TLS    CSL 
+0.1437 0.0735 0.3122 0.4543 0.0164 
+
+Objective Measure:
+StdDev 
+  1.32 </code></pre>
+<div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb319-1"><a href="01-Part_2_portfolio.html#cb319-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot</span></span>
+<span id="cb319-2"><a href="01-Part_2_portfolio.html#cb319-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(minvar1, <span class="at">risk.col =</span> <span class="st">&quot;StdDev&quot;</span>, <span class="at">main =</span> <span class="st">&quot;Mean Variance Portfolio&quot;</span>, <span class="at">chart.assets =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:efp2-1"></span>
+<img src="R_for_Analytics_files/figure-html/efp2-1.png" alt="Mean Variance Portfolio Risk/Return" width="672" />
+<p class="caption">
+Figure 12.6: Mean Variance Portfolio Risk/Return
+</p>
+</div>
+<div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb320-1"><a href="01-Part_2_portfolio.html#cb320-1" aria-hidden="true" tabindex="-1"></a><span class="co"># efficient frontier</span></span>
+<span id="cb320-2"><a href="01-Part_2_portfolio.html#cb320-2" aria-hidden="true" tabindex="-1"></a>minvar_ef <span class="ot">=</span> <span class="fu">create.EfficientFrontier</span>(<span class="at">R =</span> data_p2, <span class="at">portfolio =</span> port_msd,</span>
+<span id="cb320-3"><a href="01-Part_2_portfolio.html#cb320-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">type =</span> <span class="st">&quot;mean-StdDev&quot;</span>)</span>
+<span id="cb320-4"><a href="01-Part_2_portfolio.html#cb320-4" aria-hidden="true" tabindex="-1"></a><span class="fu">chart.EfficientFrontier</span>(minvar_ef, <span class="at">match.col =</span> <span class="st">&quot;StdDev&quot;</span>, <span class="at">type =</span> <span class="st">&quot;l&quot;</span>, <span class="at">tangent.line =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb320-5"><a href="01-Part_2_portfolio.html#cb320-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">chart.assets =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:efp2-2"></span>
+<img src="R_for_Analytics_files/figure-html/efp2-2.png" alt="Efficient Frontier" width="672" />
+<p class="caption">
+Figure 12.7: Efficient Frontier
+</p>
+</div>
+<ul>
+<li>The fPortfolio package also provides functions to conduct the optimisation
+<ul>
+<li>An ebook is available with further details on the fPortfolio package see here <a href="https://www.rmetrics.org/ebooks-portfolio" class="uri">https://www.rmetrics.org/ebooks-portfolio</a></li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb321"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb321-1"><a href="01-Part_2_portfolio.html#cb321-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fPortfolio)</span>
+<span id="cb321-2"><a href="01-Part_2_portfolio.html#cb321-2" aria-hidden="true" tabindex="-1"></a>data_p2 <span class="ot">=</span> <span class="fu">as.timeSeries</span>(data_p2)</span>
+<span id="cb321-3"><a href="01-Part_2_portfolio.html#cb321-3" aria-hidden="true" tabindex="-1"></a>pspec <span class="ot">=</span> <span class="fu">portfolioSpec</span>()  <span class="co">#initial specification</span></span>
+<span id="cb321-4"><a href="01-Part_2_portfolio.html#cb321-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb321-5"><a href="01-Part_2_portfolio.html#cb321-5" aria-hidden="true" tabindex="-1"></a><span class="fu">setNFrontierPoints</span>(pspec) <span class="ot">=</span> <span class="dv">500</span>  <span class="co">#random portfolios for the efficient frontier</span></span>
+<span id="cb321-6"><a href="01-Part_2_portfolio.html#cb321-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb321-7"><a href="01-Part_2_portfolio.html#cb321-7" aria-hidden="true" tabindex="-1"></a>eff_front2 <span class="ot">=</span> <span class="fu">portfolioFrontier</span>(data_p2, <span class="at">constraints =</span> <span class="st">&quot;LongOnly&quot;</span>)  <span class="co">#strategy</span></span>
+<span id="cb321-8"><a href="01-Part_2_portfolio.html#cb321-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(eff_front2, <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>))</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:efp3"></span>
+<img src="R_for_Analytics_files/figure-html/efp3-1.png" alt="Efficient frontier plot (fPortfolio)" width="672" />
+<p class="caption">
+Figure 12.8: Efficient frontier plot (fPortfolio)
+</p>
+</div>
+<ul>
+<li>Another function (allows to add different points and lines from other portfolios)</li>
+<li>Also plots of the weights in different portfolios</li>
+</ul>
+<div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb322-1"><a href="01-Part_2_portfolio.html#cb322-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tailoredFrontierPlot</span>(eff_front2, <span class="at">sharpeRatio =</span> <span class="cn">FALSE</span>, <span class="at">risk =</span> <span class="st">&quot;Sigma&quot;</span>)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:efp4-1"></span>
+<img src="R_for_Analytics_files/figure-html/efp4-1.png" alt="Efficient Frontier" width="672" />
+<p class="caption">
+Figure 12.9: Efficient Frontier
+</p>
+</div>
+<div class="sourceCode" id="cb323"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb323-1"><a href="01-Part_2_portfolio.html#cb323-1" aria-hidden="true" tabindex="-1"></a><span class="co"># weights</span></span>
+<span id="cb323-2"><a href="01-Part_2_portfolio.html#cb323-2" aria-hidden="true" tabindex="-1"></a><span class="fu">weightsPlot</span>(eff_front2)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:efp4-2"></span>
+<img src="R_for_Analytics_files/figure-html/efp4-2.png" alt="Weights Plot" width="672" />
+<p class="caption">
+Figure 12.10: Weights Plot
+</p>
+</div>
+<div id="minimum-variance-and-portfolio-for-a-given-level-of-return" class="section level3 hasAnchor" number="12.6.1">
+<h3><span class="header-section-number">12.6.1</span> Minimum Variance and portfolio for a given level of return<a href="01-Part_2_portfolio.html#minimum-variance-and-portfolio-for-a-given-level-of-return" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Minimum variance
+<ul>
+<li>Uses previous constraints (Long Only)</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb324"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb324-1"><a href="01-Part_2_portfolio.html#cb324-1" aria-hidden="true" tabindex="-1"></a>(<span class="at">minvar2 =</span> <span class="fu">minvariancePortfolio</span>(data_p2))</span></code></pre></div>
+<pre><code>
+Title:
+ MV Minimum Variance Portfolio 
+ Estimator:         covEstimator 
+ Solver:            solveRquadprog 
+ Optimize:          minRisk 
+ Constraints:       LongOnly 
+
+Portfolio Weights:
+   BHP    ANZ    WOW    TLS    CSL 
+0.1437 0.0735 0.3122 0.4543 0.0164 
+
+Covariance Risk Budgets:
+   BHP    ANZ    WOW    TLS    CSL 
+0.1437 0.0735 0.3122 0.4543 0.0164 
+
+Target Returns and Risks:
+  mean    Cov   CVaR    VaR 
+0.0382 1.3204 3.2805 2.0550 
+
+Description:
+ Tue Nov  8 01:07:41 2022 by user: RMachine </code></pre>
+<ul>
+<li>Target Return</li>
+</ul>
+<div class="sourceCode" id="cb326"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb326-1"><a href="01-Part_2_portfolio.html#cb326-1" aria-hidden="true" tabindex="-1"></a>mu <span class="ot">=</span> <span class="fu">mean</span>(<span class="fu">colMeans</span>(data_p2))  <span class="co">#target return</span></span>
+<span id="cb326-2"><a href="01-Part_2_portfolio.html#cb326-2" aria-hidden="true" tabindex="-1"></a><span class="fu">setTargetReturn</span>(pspec) <span class="ot">=</span> mu</span>
+<span id="cb326-3"><a href="01-Part_2_portfolio.html#cb326-3" aria-hidden="true" tabindex="-1"></a>(<span class="at">eff_port2 =</span> <span class="fu">efficientPortfolio</span>(data_p2, pspec))</span></code></pre></div>
+<pre><code>
+Title:
+ MV Efficient Portfolio 
+ Estimator:         covEstimator 
+ Solver:            solveRquadprog 
+ Optimize:          minRisk 
+ Constraints:       LongOnly 
+
+Portfolio Weights:
+   BHP    ANZ    WOW    TLS    CSL 
+0.2364 0.0342 0.3425 0.2360 0.1510 
+
+Covariance Risk Budgets:
+   BHP    ANZ    WOW    TLS    CSL 
+0.2563 0.0326 0.3439 0.1994 0.1677 
+
+Target Returns and Risks:
+  mean    Cov   CVaR    VaR 
+0.0521 1.3608 3.4011 1.9698 
+
+Description:
+ Tue Nov  8 01:07:41 2022 by user: RMachine </code></pre>
+</div>
+<div id="portfolio-with-box-constraints" class="section level3 hasAnchor" number="12.6.2">
+<h3><span class="header-section-number">12.6.2</span> Portfolio with Box Constraints<a href="01-Part_2_portfolio.html#portfolio-with-box-constraints" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>We can add box constraints to setup minimum weights so that we invest in each stock in the portfolio.</li>
+<li>This can be achieved using both packages.</li>
+<li>Here we demonstrate using the fPortfolio package. See help(box_constraints) for PortfolioAnalytics package</li>
+</ul>
+<div class="sourceCode" id="cb328"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb328-1"><a href="01-Part_2_portfolio.html#cb328-1" aria-hidden="true" tabindex="-1"></a>pspec2 <span class="ot">=</span> <span class="fu">portfolioSpec</span>()</span>
+<span id="cb328-2"><a href="01-Part_2_portfolio.html#cb328-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb328-3"><a href="01-Part_2_portfolio.html#cb328-3" aria-hidden="true" tabindex="-1"></a><span class="fu">setNFrontierPoints</span>(pspec) <span class="ot">=</span> <span class="dv">500</span></span>
+<span id="cb328-4"><a href="01-Part_2_portfolio.html#cb328-4" aria-hidden="true" tabindex="-1"></a>boxconstraints <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;minW[1:5]=0.1&quot;</span>, <span class="st">&quot;maxW[1:5]=1&quot;</span>)  <span class="co">#for minimum asset weights and maximum asset weights</span></span>
+<span id="cb328-5"><a href="01-Part_2_portfolio.html#cb328-5" aria-hidden="true" tabindex="-1"></a>eff_front3 <span class="ot">=</span> <span class="fu">portfolioFrontier</span>(data_p2, <span class="at">spec =</span> pspec2, <span class="at">constraints =</span> boxconstraints)</span>
+<span id="cb328-6"><a href="01-Part_2_portfolio.html#cb328-6" aria-hidden="true" tabindex="-1"></a>eff_front3</span></code></pre></div>
+<pre><code>
+Title:
+ MV Portfolio Frontier 
+ Estimator:         covEstimator 
+ Solver:            solveRquadprog 
+ Optimize:          minRisk 
+ Constraints:       minW maxW 
+ Portfolio Points:  5 of 24 
+
+Portfolio Weights:
+      BHP    ANZ    WOW    TLS    CSL
+1  0.1000 0.1000 0.1248 0.5752 0.1000
+6  0.1160 0.1000 0.2713 0.4127 0.1000
+12 0.1900 0.1000 0.3253 0.2611 0.1236
+18 0.2323 0.1000 0.3382 0.1292 0.2003
+24 0.2558 0.1000 0.1000 0.1000 0.4442
+
+Covariance Risk Budgets:
+      BHP    ANZ    WOW    TLS    CSL
+1  0.0922 0.0983 0.1022 0.6022 0.1052
+6  0.1136 0.1040 0.2662 0.4063 0.1099
+12 0.2038 0.1069 0.3268 0.2270 0.1354
+18 0.2495 0.1038 0.3270 0.0972 0.2225
+24 0.2495 0.0917 0.0711 0.0669 0.5209
+
+Target Returns and Risks:
+     mean    Cov   CVaR    VaR
+1  0.0346 1.3525 3.2604 2.0459
+6  0.0410 1.3280 3.3011 2.0827
+12 0.0488 1.3482 3.3697 1.9793
+18 0.0566 1.3977 3.4827 2.0566
+24 0.0644 1.5223 3.7541 2.2943
+
+Description:
+ Tue Nov  8 01:07:41 2022 by user: RMachine </code></pre>
+<div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb330-1"><a href="01-Part_2_portfolio.html#cb330-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(eff_front2, <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>))</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:effp5"></span>
+<img src="R_for_Analytics_files/figure-html/effp5-1.png" alt="Frontier Plot (box constraints)" width="672" />
+<p class="caption">
+Figure 12.11: Frontier Plot (box constraints)
+</p>
+</div>
+<div class="sourceCode" id="cb331"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb331-1"><a href="01-Part_2_portfolio.html#cb331-1" aria-hidden="true" tabindex="-1"></a>(<span class="at">minvar3 =</span> <span class="fu">minvariancePortfolio</span>(<span class="at">data =</span> data_p2, <span class="at">spec =</span> pspec2, <span class="at">constraints =</span> boxconstraints))</span></code></pre></div>
+<pre><code>
+Title:
+ MV Minimum Variance Portfolio 
+ Estimator:         covEstimator 
+ Solver:            solveRquadprog 
+ Optimize:          minRisk 
+ Constraints:       minW maxW 
+
+Portfolio Weights:
+   BHP    ANZ    WOW    TLS    CSL 
+0.1179 0.1000 0.2728 0.4093 0.1000 
+
+Covariance Risk Budgets:
+   BHP    ANZ    WOW    TLS    CSL 
+0.1158 0.1041 0.2680 0.4021 0.1099 
+
+Target Returns and Risks:
+  mean    Cov   CVaR    VaR 
+0.0412 1.3280 3.3025 2.0801 
+
+Description:
+ Tue Nov  8 01:07:43 2022 by user: RMachine </code></pre>
+</div>
+</div>
+<div id="evaluating-portfoios-risk-adjusted-performance" class="section level2 hasAnchor" number="12.7">
+<h2><span class="header-section-number">12.7</span> Evaluating Portfoios: Risk Adjusted Performance<a href="01-Part_2_portfolio.html#evaluating-portfoios-risk-adjusted-performance" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="sharpe-ratio" class="section level3 hasAnchor" number="12.7.1">
+<h3><span class="header-section-number">12.7.1</span> Sharpe Ratio<a href="01-Part_2_portfolio.html#sharpe-ratio" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>The Sharpe Ratio compares the excess return of a portfolio relative to the risk-free rate with the portfolio’s standard deviation.</li>
+</ul>
+<span class="math display" id="eq:sr1">\[\begin{equation}
+Sharpe_{p}=\frac{E(r_{p})-r_{f}}{\sigma_{p}}
+\tag{12.22}
+
+\end{equation}\]</span>
+<ul>
+<li>The portfolio with highest Sharpe Ratio is known as the Tangency Portfolio</li>
+</ul>
+</div>
+<div id="roys-safety-ratio" class="section level3 hasAnchor" number="12.7.2">
+<h3><span class="header-section-number">12.7.2</span> Roy’s Safety Ratio<a href="01-Part_2_portfolio.html#roys-safety-ratio" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><p>Roy’s Safety First (SF) Ratio makes a slight modification to the Sharpe Ratio.</p></li>
+<li><p>Specifically, instead of using the risk-free rate, Roy’s SF Ratio instead uses a target or minimum acceptable return to calculate the excess return</p></li>
+</ul>
+<span class="math display" id="eq:sr2">\[\begin{equation}
+
+RoysSF_{p}=\frac{E(r_{p})-MAR}{\sigma_{p}}
+\tag{12.23}
+
+\end{equation}\]</span>
+</div>
+<div id="treynors-ratio" class="section level3 hasAnchor" number="12.7.3">
+<h3><span class="header-section-number">12.7.3</span> Treynor’s Ratio<a href="01-Part_2_portfolio.html#treynors-ratio" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>The Treynor Ratio modifies the denominator in the Sharpe Ratio to use beta instead of standard deviation in the denominator. That is</li>
+</ul>
+<span class="math display" id="eq:sr3">\[\begin{equation}
+
+Treynor_{p}=\frac{E(r_{p})-r_{f}}{\beta_{p}}
+\tag{12.24}
+
+\end{equation}\]</span>
+</div>
+<div id="sharpe-ratio-portfolio-in-r" class="section level3 hasAnchor" number="12.7.4">
+<h3><span class="header-section-number">12.7.4</span> Sharpe Ratio (Portfolio) in R<a href="01-Part_2_portfolio.html#sharpe-ratio-portfolio-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Assume an rf=0.02</li>
+<li>The code uses the fPortfolio package</li>
+<li>The ratio can also be easily calculated using base R</li>
+</ul>
+<div class="sourceCode" id="cb333"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb333-1"><a href="01-Part_2_portfolio.html#cb333-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create specification</span></span>
+<span id="cb333-2"><a href="01-Part_2_portfolio.html#cb333-2" aria-hidden="true" tabindex="-1"></a>pspec3 <span class="ot">=</span> <span class="fu">portfolioSpec</span>()</span>
+<span id="cb333-3"><a href="01-Part_2_portfolio.html#cb333-3" aria-hidden="true" tabindex="-1"></a><span class="fu">setRiskFreeRate</span>(pspec3) <span class="ot">=</span> <span class="fl">0.02</span></span>
+<span id="cb333-4"><a href="01-Part_2_portfolio.html#cb333-4" aria-hidden="true" tabindex="-1"></a><span class="fu">setNFrontierPoints</span>(pspec3) <span class="ot">=</span> <span class="dv">50</span></span>
+<span id="cb333-5"><a href="01-Part_2_portfolio.html#cb333-5" aria-hidden="true" tabindex="-1"></a><span class="co"># create efficient frontier</span></span>
+<span id="cb333-6"><a href="01-Part_2_portfolio.html#cb333-6" aria-hidden="true" tabindex="-1"></a>eff_front4 <span class="ot">=</span> <span class="fu">portfolioFrontier</span>(data_p2, <span class="at">spec =</span> pspec3, <span class="at">constraints =</span> <span class="st">&quot;LongOnly&quot;</span>)</span>
+<span id="cb333-7"><a href="01-Part_2_portfolio.html#cb333-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb333-8"><a href="01-Part_2_portfolio.html#cb333-8" aria-hidden="true" tabindex="-1"></a><span class="co"># find the tangency port</span></span>
+<span id="cb333-9"><a href="01-Part_2_portfolio.html#cb333-9" aria-hidden="true" tabindex="-1"></a>tgport1 <span class="ot">=</span> <span class="fu">tangencyPortfolio</span>(<span class="at">data =</span> data_p2, <span class="at">spec =</span> pspec3, <span class="at">constraints =</span> <span class="st">&quot;LongOnly&quot;</span>)</span>
+<span id="cb333-10"><a href="01-Part_2_portfolio.html#cb333-10" aria-hidden="true" tabindex="-1"></a><span class="co"># create frontier plot</span></span>
+<span id="cb333-11"><a href="01-Part_2_portfolio.html#cb333-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb333-12"><a href="01-Part_2_portfolio.html#cb333-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb333-13"><a href="01-Part_2_portfolio.html#cb333-13" aria-hidden="true" tabindex="-1"></a><span class="fu">frontierPlot</span>(eff_front4, <span class="at">pch =</span> <span class="dv">1</span>, <span class="at">auto =</span> <span class="cn">FALSE</span>, <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">2.5</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,</span>
+<span id="cb333-14"><a href="01-Part_2_portfolio.html#cb333-14" aria-hidden="true" tabindex="-1"></a>    <span class="fl">0.085</span>))  <span class="co">#custom x and y limits</span></span>
+<span id="cb333-15"><a href="01-Part_2_portfolio.html#cb333-15" aria-hidden="true" tabindex="-1"></a><span class="fu">minvariancePoints</span>(<span class="at">object =</span> eff_front4, <span class="at">auto =</span> <span class="cn">FALSE</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">pch =</span> <span class="dv">20</span>)  <span class="co">#add min variance port</span></span>
+<span id="cb333-16"><a href="01-Part_2_portfolio.html#cb333-16" aria-hidden="true" tabindex="-1"></a><span class="fu">tangencyPoints</span>(<span class="at">object =</span> eff_front4, <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">pch =</span> <span class="dv">20</span>)  <span class="co">#add tangency port</span></span>
+<span id="cb333-17"><a href="01-Part_2_portfolio.html#cb333-17" aria-hidden="true" tabindex="-1"></a><span class="fu">tangencyLines</span>(<span class="at">object =</span> tgport1, <span class="at">col =</span> <span class="st">&quot;darkblue&quot;</span>)  <span class="co">#add tangency portfolio line</span></span>
+<span id="cb333-18"><a href="01-Part_2_portfolio.html#cb333-18" aria-hidden="true" tabindex="-1"></a><span class="fu">grid</span>()</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:tport1"></span>
+<img src="R_for_Analytics_files/figure-html/tport1-1.png" alt="Tangency Portfolio (Sharpe Portfolio)" width="672" />
+<p class="caption">
+Figure 12.12: Tangency Portfolio (Sharpe Portfolio)
+</p>
+</div>
+<div class="sourceCode" id="cb334"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb334-1"><a href="01-Part_2_portfolio.html#cb334-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(tgport1)</span></code></pre></div>
+<pre><code>
+Title:
+ MV Tangency Portfolio 
+ Estimator:         covEstimator 
+ Solver:            solveRquadprog 
+ Optimize:          minRisk 
+ Constraints:       LongOnly 
+
+Portfolio Weights:
+   BHP    ANZ    WOW    TLS    CSL 
+0.3996 0.0000 0.0758 0.0000 0.5247 
+
+Covariance Risk Budgets:
+   BHP    ANZ    WOW    TLS    CSL 
+0.3853 0.0000 0.0464 0.0000 0.5683 
+
+Target Returns and Risks:
+  mean    Cov   CVaR    VaR 
+0.0741 1.6352 4.0740 2.4228 
+
+Description:
+ Tue Nov  8 01:07:43 2022 by user: RMachine </code></pre>
+<div class="sourceCode" id="cb336"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb336-1"><a href="01-Part_2_portfolio.html#cb336-1" aria-hidden="true" tabindex="-1"></a><span class="co"># weights plot weightsPie(tgport1,box=FALSE)</span></span>
+<span id="cb336-2"><a href="01-Part_2_portfolio.html#cb336-2" aria-hidden="true" tabindex="-1"></a><span class="co"># weightedReturnsPie(tgport1,box=FALSE)</span></span></code></pre></div>
+
+</div>
+</div>
+</div>
+<h3>References<a href="07-references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="refs" class="references csl-bib-body hanging-indent" line-spacing="2">
+<div id="ref-Francis2013" class="csl-entry">
+Francis, J. C., &amp; Kim, D. (2013). <em>Modern portfolio theory: Foundations, analysis, and new developments</em> (Vol. 795). John Wiley &amp; Sons.
+</div>
+<div id="ref-Markowitz1952" class="csl-entry">
+Markowitz, H. (1952). Portfolio selection. <em>The Journal of Finance</em>, <em>7</em>(1), 77–91.
+</div>
+<div id="ref-Markowitz1991" class="csl-entry">
+Markowitz, H. M. (1991). Foundations of portfolio theory. <em>The Journal of Finance</em>, <em>46</em>(2), 469–477.
+</div>
+<div id="ref-Ruppert2015" class="csl-entry">
+Ruppert, D. (2015). <em>Statistics and data analysis for financial engineering</em> (2nd ed., Vol. 13). Springer.
+</div>
+<div id="ref-Szylar2013" class="csl-entry">
+Szylar, C. (2013). <em>Handbook of market risk</em>. John Wiley &amp; Sons.
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="01-Part_1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="04-Part_3-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

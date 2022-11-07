@@ -52,6 +52,8 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<link href="libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 <script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
 <script src="libs/plotly-binding-4.10.1/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
@@ -59,8 +61,6 @@
 <script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
 <link href="libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet" />
 <script src="libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
-<link href="libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
-<link href="libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 <link href="libs/wordcloud2-0.0.1/wordcloud.css" rel="stylesheet" />
 <script src="libs/wordcloud2-0.0.1/wordcloud2-all.js"></script>
 <script src="libs/wordcloud2-0.0.1/hover.js"></script>
@@ -552,7 +552,7 @@ div.csl-indent {
 <span id="cb340-6"><a href="04-Part_3-1.html#cb340-6" aria-hidden="true" tabindex="-1"></a>(<span class="at">p1 =</span> p1 <span class="sc">+</span> <span class="fu">theme_bw</span>() <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">color =</span> <span class="st">&quot;Density&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Random Sampling (Base R)&quot;</span>,</span>
 <span id="cb340-7"><a href="04-Part_3-1.html#cb340-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;BHP Prices&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Density&quot;</span>))</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:rs1"></span>
-<img src="R_for_Analytics_files/figure-html/rs1-1.png" alt="Training/Testing using Base R" width="672" />
+<img src="04-Part_3-1_files/figure-html/rs1-1.png" alt="Training/Testing using Base R" width="672" />
 <p class="caption">
 Figure 13.1: Training/Testing using Base R
 </p>
@@ -576,7 +576,7 @@ Figure 13.1: Training/Testing using Base R
 <span id="cb341-11"><a href="04-Part_3-1.html#cb341-11" aria-hidden="true" tabindex="-1"></a>(<span class="at">p2 =</span> p2 <span class="sc">+</span> <span class="fu">theme_bw</span>() <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">color =</span> <span class="st">&quot;Density&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Random Sampling (Caret package)&quot;</span>,</span>
 <span id="cb341-12"><a href="04-Part_3-1.html#cb341-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;BHP Prices&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Density&quot;</span>))</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:rs2"></span>
-<img src="R_for_Analytics_files/figure-html/rs2-1.png" alt="Training/Testing using caret" width="672" />
+<img src="04-Part_3-1_files/figure-html/rs2-1.png" alt="Training/Testing using caret" width="672" />
 <p class="caption">
 Figure 13.2: Training/Testing using caret
 </p>
@@ -603,7 +603,7 @@ Figure 13.2: Training/Testing using caret
 <span id="cb342-14"><a href="04-Part_3-1.html#cb342-14" aria-hidden="true" tabindex="-1"></a>(<span class="at">p3 =</span> p3 <span class="sc">+</span> <span class="fu">theme_bw</span>() <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">color =</span> <span class="st">&quot;Density&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Random Sampling (rsample package)&quot;</span>,</span>
 <span id="cb342-15"><a href="04-Part_3-1.html#cb342-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;BHP Prices&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Density&quot;</span>))</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:rs3"></span>
-<img src="R_for_Analytics_files/figure-html/rs3-1.png" alt="Training/Testing using rsample" width="672" />
+<img src="04-Part_3-1_files/figure-html/rs3-1.png" alt="Training/Testing using rsample" width="672" />
 <p class="caption">
 Figure 13.3: Training/Testing using rsample
 </p>
@@ -615,7 +615,7 @@ Figure 13.3: Training/Testing using rsample
 <div class="sourceCode" id="cb343"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb343-1"><a href="04-Part_3-1.html#cb343-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gridExtra)</span>
 <span id="cb343-2"><a href="04-Part_3-1.html#cb343-2" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.arrange</span>(p1, p2, p3, <span class="at">nrow =</span> <span class="dv">1</span>)</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:rs4"></span>
-<img src="R_for_Analytics_files/figure-html/rs4-1.png" alt="Splitting using three methods" width="1152" />
+<img src="04-Part_3-1_files/figure-html/rs4-1.png" alt="Splitting using three methods" width="1152" />
 <p class="caption">
 Figure 13.4: Splitting using three methods
 </p>
@@ -708,9 +708,10 @@ Figure 13.4: Splitting using three methods
 <div class="sourceCode" id="cb350"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb350-1"><a href="04-Part_3-1.html#cb350-1" aria-hidden="true" tabindex="-1"></a><span class="co"># using caret package</span></span>
 <span id="cb350-2"><a href="04-Part_3-1.html#cb350-2" aria-hidden="true" tabindex="-1"></a>cv2 <span class="ot">=</span> <span class="fu">createFolds</span>(d_bhp<span class="sc">$</span>BHP.AX.Close, <span class="at">k =</span> <span class="dv">10</span>)</span>
 <span id="cb350-3"><a href="04-Part_3-1.html#cb350-3" aria-hidden="true" tabindex="-1"></a>cv2<span class="sc">$</span>Fold01  <span class="co">#gives indices for 10 folds</span></span></code></pre></div>
-<pre><code> [1]  28  33  38  42  44  52  71  85  97 119 121 122 125 126 135 160 161 168 191 194 197 201 222 227 231 239 241
-[28] 246 265 284 292 298 302 310 319 331 336 344 353 362 368 384 386 387 402 403 406 430 466 471 484 500 532 533
-[55] 539 554 567 570 581 585 610 612 633 641 642</code></pre>
+<pre><code> [1]  28  33  38  42  44  52  71  85  97 119 121 122 125 126 135 160 161 168 191
+[20] 194 197 201 222 227 231 239 241 246 265 284 292 298 302 310 319 331 336 344
+[39] 353 362 368 384 386 387 402 403 406 430 466 471 484 500 532 533 539 554 567
+[58] 570 581 585 610 612 633 641 642</code></pre>
 </div>
 </div>
 <div id="cv-for-time-series-data" class="section level2 hasAnchor" number="13.7">

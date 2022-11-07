@@ -52,6 +52,8 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<link href="libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 <script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
 <script src="libs/plotly-binding-4.10.1/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
@@ -59,8 +61,6 @@
 <script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
 <link href="libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet" />
 <script src="libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
-<link href="libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
-<link href="libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 <link href="libs/wordcloud2-0.0.1/wordcloud.css" rel="stylesheet" />
 <script src="libs/wordcloud2-0.0.1/wordcloud2-all.js"></script>
 <script src="libs/wordcloud2-0.0.1/hover.js"></script>
@@ -539,77 +539,106 @@ foreign worker</p></li>
 <span id="cb377-2"><a href="04-Part_2.html#cb377-2" aria-hidden="true" tabindex="-1"></a><span class="co"># preliminary analysis descriptive and visual</span></span>
 <span id="cb377-3"><a href="04-Part_2.html#cb377-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(data_cr)</span></code></pre></div>
 <pre><code>&#39;data.frame&#39;:   1000 obs. of  21 variables:
- $ Creditability                    : int  1 1 1 1 1 ...
- $ Account.Balance                  : int  1 1 2 1 1 ...
- $ Duration.of.Credit..month.       : int  18 9 12 12 12 ...
- $ Payment.Status.of.Previous.Credit: int  4 4 2 4 4 ...
- $ Purpose                          : int  2 0 9 0 0 ...
- $ Credit.Amount                    : int  1049 2799 841 2122 2171 ...
- $ Value.Savings.Stocks             : int  1 1 2 1 1 ...
- $ Length.of.current.employment     : int  2 3 4 3 3 ...
- $ Instalment.per.cent              : int  4 2 2 3 4 ...
- $ Sex...Marital.Status             : int  2 3 2 3 3 ...
- $ Guarantors                       : int  1 1 1 1 1 ...
- $ Duration.in.Current.address      : int  4 2 4 2 4 ...
- $ Most.valuable.available.asset    : int  2 1 1 1 2 ...
- $ Age..years.                      : int  21 36 23 39 38 ...
- $ Concurrent.Credits               : int  3 3 3 3 1 ...
- $ Type.of.apartment                : int  1 1 1 1 2 ...
- $ No.of.Credits.at.this.Bank       : int  1 2 1 2 2 ...
- $ Occupation                       : int  3 3 2 2 2 ...
- $ No.of.dependents                 : int  1 2 1 2 1 ...
- $ Telephone                        : int  1 1 1 1 1 ...
- $ Foreign.Worker                   : int  1 1 1 2 2 ...</code></pre>
+ $ Creditability                    : int  1 1 1 1 1 1 1 1 1 1 ...
+ $ Account.Balance                  : int  1 1 2 1 1 1 1 1 4 2 ...
+ $ Duration.of.Credit..month.       : int  18 9 12 12 12 10 8 6 18 24 ...
+ $ Payment.Status.of.Previous.Credit: int  4 4 2 4 4 4 4 4 4 2 ...
+ $ Purpose                          : int  2 0 9 0 0 0 0 0 3 3 ...
+ $ Credit.Amount                    : int  1049 2799 841 2122 2171 2241 3398 1361 1098 3758 ...
+ $ Value.Savings.Stocks             : int  1 1 2 1 1 1 1 1 1 3 ...
+ $ Length.of.current.employment     : int  2 3 4 3 3 2 4 2 1 1 ...
+ $ Instalment.per.cent              : int  4 2 2 3 4 1 1 2 4 1 ...
+ $ Sex...Marital.Status             : int  2 3 2 3 3 3 3 3 2 2 ...
+ $ Guarantors                       : int  1 1 1 1 1 1 1 1 1 1 ...
+ $ Duration.in.Current.address      : int  4 2 4 2 4 3 4 4 4 4 ...
+ $ Most.valuable.available.asset    : int  2 1 1 1 2 1 1 1 3 4 ...
+ $ Age..years.                      : int  21 36 23 39 38 48 39 40 65 23 ...
+ $ Concurrent.Credits               : int  3 3 3 3 1 3 3 3 3 3 ...
+ $ Type.of.apartment                : int  1 1 1 1 2 1 2 2 2 1 ...
+ $ No.of.Credits.at.this.Bank       : int  1 2 1 2 2 2 2 1 2 1 ...
+ $ Occupation                       : int  3 3 2 2 2 2 2 2 1 1 ...
+ $ No.of.dependents                 : int  1 2 1 2 1 2 1 2 1 1 ...
+ $ Telephone                        : int  1 1 1 1 1 1 1 1 1 1 ...
+ $ Foreign.Worker                   : int  1 1 1 2 2 2 2 2 1 1 ...</code></pre>
 <div class="sourceCode" id="cb379"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb379-1"><a href="04-Part_2.html#cb379-1" aria-hidden="true" tabindex="-1"></a><span class="co"># remove NA</span></span>
 <span id="cb379-2"><a href="04-Part_2.html#cb379-2" aria-hidden="true" tabindex="-1"></a>data_cr <span class="ot">=</span> <span class="fu">na.omit</span>(data_cr)</span>
 <span id="cb379-3"><a href="04-Part_2.html#cb379-3" aria-hidden="true" tabindex="-1"></a><span class="co"># quick summary</span></span>
 <span id="cb379-4"><a href="04-Part_2.html#cb379-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(data_cr)</span></code></pre></div>
-<pre><code> Creditability Account.Balance Duration.of.Credit..month. Payment.Status.of.Previous.Credit    Purpose      
- Min.   :0.0   Min.   :1.000   Min.   : 4.0               Min.   :0.000                     Min.   : 0.000  
- 1st Qu.:0.0   1st Qu.:1.000   1st Qu.:12.0               1st Qu.:2.000                     1st Qu.: 1.000  
- Median :1.0   Median :2.000   Median :18.0               Median :2.000                     Median : 2.000  
- Mean   :0.7   Mean   :2.577   Mean   :20.9               Mean   :2.545                     Mean   : 2.828  
- 3rd Qu.:1.0   3rd Qu.:4.000   3rd Qu.:24.0               3rd Qu.:4.000                     3rd Qu.: 3.000  
- Max.   :1.0   Max.   :4.000   Max.   :72.0               Max.   :4.000                     Max.   :10.000  
- Credit.Amount   Value.Savings.Stocks Length.of.current.employment Instalment.per.cent Sex...Marital.Status
- Min.   :  250   Min.   :1.000        Min.   :1.000                Min.   :1.000       Min.   :1.000       
- 1st Qu.: 1366   1st Qu.:1.000        1st Qu.:3.000                1st Qu.:2.000       1st Qu.:2.000       
- Median : 2320   Median :1.000        Median :3.000                Median :3.000       Median :3.000       
- Mean   : 3271   Mean   :2.105        Mean   :3.384                Mean   :2.973       Mean   :2.682       
- 3rd Qu.: 3972   3rd Qu.:3.000        3rd Qu.:5.000                3rd Qu.:4.000       3rd Qu.:3.000       
- Max.   :18424   Max.   :5.000        Max.   :5.000                Max.   :4.000       Max.   :4.000       
-   Guarantors    Duration.in.Current.address Most.valuable.available.asset  Age..years.    Concurrent.Credits
- Min.   :1.000   Min.   :1.000               Min.   :1.000                 Min.   :19.00   Min.   :1.000     
- 1st Qu.:1.000   1st Qu.:2.000               1st Qu.:1.000                 1st Qu.:27.00   1st Qu.:3.000     
- Median :1.000   Median :3.000               Median :2.000                 Median :33.00   Median :3.000     
- Mean   :1.145   Mean   :2.845               Mean   :2.358                 Mean   :35.54   Mean   :2.675     
- 3rd Qu.:1.000   3rd Qu.:4.000               3rd Qu.:3.000                 3rd Qu.:42.00   3rd Qu.:3.000     
- Max.   :3.000   Max.   :4.000               Max.   :4.000                 Max.   :75.00   Max.   :3.000     
- Type.of.apartment No.of.Credits.at.this.Bank   Occupation    No.of.dependents   Telephone     Foreign.Worker 
- Min.   :1.000     Min.   :1.000              Min.   :1.000   Min.   :1.000    Min.   :1.000   Min.   :1.000  
- 1st Qu.:2.000     1st Qu.:1.000              1st Qu.:3.000   1st Qu.:1.000    1st Qu.:1.000   1st Qu.:1.000  
- Median :2.000     Median :1.000              Median :3.000   Median :1.000    Median :1.000   Median :1.000  
- Mean   :1.928     Mean   :1.407              Mean   :2.904   Mean   :1.155    Mean   :1.404   Mean   :1.037  
- 3rd Qu.:2.000     3rd Qu.:2.000              3rd Qu.:3.000   3rd Qu.:1.000    3rd Qu.:2.000   3rd Qu.:1.000  
- Max.   :3.000     Max.   :4.000              Max.   :4.000   Max.   :2.000    Max.   :2.000   Max.   :2.000  </code></pre>
+<pre><code> Creditability Account.Balance Duration.of.Credit..month.
+ Min.   :0.0   Min.   :1.000   Min.   : 4.0              
+ 1st Qu.:0.0   1st Qu.:1.000   1st Qu.:12.0              
+ Median :1.0   Median :2.000   Median :18.0              
+ Mean   :0.7   Mean   :2.577   Mean   :20.9              
+ 3rd Qu.:1.0   3rd Qu.:4.000   3rd Qu.:24.0              
+ Max.   :1.0   Max.   :4.000   Max.   :72.0              
+ Payment.Status.of.Previous.Credit    Purpose       Credit.Amount  
+ Min.   :0.000                     Min.   : 0.000   Min.   :  250  
+ 1st Qu.:2.000                     1st Qu.: 1.000   1st Qu.: 1366  
+ Median :2.000                     Median : 2.000   Median : 2320  
+ Mean   :2.545                     Mean   : 2.828   Mean   : 3271  
+ 3rd Qu.:4.000                     3rd Qu.: 3.000   3rd Qu.: 3972  
+ Max.   :4.000                     Max.   :10.000   Max.   :18424  
+ Value.Savings.Stocks Length.of.current.employment Instalment.per.cent
+ Min.   :1.000        Min.   :1.000                Min.   :1.000      
+ 1st Qu.:1.000        1st Qu.:3.000                1st Qu.:2.000      
+ Median :1.000        Median :3.000                Median :3.000      
+ Mean   :2.105        Mean   :3.384                Mean   :2.973      
+ 3rd Qu.:3.000        3rd Qu.:5.000                3rd Qu.:4.000      
+ Max.   :5.000        Max.   :5.000                Max.   :4.000      
+ Sex...Marital.Status   Guarantors    Duration.in.Current.address
+ Min.   :1.000        Min.   :1.000   Min.   :1.000              
+ 1st Qu.:2.000        1st Qu.:1.000   1st Qu.:2.000              
+ Median :3.000        Median :1.000   Median :3.000              
+ Mean   :2.682        Mean   :1.145   Mean   :2.845              
+ 3rd Qu.:3.000        3rd Qu.:1.000   3rd Qu.:4.000              
+ Max.   :4.000        Max.   :3.000   Max.   :4.000              
+ Most.valuable.available.asset  Age..years.    Concurrent.Credits
+ Min.   :1.000                 Min.   :19.00   Min.   :1.000     
+ 1st Qu.:1.000                 1st Qu.:27.00   1st Qu.:3.000     
+ Median :2.000                 Median :33.00   Median :3.000     
+ Mean   :2.358                 Mean   :35.54   Mean   :2.675     
+ 3rd Qu.:3.000                 3rd Qu.:42.00   3rd Qu.:3.000     
+ Max.   :4.000                 Max.   :75.00   Max.   :3.000     
+ Type.of.apartment No.of.Credits.at.this.Bank   Occupation    No.of.dependents
+ Min.   :1.000     Min.   :1.000              Min.   :1.000   Min.   :1.000   
+ 1st Qu.:2.000     1st Qu.:1.000              1st Qu.:3.000   1st Qu.:1.000   
+ Median :2.000     Median :1.000              Median :3.000   Median :1.000   
+ Mean   :1.928     Mean   :1.407              Mean   :2.904   Mean   :1.155   
+ 3rd Qu.:2.000     3rd Qu.:2.000              3rd Qu.:3.000   3rd Qu.:1.000   
+ Max.   :3.000     Max.   :4.000              Max.   :4.000   Max.   :2.000   
+   Telephone     Foreign.Worker 
+ Min.   :1.000   Min.   :1.000  
+ 1st Qu.:1.000   1st Qu.:1.000  
+ Median :1.000   Median :1.000  
+ Mean   :1.404   Mean   :1.037  
+ 3rd Qu.:2.000   3rd Qu.:1.000  
+ Max.   :2.000   Max.   :2.000  </code></pre>
 <ul>
 <li>Let’s convert data types to as all of them are factors but some of them should be used as numeric</li>
 </ul>
 <div class="sourceCode" id="cb381"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb381-1"><a href="04-Part_2.html#cb381-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sapply</span>(data_cr, class)</span></code></pre></div>
-<pre><code>                    Creditability                   Account.Balance        Duration.of.Credit..month. 
-                        &quot;integer&quot;                         &quot;integer&quot;                         &quot;integer&quot; 
-Payment.Status.of.Previous.Credit                           Purpose                     Credit.Amount 
-                        &quot;integer&quot;                         &quot;integer&quot;                         &quot;integer&quot; 
-             Value.Savings.Stocks      Length.of.current.employment               Instalment.per.cent 
-                        &quot;integer&quot;                         &quot;integer&quot;                         &quot;integer&quot; 
-             Sex...Marital.Status                        Guarantors       Duration.in.Current.address 
-                        &quot;integer&quot;                         &quot;integer&quot;                         &quot;integer&quot; 
-    Most.valuable.available.asset                       Age..years.                Concurrent.Credits 
-                        &quot;integer&quot;                         &quot;integer&quot;                         &quot;integer&quot; 
-                Type.of.apartment        No.of.Credits.at.this.Bank                        Occupation 
-                        &quot;integer&quot;                         &quot;integer&quot;                         &quot;integer&quot; 
-                 No.of.dependents                         Telephone                    Foreign.Worker 
-                        &quot;integer&quot;                         &quot;integer&quot;                         &quot;integer&quot; </code></pre>
+<pre><code>                    Creditability                   Account.Balance 
+                        &quot;integer&quot;                         &quot;integer&quot; 
+       Duration.of.Credit..month. Payment.Status.of.Previous.Credit 
+                        &quot;integer&quot;                         &quot;integer&quot; 
+                          Purpose                     Credit.Amount 
+                        &quot;integer&quot;                         &quot;integer&quot; 
+             Value.Savings.Stocks      Length.of.current.employment 
+                        &quot;integer&quot;                         &quot;integer&quot; 
+              Instalment.per.cent              Sex...Marital.Status 
+                        &quot;integer&quot;                         &quot;integer&quot; 
+                       Guarantors       Duration.in.Current.address 
+                        &quot;integer&quot;                         &quot;integer&quot; 
+    Most.valuable.available.asset                       Age..years. 
+                        &quot;integer&quot;                         &quot;integer&quot; 
+               Concurrent.Credits                 Type.of.apartment 
+                        &quot;integer&quot;                         &quot;integer&quot; 
+       No.of.Credits.at.this.Bank                        Occupation 
+                        &quot;integer&quot;                         &quot;integer&quot; 
+                 No.of.dependents                         Telephone 
+                        &quot;integer&quot;                         &quot;integer&quot; 
+                   Foreign.Worker 
+                        &quot;integer&quot; </code></pre>
 <div class="sourceCode" id="cb383"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb383-1"><a href="04-Part_2.html#cb383-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Keep Duration.of.Credit..month and Credit.Amount as numeric rest to</span></span>
 <span id="cb383-2"><a href="04-Part_2.html#cb383-2" aria-hidden="true" tabindex="-1"></a><span class="co"># factors</span></span>
 <span id="cb383-3"><a href="04-Part_2.html#cb383-3" aria-hidden="true" tabindex="-1"></a>id <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">7</span><span class="sc">:</span><span class="dv">21</span>)</span>
@@ -635,7 +664,7 @@ Payment.Status.of.Previous.Credit                           Purpose             
 <span id="cb384-11"><a href="04-Part_2.html#cb384-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb384-12"><a href="04-Part_2.html#cb384-12" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.arrange</span>(p1, p2, <span class="at">ncol =</span> <span class="dv">1</span>)</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:boxplot"></span>
-<img src="R_for_Analytics_files/figure-html/boxplot-1.png" alt="Box Plots" width="672" />
+<img src="04-Part_2_files/figure-html/boxplot-1.png" alt="Box Plots" width="672" />
 <p class="caption">
 Figure 15.1: Box Plots
 </p>
@@ -651,7 +680,7 @@ Figure 15.1: Box Plots
 <span id="cb385-6"><a href="04-Part_2.html#cb385-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb385-7"><a href="04-Part_2.html#cb385-7" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.arrange</span>(p3, p4, <span class="at">ncol =</span> <span class="dv">2</span>)</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:barplot"></span>
-<img src="R_for_Analytics_files/figure-html/barplot-1.png" alt="Bar plots" width="672" />
+<img src="04-Part_2_files/figure-html/barplot-1.png" alt="Bar plots" width="672" />
 <p class="caption">
 Figure 15.2: Bar plots
 </p>
@@ -772,9 +801,9 @@ Resampling results across tuning parameters:
 Accuracy was used to select the optimal model using the largest value.
 The final value used for the model was cp = 0.01397685.</code></pre>
 <div class="sourceCode" id="cb396"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb396-1"><a href="04-Part_2.html#cb396-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(cv_tree1)  <span class="co">#parameter search using gini</span></span></code></pre></div>
-<p><img src="R_for_Analytics_files/figure-html/unnamed-chunk-150-1.png" width="672" /></p>
+<p><img src="04-Part_2_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 <div class="sourceCode" id="cb397"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb397-1"><a href="04-Part_2.html#cb397-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(cv_tree2)  <span class="co">#parameter search using information</span></span></code></pre></div>
-<p><img src="R_for_Analytics_files/figure-html/unnamed-chunk-150-2.png" width="672" /></p>
+<p><img src="04-Part_2_files/figure-html/unnamed-chunk-6-2.png" width="672" /></p>
 </div>
 <div id="prediction-and-accuracy" class="section level2 hasAnchor" number="15.5">
 <h2><span class="header-section-number">15.5</span> Prediction and Accuracy<a href="04-Part_2.html#prediction-and-accuracy" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -854,7 +883,7 @@ Prediction   0   1
 <div class="sourceCode" id="cb402"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb402-1"><a href="04-Part_2.html#cb402-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(vip)</span>
 <span id="cb402-2"><a href="04-Part_2.html#cb402-2" aria-hidden="true" tabindex="-1"></a><span class="fu">vip</span>(cv_tree1, <span class="at">num_features =</span> <span class="dv">20</span>, <span class="at">geom =</span> <span class="st">&quot;point&quot;</span>)</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:cart1"></span>
-<img src="R_for_Analytics_files/figure-html/cart1-1.png" alt="Variable importance based on the total reduction in MSE " width="672" />
+<img src="04-Part_2_files/figure-html/cart1-1.png" alt="Variable importance based on the total reduction in MSE " width="672" />
 <p class="caption">
 Figure 15.3: Variable importance based on the total reduction in MSE
 </p>
@@ -870,7 +899,7 @@ Figure 15.3: Variable importance based on the total reduction in MSE
 <span id="cb403-2"><a href="04-Part_2.html#cb403-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rpart.plot</span>(cv_tree1<span class="sc">$</span>finalModel, <span class="at">main =</span> <span class="st">&quot;Decision Tree using Gini Index&quot;</span>,</span>
 <span id="cb403-3"><a href="04-Part_2.html#cb403-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">tweak =</span> <span class="fl">1.4</span>)</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:cart2"></span>
-<img src="R_for_Analytics_files/figure-html/cart2-1.png" alt="Decision Tree using rpart.plot" width="1344" />
+<img src="04-Part_2_files/figure-html/cart2-1.png" alt="Decision Tree using rpart.plot" width="1344" />
 <p class="caption">
 Figure 15.4: Decision Tree using rpart.plot
 </p>

@@ -52,6 +52,8 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<link href="libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 <script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
 <script src="libs/plotly-binding-4.10.1/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
@@ -59,8 +61,6 @@
 <script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
 <link href="libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet" />
 <script src="libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
-<link href="libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
-<link href="libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 <link href="libs/wordcloud2-0.0.1/wordcloud.css" rel="stylesheet" />
 <script src="libs/wordcloud2-0.0.1/wordcloud2-all.js"></script>
 <script src="libs/wordcloud2-0.0.1/hover.js"></script>
@@ -971,23 +971,27 @@ Returns vector of column means.
 </ul>
 <div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="02-data.html#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># using names and row.names</span></span>
 <span id="cb54-2"><a href="02-data.html#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(swiss)  <span class="co">#name of the columns (can also use colnames)</span></span></code></pre></div>
-<pre><code>[1] &quot;Fertility&quot;        &quot;Agriculture&quot;      &quot;Examination&quot;      &quot;Education&quot;        &quot;Catholic&quot;        
-[6] &quot;Infant.Mortality&quot;</code></pre>
+<pre><code>[1] &quot;Fertility&quot;        &quot;Agriculture&quot;      &quot;Examination&quot;      &quot;Education&quot;       
+[5] &quot;Catholic&quot;         &quot;Infant.Mortality&quot;</code></pre>
 <div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="02-data.html#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(swiss)</span></code></pre></div>
-<pre><code>[1] &quot;Fertility&quot;        &quot;Agriculture&quot;      &quot;Examination&quot;      &quot;Education&quot;        &quot;Catholic&quot;        
-[6] &quot;Infant.Mortality&quot;</code></pre>
+<pre><code>[1] &quot;Fertility&quot;        &quot;Agriculture&quot;      &quot;Examination&quot;      &quot;Education&quot;       
+[5] &quot;Catholic&quot;         &quot;Infant.Mortality&quot;</code></pre>
 <div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="02-data.html#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">row.names</span>(swiss)  <span class="co">#name of the rows</span></span></code></pre></div>
-<pre><code> [1] &quot;Courtelary&quot;   &quot;Delemont&quot;     &quot;Franches-Mnt&quot; &quot;Moutier&quot;      &quot;Neuveville&quot;   &quot;Porrentruy&quot;   &quot;Broye&quot;       
- [8] &quot;Glane&quot;        &quot;Gruyere&quot;      &quot;Sarine&quot;       &quot;Veveyse&quot;      &quot;Aigle&quot;        &quot;Aubonne&quot;      &quot;Avenches&quot;    
-[15] &quot;Cossonay&quot;     &quot;Echallens&quot;    &quot;Grandson&quot;     &quot;Lausanne&quot;     &quot;La Vallee&quot;    &quot;Lavaux&quot;       &quot;Morges&quot;      
-[22] &quot;Moudon&quot;       &quot;Nyone&quot;        &quot;Orbe&quot;         &quot;Oron&quot;         &quot;Payerne&quot;      &quot;Paysd&#39;enhaut&quot; &quot;Rolle&quot;       
-[29] &quot;Vevey&quot;        &quot;Yverdon&quot;      &quot;Conthey&quot;      &quot;Entremont&quot;    &quot;Herens&quot;       &quot;Martigwy&quot;     &quot;Monthey&quot;     
-[36] &quot;St Maurice&quot;   &quot;Sierre&quot;       &quot;Sion&quot;         &quot;Boudry&quot;       &quot;La Chauxdfnd&quot; &quot;Le Locle&quot;     &quot;Neuchatel&quot;   
-[43] &quot;Val de Ruz&quot;   &quot;ValdeTravers&quot; &quot;V. De Geneve&quot; &quot;Rive Droite&quot;  &quot;Rive Gauche&quot; </code></pre>
+<pre><code> [1] &quot;Courtelary&quot;   &quot;Delemont&quot;     &quot;Franches-Mnt&quot; &quot;Moutier&quot;      &quot;Neuveville&quot;  
+ [6] &quot;Porrentruy&quot;   &quot;Broye&quot;        &quot;Glane&quot;        &quot;Gruyere&quot;      &quot;Sarine&quot;      
+[11] &quot;Veveyse&quot;      &quot;Aigle&quot;        &quot;Aubonne&quot;      &quot;Avenches&quot;     &quot;Cossonay&quot;    
+[16] &quot;Echallens&quot;    &quot;Grandson&quot;     &quot;Lausanne&quot;     &quot;La Vallee&quot;    &quot;Lavaux&quot;      
+[21] &quot;Morges&quot;       &quot;Moudon&quot;       &quot;Nyone&quot;        &quot;Orbe&quot;         &quot;Oron&quot;        
+[26] &quot;Payerne&quot;      &quot;Paysd&#39;enhaut&quot; &quot;Rolle&quot;        &quot;Vevey&quot;        &quot;Yverdon&quot;     
+[31] &quot;Conthey&quot;      &quot;Entremont&quot;    &quot;Herens&quot;       &quot;Martigwy&quot;     &quot;Monthey&quot;     
+[36] &quot;St Maurice&quot;   &quot;Sierre&quot;       &quot;Sion&quot;         &quot;Boudry&quot;       &quot;La Chauxdfnd&quot;
+[41] &quot;Le Locle&quot;     &quot;Neuchatel&quot;    &quot;Val de Ruz&quot;   &quot;ValdeTravers&quot; &quot;V. De Geneve&quot;
+[46] &quot;Rive Droite&quot;  &quot;Rive Gauche&quot; </code></pre>
 <div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="02-data.html#cb60-1" aria-hidden="true" tabindex="-1"></a>swiss<span class="sc">$</span>Fertility  <span class="co">#returns the vector of data in the column Fertility</span></span></code></pre></div>
-<pre><code> [1] 80.2 83.1 92.5 85.8 76.9 76.1 83.8 92.4 82.4 82.9 87.1 64.1 66.9 68.9 61.7 68.3 71.7 55.7 54.3 65.1 65.5 65.0
-[23] 56.6 57.4 72.5 74.2 72.0 60.5 58.3 65.4 75.5 69.3 77.3 70.5 79.4 65.0 92.2 79.3 70.4 65.7 72.7 64.4 77.6 67.6
-[45] 35.0 44.7 42.8</code></pre>
+<pre><code> [1] 80.2 83.1 92.5 85.8 76.9 76.1 83.8 92.4 82.4 82.9 87.1 64.1 66.9 68.9 61.7
+[16] 68.3 71.7 55.7 54.3 65.1 65.5 65.0 56.6 57.4 72.5 74.2 72.0 60.5 58.3 65.4
+[31] 75.5 69.3 77.3 70.5 79.4 65.0 92.2 79.3 70.4 65.7 72.7 64.4 77.6 67.6 35.0
+[46] 44.7 42.8</code></pre>
 <ul>
 <li>Data frames are constructed using the function <span class="math inline">\(\mathtt{data.frame}\)</span>. For example following creates a data frame of a character and numeric vector.</li>
 </ul>
@@ -1024,7 +1028,7 @@ Returns vector of column means.
   ..$ num1: int [1:5] 1 2 3 4 5</code></pre>
 <ul>
 <li>Components are always numbered and may always be referred to as such.
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-36"></span>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-19"></span>
 <img src="CO2_qPVWsAAErbv.png%20large.png" alt="Lists" width="687" />
 <p class="caption">
 Figure 2.1: Lists
@@ -1271,7 +1275,7 @@ NULL</code></pre>
 <li><p>Remember the file should be in a tabular format, a text file or a csv are the best options. On clicking Import the data will be imported in a Data Frame and will be made visible by RStudio.</p></li>
 <li><p>This will also generate basic data import command used for importing and viewing the file in the RStudio console as shown in the figure below. Note that the path in the command as shown in the console has been scrambled as it will be different for every computer</p></li>
 </ul>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-47"></span>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-30"></span>
 <img src="Annotation%202020-06-09%20150513.png" alt="Import Dataset wizard in RStudio" width="933" />
 <p class="caption">
 Figure 2.2: Import Dataset wizard in RStudio

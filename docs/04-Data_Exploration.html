@@ -52,6 +52,8 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<link href="libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 <script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
 <script src="libs/plotly-binding-4.10.1/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
@@ -59,8 +61,6 @@
 <script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
 <link href="libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet" />
 <script src="libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
-<link href="libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
-<link href="libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 <link href="libs/wordcloud2-0.0.1/wordcloud.css" rel="stylesheet" />
 <script src="libs/wordcloud2-0.0.1/wordcloud2-all.js"></script>
 <script src="libs/wordcloud2-0.0.1/hover.js"></script>
@@ -953,20 +953,20 @@ Kurtosis
 <span id="cb157-2"><a href="04-Data_Exploration.html#cb157-2" aria-hidden="true" tabindex="-1"></a><span class="co"># the full path with the filename</span></span>
 <span id="cb157-3"><a href="04-Data_Exploration.html#cb157-3" aria-hidden="true" tabindex="-1"></a>data_stocks <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/data_fin.csv&quot;</span>)  <span class="co">#import data</span></span>
 <span id="cb157-4"><a href="04-Data_Exploration.html#cb157-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data_stocks)</span></code></pre></div>
-<pre><code>        Date     DJI   AXP   MMM   ATT    BA   CAT CISCO    DD   XOM    GE    GS    HD    IBM  INTC   JNJ   JPM
-1  3/01/2000 11357.5 45.82 47.19 47.19 40.12 24.31 54.05 65.00 39.09 49.95 88.31 65.50 115.56 43.47 46.09 48.69
-2  4/01/2000 10997.9 44.09 45.31 44.25 40.12 24.00 51.00 65.00 38.41 48.06 82.38 61.50 112.06 41.47 44.41 47.27
-3  5/01/2000 11122.7 42.96 46.62 44.94 42.62 24.56 51.19 67.75 40.50 47.70 78.88 61.44 116.00 41.81 44.88 46.98
-4  6/01/2000 11253.3 43.78 50.62 43.75 43.06 25.81 50.00 71.50 42.59 48.51 82.25 60.00 114.62 39.38 46.28 47.65
-5  7/01/2000 11522.6 44.42 51.47 44.12 44.12 26.66 52.94 71.62 42.31 50.28 82.56 62.81 113.31 41.00 47.88 48.52
-6 10/01/2000 11572.2 45.04 51.12 44.75 43.69 25.78 54.91 70.00 41.88 50.37 84.38 63.19 118.44 42.88 47.03 47.69
-    MRK   MCD  MSFT   NKE
-1 64.04 39.62 58.34 12.03
-2 61.61 38.81 56.31 11.38
-3 64.22 39.44 56.91 12.03
-4 64.75 38.88 55.00 11.97
-5 70.97 39.75 55.72 11.97
-6 68.89 40.06 56.12 12.17</code></pre>
+<pre><code>        Date     DJI   AXP   MMM   ATT    BA   CAT CISCO    DD   XOM    GE
+1  3/01/2000 11357.5 45.82 47.19 47.19 40.12 24.31 54.05 65.00 39.09 49.95
+2  4/01/2000 10997.9 44.09 45.31 44.25 40.12 24.00 51.00 65.00 38.41 48.06
+3  5/01/2000 11122.7 42.96 46.62 44.94 42.62 24.56 51.19 67.75 40.50 47.70
+4  6/01/2000 11253.3 43.78 50.62 43.75 43.06 25.81 50.00 71.50 42.59 48.51
+5  7/01/2000 11522.6 44.42 51.47 44.12 44.12 26.66 52.94 71.62 42.31 50.28
+6 10/01/2000 11572.2 45.04 51.12 44.75 43.69 25.78 54.91 70.00 41.88 50.37
+     GS    HD    IBM  INTC   JNJ   JPM   MRK   MCD  MSFT   NKE
+1 88.31 65.50 115.56 43.47 46.09 48.69 64.04 39.62 58.34 12.03
+2 82.38 61.50 112.06 41.47 44.41 47.27 61.61 38.81 56.31 11.38
+3 78.88 61.44 116.00 41.81 44.88 46.98 64.22 39.44 56.91 12.03
+4 82.25 60.00 114.62 39.38 46.28 47.65 64.75 38.88 55.00 11.97
+5 82.56 62.81 113.31 41.00 47.88 48.52 70.97 39.75 55.72 11.97
+6 84.38 63.19 118.44 42.88 47.03 47.69 68.89 40.06 56.12 12.17</code></pre>
 <div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="04-Data_Exploration.html#cb159-1" aria-hidden="true" tabindex="-1"></a>DJI <span class="ot">=</span> data_stocks<span class="sc">$</span>DJI</span>
 <span id="cb159-2"><a href="04-Data_Exploration.html#cb159-2" aria-hidden="true" tabindex="-1"></a>DJI <span class="ot">=</span> <span class="fu">na.omit</span>(DJI)  <span class="co">#remove NAs as it will affect the calculations</span></span>
 <span id="cb159-3"><a href="04-Data_Exploration.html#cb159-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Arithmetic mean</span></span>
@@ -1007,30 +1007,46 @@ Kurtosis
    6547   10063   10749   11098   12340   16577 </code></pre>
 <div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="04-Data_Exploration.html#cb179-1" aria-hidden="true" tabindex="-1"></a><span class="co"># summary of whole dataset excluding the time column</span></span>
 <span id="cb179-2"><a href="04-Data_Exploration.html#cb179-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(data_stocks[, <span class="fu">c</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">21</span>)])</span></code></pre></div>
-<pre><code>      DJI             AXP             MMM              ATT              BA              CAT        
- Min.   : 6547   Min.   :10.26   Min.   : 39.50   Min.   :19.34   Min.   : 25.06   Min.   : 14.91  
- 1st Qu.:10063   1st Qu.:38.31   1st Qu.: 62.55   1st Qu.:25.54   1st Qu.: 44.00   1st Qu.: 28.64  
- Median :10749   Median :47.49   Median : 77.67   Median :29.65   Median : 63.56   Median : 57.10  
- Mean   :11098   Mean   :46.77   Mean   : 75.78   Mean   :31.77   Mean   : 62.95   Mean   : 56.01  
- 3rd Qu.:12340   3rd Qu.:54.44   3rd Qu.: 85.55   3rd Qu.:37.22   3rd Qu.: 74.90   3rd Qu.: 79.36  
- Max.   :16577   Max.   :90.73   Max.   :140.25   Max.   :58.50   Max.   :138.36   Max.   :116.20  
- NA&#39;s   :27      NA&#39;s   :12      NA&#39;s   :12       NA&#39;s   :12      NA&#39;s   :12       NA&#39;s   :12      
-     CISCO             DD             XOM               GE              GS              HD             IBM        
- Min.   : 8.60   Min.   :16.14   Min.   : 30.27   Min.   : 6.66   Min.   : 52.0   Min.   :18.00   Min.   : 55.07  
- 1st Qu.:17.68   1st Qu.:41.13   1st Qu.: 42.46   1st Qu.:20.00   1st Qu.: 92.2   1st Qu.:31.00   1st Qu.: 87.82  
- Median :20.43   Median :44.53   Median : 64.77   Median :30.33   Median :116.2   Median :37.37   Median :106.48  
- Mean   :23.41   Mean   :44.37   Mean   : 63.20   Mean   :29.56   Mean   :126.9   Mean   :40.20   Mean   :118.83  
- 3rd Qu.:24.17   3rd Qu.:48.92   3rd Qu.: 81.62   3rd Qu.:36.03   3rd Qu.:159.5   3rd Qu.:46.23   3rd Qu.:130.00  
- Max.   :80.06   Max.   :71.62   Max.   :101.51   Max.   :59.94   Max.   :247.9   Max.   :82.34   Max.   :215.80  
- NA&#39;s   :13      NA&#39;s   :12      NA&#39;s   :12       NA&#39;s   :12      NA&#39;s   :12      NA&#39;s   :12      NA&#39;s   :12      
-      INTC            JNJ             JPM             MRK             MCD              MSFT            NKE       
- Min.   :12.08   Min.   :33.69   Min.   :15.45   Min.   :20.99   Min.   : 12.38   Min.   :15.15   Min.   : 6.64  
- 1st Qu.:20.17   1st Qu.:55.27   1st Qu.:35.66   1st Qu.:34.53   1st Qu.: 29.19   1st Qu.:25.67   1st Qu.:14.56  
- Median :22.76   Median :61.30   Median :40.20   Median :43.63   Median : 43.78   Median :27.59   Median :23.25  
- Mean   :25.21   Mean   :61.07   Mean   :40.36   Mean   :44.65   Mean   : 51.07   Mean   :28.38   Mean   :28.01  
- 3rd Qu.:26.77   3rd Qu.:65.20   3rd Qu.:45.71   3rd Qu.:51.55   3rd Qu.: 70.36   3rd Qu.:30.19   3rd Qu.:36.90  
- Max.   :74.88   Max.   :95.63   Max.   :65.70   Max.   :89.85   Max.   :103.59   Max.   :58.34   Max.   :79.86  
- NA&#39;s   :13      NA&#39;s   :12      NA&#39;s   :12      NA&#39;s   :13      NA&#39;s   :12       NA&#39;s   :13      NA&#39;s   :12     </code></pre>
+<pre><code>      DJI             AXP             MMM              ATT       
+ Min.   : 6547   Min.   :10.26   Min.   : 39.50   Min.   :19.34  
+ 1st Qu.:10063   1st Qu.:38.31   1st Qu.: 62.55   1st Qu.:25.54  
+ Median :10749   Median :47.49   Median : 77.67   Median :29.65  
+ Mean   :11098   Mean   :46.77   Mean   : 75.78   Mean   :31.77  
+ 3rd Qu.:12340   3rd Qu.:54.44   3rd Qu.: 85.55   3rd Qu.:37.22  
+ Max.   :16577   Max.   :90.73   Max.   :140.25   Max.   :58.50  
+ NA&#39;s   :27      NA&#39;s   :12      NA&#39;s   :12       NA&#39;s   :12     
+       BA              CAT             CISCO             DD       
+ Min.   : 25.06   Min.   : 14.91   Min.   : 8.60   Min.   :16.14  
+ 1st Qu.: 44.00   1st Qu.: 28.64   1st Qu.:17.68   1st Qu.:41.13  
+ Median : 63.56   Median : 57.10   Median :20.43   Median :44.53  
+ Mean   : 62.95   Mean   : 56.01   Mean   :23.41   Mean   :44.37  
+ 3rd Qu.: 74.90   3rd Qu.: 79.36   3rd Qu.:24.17   3rd Qu.:48.92  
+ Max.   :138.36   Max.   :116.20   Max.   :80.06   Max.   :71.62  
+ NA&#39;s   :12       NA&#39;s   :12       NA&#39;s   :13      NA&#39;s   :12     
+      XOM               GE              GS              HD       
+ Min.   : 30.27   Min.   : 6.66   Min.   : 52.0   Min.   :18.00  
+ 1st Qu.: 42.46   1st Qu.:20.00   1st Qu.: 92.2   1st Qu.:31.00  
+ Median : 64.77   Median :30.33   Median :116.2   Median :37.37  
+ Mean   : 63.20   Mean   :29.56   Mean   :126.9   Mean   :40.20  
+ 3rd Qu.: 81.62   3rd Qu.:36.03   3rd Qu.:159.5   3rd Qu.:46.23  
+ Max.   :101.51   Max.   :59.94   Max.   :247.9   Max.   :82.34  
+ NA&#39;s   :12       NA&#39;s   :12      NA&#39;s   :12      NA&#39;s   :12     
+      IBM              INTC            JNJ             JPM       
+ Min.   : 55.07   Min.   :12.08   Min.   :33.69   Min.   :15.45  
+ 1st Qu.: 87.82   1st Qu.:20.17   1st Qu.:55.27   1st Qu.:35.66  
+ Median :106.48   Median :22.76   Median :61.30   Median :40.20  
+ Mean   :118.83   Mean   :25.21   Mean   :61.07   Mean   :40.36  
+ 3rd Qu.:130.00   3rd Qu.:26.77   3rd Qu.:65.20   3rd Qu.:45.71  
+ Max.   :215.80   Max.   :74.88   Max.   :95.63   Max.   :65.70  
+ NA&#39;s   :12       NA&#39;s   :13      NA&#39;s   :12      NA&#39;s   :12     
+      MRK             MCD              MSFT            NKE       
+ Min.   :20.99   Min.   : 12.38   Min.   :15.15   Min.   : 6.64  
+ 1st Qu.:34.53   1st Qu.: 29.19   1st Qu.:25.67   1st Qu.:14.56  
+ Median :43.63   Median : 43.78   Median :27.59   Median :23.25  
+ Mean   :44.65   Mean   : 51.07   Mean   :28.38   Mean   :28.01  
+ 3rd Qu.:51.55   3rd Qu.: 70.36   3rd Qu.:30.19   3rd Qu.:36.90  
+ Max.   :89.85   Max.   :103.59   Max.   :58.34   Max.   :79.86  
+ NA&#39;s   :13      NA&#39;s   :12       NA&#39;s   :13      NA&#39;s   :12     </code></pre>
 <div id="example-descriptive-statistics-of-stock-returns" class="section level3 hasAnchor" number="4.3.1">
 <h3><span class="header-section-number">4.3.1</span> Example-Descriptive Statistics of Stock Returns<a href="04-Data_Exploration.html#example-descriptive-statistics-of-stock-returns" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
@@ -1039,20 +1055,20 @@ Kurtosis
 <p>• We will first import the dataset into R using the <span class="math inline">\(\mathtt{read.csv}\)</span> function.</p>
 <div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="04-Data_Exploration.html#cb181-1" aria-hidden="true" tabindex="-1"></a>data_cs1 <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/data_fin.csv&quot;</span>)</span>
 <span id="cb181-2"><a href="04-Data_Exploration.html#cb181-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data_cs1)  <span class="co">#check the imported data</span></span></code></pre></div>
-<pre><code>        Date     DJI   AXP   MMM   ATT    BA   CAT CISCO    DD   XOM    GE    GS    HD    IBM  INTC   JNJ   JPM
-1  3/01/2000 11357.5 45.82 47.19 47.19 40.12 24.31 54.05 65.00 39.09 49.95 88.31 65.50 115.56 43.47 46.09 48.69
-2  4/01/2000 10997.9 44.09 45.31 44.25 40.12 24.00 51.00 65.00 38.41 48.06 82.38 61.50 112.06 41.47 44.41 47.27
-3  5/01/2000 11122.7 42.96 46.62 44.94 42.62 24.56 51.19 67.75 40.50 47.70 78.88 61.44 116.00 41.81 44.88 46.98
-4  6/01/2000 11253.3 43.78 50.62 43.75 43.06 25.81 50.00 71.50 42.59 48.51 82.25 60.00 114.62 39.38 46.28 47.65
-5  7/01/2000 11522.6 44.42 51.47 44.12 44.12 26.66 52.94 71.62 42.31 50.28 82.56 62.81 113.31 41.00 47.88 48.52
-6 10/01/2000 11572.2 45.04 51.12 44.75 43.69 25.78 54.91 70.00 41.88 50.37 84.38 63.19 118.44 42.88 47.03 47.69
-    MRK   MCD  MSFT   NKE
-1 64.04 39.62 58.34 12.03
-2 61.61 38.81 56.31 11.38
-3 64.22 39.44 56.91 12.03
-4 64.75 38.88 55.00 11.97
-5 70.97 39.75 55.72 11.97
-6 68.89 40.06 56.12 12.17</code></pre>
+<pre><code>        Date     DJI   AXP   MMM   ATT    BA   CAT CISCO    DD   XOM    GE
+1  3/01/2000 11357.5 45.82 47.19 47.19 40.12 24.31 54.05 65.00 39.09 49.95
+2  4/01/2000 10997.9 44.09 45.31 44.25 40.12 24.00 51.00 65.00 38.41 48.06
+3  5/01/2000 11122.7 42.96 46.62 44.94 42.62 24.56 51.19 67.75 40.50 47.70
+4  6/01/2000 11253.3 43.78 50.62 43.75 43.06 25.81 50.00 71.50 42.59 48.51
+5  7/01/2000 11522.6 44.42 51.47 44.12 44.12 26.66 52.94 71.62 42.31 50.28
+6 10/01/2000 11572.2 45.04 51.12 44.75 43.69 25.78 54.91 70.00 41.88 50.37
+     GS    HD    IBM  INTC   JNJ   JPM   MRK   MCD  MSFT   NKE
+1 88.31 65.50 115.56 43.47 46.09 48.69 64.04 39.62 58.34 12.03
+2 82.38 61.50 112.06 41.47 44.41 47.27 61.61 38.81 56.31 11.38
+3 78.88 61.44 116.00 41.81 44.88 46.98 64.22 39.44 56.91 12.03
+4 82.25 60.00 114.62 39.38 46.28 47.65 64.75 38.88 55.00 11.97
+5 82.56 62.81 113.31 41.00 47.88 48.52 70.97 39.75 55.72 11.97
+6 84.38 63.19 118.44 42.88 47.03 47.69 68.89 40.06 56.12 12.17</code></pre>
 <ul>
 <li>Apply function to with dates as character and then after converting dates to Date class.</li>
 </ul>
@@ -1061,22 +1077,30 @@ Kurtosis
 <span id="cb183-3"><a href="04-Data_Exploration.html#cb183-3" aria-hidden="true" tabindex="-1"></a><span class="co"># data cleaning-remove NAs</span></span>
 <span id="cb183-4"><a href="04-Data_Exploration.html#cb183-4" aria-hidden="true" tabindex="-1"></a>data_cs1<span class="fl">.1</span> <span class="ot">=</span> <span class="fu">na.omit</span>(data_cs1<span class="fl">.1</span>)</span>
 <span id="cb183-5"><a href="04-Data_Exploration.html#cb183-5" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(data_cs1<span class="fl">.1</span>)  <span class="co"># see the columns present in the data</span></span></code></pre></div>
-<pre><code> [1] &quot;Date&quot;  &quot;DJI&quot;   &quot;AXP&quot;   &quot;MMM&quot;   &quot;ATT&quot;   &quot;BA&quot;    &quot;CAT&quot;   &quot;CISCO&quot; &quot;DD&quot;    &quot;XOM&quot;   &quot;GE&quot;   </code></pre>
+<pre><code> [1] &quot;Date&quot;  &quot;DJI&quot;   &quot;AXP&quot;   &quot;MMM&quot;   &quot;ATT&quot;   &quot;BA&quot;    &quot;CAT&quot;   &quot;CISCO&quot; &quot;DD&quot;   
+[10] &quot;XOM&quot;   &quot;GE&quot;   </code></pre>
 <div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="04-Data_Exploration.html#cb185-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(data_cs1<span class="fl">.1</span>)  <span class="co">#notice the Date variable</span></span></code></pre></div>
-<pre><code>     Date                DJI             AXP             MMM              ATT              BA        
- Length:3523        Min.   : 6547   Min.   :10.26   Min.   : 39.50   Min.   :19.34   Min.   : 25.06  
- Class :character   1st Qu.:10063   1st Qu.:38.38   1st Qu.: 62.55   1st Qu.:25.54   1st Qu.: 44.02  
- Mode  :character   Median :10749   Median :47.60   Median : 77.67   Median :29.76   Median : 63.61  
-                    Mean   :11098   Mean   :46.83   Mean   : 75.80   Mean   :31.79   Mean   : 62.99  
-                    3rd Qu.:12340   3rd Qu.:54.50   3rd Qu.: 85.61   3rd Qu.:37.23   3rd Qu.: 74.95  
-                    Max.   :16577   Max.   :90.73   Max.   :140.25   Max.   :58.50   Max.   :138.36  
-      CAT             CISCO             DD             XOM               GE       
- Min.   : 14.91   Min.   : 8.60   Min.   :16.14   Min.   : 30.27   Min.   : 6.66  
- 1st Qu.: 28.48   1st Qu.:17.68   1st Qu.:41.17   1st Qu.: 42.41   1st Qu.:20.04  
- Median : 57.11   Median :20.39   Median :44.58   Median : 64.70   Median :30.37  
- Mean   : 56.03   Mean   :23.42   Mean   :44.43   Mean   : 63.18   Mean   :29.63  
- 3rd Qu.: 79.50   3rd Qu.:24.18   3rd Qu.:48.93   3rd Qu.: 81.70   3rd Qu.:36.05  
- Max.   :116.20   Max.   :80.06   Max.   :71.62   Max.   :101.51   Max.   :59.94  </code></pre>
+<pre><code>     Date                DJI             AXP             MMM        
+ Length:3523        Min.   : 6547   Min.   :10.26   Min.   : 39.50  
+ Class :character   1st Qu.:10063   1st Qu.:38.38   1st Qu.: 62.55  
+ Mode  :character   Median :10749   Median :47.60   Median : 77.67  
+                    Mean   :11098   Mean   :46.83   Mean   : 75.80  
+                    3rd Qu.:12340   3rd Qu.:54.50   3rd Qu.: 85.61  
+                    Max.   :16577   Max.   :90.73   Max.   :140.25  
+      ATT              BA              CAT             CISCO      
+ Min.   :19.34   Min.   : 25.06   Min.   : 14.91   Min.   : 8.60  
+ 1st Qu.:25.54   1st Qu.: 44.02   1st Qu.: 28.48   1st Qu.:17.68  
+ Median :29.76   Median : 63.61   Median : 57.11   Median :20.39  
+ Mean   :31.79   Mean   : 62.99   Mean   : 56.03   Mean   :23.42  
+ 3rd Qu.:37.23   3rd Qu.: 74.95   3rd Qu.: 79.50   3rd Qu.:24.18  
+ Max.   :58.50   Max.   :138.36   Max.   :116.20   Max.   :80.06  
+       DD             XOM               GE       
+ Min.   :16.14   Min.   : 30.27   Min.   : 6.66  
+ 1st Qu.:41.17   1st Qu.: 42.41   1st Qu.:20.04  
+ Median :44.58   Median : 64.70   Median :30.37  
+ Mean   :44.43   Mean   : 63.18   Mean   :29.63  
+ 3rd Qu.:48.93   3rd Qu.: 81.70   3rd Qu.:36.05  
+ Max.   :71.62   Max.   :101.51   Max.   :59.94  </code></pre>
 <div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="04-Data_Exploration.html#cb187-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check class of dates which will be factor ( treated as factor by default)\t</span></span>
 <span id="cb187-2"><a href="04-Data_Exploration.html#cb187-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(data_cs1<span class="fl">.1</span><span class="sc">$</span>Date)</span></code></pre></div>
 <pre><code>[1] &quot;character&quot;</code></pre>
@@ -1085,20 +1109,27 @@ Kurtosis
 <span id="cb189-3"><a href="04-Data_Exploration.html#cb189-3" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(data_cs1<span class="fl">.1</span><span class="sc">$</span>Date)</span></code></pre></div>
 <pre><code>[1] &quot;Date&quot;</code></pre>
 <div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="04-Data_Exploration.html#cb191-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(data_cs1<span class="fl">.1</span>)  <span class="co">#notice the Date variable</span></span></code></pre></div>
-<pre><code>      Date                 DJI             AXP             MMM              ATT              BA        
- Min.   :2000-01-03   Min.   : 6547   Min.   :10.26   Min.   : 39.50   Min.   :19.34   Min.   : 25.06  
- 1st Qu.:2003-07-08   1st Qu.:10063   1st Qu.:38.38   1st Qu.: 62.55   1st Qu.:25.54   1st Qu.: 44.02  
- Median :2007-01-05   Median :10749   Median :47.60   Median : 77.67   Median :29.76   Median : 63.61  
- Mean   :2007-01-03   Mean   :11098   Mean   :46.83   Mean   : 75.80   Mean   :31.79   Mean   : 62.99  
- 3rd Qu.:2010-07-06   3rd Qu.:12340   3rd Qu.:54.50   3rd Qu.: 85.61   3rd Qu.:37.23   3rd Qu.: 74.95  
- Max.   :2014-01-03   Max.   :16577   Max.   :90.73   Max.   :140.25   Max.   :58.50   Max.   :138.36  
-      CAT             CISCO             DD             XOM               GE       
- Min.   : 14.91   Min.   : 8.60   Min.   :16.14   Min.   : 30.27   Min.   : 6.66  
- 1st Qu.: 28.48   1st Qu.:17.68   1st Qu.:41.17   1st Qu.: 42.41   1st Qu.:20.04  
- Median : 57.11   Median :20.39   Median :44.58   Median : 64.70   Median :30.37  
- Mean   : 56.03   Mean   :23.42   Mean   :44.43   Mean   : 63.18   Mean   :29.63  
- 3rd Qu.: 79.50   3rd Qu.:24.18   3rd Qu.:48.93   3rd Qu.: 81.70   3rd Qu.:36.05  
- Max.   :116.20   Max.   :80.06   Max.   :71.62   Max.   :101.51   Max.   :59.94  </code></pre>
+<pre><code>      Date                 DJI             AXP             MMM        
+ Min.   :2000-01-03   Min.   : 6547   Min.   :10.26   Min.   : 39.50  
+ 1st Qu.:2003-07-08   1st Qu.:10063   1st Qu.:38.38   1st Qu.: 62.55  
+ Median :2007-01-05   Median :10749   Median :47.60   Median : 77.67  
+ Mean   :2007-01-03   Mean   :11098   Mean   :46.83   Mean   : 75.80  
+ 3rd Qu.:2010-07-06   3rd Qu.:12340   3rd Qu.:54.50   3rd Qu.: 85.61  
+ Max.   :2014-01-03   Max.   :16577   Max.   :90.73   Max.   :140.25  
+      ATT              BA              CAT             CISCO      
+ Min.   :19.34   Min.   : 25.06   Min.   : 14.91   Min.   : 8.60  
+ 1st Qu.:25.54   1st Qu.: 44.02   1st Qu.: 28.48   1st Qu.:17.68  
+ Median :29.76   Median : 63.61   Median : 57.11   Median :20.39  
+ Mean   :31.79   Mean   : 62.99   Mean   : 56.03   Mean   :23.42  
+ 3rd Qu.:37.23   3rd Qu.: 74.95   3rd Qu.: 79.50   3rd Qu.:24.18  
+ Max.   :58.50   Max.   :138.36   Max.   :116.20   Max.   :80.06  
+       DD             XOM               GE       
+ Min.   :16.14   Min.   : 30.27   Min.   : 6.66  
+ 1st Qu.:41.17   1st Qu.: 42.41   1st Qu.:20.04  
+ Median :44.58   Median : 64.70   Median :30.37  
+ Mean   :44.43   Mean   : 63.18   Mean   :29.63  
+ 3rd Qu.:48.93   3rd Qu.: 81.70   3rd Qu.:36.05  
+ Max.   :71.62   Max.   :101.51   Max.   :59.94  </code></pre>
 <ul>
 <li>Convert prices to returns</li>
 </ul>
@@ -1108,20 +1139,20 @@ Kurtosis
 <span id="cb193-4"><a href="04-Data_Exploration.html#cb193-4" aria-hidden="true" tabindex="-1"></a>    d2), <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>, <span class="at">row.names =</span> <span class="cn">NULL</span>)</span>
 <span id="cb193-5"><a href="04-Data_Exploration.html#cb193-5" aria-hidden="true" tabindex="-1"></a><span class="co"># visual inspection</span></span>
 <span id="cb193-6"><a href="04-Data_Exploration.html#cb193-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data_stocks_ret)</span></code></pre></div>
-<pre><code>        Date        DJI        AXP        MMM        ATT         BA       CAT      CISCO         DD        XOM
-1 2000-01-04 -3.2173973 -3.8487678 -4.0654247 -6.4326634  0.0000000 -1.283396 -5.8083911  0.0000000 -1.7548837
-2 2000-01-05  1.1283720 -2.5963549  2.8501875  1.5472895  6.0448664  2.306527  0.3718568  4.1437190  5.2984132
-3 2000-01-06  1.1673354  1.8907642  8.2317122 -2.6836654  1.0270865  4.964291 -2.3521195  5.3872990  5.0317510
-4 2000-01-07  2.3648905  1.4512726  1.6652359  0.8421582  2.4318702  3.240230  5.7136191  0.1676915 -0.6596019
-5 2000-01-10  0.4295346  1.3861165 -0.6823304  1.4178250 -0.9793951 -3.356532  3.6536284 -2.2879123 -1.0215079
-6 2000-01-11 -0.5293883  0.9061837 -1.7165263 -1.4178250 -1.8713726 -1.563754 -3.0697677 -1.8018506  1.1868167
-          GE
-1 -3.8572275
-2 -0.7518832
-3  1.6838564
-4  3.5837421
-5  0.1788376
-6  0.2379537</code></pre>
+<pre><code>        Date        DJI        AXP        MMM        ATT         BA       CAT
+1 2000-01-04 -3.2173973 -3.8487678 -4.0654247 -6.4326634  0.0000000 -1.283396
+2 2000-01-05  1.1283720 -2.5963549  2.8501875  1.5472895  6.0448664  2.306527
+3 2000-01-06  1.1673354  1.8907642  8.2317122 -2.6836654  1.0270865  4.964291
+4 2000-01-07  2.3648905  1.4512726  1.6652359  0.8421582  2.4318702  3.240230
+5 2000-01-10  0.4295346  1.3861165 -0.6823304  1.4178250 -0.9793951 -3.356532
+6 2000-01-11 -0.5293883  0.9061837 -1.7165263 -1.4178250 -1.8713726 -1.563754
+       CISCO         DD        XOM         GE
+1 -5.8083911  0.0000000 -1.7548837 -3.8572275
+2  0.3718568  4.1437190  5.2984132 -0.7518832
+3 -2.3521195  5.3872990  5.0317510  1.6838564
+4  5.7136191  0.1676915 -0.6596019  3.5837421
+5  3.6536284 -2.2879123 -1.0215079  0.1788376
+6 -3.0697677 -1.8018506  1.1868167  0.2379537</code></pre>
 <div id="using-the-mathttdescribe-function" class="section level4 hasAnchor" number="4.3.1.1">
 <h4><span class="header-section-number">4.3.1.1</span> Using the <span class="math inline">\(\mathtt{describe}\)</span> function<a href="04-Data_Exploration.html#using-the-mathttdescribe-function" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <ul>
@@ -1137,30 +1168,37 @@ NULL</code></pre>
 <span id="cb197-2"><a href="04-Data_Exploration.html#cb197-2" aria-hidden="true" tabindex="-1"></a>desc1 <span class="ot">=</span> <span class="fu">describe</span>(data_stocks_ret[, <span class="dv">2</span><span class="sc">:</span><span class="dv">11</span>])  <span class="co">#note we dont pass the date column</span></span>
 <span id="cb197-3"><a href="04-Data_Exploration.html#cb197-3" aria-hidden="true" tabindex="-1"></a><span class="co"># check the output</span></span>
 <span id="cb197-4"><a href="04-Data_Exploration.html#cb197-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(desc1)</span></code></pre></div>
-<pre><code>    vars    n  mean   sd median trimmed  mad    min   max range  skew kurtosis   se
-DJI    1 3522  0.01 1.23   0.04    0.03 0.82  -8.20 10.51 18.71 -0.06     7.71 0.02
-AXP    2 3522  0.02 2.89   0.02    0.03 1.55 -19.35 18.77 38.12 -0.01     9.14 0.05
-MMM    3 3522  0.03 1.55   0.03    0.03 1.10  -9.38 10.39 19.78  0.06     4.87 0.03
-ATT    4 3522 -0.01 1.80   0.03    0.01 1.22 -13.54 15.08 28.62  0.02     6.26 0.03
-BA     5 3522  0.03 2.01   0.05    0.06 1.57 -19.39 14.38 33.77 -0.26     5.39 0.03
-CAT    6 3522  0.04 2.14   0.04    0.05 1.65 -15.69 13.73 29.42 -0.08     4.08 0.04</code></pre>
+<pre><code>    vars    n  mean   sd median trimmed  mad    min   max range  skew kurtosis
+DJI    1 3522  0.01 1.23   0.04    0.03 0.82  -8.20 10.51 18.71 -0.06     7.71
+AXP    2 3522  0.02 2.89   0.02    0.03 1.55 -19.35 18.77 38.12 -0.01     9.14
+MMM    3 3522  0.03 1.55   0.03    0.03 1.10  -9.38 10.39 19.78  0.06     4.87
+ATT    4 3522 -0.01 1.80   0.03    0.01 1.22 -13.54 15.08 28.62  0.02     6.26
+BA     5 3522  0.03 2.01   0.05    0.06 1.57 -19.39 14.38 33.77 -0.26     5.39
+CAT    6 3522  0.04 2.14   0.04    0.05 1.65 -15.69 13.73 29.42 -0.08     4.08
+      se
+DJI 0.02
+AXP 0.05
+MMM 0.03
+ATT 0.03
+BA  0.03
+CAT 0.04</code></pre>
 <div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="04-Data_Exploration.html#cb199-1" aria-hidden="true" tabindex="-1"></a><span class="co"># the above output is in long format, we can transpose it get column format</span></span>
 <span id="cb199-2"><a href="04-Data_Exploration.html#cb199-2" aria-hidden="true" tabindex="-1"></a>desc1.t <span class="ot">=</span> <span class="fu">t</span>(desc1)</span>
 <span id="cb199-3"><a href="04-Data_Exploration.html#cb199-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(desc1.t)</span></code></pre></div>
-<pre><code>                 DJI          AXP          MMM           ATT           BA          CAT         CISCO            DD
-vars    1.000000e+00 2.000000e+00 3.000000e+00  4.000000e+00 5.000000e+00 6.000000e+00  7.000000e+00  8.000000e+00
-n       3.522000e+03 3.522000e+03 3.522000e+03  3.522000e+03 3.522000e+03 3.522000e+03  3.522000e+03  3.522000e+03
-mean    1.055257e-02 1.908563e-02 3.056011e-02 -8.647491e-03 3.499777e-02 3.710732e-02 -2.554732e-02 -5.379787e-04
-sd      1.226702e+00 2.892586e+00 1.551706e+00  1.799180e+00 2.013123e+00 2.143040e+00  2.744068e+00  1.881993e+00
-median  4.442671e-02 1.723604e-02 3.233787e-02  3.018428e-02 5.279680e-02 4.291300e-02  3.800312e-02  0.000000e+00
-trimmed 2.597511e-02 3.152635e-02 3.241946e-02  9.134423e-03 5.567097e-02 4.678016e-02 -1.339579e-04  1.469270e-03
-                 XOM            GE
-vars    9.000000e+00  1.000000e+01
-n       3.522000e+03  3.522000e+03
-mean    2.653014e-02 -1.696661e-02
-sd      1.629181e+00  2.057353e+00
-median  5.437650e-02  0.000000e+00
-trimmed 4.883990e-02  9.841473e-05</code></pre>
+<pre><code>                 DJI          AXP          MMM           ATT           BA
+vars    1.000000e+00 2.000000e+00 3.000000e+00  4.000000e+00 5.000000e+00
+n       3.522000e+03 3.522000e+03 3.522000e+03  3.522000e+03 3.522000e+03
+mean    1.055257e-02 1.908563e-02 3.056011e-02 -8.647491e-03 3.499777e-02
+sd      1.226702e+00 2.892586e+00 1.551706e+00  1.799180e+00 2.013123e+00
+median  4.442671e-02 1.723604e-02 3.233787e-02  3.018428e-02 5.279680e-02
+trimmed 2.597511e-02 3.152635e-02 3.241946e-02  9.134423e-03 5.567097e-02
+                 CAT         CISCO            DD          XOM            GE
+vars    6.000000e+00  7.000000e+00  8.000000e+00 9.000000e+00  1.000000e+01
+n       3.522000e+03  3.522000e+03  3.522000e+03 3.522000e+03  3.522000e+03
+mean    3.710732e-02 -2.554732e-02 -5.379787e-04 2.653014e-02 -1.696661e-02
+sd      2.143040e+00  2.744068e+00  1.881993e+00 1.629181e+00  2.057353e+00
+median  4.291300e-02  3.800312e-02  0.000000e+00 5.437650e-02  0.000000e+00
+trimmed 4.678016e-02 -1.339579e-04  1.469270e-03 4.883990e-02  9.841473e-05</code></pre>
 <ul>
 <li><p>The descriptive statistics generated above gives mean, median, standard deviation, trimmed mean(trimmed), median, mad (median absolute deviation from the median), minimum (min), maximum (max), skewness (skew), kurtosis and standard error (se) .</p></li>
 <li><p>This can easily be transferred to a CSV file or a text file. The following single line of code transfers the descriptive statistics to a CSV file which then can be imported into a word or latex file as required.</p></li>
@@ -1173,48 +1211,69 @@ trimmed 4.883990e-02  9.841473e-05</code></pre>
 <span id="cb201-5"><a href="04-Data_Exploration.html#cb201-5" aria-hidden="true" tabindex="-1"></a><span class="co"># use stat.desc in with default arguments</span></span>
 <span id="cb201-6"><a href="04-Data_Exploration.html#cb201-6" aria-hidden="true" tabindex="-1"></a>desc2 <span class="ot">=</span> <span class="fu">stat.desc</span>(data_stocks_ret[, <span class="dv">2</span><span class="sc">:</span><span class="dv">11</span>], <span class="at">norm =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb201-7"><a href="04-Data_Exploration.html#cb201-7" aria-hidden="true" tabindex="-1"></a>desc2  <span class="co">#note skewness/kurtosis</span></span></code></pre></div>
-<pre><code>                       DJI           AXP           MMM           ATT            BA           CAT         CISCO
-nbr.val       3.522000e+03  3.522000e+03  3.522000e+03  3.522000e+03  3.522000e+03  3.522000e+03  3.522000e+03
-nbr.null      2.000000e+00  2.400000e+01  3.000000e+01  5.000000e+01  1.500000e+01  2.400000e+01  5.000000e+01
-nbr.na        0.000000e+00  0.000000e+00  0.000000e+00  0.000000e+00  0.000000e+00  0.000000e+00  0.000000e+00
-min          -8.200737e+00 -1.935233e+01 -9.383688e+00 -1.353821e+01 -1.938931e+01 -1.568589e+01 -1.768649e+01
-max           1.050812e+01  1.877116e+01  1.039309e+01  1.508318e+01  1.437774e+01  1.373497e+01  2.182386e+01
-range         1.870886e+01  3.812349e+01  1.977678e+01  2.862139e+01  3.376704e+01  2.942086e+01  3.951034e+01
-sum           3.716616e+01  6.721959e+01  1.076327e+02 -3.045646e+01  1.232621e+02  1.306920e+02 -8.997766e+01
-median        4.442671e-02  1.723604e-02  3.233787e-02  3.018428e-02  5.279680e-02  4.291300e-02  3.800312e-02
-mean          1.055257e-02  1.908563e-02  3.056011e-02 -8.647491e-03  3.499777e-02  3.710732e-02 -2.554732e-02
-SE.mean       2.067018e-02  4.874068e-02  2.614656e-02  3.031656e-02  3.392155e-02  3.611067e-02  4.623812e-02
-CI.mean.0.95  4.052675e-02  9.556282e-02  5.126395e-02  5.943979e-02  6.650788e-02  7.079996e-02  9.065621e-02
-var           1.504798e+00  8.367052e+00  2.407790e+00  3.237048e+00  4.052665e+00  4.592620e+00  7.529907e+00
-std.dev       1.226702e+00  2.892586e+00  1.551706e+00  1.799180e+00  2.013123e+00  2.143040e+00  2.744068e+00
-coef.var      1.162467e+02  1.515583e+02  5.077551e+01 -2.080580e+02  5.752148e+01  5.775248e+01 -1.074112e+02
-skewness     -5.829983e-02 -6.689750e-03  5.927112e-02  1.620418e-02 -2.605203e-01 -8.369997e-02  1.547891e-01
-skew.2SE     -7.065472e-01 -8.107441e-02  7.183185e-01  1.963817e-01 -3.157298e+00 -1.014377e+00  1.875920e+00
-kurtosis      7.714304e+00  9.141053e+00  4.865294e+00  6.257155e+00  5.392404e+00  4.077013e+00  7.329406e+00
-kurt.2SE      4.675883e+01  5.540681e+01  2.949008e+01  3.792659e+01  3.268507e+01  2.471206e+01  4.442585e+01
-normtest.W    9.187712e-01  8.496717e-01  9.384591e-01  9.298653e-01  9.550329e-01  9.583075e-01  9.104004e-01
-normtest.p    5.671566e-40  1.020339e-49  6.131053e-36  8.237017e-38  1.196739e-31  1.172506e-30  1.882675e-41
-                        DD           XOM            GE
-nbr.val       3.522000e+03  3.522000e+03  3.522000e+03
-nbr.null      2.900000e+01  2.900000e+01  6.300000e+01
-nbr.na        0.000000e+00  0.000000e+00  0.000000e+00
-min          -1.202802e+01 -1.502710e+01 -1.368410e+01
-max           1.085590e+01  1.586307e+01  1.798444e+01
-range         2.288392e+01  3.089017e+01  3.166854e+01
-sum          -1.894761e+00  9.343915e+01 -5.975640e+01
-median        0.000000e+00  5.437650e-02  0.000000e+00
-mean         -5.379787e-04  2.653014e-02 -1.696661e-02
-SE.mean       3.171197e-02  2.745205e-02  3.466683e-02
-CI.mean.0.95  6.217570e-02  5.382353e-02  6.796911e-02
-var           3.541897e+00  2.654232e+00  4.232702e+00
-std.dev       1.881993e+00  1.629181e+00  2.057353e+00
-coef.var     -3.498266e+03  6.140870e+01 -1.212589e+02
-skewness     -1.523353e-01  4.651513e-02  1.102593e-02
-skew.2SE     -1.846181e+00  5.637262e-01  1.336254e-01
-kurtosis      5.061290e+00  1.043194e+01  7.781017e+00
-kurt.2SE      3.067808e+01  6.323129e+01  4.716320e+01
-normtest.W    9.381393e-01  9.160764e-01  9.046828e-01
-normtest.p    5.179385e-36  1.839459e-40  2.126284e-42</code></pre>
+<pre><code>                       DJI           AXP           MMM           ATT
+nbr.val       3.522000e+03  3.522000e+03  3.522000e+03  3.522000e+03
+nbr.null      2.000000e+00  2.400000e+01  3.000000e+01  5.000000e+01
+nbr.na        0.000000e+00  0.000000e+00  0.000000e+00  0.000000e+00
+min          -8.200737e+00 -1.935233e+01 -9.383688e+00 -1.353821e+01
+max           1.050812e+01  1.877116e+01  1.039309e+01  1.508318e+01
+range         1.870886e+01  3.812349e+01  1.977678e+01  2.862139e+01
+sum           3.716616e+01  6.721959e+01  1.076327e+02 -3.045646e+01
+median        4.442671e-02  1.723604e-02  3.233787e-02  3.018428e-02
+mean          1.055257e-02  1.908563e-02  3.056011e-02 -8.647491e-03
+SE.mean       2.067018e-02  4.874068e-02  2.614656e-02  3.031656e-02
+CI.mean.0.95  4.052675e-02  9.556282e-02  5.126395e-02  5.943979e-02
+var           1.504798e+00  8.367052e+00  2.407790e+00  3.237048e+00
+std.dev       1.226702e+00  2.892586e+00  1.551706e+00  1.799180e+00
+coef.var      1.162467e+02  1.515583e+02  5.077551e+01 -2.080580e+02
+skewness     -5.829983e-02 -6.689750e-03  5.927112e-02  1.620418e-02
+skew.2SE     -7.065472e-01 -8.107441e-02  7.183185e-01  1.963817e-01
+kurtosis      7.714304e+00  9.141053e+00  4.865294e+00  6.257155e+00
+kurt.2SE      4.675883e+01  5.540681e+01  2.949008e+01  3.792659e+01
+normtest.W    9.187712e-01  8.496717e-01  9.384591e-01  9.298653e-01
+normtest.p    5.671566e-40  1.020339e-49  6.131053e-36  8.237017e-38
+                        BA           CAT         CISCO            DD
+nbr.val       3.522000e+03  3.522000e+03  3.522000e+03  3.522000e+03
+nbr.null      1.500000e+01  2.400000e+01  5.000000e+01  2.900000e+01
+nbr.na        0.000000e+00  0.000000e+00  0.000000e+00  0.000000e+00
+min          -1.938931e+01 -1.568589e+01 -1.768649e+01 -1.202802e+01
+max           1.437774e+01  1.373497e+01  2.182386e+01  1.085590e+01
+range         3.376704e+01  2.942086e+01  3.951034e+01  2.288392e+01
+sum           1.232621e+02  1.306920e+02 -8.997766e+01 -1.894761e+00
+median        5.279680e-02  4.291300e-02  3.800312e-02  0.000000e+00
+mean          3.499777e-02  3.710732e-02 -2.554732e-02 -5.379787e-04
+SE.mean       3.392155e-02  3.611067e-02  4.623812e-02  3.171197e-02
+CI.mean.0.95  6.650788e-02  7.079996e-02  9.065621e-02  6.217570e-02
+var           4.052665e+00  4.592620e+00  7.529907e+00  3.541897e+00
+std.dev       2.013123e+00  2.143040e+00  2.744068e+00  1.881993e+00
+coef.var      5.752148e+01  5.775248e+01 -1.074112e+02 -3.498266e+03
+skewness     -2.605203e-01 -8.369997e-02  1.547891e-01 -1.523353e-01
+skew.2SE     -3.157298e+00 -1.014377e+00  1.875920e+00 -1.846181e+00
+kurtosis      5.392404e+00  4.077013e+00  7.329406e+00  5.061290e+00
+kurt.2SE      3.268507e+01  2.471206e+01  4.442585e+01  3.067808e+01
+normtest.W    9.550329e-01  9.583075e-01  9.104004e-01  9.381393e-01
+normtest.p    1.196739e-31  1.172506e-30  1.882675e-41  5.179385e-36
+                       XOM            GE
+nbr.val       3.522000e+03  3.522000e+03
+nbr.null      2.900000e+01  6.300000e+01
+nbr.na        0.000000e+00  0.000000e+00
+min          -1.502710e+01 -1.368410e+01
+max           1.586307e+01  1.798444e+01
+range         3.089017e+01  3.166854e+01
+sum           9.343915e+01 -5.975640e+01
+median        5.437650e-02  0.000000e+00
+mean          2.653014e-02 -1.696661e-02
+SE.mean       2.745205e-02  3.466683e-02
+CI.mean.0.95  5.382353e-02  6.796911e-02
+var           2.654232e+00  4.232702e+00
+std.dev       1.629181e+00  2.057353e+00
+coef.var      6.140870e+01 -1.212589e+02
+skewness      4.651513e-02  1.102593e-02
+skew.2SE      5.637262e-01  1.336254e-01
+kurtosis      1.043194e+01  7.781017e+00
+kurt.2SE      6.323129e+01  4.716320e+01
+normtest.W    9.160764e-01  9.046828e-01
+normtest.p    1.839459e-40  2.126284e-42</code></pre>
 
 </div>
 </div>

@@ -52,6 +52,8 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<link href="libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 <script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
 <script src="libs/plotly-binding-4.10.1/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
@@ -59,8 +61,6 @@
 <script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
 <link href="libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet" />
 <script src="libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
-<link href="libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
-<link href="libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 <link href="libs/wordcloud2-0.0.1/wordcloud.css" rel="stylesheet" />
 <script src="libs/wordcloud2-0.0.1/wordcloud2-all.js"></script>
 <script src="libs/wordcloud2-0.0.1/hover.js"></script>
@@ -589,15 +589,15 @@ div.csl-indent {
 </tbody>
 </table>
 <div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="01-Part_1.html#cb293-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chartSeries</span>(BHP, <span class="at">theme =</span> <span class="st">&quot;white&quot;</span>)</span></code></pre></div>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-117-1"></span>
-<img src="R_for_Analytics_files/figure-html/unnamed-chunk-117-1.png" alt="BHP Line Chart with Volume" width="672" />
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-3-1"></span>
+<img src="01-Part_1_files/figure-html/unnamed-chunk-3-1.png" alt="BHP Line Chart with Volume" width="672" />
 <p class="caption">
 Figure 10.1: BHP Line Chart with Volume
 </p>
 </div>
 <div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="01-Part_1.html#cb294-1" aria-hidden="true" tabindex="-1"></a><span class="fu">addTA</span>(ASX<span class="sc">$</span>AXJO.Close, <span class="at">col =</span> <span class="st">&quot;darkblue&quot;</span>)</span></code></pre></div>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-117-2"></span>
-<img src="R_for_Analytics_files/figure-html/unnamed-chunk-117-2.png" alt="BHP and ASX" width="672" />
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-3-2"></span>
+<img src="01-Part_1_files/figure-html/unnamed-chunk-3-2.png" alt="BHP and ASX" width="672" />
 <p class="caption">
 Figure 10.2: BHP and ASX
 </p>
@@ -606,20 +606,20 @@ Figure 10.2: BHP and ASX
 <div id="line-chart" class="section level3 hasAnchor" number="10.2.2">
 <h3><span class="header-section-number">10.2.2</span> Line chart<a href="01-Part_1.html#line-chart" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="01-Part_1.html#cb295-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chartSeries</span>(BHP, <span class="at">type =</span> <span class="st">&quot;line&quot;</span>, <span class="at">subset =</span> <span class="st">&quot;2020&quot;</span>, <span class="at">theme =</span> <span class="st">&quot;white&quot;</span>)</span></code></pre></div>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-118"></span>
-<img src="R_for_Analytics_files/figure-html/unnamed-chunk-118-1.png" alt="Line Chart" width="672" />
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-4"></span>
+<img src="01-Part_1_files/figure-html/unnamed-chunk-4-1.png" alt="Line Chart" width="672" />
 <p class="caption">
-Figure 10.3: Line Chart
+Figure 5.2: Line Chart
 </p>
 </div>
 </div>
 <div id="candlestick-chart" class="section level3 hasAnchor" number="10.2.3">
 <h3><span class="header-section-number">10.2.3</span> Candlestick chart<a href="01-Part_1.html#candlestick-chart" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="01-Part_1.html#cb296-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chartSeries</span>(BHP, <span class="at">type =</span> <span class="st">&quot;candle&quot;</span>, <span class="at">subset =</span> <span class="st">&quot;last 1 month&quot;</span>, <span class="at">theme =</span> <span class="st">&quot;white&quot;</span>)</span></code></pre></div>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-119"></span>
-<img src="R_for_Analytics_files/figure-html/unnamed-chunk-119-1.png" alt="Candle Stick chart" width="672" />
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-5"></span>
+<img src="01-Part_1_files/figure-html/unnamed-chunk-5-1.png" alt="Candle Stick chart" width="672" />
 <p class="caption">
-Figure 10.4: Candle Stick chart
+Figure 5.3: Candle Stick chart
 </p>
 </div>
 </div>
@@ -627,34 +627,34 @@ Figure 10.4: Candle Stick chart
 <h3><span class="header-section-number">10.2.4</span> Add technical indicators<a href="01-Part_1.html#add-technical-indicators" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb297-1"><a href="01-Part_1.html#cb297-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chartSeries</span>(BHP, <span class="at">type =</span> <span class="st">&quot;candle&quot;</span>, <span class="at">subset =</span> <span class="st">&quot;last 6 month&quot;</span>, <span class="at">theme =</span> <span class="st">&quot;white&quot;</span>,</span>
 <span id="cb297-2"><a href="01-Part_1.html#cb297-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">TA =</span> <span class="fu">c</span>(<span class="fu">addSMA</span>(<span class="dv">5</span>), <span class="fu">addEMA</span>(<span class="dv">10</span>)))</span></code></pre></div>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-120"></span>
-<img src="R_for_Analytics_files/figure-html/unnamed-chunk-120-1.png" alt="SMA and EMA" width="672" />
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-6"></span>
+<img src="01-Part_1_files/figure-html/unnamed-chunk-6-1.png" alt="SMA and EMA" width="672" />
 <p class="caption">
-Figure 10.5: SMA and EMA
+Figure 5.4: SMA and EMA
 </p>
 </div>
 </div>
 <div id="adding-indicators-sequentially" class="section level3 hasAnchor" number="10.2.5">
 <h3><span class="header-section-number">10.2.5</span> Adding indicators sequentially<a href="01-Part_1.html#adding-indicators-sequentially" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="01-Part_1.html#cb298-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chartSeries</span>(BHP, <span class="at">type =</span> <span class="st">&quot;candle&quot;</span>, <span class="at">subset =</span> <span class="st">&quot;last 6 months&quot;</span>, <span class="at">theme =</span> <span class="st">&quot;white&quot;</span>)</span></code></pre></div>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-121-1"></span>
-<img src="R_for_Analytics_files/figure-html/unnamed-chunk-121-1.png" alt="CandleStick" width="672" />
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-7-1"></span>
+<img src="01-Part_1_files/figure-html/unnamed-chunk-7-1.png" alt="CandleStick" width="672" />
 <p class="caption">
-Figure 10.6: CandleStick
+Figure 10.3: CandleStick
 </p>
 </div>
 <div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb299-1"><a href="01-Part_1.html#cb299-1" aria-hidden="true" tabindex="-1"></a><span class="fu">addBBands</span>()</span></code></pre></div>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-121-2"></span>
-<img src="R_for_Analytics_files/figure-html/unnamed-chunk-121-2.png" alt="BOllinger Bands" width="672" />
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-7-2"></span>
+<img src="01-Part_1_files/figure-html/unnamed-chunk-7-2.png" alt="BOllinger Bands" width="672" />
 <p class="caption">
-Figure 10.7: BOllinger Bands
+Figure 10.4: BOllinger Bands
 </p>
 </div>
 <div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="01-Part_1.html#cb300-1" aria-hidden="true" tabindex="-1"></a><span class="fu">addMomentum</span>(<span class="at">n =</span> <span class="dv">5</span>)</span></code></pre></div>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-121-3"></span>
-<img src="R_for_Analytics_files/figure-html/unnamed-chunk-121-3.png" alt="Momentum" width="672" />
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-7-3"></span>
+<img src="01-Part_1_files/figure-html/unnamed-chunk-7-3.png" alt="Momentum" width="672" />
 <p class="caption">
-Figure 10.8: Momentum
+Figure 10.5: Momentum
 </p>
 </div>
 </div>
@@ -702,7 +702,7 @@ P[r_{t}&lt;-VaR_{t}[I_{t-1}]=\theta
 <span id="cb301-18"><a href="01-Part_1.html#cb301-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span> <span class="fu">theme_bw</span>() <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Normal Distribution and 1% (Empirical) VaR&quot;</span>)</span>
 <span id="cb301-19"><a href="01-Part_1.html#cb301-19" aria-hidden="true" tabindex="-1"></a>p3</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:var1"></span>
-<img src="R_for_Analytics_files/figure-html/var1-1.png" alt="1% VaR" width="672" />
+<img src="01-Part_1_files/figure-html/var1-1.png" alt="1% VaR" width="672" />
 <p class="caption">
 Figure 11.1: 1% VaR
 </p>
@@ -855,7 +855,7 @@ Adjusted Pearson Goodness-of-Fit Test:
 4    50     54.41       0.2761
 
 
-Elapsed time : 0.1838071 </code></pre>
+Elapsed time : 0.1587169 </code></pre>
 <ul>
 <li>Selected fitted statistics can be obtained using various methods available to the <code>ugarchfit</code> object class</li>
 </ul>
@@ -868,7 +868,7 @@ Elapsed time : 0.1838071 </code></pre>
 <span id="cb305-7"><a href="01-Part_1.html#cb305-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Conditional SD (vs |returns|)</span></span>
 <span id="cb305-8"><a href="01-Part_1.html#cb305-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(fit_garch, <span class="at">which =</span> <span class="dv">3</span>)</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:garchplot"></span>
-<img src="R_for_Analytics_files/figure-html/garchplot-1.png" alt="Two Informative Plots for GARCH(1,1)" width="672" />
+<img src="01-Part_1_files/figure-html/garchplot-1.png" alt="Two Informative Plots for GARCH(1,1)" width="672" />
 <p class="caption">
 Figure 11.2: Two Informative Plots for GARCH(1,1)
 </p>
@@ -898,7 +898,7 @@ Figure 11.2: Two Informative Plots for GARCH(1,1)
 <span id="cb308-5"><a href="01-Part_1.html#cb308-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 5% Student-t GARCH VaR</span></span>
 <span id="cb308-6"><a href="01-Part_1.html#cb308-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(var.t, <span class="at">which =</span> <span class="dv">4</span>, <span class="at">VaR.alpha =</span> <span class="fl">0.05</span>)</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:var2"></span>
-<img src="R_for_Analytics_files/figure-html/var2-1.png" alt="Actual Return Vs 1% VaR forecasts" width="672" />
+<img src="01-Part_1_files/figure-html/var2-1.png" alt="Actual Return Vs 1% VaR forecasts" width="672" />
 <p class="caption">
 Figure 11.3: Actual Return Vs 1% VaR forecasts
 </p>

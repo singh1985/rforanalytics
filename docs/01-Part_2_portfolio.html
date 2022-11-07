@@ -52,6 +52,8 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<link href="libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 <script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
 <script src="libs/plotly-binding-4.10.1/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
@@ -59,8 +61,6 @@
 <script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
 <link href="libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet" />
 <script src="libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
-<link href="libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
-<link href="libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 <link href="libs/wordcloud2-0.0.1/wordcloud.css" rel="stylesheet" />
 <script src="libs/wordcloud2-0.0.1/wordcloud2-all.js"></script>
 <script src="libs/wordcloud2-0.0.1/hover.js"></script>
@@ -874,7 +874,7 @@ Minimise\,\sigma_{p}^{2}=w^{\prime}\Sigma w
 <span id="cb313-6"><a href="01-Part_2_portfolio.html#cb313-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_grid</span>(Stock <span class="sc">~</span> .) <span class="sc">+</span> <span class="fu">theme_minimal</span>() <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Date&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Returns&quot;</span>)</span>
 <span id="cb313-7"><a href="01-Part_2_portfolio.html#cb313-7" aria-hidden="true" tabindex="-1"></a>port_p1  <span class="co">#covid crisis period is evident in the plot</span></span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:portp1"></span>
-<img src="R_for_Analytics_files/figure-html/portp1-1.png" alt="Simple returns" width="672" />
+<img src="01-Part_2_portfolio_files/figure-html/portp1-1.png" alt="Simple returns" width="672" />
 <p class="caption">
 Figure 12.2: Simple returns
 </p>
@@ -913,7 +913,7 @@ Figure 12.2: Simple returns
 <span id="cb314-22"><a href="01-Part_2_portfolio.html#cb314-22" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(d_p1<span class="sc">$</span>Risk, d_p1<span class="sc">$</span>Ret, <span class="at">xlab =</span> <span class="st">&quot;Risk&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Return&quot;</span>, <span class="at">main =</span> <span class="st">&quot;Frontier Portfolios&quot;</span>,</span>
 <span id="cb314-23"><a href="01-Part_2_portfolio.html#cb314-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:rp1"></span>
-<img src="R_for_Analytics_files/figure-html/rp1-1.png" alt="Random Portfolios" width="672" />
+<img src="01-Part_2_portfolio_files/figure-html/rp1-1.png" alt="Random Portfolios" width="672" />
 <p class="caption">
 Figure 12.3: Random Portfolios
 </p>
@@ -934,7 +934,7 @@ Figure 12.3: Random Portfolios
 <span id="cb315-11"><a href="01-Part_2_portfolio.html#cb315-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">colour =</span> <span class="st">&quot;Portfolio Return&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Portfolio Risk&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Portfolio Return&quot;</span>,</span>
 <span id="cb315-12"><a href="01-Part_2_portfolio.html#cb315-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">title =</span> <span class="st">&quot;Random Feasible Portfolios&quot;</span>) <span class="sc">+</span> <span class="fu">theme_bw</span>()</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:rp2"></span>
-<img src="R_for_Analytics_files/figure-html/rp2-1.png" alt="Random Portfolios" width="672" />
+<img src="01-Part_2_portfolio_files/figure-html/rp2-1.png" alt="Random Portfolios" width="672" />
 <p class="caption">
 Figure 12.4: Random Portfolios
 </p>
@@ -973,7 +973,7 @@ Figure 12.4: Random Portfolios
 <span id="cb316-22"><a href="01-Part_2_portfolio.html#cb316-22" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb316-23"><a href="01-Part_2_portfolio.html#cb316-23" aria-hidden="true" tabindex="-1"></a><span class="fu">chart.RiskReward</span>(rand_p, <span class="at">risk.col =</span> <span class="st">&quot;StdDev&quot;</span>, <span class="at">return.col =</span> <span class="st">&quot;mean&quot;</span>, <span class="at">chart.assets =</span> <span class="cn">TRUE</span>)  <span class="co">#also plots the equally weighted portfolio</span></span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:efp1"></span>
-<img src="R_for_Analytics_files/figure-html/efp1-1.png" alt="Mean-Variance Portfolios" width="672" />
+<img src="01-Part_2_portfolio_files/figure-html/efp1-1.png" alt="Mean-Variance Portfolios" width="672" />
 <p class="caption">
 Figure 12.5: Mean-Variance Portfolios
 </p>
@@ -1006,7 +1006,7 @@ StdDev
 <div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb319-1"><a href="01-Part_2_portfolio.html#cb319-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot</span></span>
 <span id="cb319-2"><a href="01-Part_2_portfolio.html#cb319-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(minvar1, <span class="at">risk.col =</span> <span class="st">&quot;StdDev&quot;</span>, <span class="at">main =</span> <span class="st">&quot;Mean Variance Portfolio&quot;</span>, <span class="at">chart.assets =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:efp2-1"></span>
-<img src="R_for_Analytics_files/figure-html/efp2-1.png" alt="Mean Variance Portfolio Risk/Return" width="672" />
+<img src="01-Part_2_portfolio_files/figure-html/efp2-1.png" alt="Mean Variance Portfolio Risk/Return" width="672" />
 <p class="caption">
 Figure 12.6: Mean Variance Portfolio Risk/Return
 </p>
@@ -1017,7 +1017,7 @@ Figure 12.6: Mean Variance Portfolio Risk/Return
 <span id="cb320-4"><a href="01-Part_2_portfolio.html#cb320-4" aria-hidden="true" tabindex="-1"></a><span class="fu">chart.EfficientFrontier</span>(minvar_ef, <span class="at">match.col =</span> <span class="st">&quot;StdDev&quot;</span>, <span class="at">type =</span> <span class="st">&quot;l&quot;</span>, <span class="at">tangent.line =</span> <span class="cn">FALSE</span>,</span>
 <span id="cb320-5"><a href="01-Part_2_portfolio.html#cb320-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">chart.assets =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:efp2-2"></span>
-<img src="R_for_Analytics_files/figure-html/efp2-2.png" alt="Efficient Frontier" width="672" />
+<img src="01-Part_2_portfolio_files/figure-html/efp2-2.png" alt="Efficient Frontier" width="672" />
 <p class="caption">
 Figure 12.7: Efficient Frontier
 </p>
@@ -1037,7 +1037,7 @@ Figure 12.7: Efficient Frontier
 <span id="cb321-7"><a href="01-Part_2_portfolio.html#cb321-7" aria-hidden="true" tabindex="-1"></a>eff_front2 <span class="ot">=</span> <span class="fu">portfolioFrontier</span>(data_p2, <span class="at">constraints =</span> <span class="st">&quot;LongOnly&quot;</span>)  <span class="co">#strategy</span></span>
 <span id="cb321-8"><a href="01-Part_2_portfolio.html#cb321-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(eff_front2, <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>))</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:efp3"></span>
-<img src="R_for_Analytics_files/figure-html/efp3-1.png" alt="Efficient frontier plot (fPortfolio)" width="672" />
+<img src="01-Part_2_portfolio_files/figure-html/efp3-1.png" alt="Efficient frontier plot (fPortfolio)" width="672" />
 <p class="caption">
 Figure 12.8: Efficient frontier plot (fPortfolio)
 </p>
@@ -1048,7 +1048,7 @@ Figure 12.8: Efficient frontier plot (fPortfolio)
 </ul>
 <div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb322-1"><a href="01-Part_2_portfolio.html#cb322-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tailoredFrontierPlot</span>(eff_front2, <span class="at">sharpeRatio =</span> <span class="cn">FALSE</span>, <span class="at">risk =</span> <span class="st">&quot;Sigma&quot;</span>)</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:efp4-1"></span>
-<img src="R_for_Analytics_files/figure-html/efp4-1.png" alt="Efficient Frontier" width="672" />
+<img src="01-Part_2_portfolio_files/figure-html/efp4-1.png" alt="Efficient Frontier" width="672" />
 <p class="caption">
 Figure 12.9: Efficient Frontier
 </p>
@@ -1056,7 +1056,7 @@ Figure 12.9: Efficient Frontier
 <div class="sourceCode" id="cb323"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb323-1"><a href="01-Part_2_portfolio.html#cb323-1" aria-hidden="true" tabindex="-1"></a><span class="co"># weights</span></span>
 <span id="cb323-2"><a href="01-Part_2_portfolio.html#cb323-2" aria-hidden="true" tabindex="-1"></a><span class="fu">weightsPlot</span>(eff_front2)</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:efp4-2"></span>
-<img src="R_for_Analytics_files/figure-html/efp4-2.png" alt="Weights Plot" width="672" />
+<img src="01-Part_2_portfolio_files/figure-html/efp4-2.png" alt="Weights Plot" width="672" />
 <p class="caption">
 Figure 12.10: Weights Plot
 </p>
@@ -1091,7 +1091,7 @@ Target Returns and Risks:
 0.0382 1.3204 3.2805 2.0550 
 
 Description:
- Tue Nov  8 01:07:41 2022 by user: RMachine </code></pre>
+ Tue Nov  8 09:38:48 2022 by user: RMachine </code></pre>
 <ul>
 <li>Target Return</li>
 </ul>
@@ -1119,7 +1119,7 @@ Target Returns and Risks:
 0.0521 1.3608 3.4011 1.9698 
 
 Description:
- Tue Nov  8 01:07:41 2022 by user: RMachine </code></pre>
+ Tue Nov  8 09:38:48 2022 by user: RMachine </code></pre>
 </div>
 <div id="portfolio-with-box-constraints" class="section level3 hasAnchor" number="12.6.2">
 <h3><span class="header-section-number">12.6.2</span> Portfolio with Box Constraints<a href="01-Part_2_portfolio.html#portfolio-with-box-constraints" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -1168,10 +1168,10 @@ Target Returns and Risks:
 24 0.0644 1.5223 3.7541 2.2943
 
 Description:
- Tue Nov  8 01:07:41 2022 by user: RMachine </code></pre>
+ Tue Nov  8 09:38:48 2022 by user: RMachine </code></pre>
 <div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb330-1"><a href="01-Part_2_portfolio.html#cb330-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(eff_front2, <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>))</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:effp5"></span>
-<img src="R_for_Analytics_files/figure-html/effp5-1.png" alt="Frontier Plot (box constraints)" width="672" />
+<img src="01-Part_2_portfolio_files/figure-html/effp5-1.png" alt="Frontier Plot (box constraints)" width="672" />
 <p class="caption">
 Figure 12.11: Frontier Plot (box constraints)
 </p>
@@ -1198,7 +1198,7 @@ Target Returns and Risks:
 0.0412 1.3280 3.3025 2.0801 
 
 Description:
- Tue Nov  8 01:07:43 2022 by user: RMachine </code></pre>
+ Tue Nov  8 09:38:50 2022 by user: RMachine </code></pre>
 </div>
 </div>
 <div id="evaluating-portfoios-risk-adjusted-performance" class="section level2 hasAnchor" number="12.7">
@@ -1268,7 +1268,7 @@ Treynor_{p}=\frac{E(r_{p})-r_{f}}{\beta_{p}}
 <span id="cb333-17"><a href="01-Part_2_portfolio.html#cb333-17" aria-hidden="true" tabindex="-1"></a><span class="fu">tangencyLines</span>(<span class="at">object =</span> tgport1, <span class="at">col =</span> <span class="st">&quot;darkblue&quot;</span>)  <span class="co">#add tangency portfolio line</span></span>
 <span id="cb333-18"><a href="01-Part_2_portfolio.html#cb333-18" aria-hidden="true" tabindex="-1"></a><span class="fu">grid</span>()</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:tport1"></span>
-<img src="R_for_Analytics_files/figure-html/tport1-1.png" alt="Tangency Portfolio (Sharpe Portfolio)" width="672" />
+<img src="01-Part_2_portfolio_files/figure-html/tport1-1.png" alt="Tangency Portfolio (Sharpe Portfolio)" width="672" />
 <p class="caption">
 Figure 12.12: Tangency Portfolio (Sharpe Portfolio)
 </p>
@@ -1295,7 +1295,7 @@ Target Returns and Risks:
 0.0741 1.6352 4.0740 2.4228 
 
 Description:
- Tue Nov  8 01:07:43 2022 by user: RMachine </code></pre>
+ Tue Nov  8 09:38:50 2022 by user: RMachine </code></pre>
 <div class="sourceCode" id="cb336"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb336-1"><a href="01-Part_2_portfolio.html#cb336-1" aria-hidden="true" tabindex="-1"></a><span class="co"># weights plot weightsPie(tgport1,box=FALSE)</span></span>
 <span id="cb336-2"><a href="01-Part_2_portfolio.html#cb336-2" aria-hidden="true" tabindex="-1"></a><span class="co"># weightedReturnsPie(tgport1,box=FALSE)</span></span></code></pre></div>
 

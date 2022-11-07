@@ -52,6 +52,8 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<link href="libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 <script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
 <script src="libs/plotly-binding-4.10.1/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
@@ -59,8 +61,6 @@
 <script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
 <link href="libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet" />
 <script src="libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
-<link href="libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
-<link href="libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 <link href="libs/wordcloud2-0.0.1/wordcloud.css" rel="stylesheet" />
 <script src="libs/wordcloud2-0.0.1/wordcloud2-all.js"></script>
 <script src="libs/wordcloud2-0.0.1/hover.js"></script>
@@ -606,7 +606,7 @@ dist(p,q)=\sqrt{(p_{1}-q_{1})^{2}+(p_{2}-q_{2})^{2}+\ldots+(p_{n}-q_{n})^{2}}
 <span id="cb357-3"><a href="04-Part_3_logistic.html#cb357-3" aria-hidden="true" tabindex="-1"></a><span class="fu">addTA</span>(d_ex1[, <span class="sc">-</span><span class="dv">1</span>], <span class="at">on =</span> <span class="cn">NA</span>, <span class="at">col =</span> <span class="fu">rainbow</span>(<span class="dv">6</span>), <span class="at">legend =</span> <span class="fu">as.character</span>(<span class="fu">colnames</span>(d_ex1[,</span>
 <span id="cb357-4"><a href="04-Part_3_logistic.html#cb357-4" aria-hidden="true" tabindex="-1"></a>    <span class="sc">-</span><span class="dv">1</span>])))</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:ex1f1"></span>
-<img src="R_for_Analytics_files/figure-html/ex1f1-1.png" alt="Direction and Technical Indicators" width="672" />
+<img src="04-Part_3_logistic_files/figure-html/ex1f1-1.png" alt="Direction and Technical Indicators" width="672" />
 <p class="caption">
 Figure 14.1: Direction and Technical Indicators
 </p>
@@ -632,7 +632,7 @@ Figure 14.1: Direction and Technical Indicators
 <span id="cb358-16"><a href="04-Part_3_logistic.html#cb358-16" aria-hidden="true" tabindex="-1"></a>(<span class="at">p2_ex =</span> <span class="fu">ggplot</span>(d_plot_long, <span class="fu">aes</span>(Date, value, <span class="at">color =</span> Indicator)) <span class="sc">+</span> <span class="fu">geom_path</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
 <span id="cb358-17"><a href="04-Part_3_logistic.html#cb358-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_grid</span>(Indicator <span class="sc">~</span> ., <span class="at">scale =</span> <span class="st">&quot;free&quot;</span>) <span class="sc">+</span> <span class="fu">theme_minimal</span>())</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:ex1f2"></span>
-<img src="R_for_Analytics_files/figure-html/ex1f2-1.png" alt="Indicators and Prices (ggplot2)" width="672" />
+<img src="04-Part_3_logistic_files/figure-html/ex1f2-1.png" alt="Indicators and Prices (ggplot2)" width="672" />
 <p class="caption">
 Figure 14.2: Indicators and Prices (ggplot2)
 </p>
@@ -646,7 +646,7 @@ Figure 14.2: Indicators and Prices (ggplot2)
 <span id="cb359-4"><a href="04-Part_3_logistic.html#cb359-4" aria-hidden="true" tabindex="-1"></a>p2_ex <span class="sc">+</span> <span class="fu">theme_minimal</span>() <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;TA Indicators vs Price Direction&quot;</span>) <span class="sc">+</span></span>
 <span id="cb359-5"><a href="04-Part_3_logistic.html#cb359-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_manual</span>(<span class="at">name =</span> <span class="st">&quot;Price Direction&quot;</span>, <span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;orange&quot;</span>, <span class="st">&quot;lightblue&quot;</span>))</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:ex1f3"></span>
-<img src="R_for_Analytics_files/figure-html/ex1f3-1.png" alt="Box Plot of Indicators" width="672" />
+<img src="04-Part_3_logistic_files/figure-html/ex1f3-1.png" alt="Box Plot of Indicators" width="672" />
 <p class="caption">
 Figure 14.3: Box Plot of Indicators
 </p>
@@ -740,7 +740,7 @@ Number of Fisher Scoring iterations: 5</code></pre>
 <div class="sourceCode" id="cb365"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb365-1"><a href="04-Part_3_logistic.html#cb365-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(vip)</span>
 <span id="cb365-2"><a href="04-Part_3_logistic.html#cb365-2" aria-hidden="true" tabindex="-1"></a><span class="fu">vip</span>(logit_ex1, <span class="at">geom =</span> <span class="st">&quot;point&quot;</span>) <span class="sc">+</span> <span class="fu">theme_minimal</span>()</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:ex1f4"></span>
-<img src="R_for_Analytics_files/figure-html/ex1f4-1.png" alt="Variable Importance" width="672" />
+<img src="04-Part_3_logistic_files/figure-html/ex1f4-1.png" alt="Variable Importance" width="672" />
 <p class="caption">
 Figure 14.4: Variable Importance
 </p>
@@ -813,7 +813,7 @@ Prediction  0  1
 </ul>
 <div class="sourceCode" id="cb369"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb369-1"><a href="04-Part_3_logistic.html#cb369-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(knn_ex1)  <span class="co">#may suggest using a wider grid</span></span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:ex1f5"></span>
-<img src="R_for_Analytics_files/figure-html/ex1f5-1.png" alt="Grid plot" width="672" />
+<img src="04-Part_3_logistic_files/figure-html/ex1f5-1.png" alt="Grid plot" width="672" />
 <p class="caption">
 Figure 14.5: Grid plot
 </p>
@@ -898,7 +898,7 @@ logit  0.1208791 0.3333333 0.4666667 0.4658076 0.5838144 0.7887324    0
 knn   -0.1860465 0.1558442 0.3243243 0.3194890 0.4666667 0.7235023    0</code></pre>
 <div class="sourceCode" id="cb376"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb376-1"><a href="04-Part_3_logistic.html#cb376-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bwplot</span>(resamp1, <span class="at">metric =</span> <span class="st">&quot;Accuracy&quot;</span>)</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:ex1f6"></span>
-<img src="R_for_Analytics_files/figure-html/ex1f6-1.png" alt="Resample Accuracy comparison" width="672" />
+<img src="04-Part_3_logistic_files/figure-html/ex1f6-1.png" alt="Resample Accuracy comparison" width="672" />
 <p class="caption">
 Figure 14.6: Resample Accuracy comparison
 </p>

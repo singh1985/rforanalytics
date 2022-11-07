@@ -52,6 +52,8 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<link href="libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 <script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
 <script src="libs/plotly-binding-4.10.1/plotly.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
@@ -59,8 +61,6 @@
 <script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
 <link href="libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet" />
 <script src="libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
-<link href="libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
-<link href="libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 <link href="libs/wordcloud2-0.0.1/wordcloud.css" rel="stylesheet" />
 <script src="libs/wordcloud2-0.0.1/wordcloud2-all.js"></script>
 <script src="libs/wordcloud2-0.0.1/hover.js"></script>
@@ -484,8 +484,8 @@ div.csl-indent {
 <span id="cb203-3"><a href="05-plots.html#cb203-3" aria-hidden="true" tabindex="-1"></a>y <span class="ot">=</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)</span>
 <span id="cb203-4"><a href="05-plots.html#cb203-4" aria-hidden="true" tabindex="-1"></a><span class="co"># plot x and y using the plot() function</span></span>
 <span id="cb203-5"><a href="05-plots.html#cb203-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, y)</span></code></pre></div>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-78"></span>
-<img src="R_for_Analytics_files/figure-html/unnamed-chunk-78-1.png" alt="Simple Scatter Plot" width="672" />
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-2"></span>
+<img src="05-plots_files/figure-html/unnamed-chunk-2-1.png" alt="Simple Scatter Plot" width="672" />
 <p class="caption">
 Figure 5.1: Simple Scatter Plot
 </p>
@@ -504,8 +504,8 @@ NULL</code></pre>
 <li>The following example uses the argument <span class="math inline">\(\mathtt{main}\)</span> in the <span class="math inline">\(\mathtt{plot}\)</span> function to include a title on the plot along with axis tiles using the arguments <span class="math inline">\(\mathtt{xlab}\)</span> and <span class="math inline">\(\mathtt{ylab}\)</span>.</li>
 </ul>
 <div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="05-plots.html#cb206-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, y, <span class="at">main =</span> <span class="st">&quot;Figure-2&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;Normal X&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Normal Y&quot;</span>)</span></code></pre></div>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-80"></span>
-<img src="R_for_Analytics_files/figure-html/unnamed-chunk-80-1.png" alt="Simple Scatter Plot with Title" width="672" />
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-4"></span>
+<img src="05-plots_files/figure-html/unnamed-chunk-4-1.png" alt="Simple Scatter Plot with Title" width="672" />
 <p class="caption">
 Figure 5.2: Simple Scatter Plot with Title
 </p>
@@ -521,12 +521,13 @@ Figure 5.2: Simple Scatter Plot with Title
 <span id="cb207-3"><a href="05-plots.html#cb207-3" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;data/data_fin.RData&quot;</span>)</span>
 <span id="cb207-4"><a href="05-plots.html#cb207-4" aria-hidden="true" tabindex="-1"></a><span class="co"># column names</span></span>
 <span id="cb207-5"><a href="05-plots.html#cb207-5" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(FinData)</span></code></pre></div>
-<pre><code> [1] &quot;Date&quot;  &quot;DJI&quot;   &quot;AXP&quot;   &quot;MMM&quot;   &quot;ATT&quot;   &quot;BA&quot;    &quot;CAT&quot;   &quot;CISCO&quot; &quot;DD&quot;    &quot;XOM&quot;   &quot;GE&quot;    &quot;GS&quot;    &quot;HD&quot;   
-[14] &quot;IBM&quot;   &quot;INTC&quot;  &quot;JNJ&quot;   &quot;JPM&quot;   &quot;MRK&quot;   &quot;MCD&quot;   &quot;MSFT&quot;  &quot;NKE&quot;  </code></pre>
+<pre><code> [1] &quot;Date&quot;  &quot;DJI&quot;   &quot;AXP&quot;   &quot;MMM&quot;   &quot;ATT&quot;   &quot;BA&quot;    &quot;CAT&quot;   &quot;CISCO&quot; &quot;DD&quot;   
+[10] &quot;XOM&quot;   &quot;GE&quot;    &quot;GS&quot;    &quot;HD&quot;    &quot;IBM&quot;   &quot;INTC&quot;  &quot;JNJ&quot;   &quot;JPM&quot;   &quot;MRK&quot;  
+[19] &quot;MCD&quot;   &quot;MSFT&quot;  &quot;NKE&quot;  </code></pre>
 <div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="05-plots.html#cb209-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot a line plot for Dow Jones stock index prices</span></span>
 <span id="cb209-2"><a href="05-plots.html#cb209-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(FinData<span class="sc">$</span>MSFT, <span class="at">type =</span> <span class="st">&quot;l&quot;</span>, <span class="at">main =</span> <span class="st">&quot;Microsoft Prices&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Prices&quot;</span>)</span></code></pre></div>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-81"></span>
-<img src="R_for_Analytics_files/figure-html/unnamed-chunk-81-1.png" alt="Line Chart" width="672" />
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-5"></span>
+<img src="05-plots_files/figure-html/unnamed-chunk-5-1.png" alt="Line Chart" width="672" />
 <p class="caption">
 Figure 5.3: Line Chart
 </p>
@@ -540,8 +541,8 @@ Figure 5.3: Line Chart
 <span id="cb210-3"><a href="05-plots.html#cb210-3" aria-hidden="true" tabindex="-1"></a>FinData.ts <span class="ot">=</span> <span class="fu">zoo</span>(FinData[, <span class="dv">2</span><span class="sc">:</span><span class="dv">5</span>], <span class="at">order.by =</span> FinData<span class="sc">$</span>Date)</span>
 <span id="cb210-4"><a href="05-plots.html#cb210-4" aria-hidden="true" tabindex="-1"></a><span class="co"># plot multiple stacked plot</span></span>
 <span id="cb210-5"><a href="05-plots.html#cb210-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(FinData.ts, <span class="at">col =</span> <span class="fu">gray.colors</span>(<span class="dv">4</span>))  <span class="co">#figure-4</span></span></code></pre></div>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-82"></span>
-<img src="R_for_Analytics_files/figure-html/unnamed-chunk-82-1.png" alt="Time Series Plot" width="672" />
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-6"></span>
+<img src="05-plots_files/figure-html/unnamed-chunk-6-1.png" alt="Time Series Plot" width="672" />
 <p class="caption">
 Figure 5.4: Time Series Plot
 </p>
@@ -557,8 +558,8 @@ Figure 5.4: Time Series Plot
 <span id="cb211-2"><a href="05-plots.html#cb211-2" aria-hidden="true" tabindex="-1"></a>par1 <span class="ot">=</span> <span class="fu">par</span>()</span>
 <span id="cb211-3"><a href="05-plots.html#cb211-3" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">ask =</span> F)</span>
 <span id="cb211-4"><a href="05-plots.html#cb211-4" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="at">height =</span> GDP<span class="sc">$</span>Australia, <span class="at">names.arg =</span> GDP<span class="sc">$</span>Year, <span class="at">ylab =</span> <span class="st">&quot;GDP Per Capita&quot;</span>)  <span class="co">#figure-5</span></span></code></pre></div>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-83"></span>
-<img src="R_for_Analytics_files/figure-html/unnamed-chunk-83-1.png" alt="Bar Graph with argument height as vector" width="672" />
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-7"></span>
+<img src="05-plots_files/figure-html/unnamed-chunk-7-1.png" alt="Bar Graph with argument height as vector" width="672" />
 <p class="caption">
 Figure 5.5: Bar Graph with argument height as vector
 </p>
@@ -575,8 +576,8 @@ Figure 5.5: Bar Graph with argument height as vector
 <span id="cb212-5"><a href="05-plots.html#cb212-5" aria-hidden="true" tabindex="-1"></a><span class="co"># plot a stacked bar plot with legend showing the years</span></span>
 <span id="cb212-6"><a href="05-plots.html#cb212-6" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="at">height =</span> data[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, ], <span class="at">beside =</span> <span class="cn">FALSE</span>, <span class="at">col =</span> <span class="fu">rainbow</span>(<span class="dv">5</span>), <span class="at">legend =</span> <span class="fu">rownames</span>(data[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,</span>
 <span id="cb212-7"><a href="05-plots.html#cb212-7" aria-hidden="true" tabindex="-1"></a>    ]), <span class="at">args.legend =</span> <span class="fu">list</span>(<span class="at">x =</span> <span class="st">&quot;top&quot;</span>, <span class="at">horiz =</span> <span class="cn">TRUE</span>, <span class="at">inset =</span> <span class="sc">-</span><span class="fl">0.1</span>), <span class="at">cex.names =</span> <span class="fl">0.6</span>)</span></code></pre></div>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-84"></span>
-<img src="R_for_Analytics_files/figure-html/unnamed-chunk-84-1.png" alt="Vertical Stacked Barplot" width="672" />
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-8"></span>
+<img src="05-plots_files/figure-html/unnamed-chunk-8-1.png" alt="Vertical Stacked Barplot" width="672" />
 <p class="caption">
 Figure 5.6: Vertical Stacked Barplot
 </p>
@@ -590,7 +591,7 @@ Figure 5.6: Vertical Stacked Barplot
 </ul>
 <div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="05-plots.html#cb214-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pie</span>(<span class="at">x =</span> data[<span class="dv">1</span>, ], <span class="at">labels =</span> <span class="fu">colnames</span>(data))</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:piechart"></span>
-<img src="R_for_Analytics_files/figure-html/piechart-1.png" alt="Pie Chart" width="672" />
+<img src="05-plots_files/figure-html/piechart-1.png" alt="Pie Chart" width="672" />
 <p class="caption">
 Figure 5.7: Pie Chart
 </p>
@@ -603,7 +604,7 @@ Figure 5.7: Pie Chart
 </ul>
 <div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="05-plots.html#cb215-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pairs</span>(data[, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>])</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:scatterplot1"></span>
-<img src="R_for_Analytics_files/figure-html/scatterplot1-1.png" alt="Scatterplot" width="672" />
+<img src="05-plots_files/figure-html/scatterplot1-1.png" alt="Scatterplot" width="672" />
 <p class="caption">
 Figure 5.8: Scatterplot
 </p>
@@ -613,7 +614,7 @@ Figure 5.8: Scatterplot
 </ul>
 <div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="05-plots.html#cb216-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pairs</span>(<span class="sc">~</span>Australia <span class="sc">+</span> UK <span class="sc">+</span> USA, <span class="at">data =</span> data)</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:scatterplot2"></span>
-<img src="R_for_Analytics_files/figure-html/scatterplot2-1.png" alt="Scatterplot (subset)" width="672" />
+<img src="05-plots_files/figure-html/scatterplot2-1.png" alt="Scatterplot (subset)" width="672" />
 <p class="caption">
 Figure 5.9: Scatterplot (subset)
 </p>
@@ -665,7 +666,7 @@ Figure 5.10: Graph Margins
 <span id="cb218-13"><a href="05-plots.html#cb218-13" aria-hidden="true" tabindex="-1"></a><span class="co"># set parameters to default</span></span>
 <span id="cb218-14"><a href="05-plots.html#cb218-14" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(par.old)</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:multiplot1"></span>
-<img src="R_for_Analytics_files/figure-html/multiplot1-1.png" alt="Multiple Plots in a Grid" width="672" />
+<img src="05-plots_files/figure-html/multiplot1-1.png" alt="Multiple Plots in a Grid" width="672" />
 <p class="caption">
 Figure 5.11: Multiple Plots in a Grid
 </p>
@@ -690,7 +691,7 @@ Figure 5.11: Multiple Plots in a Grid
 <span id="cb219-5"><a href="05-plots.html#cb219-5" aria-hidden="true" tabindex="-1"></a><span class="co"># simple scatterplot using qplot</span></span>
 <span id="cb219-6"><a href="05-plots.html#cb219-6" aria-hidden="true" tabindex="-1"></a><span class="fu">qplot</span>(x, y)</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:ggplot1"></span>
-<img src="R_for_Analytics_files/figure-html/ggplot1-1.png" alt="Scatterplot using qplot" width="672" />
+<img src="05-plots_files/figure-html/ggplot1-1.png" alt="Scatterplot using qplot" width="672" />
 <p class="caption">
 Figure 5.12: Scatterplot using qplot
 </p>
@@ -704,7 +705,7 @@ Figure 5.12: Scatterplot using qplot
 <span id="cb220-3"><a href="05-plots.html#cb220-3" aria-hidden="true" tabindex="-1"></a><span class="fu">qplot</span>(<span class="at">x =</span> FinData<span class="sc">$</span>Date, <span class="at">y =</span> FinData<span class="sc">$</span>DJI, <span class="at">geom =</span> <span class="st">&quot;line&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;Dates&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Prices&quot;</span>,</span>
 <span id="cb220-4"><a href="05-plots.html#cb220-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">main =</span> <span class="st">&quot;DJIA Price Timeseries&quot;</span>)</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:ggplot2"></span>
-<img src="R_for_Analytics_files/figure-html/ggplot2-1.png" alt="Line Plot with lables using qplot" width="672" />
+<img src="05-plots_files/figure-html/ggplot2-1.png" alt="Line Plot with lables using qplot" width="672" />
 <p class="caption">
 Figure 5.13: Line Plot with lables using qplot
 </p>
@@ -735,7 +736,7 @@ Figure 5.13: Line Plot with lables using qplot
 <div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="05-plots.html#cb224-1" aria-hidden="true" tabindex="-1"></a><span class="co"># figure</span></span>
 <span id="cb224-2"><a href="05-plots.html#cb224-2" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">+</span> <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>)</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:ggplot4"></span>
-<img src="R_for_Analytics_files/figure-html/ggplot4-1.png" alt="Bar Chart Using ggplot function" width="672" />
+<img src="05-plots_files/figure-html/ggplot4-1.png" alt="Bar Chart Using ggplot function" width="672" />
 <p class="caption">
 Figure 5.14: Bar Chart Using ggplot function
 </p>
@@ -748,7 +749,7 @@ Figure 5.14: Bar Chart Using ggplot function
 <span id="cb225-3"><a href="05-plots.html#cb225-3" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">=</span> <span class="fu">ggplot</span>(GDP_l, <span class="fu">aes</span>(Year, GDP, <span class="at">colour =</span> Country, <span class="at">group =</span> Country))</span>
 <span id="cb225-4"><a href="05-plots.html#cb225-4" aria-hidden="true" tabindex="-1"></a>p2 <span class="sc">+</span> <span class="fu">geom_line</span>()</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:ggplot5"></span>
-<img src="R_for_Analytics_files/figure-html/ggplot5-1.png" alt="Line Chart Using ggplot" width="960" />
+<img src="05-plots_files/figure-html/ggplot5-1.png" alt="Line Chart Using ggplot" width="960" />
 <p class="caption">
 Figure 5.15: Line Chart Using ggplot
 </p>
@@ -763,7 +764,7 @@ Figure 5.15: Line Chart Using ggplot
 <span id="cb226-3"><a href="05-plots.html#cb226-3" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">=</span> <span class="fu">ggplot</span>(GDP_l, <span class="fu">aes</span>(Year, GDP, <span class="at">colour =</span> Country, <span class="at">group =</span> Country))</span>
 <span id="cb226-4"><a href="05-plots.html#cb226-4" aria-hidden="true" tabindex="-1"></a>p2 <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span> <span class="fu">facet_grid</span>(Country <span class="sc">~</span> .)</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:ggplot6"></span>
-<img src="R_for_Analytics_files/figure-html/ggplot6-1.png" alt="Faceting in ggplot (Line Chart)" width="672" />
+<img src="05-plots_files/figure-html/ggplot6-1.png" alt="Faceting in ggplot (Line Chart)" width="672" />
 <p class="caption">
 Figure 5.16: Faceting in ggplot (Line Chart)
 </p>
@@ -786,7 +787,7 @@ Figure 5.16: Faceting in ggplot (Line Chart)
 <span id="cb228-3"><a href="05-plots.html#cb228-3" aria-hidden="true" tabindex="-1"></a>p2<span class="fl">.2</span> <span class="ot">=</span> p1<span class="fl">.2</span> <span class="sc">+</span> <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">fill =</span> Country)) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;GDP for Aus, US and UK&quot;</span>)  <span class="co">#using labs to modify title</span></span>
 <span id="cb228-4"><a href="05-plots.html#cb228-4" aria-hidden="true" tabindex="-1"></a>p2<span class="fl">.2</span></span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:ggplot8"></span>
-<img src="R_for_Analytics_files/figure-html/ggplot8-1.png" alt="Bar Chart with Selected Data" width="672" />
+<img src="05-plots_files/figure-html/ggplot8-1.png" alt="Bar Chart with Selected Data" width="672" />
 <p class="caption">
 Figure 5.17: Bar Chart with Selected Data
 </p>
@@ -798,7 +799,7 @@ Figure 5.17: Bar Chart with Selected Data
 <span id="cb229-2"><a href="05-plots.html#cb229-2" aria-hidden="true" tabindex="-1"></a>p2<span class="fl">.3</span> <span class="ot">=</span> p1<span class="fl">.3</span> <span class="sc">+</span> <span class="fu">geom_path</span>(<span class="at">colour =</span> <span class="st">&quot;darkblue&quot;</span>) <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">colour =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span> <span class="fu">theme_linedraw</span>()  <span class="co">#changing theme</span></span>
 <span id="cb229-3"><a href="05-plots.html#cb229-3" aria-hidden="true" tabindex="-1"></a>p2<span class="fl">.3</span></span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:ggplot9"></span>
-<img src="R_for_Analytics_files/figure-html/ggplot9-1.png" alt="Stock Series Plot with Smooth Curve" width="672" />
+<img src="05-plots_files/figure-html/ggplot9-1.png" alt="Stock Series Plot with Smooth Curve" width="672" />
 <p class="caption">
 Figure 5.18: Stock Series Plot with Smooth Curve
 </p>
@@ -809,7 +810,7 @@ Figure 5.18: Stock Series Plot with Smooth Curve
 <div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb230-1"><a href="05-plots.html#cb230-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gridExtra)</span>
 <span id="cb230-2"><a href="05-plots.html#cb230-2" aria-hidden="true" tabindex="-1"></a>fig1 <span class="ot">=</span> <span class="fu">grid.arrange</span>(p2<span class="fl">.1</span>, p2<span class="fl">.2</span>, p2<span class="fl">.3</span>, <span class="at">nrow =</span> <span class="dv">3</span>, <span class="at">heights =</span> <span class="fu">c</span>(<span class="dv">20</span>, <span class="dv">12</span>, <span class="dv">12</span>), <span class="at">top =</span> <span class="st">&quot;Combined plots in three rows&quot;</span>)</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:ggplot10"></span>
-<img src="R_for_Analytics_files/figure-html/ggplot10-1.png" alt="Combined plots" width="672" />
+<img src="05-plots_files/figure-html/ggplot10-1.png" alt="Combined plots" width="672" />
 <p class="caption">
 Figure 5.19: Combined plots
 </p>

@@ -33,6 +33,7 @@ eq:mmod
 eq:multilm
 fig:unnamed-chunk-12
 fig:unnamed-chunk-14
+fig:unnamed-chunk-15
 fig:pchrt1
 fig:pchrt2
 fig:pchrt3

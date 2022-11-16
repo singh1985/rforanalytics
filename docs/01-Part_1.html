@@ -23,7 +23,7 @@
 <meta name="author" content="Abhay Singh" />
 
 
-<meta name="date" content="2022-11-09" />
+<meta name="date" content="2022-11-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -492,23 +492,23 @@ div.csl-indent {
 <li><p>As demonstrated in the previous chapter, R package quantmod can be used to download daily OHLC data (Open, High, Low and Close) with volume.</p></li>
 <li><p>quantmod (<a href="https://www.quantmod.com/" class="uri">https://www.quantmod.com/</a>) also allows to import data from csv files.</p></li>
 </ul>
-<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="01-Part_1.html#cb291-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run the following to download and save the data, same as the</span></span>
-<span id="cb291-2"><a href="01-Part_1.html#cb291-2" aria-hidden="true" tabindex="-1"></a><span class="co"># regression chapter. Only run if data requires update of different</span></span>
-<span id="cb291-3"><a href="01-Part_1.html#cb291-3" aria-hidden="true" tabindex="-1"></a><span class="co"># assets are used</span></span>
-<span id="cb291-4"><a href="01-Part_1.html#cb291-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(quantmod)</span>
-<span id="cb291-5"><a href="01-Part_1.html#cb291-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pander)</span>
-<span id="cb291-6"><a href="01-Part_1.html#cb291-6" aria-hidden="true" tabindex="-1"></a><span class="co"># download stock</span></span>
-<span id="cb291-7"><a href="01-Part_1.html#cb291-7" aria-hidden="true" tabindex="-1"></a>BHP <span class="ot">=</span> <span class="fu">getSymbols</span>(<span class="st">&quot;BHP.AX&quot;</span>, <span class="at">from =</span> <span class="st">&quot;2019-01-01&quot;</span>, <span class="at">to =</span> <span class="st">&quot;2021-07-31&quot;</span>, <span class="at">auto.assign =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb291-8"><a href="01-Part_1.html#cb291-8" aria-hidden="true" tabindex="-1"></a><span class="co"># download index</span></span>
-<span id="cb291-9"><a href="01-Part_1.html#cb291-9" aria-hidden="true" tabindex="-1"></a>ASX <span class="ot">=</span> <span class="fu">getSymbols</span>(<span class="st">&quot;^AXJO&quot;</span>, <span class="at">from =</span> <span class="st">&quot;2019-01-01&quot;</span>, <span class="at">to =</span> <span class="st">&quot;2021-07-31&quot;</span>, <span class="at">auto.assign =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb291-10"><a href="01-Part_1.html#cb291-10" aria-hidden="true" tabindex="-1"></a><span class="co"># save both in rds (to be used in the TA chapter)</span></span>
-<span id="cb291-11"><a href="01-Part_1.html#cb291-11" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(BHP, <span class="at">file =</span> <span class="st">&quot;data/bhp_prices.rds&quot;</span>)</span>
-<span id="cb291-12"><a href="01-Part_1.html#cb291-12" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(ASX, <span class="at">file =</span> <span class="st">&quot;data/asx200.rds&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="01-Part_1.html#cb292-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(quantmod)</span>
-<span id="cb292-2"><a href="01-Part_1.html#cb292-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pander)</span>
-<span id="cb292-3"><a href="01-Part_1.html#cb292-3" aria-hidden="true" tabindex="-1"></a>BHP <span class="ot">=</span> <span class="fu">readRDS</span>(<span class="st">&quot;data/bhp_prices.rds&quot;</span>)</span>
-<span id="cb292-4"><a href="01-Part_1.html#cb292-4" aria-hidden="true" tabindex="-1"></a>ASX <span class="ot">=</span> <span class="fu">readRDS</span>(<span class="st">&quot;data/asx200.rds&quot;</span>)</span>
-<span id="cb292-5"><a href="01-Part_1.html#cb292-5" aria-hidden="true" tabindex="-1"></a><span class="fu">pander</span>(<span class="fu">head</span>(BHP), <span class="at">caption =</span> <span class="st">&quot;OHLC Data&quot;</span>, <span class="at">split.table =</span> <span class="cn">Inf</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="01-Part_1.html#cb292-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run the following to download and save the data, same as the</span></span>
+<span id="cb292-2"><a href="01-Part_1.html#cb292-2" aria-hidden="true" tabindex="-1"></a><span class="co"># regression chapter. Only run if data requires update of different</span></span>
+<span id="cb292-3"><a href="01-Part_1.html#cb292-3" aria-hidden="true" tabindex="-1"></a><span class="co"># assets are used</span></span>
+<span id="cb292-4"><a href="01-Part_1.html#cb292-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(quantmod)</span>
+<span id="cb292-5"><a href="01-Part_1.html#cb292-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pander)</span>
+<span id="cb292-6"><a href="01-Part_1.html#cb292-6" aria-hidden="true" tabindex="-1"></a><span class="co"># download stock</span></span>
+<span id="cb292-7"><a href="01-Part_1.html#cb292-7" aria-hidden="true" tabindex="-1"></a>BHP <span class="ot">=</span> <span class="fu">getSymbols</span>(<span class="st">&quot;BHP.AX&quot;</span>, <span class="at">from =</span> <span class="st">&quot;2019-01-01&quot;</span>, <span class="at">to =</span> <span class="st">&quot;2021-07-31&quot;</span>, <span class="at">auto.assign =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb292-8"><a href="01-Part_1.html#cb292-8" aria-hidden="true" tabindex="-1"></a><span class="co"># download index</span></span>
+<span id="cb292-9"><a href="01-Part_1.html#cb292-9" aria-hidden="true" tabindex="-1"></a>ASX <span class="ot">=</span> <span class="fu">getSymbols</span>(<span class="st">&quot;^AXJO&quot;</span>, <span class="at">from =</span> <span class="st">&quot;2019-01-01&quot;</span>, <span class="at">to =</span> <span class="st">&quot;2021-07-31&quot;</span>, <span class="at">auto.assign =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb292-10"><a href="01-Part_1.html#cb292-10" aria-hidden="true" tabindex="-1"></a><span class="co"># save both in rds (to be used in the TA chapter)</span></span>
+<span id="cb292-11"><a href="01-Part_1.html#cb292-11" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(BHP, <span class="at">file =</span> <span class="st">&quot;data/bhp_prices.rds&quot;</span>)</span>
+<span id="cb292-12"><a href="01-Part_1.html#cb292-12" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(ASX, <span class="at">file =</span> <span class="st">&quot;data/asx200.rds&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="01-Part_1.html#cb293-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(quantmod)</span>
+<span id="cb293-2"><a href="01-Part_1.html#cb293-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pander)</span>
+<span id="cb293-3"><a href="01-Part_1.html#cb293-3" aria-hidden="true" tabindex="-1"></a>BHP <span class="ot">=</span> <span class="fu">readRDS</span>(<span class="st">&quot;data/bhp_prices.rds&quot;</span>)</span>
+<span id="cb293-4"><a href="01-Part_1.html#cb293-4" aria-hidden="true" tabindex="-1"></a>ASX <span class="ot">=</span> <span class="fu">readRDS</span>(<span class="st">&quot;data/asx200.rds&quot;</span>)</span>
+<span id="cb293-5"><a href="01-Part_1.html#cb293-5" aria-hidden="true" tabindex="-1"></a><span class="fu">pander</span>(<span class="fu">head</span>(BHP), <span class="at">caption =</span> <span class="st">&quot;OHLC Data&quot;</span>, <span class="at">split.table =</span> <span class="cn">Inf</span>)</span></code></pre></div>
 <table>
 <caption>OHLC Data</caption>
 <colgroup>
@@ -588,14 +588,14 @@ div.csl-indent {
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="01-Part_1.html#cb293-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chartSeries</span>(BHP, <span class="at">theme =</span> <span class="st">&quot;white&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="01-Part_1.html#cb294-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chartSeries</span>(BHP, <span class="at">theme =</span> <span class="st">&quot;white&quot;</span>)</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:unnamed-chunk-3-1"></span>
 <img src="01-Part_1_files/figure-html/unnamed-chunk-3-1.png" alt="BHP Line Chart with Volume" width="672" />
 <p class="caption">
 Figure 10.1: BHP Line Chart with Volume
 </p>
 </div>
-<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="01-Part_1.html#cb294-1" aria-hidden="true" tabindex="-1"></a><span class="fu">addTA</span>(ASX<span class="sc">$</span>AXJO.Close, <span class="at">col =</span> <span class="st">&quot;darkblue&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="01-Part_1.html#cb295-1" aria-hidden="true" tabindex="-1"></a><span class="fu">addTA</span>(ASX<span class="sc">$</span>AXJO.Close, <span class="at">col =</span> <span class="st">&quot;darkblue&quot;</span>)</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:unnamed-chunk-3-2"></span>
 <img src="01-Part_1_files/figure-html/unnamed-chunk-3-2.png" alt="BHP and ASX" width="672" />
 <p class="caption">
@@ -605,7 +605,7 @@ Figure 10.2: BHP and ASX
 </div>
 <div id="line-chart" class="section level3 hasAnchor" number="10.2.2">
 <h3><span class="header-section-number">10.2.2</span> Line chart<a href="01-Part_1.html#line-chart" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="01-Part_1.html#cb295-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chartSeries</span>(BHP, <span class="at">type =</span> <span class="st">&quot;line&quot;</span>, <span class="at">subset =</span> <span class="st">&quot;2020&quot;</span>, <span class="at">theme =</span> <span class="st">&quot;white&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="01-Part_1.html#cb296-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chartSeries</span>(BHP, <span class="at">type =</span> <span class="st">&quot;line&quot;</span>, <span class="at">subset =</span> <span class="st">&quot;2020&quot;</span>, <span class="at">theme =</span> <span class="st">&quot;white&quot;</span>)</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:unnamed-chunk-4"></span>
 <img src="01-Part_1_files/figure-html/unnamed-chunk-4-1.png" alt="Line Chart" width="672" />
 <p class="caption">
@@ -615,7 +615,7 @@ Figure 5.2: Line Chart
 </div>
 <div id="candlestick-chart" class="section level3 hasAnchor" number="10.2.3">
 <h3><span class="header-section-number">10.2.3</span> Candlestick chart<a href="01-Part_1.html#candlestick-chart" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="01-Part_1.html#cb296-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chartSeries</span>(BHP, <span class="at">type =</span> <span class="st">&quot;candle&quot;</span>, <span class="at">subset =</span> <span class="st">&quot;last 1 month&quot;</span>, <span class="at">theme =</span> <span class="st">&quot;white&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb297-1"><a href="01-Part_1.html#cb297-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chartSeries</span>(BHP, <span class="at">type =</span> <span class="st">&quot;candle&quot;</span>, <span class="at">subset =</span> <span class="st">&quot;last 1 month&quot;</span>, <span class="at">theme =</span> <span class="st">&quot;white&quot;</span>)</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:unnamed-chunk-5"></span>
 <img src="01-Part_1_files/figure-html/unnamed-chunk-5-1.png" alt="Candle Stick chart" width="672" />
 <p class="caption">
@@ -625,8 +625,8 @@ Figure 5.3: Candle Stick chart
 </div>
 <div id="add-technical-indicators" class="section level3 hasAnchor" number="10.2.4">
 <h3><span class="header-section-number">10.2.4</span> Add technical indicators<a href="01-Part_1.html#add-technical-indicators" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb297-1"><a href="01-Part_1.html#cb297-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chartSeries</span>(BHP, <span class="at">type =</span> <span class="st">&quot;candle&quot;</span>, <span class="at">subset =</span> <span class="st">&quot;last 6 month&quot;</span>, <span class="at">theme =</span> <span class="st">&quot;white&quot;</span>,</span>
-<span id="cb297-2"><a href="01-Part_1.html#cb297-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">TA =</span> <span class="fu">c</span>(<span class="fu">addSMA</span>(<span class="dv">5</span>), <span class="fu">addEMA</span>(<span class="dv">10</span>)))</span></code></pre></div>
+<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="01-Part_1.html#cb298-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chartSeries</span>(BHP, <span class="at">type =</span> <span class="st">&quot;candle&quot;</span>, <span class="at">subset =</span> <span class="st">&quot;last 6 month&quot;</span>, <span class="at">theme =</span> <span class="st">&quot;white&quot;</span>,</span>
+<span id="cb298-2"><a href="01-Part_1.html#cb298-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">TA =</span> <span class="fu">c</span>(<span class="fu">addSMA</span>(<span class="dv">5</span>), <span class="fu">addEMA</span>(<span class="dv">10</span>)))</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:unnamed-chunk-6"></span>
 <img src="01-Part_1_files/figure-html/unnamed-chunk-6-1.png" alt="SMA and EMA" width="672" />
 <p class="caption">
@@ -636,21 +636,21 @@ Figure 5.4: SMA and EMA
 </div>
 <div id="adding-indicators-sequentially" class="section level3 hasAnchor" number="10.2.5">
 <h3><span class="header-section-number">10.2.5</span> Adding indicators sequentially<a href="01-Part_1.html#adding-indicators-sequentially" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="01-Part_1.html#cb298-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chartSeries</span>(BHP, <span class="at">type =</span> <span class="st">&quot;candle&quot;</span>, <span class="at">subset =</span> <span class="st">&quot;last 6 months&quot;</span>, <span class="at">theme =</span> <span class="st">&quot;white&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb299-1"><a href="01-Part_1.html#cb299-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chartSeries</span>(BHP, <span class="at">type =</span> <span class="st">&quot;candle&quot;</span>, <span class="at">subset =</span> <span class="st">&quot;last 6 months&quot;</span>, <span class="at">theme =</span> <span class="st">&quot;white&quot;</span>)</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:unnamed-chunk-7-1"></span>
 <img src="01-Part_1_files/figure-html/unnamed-chunk-7-1.png" alt="CandleStick" width="672" />
 <p class="caption">
 Figure 10.3: CandleStick
 </p>
 </div>
-<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb299-1"><a href="01-Part_1.html#cb299-1" aria-hidden="true" tabindex="-1"></a><span class="fu">addBBands</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="01-Part_1.html#cb300-1" aria-hidden="true" tabindex="-1"></a><span class="fu">addBBands</span>()</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:unnamed-chunk-7-2"></span>
 <img src="01-Part_1_files/figure-html/unnamed-chunk-7-2.png" alt="BOllinger Bands" width="672" />
 <p class="caption">
 Figure 10.4: BOllinger Bands
 </p>
 </div>
-<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="01-Part_1.html#cb300-1" aria-hidden="true" tabindex="-1"></a><span class="fu">addMomentum</span>(<span class="at">n =</span> <span class="dv">5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb301-1"><a href="01-Part_1.html#cb301-1" aria-hidden="true" tabindex="-1"></a><span class="fu">addMomentum</span>(<span class="at">n =</span> <span class="dv">5</span>)</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:unnamed-chunk-7-3"></span>
 <img src="01-Part_1_files/figure-html/unnamed-chunk-7-3.png" alt="Momentum" width="672" />
 <p class="caption">
@@ -682,25 +682,25 @@ P[r_{t}&lt;-VaR_{t}[I_{t-1}]=\theta
 <ul>
 <li>Convert the prices to returns</li>
 </ul>
-<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb301-1"><a href="01-Part_1.html#cb301-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb301-2"><a href="01-Part_1.html#cb301-2" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate normal density for the returns</span></span>
-<span id="cb301-3"><a href="01-Part_1.html#cb301-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb301-4"><a href="01-Part_1.html#cb301-4" aria-hidden="true" tabindex="-1"></a><span class="co"># prices to returns</span></span>
-<span id="cb301-5"><a href="01-Part_1.html#cb301-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb301-6"><a href="01-Part_1.html#cb301-6" aria-hidden="true" tabindex="-1"></a>bhp2 <span class="ot">=</span> BHP<span class="sc">$</span>BHP.AX.Close</span>
-<span id="cb301-7"><a href="01-Part_1.html#cb301-7" aria-hidden="true" tabindex="-1"></a><span class="co"># covert to returns</span></span>
-<span id="cb301-8"><a href="01-Part_1.html#cb301-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb301-9"><a href="01-Part_1.html#cb301-9" aria-hidden="true" tabindex="-1"></a>bhp_ret <span class="ot">=</span> <span class="fu">dailyReturn</span>(bhp2, <span class="at">type =</span> <span class="st">&quot;log&quot;</span>)</span>
-<span id="cb301-10"><a href="01-Part_1.html#cb301-10" aria-hidden="true" tabindex="-1"></a>den1_r <span class="ot">=</span> <span class="fu">coredata</span>(bhp_ret)</span>
-<span id="cb301-11"><a href="01-Part_1.html#cb301-11" aria-hidden="true" tabindex="-1"></a>den1_bhp <span class="ot">=</span> <span class="fu">dnorm</span>(<span class="at">x =</span> den1_r, <span class="at">mean =</span> <span class="fu">mean</span>(den1_r), <span class="at">sd =</span> <span class="fu">sd</span>(den1_r))</span>
-<span id="cb301-12"><a href="01-Part_1.html#cb301-12" aria-hidden="true" tabindex="-1"></a>data_rd <span class="ot">=</span> <span class="fu">data.frame</span>(den1_r, den1_bhp)</span>
-<span id="cb301-13"><a href="01-Part_1.html#cb301-13" aria-hidden="true" tabindex="-1"></a><span class="co"># change column names</span></span>
-<span id="cb301-14"><a href="01-Part_1.html#cb301-14" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(data_rd) <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;x&quot;</span>, <span class="st">&quot;y&quot;</span>)</span>
-<span id="cb301-15"><a href="01-Part_1.html#cb301-15" aria-hidden="true" tabindex="-1"></a><span class="co"># normal quantile</span></span>
-<span id="cb301-16"><a href="01-Part_1.html#cb301-16" aria-hidden="true" tabindex="-1"></a>var1 <span class="ot">=</span> <span class="fu">quantile</span>(den1_r, <span class="fl">0.01</span>)</span>
-<span id="cb301-17"><a href="01-Part_1.html#cb301-17" aria-hidden="true" tabindex="-1"></a>p3 <span class="ot">=</span> <span class="fu">ggplot</span>(data_rd, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span> <span class="fu">geom_line</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span> <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> var1,</span>
-<span id="cb301-18"><a href="01-Part_1.html#cb301-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span> <span class="fu">theme_bw</span>() <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Normal Distribution and 1% (Empirical) VaR&quot;</span>)</span>
-<span id="cb301-19"><a href="01-Part_1.html#cb301-19" aria-hidden="true" tabindex="-1"></a>p3</span></code></pre></div>
+<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb302-1"><a href="01-Part_1.html#cb302-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb302-2"><a href="01-Part_1.html#cb302-2" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate normal density for the returns</span></span>
+<span id="cb302-3"><a href="01-Part_1.html#cb302-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb302-4"><a href="01-Part_1.html#cb302-4" aria-hidden="true" tabindex="-1"></a><span class="co"># prices to returns</span></span>
+<span id="cb302-5"><a href="01-Part_1.html#cb302-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb302-6"><a href="01-Part_1.html#cb302-6" aria-hidden="true" tabindex="-1"></a>bhp2 <span class="ot">=</span> BHP<span class="sc">$</span>BHP.AX.Close</span>
+<span id="cb302-7"><a href="01-Part_1.html#cb302-7" aria-hidden="true" tabindex="-1"></a><span class="co"># covert to returns</span></span>
+<span id="cb302-8"><a href="01-Part_1.html#cb302-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb302-9"><a href="01-Part_1.html#cb302-9" aria-hidden="true" tabindex="-1"></a>bhp_ret <span class="ot">=</span> <span class="fu">dailyReturn</span>(bhp2, <span class="at">type =</span> <span class="st">&quot;log&quot;</span>)</span>
+<span id="cb302-10"><a href="01-Part_1.html#cb302-10" aria-hidden="true" tabindex="-1"></a>den1_r <span class="ot">=</span> <span class="fu">coredata</span>(bhp_ret)</span>
+<span id="cb302-11"><a href="01-Part_1.html#cb302-11" aria-hidden="true" tabindex="-1"></a>den1_bhp <span class="ot">=</span> <span class="fu">dnorm</span>(<span class="at">x =</span> den1_r, <span class="at">mean =</span> <span class="fu">mean</span>(den1_r), <span class="at">sd =</span> <span class="fu">sd</span>(den1_r))</span>
+<span id="cb302-12"><a href="01-Part_1.html#cb302-12" aria-hidden="true" tabindex="-1"></a>data_rd <span class="ot">=</span> <span class="fu">data.frame</span>(den1_r, den1_bhp)</span>
+<span id="cb302-13"><a href="01-Part_1.html#cb302-13" aria-hidden="true" tabindex="-1"></a><span class="co"># change column names</span></span>
+<span id="cb302-14"><a href="01-Part_1.html#cb302-14" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(data_rd) <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;x&quot;</span>, <span class="st">&quot;y&quot;</span>)</span>
+<span id="cb302-15"><a href="01-Part_1.html#cb302-15" aria-hidden="true" tabindex="-1"></a><span class="co"># normal quantile</span></span>
+<span id="cb302-16"><a href="01-Part_1.html#cb302-16" aria-hidden="true" tabindex="-1"></a>var1 <span class="ot">=</span> <span class="fu">quantile</span>(den1_r, <span class="fl">0.01</span>)</span>
+<span id="cb302-17"><a href="01-Part_1.html#cb302-17" aria-hidden="true" tabindex="-1"></a>p3 <span class="ot">=</span> <span class="fu">ggplot</span>(data_rd, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span> <span class="fu">geom_line</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span> <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> var1,</span>
+<span id="cb302-18"><a href="01-Part_1.html#cb302-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span> <span class="fu">theme_bw</span>() <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Normal Distribution and 1% (Empirical) VaR&quot;</span>)</span>
+<span id="cb302-19"><a href="01-Part_1.html#cb302-19" aria-hidden="true" tabindex="-1"></a>p3</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:var1"></span>
 <img src="01-Part_1_files/figure-html/var1-1.png" alt="1% VaR" width="672" />
 <p class="caption">
@@ -755,15 +755,15 @@ VaR_{p}(V_{p})=F^{-1}(1-p)
 <li><p>Fitting a GARCH model using the rugarch package requires setting the model specification using the <code>ugarchspec</code> function.</p></li>
 <li><p>A GARCH(1,1) model with a contant mean equation <code>mean.model=list(armaOrder=c(0,0)</code> can be specified as follows:</p></li>
 </ul>
-<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb302-1"><a href="01-Part_1.html#cb302-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rugarch)</span>
-<span id="cb302-2"><a href="01-Part_1.html#cb302-2" aria-hidden="true" tabindex="-1"></a>garch_spec <span class="ot">=</span> <span class="fu">ugarchspec</span>(<span class="at">variance.model =</span> <span class="fu">list</span>(<span class="at">model =</span> <span class="st">&quot;sGARCH&quot;</span>, <span class="at">garchOrder =</span> <span class="fu">c</span>(<span class="dv">1</span>,</span>
-<span id="cb302-3"><a href="01-Part_1.html#cb302-3" aria-hidden="true" tabindex="-1"></a>    <span class="dv">1</span>)), <span class="at">mean.model =</span> <span class="fu">list</span>(<span class="at">armaOrder =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)))</span></code></pre></div>
+<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="01-Part_1.html#cb303-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rugarch)</span>
+<span id="cb303-2"><a href="01-Part_1.html#cb303-2" aria-hidden="true" tabindex="-1"></a>garch_spec <span class="ot">=</span> <span class="fu">ugarchspec</span>(<span class="at">variance.model =</span> <span class="fu">list</span>(<span class="at">model =</span> <span class="st">&quot;sGARCH&quot;</span>, <span class="at">garchOrder =</span> <span class="fu">c</span>(<span class="dv">1</span>,</span>
+<span id="cb303-3"><a href="01-Part_1.html#cb303-3" aria-hidden="true" tabindex="-1"></a>    <span class="dv">1</span>)), <span class="at">mean.model =</span> <span class="fu">list</span>(<span class="at">armaOrder =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)))</span></code></pre></div>
 <ul>
 <li>The above specification stored in <code>garch_spec</code> can now be used to fit the GARCH(1,1) model to our data. The following code fits the GARCH(1,1) model to BHP log returns using the function and shows the results.</li>
 </ul>
-<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="01-Part_1.html#cb303-1" aria-hidden="true" tabindex="-1"></a>fit_garch <span class="ot">=</span> <span class="fu">ugarchfit</span>(<span class="at">spec =</span> garch_spec, <span class="at">data =</span> bhp_ret)</span>
-<span id="cb303-2"><a href="01-Part_1.html#cb303-2" aria-hidden="true" tabindex="-1"></a><span class="co"># show the estimates and other diagnostic tests</span></span>
-<span id="cb303-3"><a href="01-Part_1.html#cb303-3" aria-hidden="true" tabindex="-1"></a>fit_garch</span></code></pre></div>
+<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb304-1"><a href="01-Part_1.html#cb304-1" aria-hidden="true" tabindex="-1"></a>fit_garch <span class="ot">=</span> <span class="fu">ugarchfit</span>(<span class="at">spec =</span> garch_spec, <span class="at">data =</span> bhp_ret)</span>
+<span id="cb304-2"><a href="01-Part_1.html#cb304-2" aria-hidden="true" tabindex="-1"></a><span class="co"># show the estimates and other diagnostic tests</span></span>
+<span id="cb304-3"><a href="01-Part_1.html#cb304-3" aria-hidden="true" tabindex="-1"></a>fit_garch</span></code></pre></div>
 <pre><code>
 *---------------------------------*
 *          GARCH Model Fit        *
@@ -855,18 +855,18 @@ Adjusted Pearson Goodness-of-Fit Test:
 4    50     54.41       0.2761
 
 
-Elapsed time : 0.1579289 </code></pre>
+Elapsed time : 0.158262 </code></pre>
 <ul>
 <li>Selected fitted statistics can be obtained using various methods available to the <code>ugarchfit</code> object class</li>
 </ul>
-<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="01-Part_1.html#cb305-1" aria-hidden="true" tabindex="-1"></a>par1 <span class="ot">=</span> <span class="fu">par</span>()  <span class="co">#save graphic parameters</span></span>
-<span id="cb305-2"><a href="01-Part_1.html#cb305-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb305-3"><a href="01-Part_1.html#cb305-3" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
-<span id="cb305-4"><a href="01-Part_1.html#cb305-4" aria-hidden="true" tabindex="-1"></a><span class="co"># generate plots using the which argument Figure-12 1. ACF of</span></span>
-<span id="cb305-5"><a href="01-Part_1.html#cb305-5" aria-hidden="true" tabindex="-1"></a><span class="co"># standardised residuals</span></span>
-<span id="cb305-6"><a href="01-Part_1.html#cb305-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(fit_garch, <span class="at">which =</span> <span class="dv">10</span>)</span>
-<span id="cb305-7"><a href="01-Part_1.html#cb305-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Conditional SD (vs |returns|)</span></span>
-<span id="cb305-8"><a href="01-Part_1.html#cb305-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(fit_garch, <span class="at">which =</span> <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb306-1"><a href="01-Part_1.html#cb306-1" aria-hidden="true" tabindex="-1"></a>par1 <span class="ot">=</span> <span class="fu">par</span>()  <span class="co">#save graphic parameters</span></span>
+<span id="cb306-2"><a href="01-Part_1.html#cb306-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb306-3"><a href="01-Part_1.html#cb306-3" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
+<span id="cb306-4"><a href="01-Part_1.html#cb306-4" aria-hidden="true" tabindex="-1"></a><span class="co"># generate plots using the which argument Figure-12 1. ACF of</span></span>
+<span id="cb306-5"><a href="01-Part_1.html#cb306-5" aria-hidden="true" tabindex="-1"></a><span class="co"># standardised residuals</span></span>
+<span id="cb306-6"><a href="01-Part_1.html#cb306-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(fit_garch, <span class="at">which =</span> <span class="dv">10</span>)</span>
+<span id="cb306-7"><a href="01-Part_1.html#cb306-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Conditional SD (vs |returns|)</span></span>
+<span id="cb306-8"><a href="01-Part_1.html#cb306-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(fit_garch, <span class="at">which =</span> <span class="dv">3</span>)</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:garchplot"></span>
 <img src="01-Part_1_files/figure-html/garchplot-1.png" alt="Two Informative Plots for GARCH(1,1)" width="672" />
 <p class="caption">
@@ -879,24 +879,24 @@ Figure 11.2: Two Informative Plots for GARCH(1,1)
 <ul>
 <li>Let’s use Student-t distribution as Financial Returns don’t always follow normal distribution</li>
 </ul>
-<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb306-1"><a href="01-Part_1.html#cb306-1" aria-hidden="true" tabindex="-1"></a><span class="co"># spec2 with student-t distribution</span></span>
-<span id="cb306-2"><a href="01-Part_1.html#cb306-2" aria-hidden="true" tabindex="-1"></a>spec2 <span class="ot">=</span> <span class="fu">ugarchspec</span>(<span class="at">variance.model =</span> <span class="fu">list</span>(<span class="at">model =</span> <span class="st">&quot;sGARCH&quot;</span>, <span class="at">garchOrder =</span> <span class="fu">c</span>(<span class="dv">1</span>,</span>
-<span id="cb306-3"><a href="01-Part_1.html#cb306-3" aria-hidden="true" tabindex="-1"></a>    <span class="dv">1</span>)), <span class="at">mean.model =</span> <span class="fu">list</span>(<span class="at">armaOrder =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)), <span class="at">distribution.model =</span> <span class="st">&quot;std&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb307-1"><a href="01-Part_1.html#cb307-1" aria-hidden="true" tabindex="-1"></a><span class="co"># spec2 with student-t distribution</span></span>
+<span id="cb307-2"><a href="01-Part_1.html#cb307-2" aria-hidden="true" tabindex="-1"></a>spec2 <span class="ot">=</span> <span class="fu">ugarchspec</span>(<span class="at">variance.model =</span> <span class="fu">list</span>(<span class="at">model =</span> <span class="st">&quot;sGARCH&quot;</span>, <span class="at">garchOrder =</span> <span class="fu">c</span>(<span class="dv">1</span>,</span>
+<span id="cb307-3"><a href="01-Part_1.html#cb307-3" aria-hidden="true" tabindex="-1"></a>    <span class="dv">1</span>)), <span class="at">mean.model =</span> <span class="fu">list</span>(<span class="at">armaOrder =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)), <span class="at">distribution.model =</span> <span class="st">&quot;std&quot;</span>)</span></code></pre></div>
 <ul>
 <li>The rugarch package has a very useful function for estimating moving window models and forecasting VaR. The function provides method for creating rolling forecasts from GARCH models and has various arguments to specify the forecast length (), window size (), model refitting frequency (), a rolling or recursive estimation window () etc.</li>
 </ul>
-<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb307-1"><a href="01-Part_1.html#cb307-1" aria-hidden="true" tabindex="-1"></a>var.t <span class="ot">=</span> <span class="fu">ugarchroll</span>(spec2, <span class="at">data =</span> bhp_ret, <span class="at">n.ahead =</span> <span class="dv">1</span>, <span class="at">forecast.length =</span> <span class="fu">ndays</span>(bhp_ret) <span class="sc">-</span></span>
-<span id="cb307-2"><a href="01-Part_1.html#cb307-2" aria-hidden="true" tabindex="-1"></a>    <span class="dv">500</span>, <span class="at">refit.every =</span> <span class="dv">5</span>, <span class="at">window.size =</span> <span class="dv">500</span>, <span class="at">refit.window =</span> <span class="st">&quot;rolling&quot;</span>,</span>
-<span id="cb307-3"><a href="01-Part_1.html#cb307-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">calculate.VaR =</span> <span class="cn">TRUE</span>, <span class="at">VaR.alpha =</span> <span class="fu">c</span>(<span class="fl">0.01</span>, <span class="fl">0.05</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb308-1"><a href="01-Part_1.html#cb308-1" aria-hidden="true" tabindex="-1"></a>var.t <span class="ot">=</span> <span class="fu">ugarchroll</span>(spec2, <span class="at">data =</span> bhp_ret, <span class="at">n.ahead =</span> <span class="dv">1</span>, <span class="at">forecast.length =</span> <span class="fu">ndays</span>(bhp_ret) <span class="sc">-</span></span>
+<span id="cb308-2"><a href="01-Part_1.html#cb308-2" aria-hidden="true" tabindex="-1"></a>    <span class="dv">500</span>, <span class="at">refit.every =</span> <span class="dv">5</span>, <span class="at">window.size =</span> <span class="dv">500</span>, <span class="at">refit.window =</span> <span class="st">&quot;rolling&quot;</span>,</span>
+<span id="cb308-3"><a href="01-Part_1.html#cb308-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">calculate.VaR =</span> <span class="cn">TRUE</span>, <span class="at">VaR.alpha =</span> <span class="fu">c</span>(<span class="fl">0.01</span>, <span class="fl">0.05</span>))</span></code></pre></div>
 <ul>
 <li>We can plot the 1% and 5% VaR forecasts against the actual returns using the following routine.</li>
 </ul>
-<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb308-1"><a href="01-Part_1.html#cb308-1" aria-hidden="true" tabindex="-1"></a><span class="co"># note the plot method provides four plots with option-4 for the VaR</span></span>
-<span id="cb308-2"><a href="01-Part_1.html#cb308-2" aria-hidden="true" tabindex="-1"></a><span class="co"># forecasts 1% Student-t GARCH VaR</span></span>
-<span id="cb308-3"><a href="01-Part_1.html#cb308-3" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
-<span id="cb308-4"><a href="01-Part_1.html#cb308-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(var.t, <span class="at">which =</span> <span class="dv">4</span>, <span class="at">VaR.alpha =</span> <span class="fl">0.01</span>)</span>
-<span id="cb308-5"><a href="01-Part_1.html#cb308-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 5% Student-t GARCH VaR</span></span>
-<span id="cb308-6"><a href="01-Part_1.html#cb308-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(var.t, <span class="at">which =</span> <span class="dv">4</span>, <span class="at">VaR.alpha =</span> <span class="fl">0.05</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb309-1"><a href="01-Part_1.html#cb309-1" aria-hidden="true" tabindex="-1"></a><span class="co"># note the plot method provides four plots with option-4 for the VaR</span></span>
+<span id="cb309-2"><a href="01-Part_1.html#cb309-2" aria-hidden="true" tabindex="-1"></a><span class="co"># forecasts 1% Student-t GARCH VaR</span></span>
+<span id="cb309-3"><a href="01-Part_1.html#cb309-3" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
+<span id="cb309-4"><a href="01-Part_1.html#cb309-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(var.t, <span class="at">which =</span> <span class="dv">4</span>, <span class="at">VaR.alpha =</span> <span class="fl">0.01</span>)</span>
+<span id="cb309-5"><a href="01-Part_1.html#cb309-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 5% Student-t GARCH VaR</span></span>
+<span id="cb309-6"><a href="01-Part_1.html#cb309-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(var.t, <span class="at">which =</span> <span class="dv">4</span>, <span class="at">VaR.alpha =</span> <span class="fl">0.05</span>)</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:var2"></span>
 <img src="01-Part_1_files/figure-html/var2-1.png" alt="Actual Return Vs 1% VaR forecasts" width="672" />
 <p class="caption">
@@ -906,9 +906,9 @@ Figure 11.3: Actual Return Vs 1% VaR forecasts
 <ul>
 <li>Finally backtesting can be obtained using the <code>report</code> method</li>
 </ul>
-<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb309-1"><a href="01-Part_1.html#cb309-1" aria-hidden="true" tabindex="-1"></a><span class="co"># backtest for VaR forecasts</span></span>
-<span id="cb309-2"><a href="01-Part_1.html#cb309-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb309-3"><a href="01-Part_1.html#cb309-3" aria-hidden="true" tabindex="-1"></a><span class="fu">report</span>(var.t, <span class="at">VaR.alpha =</span> <span class="fl">0.05</span>)  <span class="co">#default value of alpha is 0.01</span></span></code></pre></div>
+<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb310-1"><a href="01-Part_1.html#cb310-1" aria-hidden="true" tabindex="-1"></a><span class="co"># backtest for VaR forecasts</span></span>
+<span id="cb310-2"><a href="01-Part_1.html#cb310-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb310-3"><a href="01-Part_1.html#cb310-3" aria-hidden="true" tabindex="-1"></a><span class="fu">report</span>(var.t, <span class="at">VaR.alpha =</span> <span class="fl">0.05</span>)  <span class="co">#default value of alpha is 0.01</span></span></code></pre></div>
 <pre><code>VaR Backtest Report
 ===========================================
 Model:              sGARCH-std

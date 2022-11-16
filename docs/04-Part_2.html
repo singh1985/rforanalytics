@@ -23,7 +23,7 @@
 <meta name="author" content="Abhay Singh" />
 
 
-<meta name="date" content="2022-11-09" />
+<meta name="date" content="2022-11-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -535,9 +535,9 @@ Number of people being liable to provide maintenance for
 Telephone
 foreign worker</p></li>
 </ul>
-<div class="sourceCode" id="cb377"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb377-1"><a href="04-Part_2.html#cb377-1" aria-hidden="true" tabindex="-1"></a>data_cr <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/german_credit.csv&quot;</span>)</span>
-<span id="cb377-2"><a href="04-Part_2.html#cb377-2" aria-hidden="true" tabindex="-1"></a><span class="co"># preliminary analysis descriptive and visual</span></span>
-<span id="cb377-3"><a href="04-Part_2.html#cb377-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(data_cr)</span></code></pre></div>
+<div class="sourceCode" id="cb378"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb378-1"><a href="04-Part_2.html#cb378-1" aria-hidden="true" tabindex="-1"></a>data_cr <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/german_credit.csv&quot;</span>)</span>
+<span id="cb378-2"><a href="04-Part_2.html#cb378-2" aria-hidden="true" tabindex="-1"></a><span class="co"># preliminary analysis descriptive and visual</span></span>
+<span id="cb378-3"><a href="04-Part_2.html#cb378-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(data_cr)</span></code></pre></div>
 <pre><code>&#39;data.frame&#39;:   1000 obs. of  21 variables:
  $ Creditability                    : int  1 1 1 1 1 1 1 1 1 1 ...
  $ Account.Balance                  : int  1 1 2 1 1 1 1 1 4 2 ...
@@ -560,10 +560,10 @@ foreign worker</p></li>
  $ No.of.dependents                 : int  1 2 1 2 1 2 1 2 1 1 ...
  $ Telephone                        : int  1 1 1 1 1 1 1 1 1 1 ...
  $ Foreign.Worker                   : int  1 1 1 2 2 2 2 2 1 1 ...</code></pre>
-<div class="sourceCode" id="cb379"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb379-1"><a href="04-Part_2.html#cb379-1" aria-hidden="true" tabindex="-1"></a><span class="co"># remove NA</span></span>
-<span id="cb379-2"><a href="04-Part_2.html#cb379-2" aria-hidden="true" tabindex="-1"></a>data_cr <span class="ot">=</span> <span class="fu">na.omit</span>(data_cr)</span>
-<span id="cb379-3"><a href="04-Part_2.html#cb379-3" aria-hidden="true" tabindex="-1"></a><span class="co"># quick summary</span></span>
-<span id="cb379-4"><a href="04-Part_2.html#cb379-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(data_cr)</span></code></pre></div>
+<div class="sourceCode" id="cb380"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb380-1"><a href="04-Part_2.html#cb380-1" aria-hidden="true" tabindex="-1"></a><span class="co"># remove NA</span></span>
+<span id="cb380-2"><a href="04-Part_2.html#cb380-2" aria-hidden="true" tabindex="-1"></a>data_cr <span class="ot">=</span> <span class="fu">na.omit</span>(data_cr)</span>
+<span id="cb380-3"><a href="04-Part_2.html#cb380-3" aria-hidden="true" tabindex="-1"></a><span class="co"># quick summary</span></span>
+<span id="cb380-4"><a href="04-Part_2.html#cb380-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(data_cr)</span></code></pre></div>
 <pre><code> Creditability Account.Balance Duration.of.Credit..month.
  Min.   :0.0   Min.   :1.000   Min.   : 4.0              
  1st Qu.:0.0   1st Qu.:1.000   1st Qu.:12.0              
@@ -616,7 +616,7 @@ foreign worker</p></li>
 <ul>
 <li>Let’s convert data types to as all of them are factors but some of them should be used as numeric</li>
 </ul>
-<div class="sourceCode" id="cb381"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb381-1"><a href="04-Part_2.html#cb381-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sapply</span>(data_cr, class)</span></code></pre></div>
+<div class="sourceCode" id="cb382"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb382-1"><a href="04-Part_2.html#cb382-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sapply</span>(data_cr, class)</span></code></pre></div>
 <pre><code>                    Creditability                   Account.Balance 
                         &quot;integer&quot;                         &quot;integer&quot; 
        Duration.of.Credit..month. Payment.Status.of.Previous.Credit 
@@ -639,10 +639,10 @@ foreign worker</p></li>
                         &quot;integer&quot;                         &quot;integer&quot; 
                    Foreign.Worker 
                         &quot;integer&quot; </code></pre>
-<div class="sourceCode" id="cb383"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb383-1"><a href="04-Part_2.html#cb383-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Keep Duration.of.Credit..month and Credit.Amount as numeric rest to</span></span>
-<span id="cb383-2"><a href="04-Part_2.html#cb383-2" aria-hidden="true" tabindex="-1"></a><span class="co"># factors</span></span>
-<span id="cb383-3"><a href="04-Part_2.html#cb383-3" aria-hidden="true" tabindex="-1"></a>id <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">7</span><span class="sc">:</span><span class="dv">21</span>)</span>
-<span id="cb383-4"><a href="04-Part_2.html#cb383-4" aria-hidden="true" tabindex="-1"></a>data_cr[id] <span class="ot">=</span> <span class="fu">lapply</span>(data_cr[id], as.factor)</span></code></pre></div>
+<div class="sourceCode" id="cb384"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb384-1"><a href="04-Part_2.html#cb384-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Keep Duration.of.Credit..month and Credit.Amount as numeric rest to</span></span>
+<span id="cb384-2"><a href="04-Part_2.html#cb384-2" aria-hidden="true" tabindex="-1"></a><span class="co"># factors</span></span>
+<span id="cb384-3"><a href="04-Part_2.html#cb384-3" aria-hidden="true" tabindex="-1"></a>id <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">7</span><span class="sc">:</span><span class="dv">21</span>)</span>
+<span id="cb384-4"><a href="04-Part_2.html#cb384-4" aria-hidden="true" tabindex="-1"></a>data_cr[id] <span class="ot">=</span> <span class="fu">lapply</span>(data_cr[id], as.factor)</span></code></pre></div>
 <hr />
 </div>
 <div id="visualisation-some-features" class="section level2 hasAnchor" number="15.2">
@@ -651,18 +651,18 @@ foreign worker</p></li>
 <li><p>Create some visualisation to visualise data characteristics</p></li>
 <li><p>Box plots <a href="04-Part_2.html#fig:boxplot">15.1</a> for Duration of Credit and Credit Amount</p></li>
 </ul>
-<div class="sourceCode" id="cb384"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb384-1"><a href="04-Part_2.html#cb384-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb384-2"><a href="04-Part_2.html#cb384-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gridExtra)</span>
-<span id="cb384-3"><a href="04-Part_2.html#cb384-3" aria-hidden="true" tabindex="-1"></a><span class="co"># copy of data for plots</span></span>
-<span id="cb384-4"><a href="04-Part_2.html#cb384-4" aria-hidden="true" tabindex="-1"></a>data_cr_p <span class="ot">=</span> data_cr</span>
-<span id="cb384-5"><a href="04-Part_2.html#cb384-5" aria-hidden="true" tabindex="-1"></a><span class="co"># set theme for the session</span></span>
-<span id="cb384-6"><a href="04-Part_2.html#cb384-6" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_bw</span>())</span>
-<span id="cb384-7"><a href="04-Part_2.html#cb384-7" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">=</span> <span class="fu">ggplot</span>(data_cr, <span class="fu">aes</span>(Duration.of.Credit..month., <span class="at">fill =</span> Creditability)) <span class="sc">+</span></span>
-<span id="cb384-8"><a href="04-Part_2.html#cb384-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>()</span>
-<span id="cb384-9"><a href="04-Part_2.html#cb384-9" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">=</span> <span class="fu">ggplot</span>(data_cr_p, <span class="fu">aes</span>(Credit.Amount, Creditability, <span class="at">fill =</span> Creditability)) <span class="sc">+</span></span>
-<span id="cb384-10"><a href="04-Part_2.html#cb384-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>()</span>
-<span id="cb384-11"><a href="04-Part_2.html#cb384-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb384-12"><a href="04-Part_2.html#cb384-12" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.arrange</span>(p1, p2, <span class="at">ncol =</span> <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb385"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb385-1"><a href="04-Part_2.html#cb385-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb385-2"><a href="04-Part_2.html#cb385-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gridExtra)</span>
+<span id="cb385-3"><a href="04-Part_2.html#cb385-3" aria-hidden="true" tabindex="-1"></a><span class="co"># copy of data for plots</span></span>
+<span id="cb385-4"><a href="04-Part_2.html#cb385-4" aria-hidden="true" tabindex="-1"></a>data_cr_p <span class="ot">=</span> data_cr</span>
+<span id="cb385-5"><a href="04-Part_2.html#cb385-5" aria-hidden="true" tabindex="-1"></a><span class="co"># set theme for the session</span></span>
+<span id="cb385-6"><a href="04-Part_2.html#cb385-6" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_bw</span>())</span>
+<span id="cb385-7"><a href="04-Part_2.html#cb385-7" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">=</span> <span class="fu">ggplot</span>(data_cr, <span class="fu">aes</span>(Duration.of.Credit..month., <span class="at">fill =</span> Creditability)) <span class="sc">+</span></span>
+<span id="cb385-8"><a href="04-Part_2.html#cb385-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>()</span>
+<span id="cb385-9"><a href="04-Part_2.html#cb385-9" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">=</span> <span class="fu">ggplot</span>(data_cr_p, <span class="fu">aes</span>(Credit.Amount, Creditability, <span class="at">fill =</span> Creditability)) <span class="sc">+</span></span>
+<span id="cb385-10"><a href="04-Part_2.html#cb385-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>()</span>
+<span id="cb385-11"><a href="04-Part_2.html#cb385-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb385-12"><a href="04-Part_2.html#cb385-12" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.arrange</span>(p1, p2, <span class="at">ncol =</span> <span class="dv">1</span>)</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:boxplot"></span>
 <img src="04-Part_2_files/figure-html/boxplot-1.png" alt="Box Plots" width="672" />
 <p class="caption">
@@ -672,13 +672,13 @@ Figure 15.1: Box Plots
 <ul>
 <li>See the relationship between Purpose, Sex/status and Creditability <a href="04-Part_2.html#fig:barplot">15.2</a></li>
 </ul>
-<div class="sourceCode" id="cb385"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb385-1"><a href="04-Part_2.html#cb385-1" aria-hidden="true" tabindex="-1"></a>p3 <span class="ot">=</span> <span class="fu">ggplot</span>(data_cr_p, <span class="fu">aes</span>(Purpose)) <span class="sc">+</span> <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">fill =</span> Creditability),</span>
-<span id="cb385-2"><a href="04-Part_2.html#cb385-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">stat =</span> <span class="st">&quot;count&quot;</span>, <span class="at">position =</span> <span class="st">&quot;dodge&quot;</span>)</span>
-<span id="cb385-3"><a href="04-Part_2.html#cb385-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb385-4"><a href="04-Part_2.html#cb385-4" aria-hidden="true" tabindex="-1"></a>p4 <span class="ot">=</span> <span class="fu">ggplot</span>(data_cr_p, <span class="fu">aes</span>(Sex...Marital.Status)) <span class="sc">+</span> <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">fill =</span> Creditability),</span>
-<span id="cb385-5"><a href="04-Part_2.html#cb385-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">stat =</span> <span class="st">&quot;count&quot;</span>, <span class="at">position =</span> <span class="st">&quot;dodge&quot;</span>)</span>
-<span id="cb385-6"><a href="04-Part_2.html#cb385-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb385-7"><a href="04-Part_2.html#cb385-7" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.arrange</span>(p3, p4, <span class="at">ncol =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb386"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb386-1"><a href="04-Part_2.html#cb386-1" aria-hidden="true" tabindex="-1"></a>p3 <span class="ot">=</span> <span class="fu">ggplot</span>(data_cr_p, <span class="fu">aes</span>(Purpose)) <span class="sc">+</span> <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">fill =</span> Creditability),</span>
+<span id="cb386-2"><a href="04-Part_2.html#cb386-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">stat =</span> <span class="st">&quot;count&quot;</span>, <span class="at">position =</span> <span class="st">&quot;dodge&quot;</span>)</span>
+<span id="cb386-3"><a href="04-Part_2.html#cb386-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb386-4"><a href="04-Part_2.html#cb386-4" aria-hidden="true" tabindex="-1"></a>p4 <span class="ot">=</span> <span class="fu">ggplot</span>(data_cr_p, <span class="fu">aes</span>(Sex...Marital.Status)) <span class="sc">+</span> <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">fill =</span> Creditability),</span>
+<span id="cb386-5"><a href="04-Part_2.html#cb386-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">stat =</span> <span class="st">&quot;count&quot;</span>, <span class="at">position =</span> <span class="st">&quot;dodge&quot;</span>)</span>
+<span id="cb386-6"><a href="04-Part_2.html#cb386-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb386-7"><a href="04-Part_2.html#cb386-7" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.arrange</span>(p3, p4, <span class="at">ncol =</span> <span class="dv">2</span>)</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:barplot"></span>
 <img src="04-Part_2_files/figure-html/barplot-1.png" alt="Bar plots" width="672" />
 <p class="caption">
@@ -692,21 +692,21 @@ Figure 15.2: Bar plots
 <li>Use rsample package and stratified sampling</li>
 <li>Using mutliple cross validation for resampling</li>
 </ul>
-<div class="sourceCode" id="cb386"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb386-1"><a href="04-Part_2.html#cb386-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rsample)</span>
-<span id="cb386-2"><a href="04-Part_2.html#cb386-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(caret)</span>
-<span id="cb386-3"><a href="04-Part_2.html#cb386-3" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">999</span>)  <span class="co">#for reproducibility (can pick your own seed, but keep it consistent)</span></span>
-<span id="cb386-4"><a href="04-Part_2.html#cb386-4" aria-hidden="true" tabindex="-1"></a>idx <span class="ot">=</span> <span class="fu">initial_split</span>(<span class="at">data =</span> data_cr, <span class="at">prop =</span> <span class="fl">0.8</span>, <span class="at">strata =</span> <span class="st">&quot;Creditability&quot;</span>)</span>
-<span id="cb386-5"><a href="04-Part_2.html#cb386-5" aria-hidden="true" tabindex="-1"></a>d_train1 <span class="ot">=</span> <span class="fu">training</span>(idx)</span>
-<span id="cb386-6"><a href="04-Part_2.html#cb386-6" aria-hidden="true" tabindex="-1"></a>d_test1 <span class="ot">=</span> <span class="fu">testing</span>(idx)</span>
-<span id="cb386-7"><a href="04-Part_2.html#cb386-7" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.table</span>(<span class="fu">table</span>(d_train1<span class="sc">$</span>Creditability))</span></code></pre></div>
+<div class="sourceCode" id="cb387"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb387-1"><a href="04-Part_2.html#cb387-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rsample)</span>
+<span id="cb387-2"><a href="04-Part_2.html#cb387-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(caret)</span>
+<span id="cb387-3"><a href="04-Part_2.html#cb387-3" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">999</span>)  <span class="co">#for reproducibility (can pick your own seed, but keep it consistent)</span></span>
+<span id="cb387-4"><a href="04-Part_2.html#cb387-4" aria-hidden="true" tabindex="-1"></a>idx <span class="ot">=</span> <span class="fu">initial_split</span>(<span class="at">data =</span> data_cr, <span class="at">prop =</span> <span class="fl">0.8</span>, <span class="at">strata =</span> <span class="st">&quot;Creditability&quot;</span>)</span>
+<span id="cb387-5"><a href="04-Part_2.html#cb387-5" aria-hidden="true" tabindex="-1"></a>d_train1 <span class="ot">=</span> <span class="fu">training</span>(idx)</span>
+<span id="cb387-6"><a href="04-Part_2.html#cb387-6" aria-hidden="true" tabindex="-1"></a>d_test1 <span class="ot">=</span> <span class="fu">testing</span>(idx)</span>
+<span id="cb387-7"><a href="04-Part_2.html#cb387-7" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.table</span>(<span class="fu">table</span>(d_train1<span class="sc">$</span>Creditability))</span></code></pre></div>
 <pre><code>
   0   1 
 0.3 0.7 </code></pre>
-<div class="sourceCode" id="cb388"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb388-1"><a href="04-Part_2.html#cb388-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.table</span>(<span class="fu">table</span>(d_test1<span class="sc">$</span>Creditability))</span></code></pre></div>
+<div class="sourceCode" id="cb389"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb389-1"><a href="04-Part_2.html#cb389-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.table</span>(<span class="fu">table</span>(d_test1<span class="sc">$</span>Creditability))</span></code></pre></div>
 <pre><code>
   0   1 
 0.3 0.7 </code></pre>
-<div class="sourceCode" id="cb390"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb390-1"><a href="04-Part_2.html#cb390-1" aria-hidden="true" tabindex="-1"></a>cntrl1 <span class="ot">=</span> <span class="fu">trainControl</span>(<span class="at">method =</span> <span class="st">&quot;repeatedcv&quot;</span>, <span class="at">number =</span> <span class="dv">10</span>, <span class="at">repeats =</span> <span class="dv">2</span>)  <span class="co">#using repeated cross validate (repeating twice)</span></span></code></pre></div>
+<div class="sourceCode" id="cb391"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb391-1"><a href="04-Part_2.html#cb391-1" aria-hidden="true" tabindex="-1"></a>cntrl1 <span class="ot">=</span> <span class="fu">trainControl</span>(<span class="at">method =</span> <span class="st">&quot;repeatedcv&quot;</span>, <span class="at">number =</span> <span class="dv">10</span>, <span class="at">repeats =</span> <span class="dv">2</span>)  <span class="co">#using repeated cross validate (repeating twice)</span></span></code></pre></div>
 </div>
 <div id="train-the-model-on-the-training-set" class="section level2 hasAnchor" number="15.4">
 <h2><span class="header-section-number">15.4</span> Train the model on the training set<a href="04-Part_2.html#train-the-model-on-the-training-set" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -714,20 +714,20 @@ Figure 15.2: Bar plots
 <li><p>Use rpart package and caret package</p></li>
 <li><p>The following block may results in slightly different results on individual computers. The fitted models are in data folder</p></li>
 </ul>
-<div class="sourceCode" id="cb391"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb391-1"><a href="04-Part_2.html#cb391-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">999</span>)  <span class="co">#for reproducibility</span></span>
-<span id="cb391-2"><a href="04-Part_2.html#cb391-2" aria-hidden="true" tabindex="-1"></a>cv_tree1 <span class="ot">=</span> <span class="fu">train</span>(Creditability <span class="sc">~</span> ., <span class="at">data =</span> d_train1, <span class="at">trControl =</span> cntrl1,</span>
-<span id="cb391-3"><a href="04-Part_2.html#cb391-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">method =</span> <span class="st">&quot;rpart&quot;</span>, <span class="at">tuneLength =</span> <span class="dv">20</span>, <span class="at">parms =</span> <span class="fu">list</span>(<span class="at">split =</span> <span class="st">&quot;gini&quot;</span>))  <span class="co">#using gini index </span></span>
-<span id="cb391-4"><a href="04-Part_2.html#cb391-4" aria-hidden="true" tabindex="-1"></a>cv_tree2 <span class="ot">=</span> <span class="fu">train</span>(Creditability <span class="sc">~</span> ., <span class="at">data =</span> d_train1, <span class="at">trControl =</span> cntrl1,</span>
-<span id="cb391-5"><a href="04-Part_2.html#cb391-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">method =</span> <span class="st">&quot;rpart&quot;</span>, <span class="at">tuneLength =</span> <span class="dv">20</span>, <span class="at">parms =</span> <span class="fu">list</span>(<span class="at">split =</span> <span class="st">&quot;information&quot;</span>))  <span class="co">#using information </span></span></code></pre></div>
+<div class="sourceCode" id="cb392"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb392-1"><a href="04-Part_2.html#cb392-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">999</span>)  <span class="co">#for reproducibility</span></span>
+<span id="cb392-2"><a href="04-Part_2.html#cb392-2" aria-hidden="true" tabindex="-1"></a>cv_tree1 <span class="ot">=</span> <span class="fu">train</span>(Creditability <span class="sc">~</span> ., <span class="at">data =</span> d_train1, <span class="at">trControl =</span> cntrl1,</span>
+<span id="cb392-3"><a href="04-Part_2.html#cb392-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">method =</span> <span class="st">&quot;rpart&quot;</span>, <span class="at">tuneLength =</span> <span class="dv">20</span>, <span class="at">parms =</span> <span class="fu">list</span>(<span class="at">split =</span> <span class="st">&quot;gini&quot;</span>))  <span class="co">#using gini index </span></span>
+<span id="cb392-4"><a href="04-Part_2.html#cb392-4" aria-hidden="true" tabindex="-1"></a>cv_tree2 <span class="ot">=</span> <span class="fu">train</span>(Creditability <span class="sc">~</span> ., <span class="at">data =</span> d_train1, <span class="at">trControl =</span> cntrl1,</span>
+<span id="cb392-5"><a href="04-Part_2.html#cb392-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">method =</span> <span class="st">&quot;rpart&quot;</span>, <span class="at">tuneLength =</span> <span class="dv">20</span>, <span class="at">parms =</span> <span class="fu">list</span>(<span class="at">split =</span> <span class="st">&quot;information&quot;</span>))  <span class="co">#using information </span></span></code></pre></div>
 <ul>
 <li><p>The fitted models were saved afterwards as <em>cv_tree1_gini.Rdata</em> and <em>cv_tree2_info.Rdata</em></p></li>
 <li><p>Loading the fitted models to analyse</p></li>
 </ul>
-<div class="sourceCode" id="cb392"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb392-1"><a href="04-Part_2.html#cb392-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">999</span>)</span>
-<span id="cb392-2"><a href="04-Part_2.html#cb392-2" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;data/cv_tree1_gini.Rdata&quot;</span>)</span>
-<span id="cb392-3"><a href="04-Part_2.html#cb392-3" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;data/cv_tree2_info.Rdata&quot;</span>)</span>
-<span id="cb392-4"><a href="04-Part_2.html#cb392-4" aria-hidden="true" tabindex="-1"></a><span class="co"># model fit 1</span></span>
-<span id="cb392-5"><a href="04-Part_2.html#cb392-5" aria-hidden="true" tabindex="-1"></a>cv_tree1</span></code></pre></div>
+<div class="sourceCode" id="cb393"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb393-1"><a href="04-Part_2.html#cb393-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">999</span>)</span>
+<span id="cb393-2"><a href="04-Part_2.html#cb393-2" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;data/cv_tree1_gini.Rdata&quot;</span>)</span>
+<span id="cb393-3"><a href="04-Part_2.html#cb393-3" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;data/cv_tree2_info.Rdata&quot;</span>)</span>
+<span id="cb393-4"><a href="04-Part_2.html#cb393-4" aria-hidden="true" tabindex="-1"></a><span class="co"># model fit 1</span></span>
+<span id="cb393-5"><a href="04-Part_2.html#cb393-5" aria-hidden="true" tabindex="-1"></a>cv_tree1</span></code></pre></div>
 <pre><code>CART 
 
 802 samples
@@ -763,8 +763,8 @@ Resampling results across tuning parameters:
 
 Accuracy was used to select the optimal model using the largest value.
 The final value used for the model was cp = 0.01747106.</code></pre>
-<div class="sourceCode" id="cb394"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb394-1"><a href="04-Part_2.html#cb394-1" aria-hidden="true" tabindex="-1"></a><span class="co"># model fit 2</span></span>
-<span id="cb394-2"><a href="04-Part_2.html#cb394-2" aria-hidden="true" tabindex="-1"></a>cv_tree2</span></code></pre></div>
+<div class="sourceCode" id="cb395"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb395-1"><a href="04-Part_2.html#cb395-1" aria-hidden="true" tabindex="-1"></a><span class="co"># model fit 2</span></span>
+<span id="cb395-2"><a href="04-Part_2.html#cb395-2" aria-hidden="true" tabindex="-1"></a>cv_tree2</span></code></pre></div>
 <pre><code>CART 
 
 802 samples
@@ -800,9 +800,9 @@ Resampling results across tuning parameters:
 
 Accuracy was used to select the optimal model using the largest value.
 The final value used for the model was cp = 0.01397685.</code></pre>
-<div class="sourceCode" id="cb396"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb396-1"><a href="04-Part_2.html#cb396-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(cv_tree1)  <span class="co">#parameter search using gini</span></span></code></pre></div>
+<div class="sourceCode" id="cb397"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb397-1"><a href="04-Part_2.html#cb397-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(cv_tree1)  <span class="co">#parameter search using gini</span></span></code></pre></div>
 <p><img src="04-Part_2_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
-<div class="sourceCode" id="cb397"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb397-1"><a href="04-Part_2.html#cb397-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(cv_tree2)  <span class="co">#parameter search using information</span></span></code></pre></div>
+<div class="sourceCode" id="cb398"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb398-1"><a href="04-Part_2.html#cb398-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(cv_tree2)  <span class="co">#parameter search using information</span></span></code></pre></div>
 <p><img src="04-Part_2_files/figure-html/unnamed-chunk-6-2.png" width="672" /></p>
 </div>
 <div id="prediction-and-accuracy" class="section level2 hasAnchor" number="15.5">
@@ -812,8 +812,8 @@ The final value used for the model was cp = 0.01397685.</code></pre>
 </ul>
 <div id="model-1" class="section level3 hasAnchor" number="15.5.1">
 <h3><span class="header-section-number">15.5.1</span> Model-1<a href="04-Part_2.html#model-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb398"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb398-1"><a href="04-Part_2.html#cb398-1" aria-hidden="true" tabindex="-1"></a>pred1 <span class="ot">=</span> <span class="fu">predict</span>(cv_tree1, <span class="at">newdata =</span> d_test1)</span>
-<span id="cb398-2"><a href="04-Part_2.html#cb398-2" aria-hidden="true" tabindex="-1"></a><span class="fu">confusionMatrix</span>(pred1, d_test1<span class="sc">$</span>Creditability)</span></code></pre></div>
+<div class="sourceCode" id="cb399"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb399-1"><a href="04-Part_2.html#cb399-1" aria-hidden="true" tabindex="-1"></a>pred1 <span class="ot">=</span> <span class="fu">predict</span>(cv_tree1, <span class="at">newdata =</span> d_test1)</span>
+<span id="cb399-2"><a href="04-Part_2.html#cb399-2" aria-hidden="true" tabindex="-1"></a><span class="fu">confusionMatrix</span>(pred1, d_test1<span class="sc">$</span>Creditability)</span></code></pre></div>
 <pre><code>Confusion Matrix and Statistics
 
           Reference
@@ -844,8 +844,8 @@ Prediction   0   1
 </div>
 <div id="model-2" class="section level3 hasAnchor" number="15.5.2">
 <h3><span class="header-section-number">15.5.2</span> Model-2<a href="04-Part_2.html#model-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb400-1"><a href="04-Part_2.html#cb400-1" aria-hidden="true" tabindex="-1"></a>pred2 <span class="ot">=</span> <span class="fu">predict</span>(cv_tree2, <span class="at">newdata =</span> d_test1)</span>
-<span id="cb400-2"><a href="04-Part_2.html#cb400-2" aria-hidden="true" tabindex="-1"></a><span class="fu">confusionMatrix</span>(pred2, d_test1<span class="sc">$</span>Creditability)</span></code></pre></div>
+<div class="sourceCode" id="cb401"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb401-1"><a href="04-Part_2.html#cb401-1" aria-hidden="true" tabindex="-1"></a>pred2 <span class="ot">=</span> <span class="fu">predict</span>(cv_tree2, <span class="at">newdata =</span> d_test1)</span>
+<span id="cb401-2"><a href="04-Part_2.html#cb401-2" aria-hidden="true" tabindex="-1"></a><span class="fu">confusionMatrix</span>(pred2, d_test1<span class="sc">$</span>Creditability)</span></code></pre></div>
 <pre><code>Confusion Matrix and Statistics
 
           Reference
@@ -880,8 +880,8 @@ Prediction   0   1
 <ul>
 <li>We can use the vip package to create a graph of feature importance</li>
 </ul>
-<div class="sourceCode" id="cb402"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb402-1"><a href="04-Part_2.html#cb402-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(vip)</span>
-<span id="cb402-2"><a href="04-Part_2.html#cb402-2" aria-hidden="true" tabindex="-1"></a><span class="fu">vip</span>(cv_tree1, <span class="at">num_features =</span> <span class="dv">20</span>, <span class="at">geom =</span> <span class="st">&quot;point&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb403"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb403-1"><a href="04-Part_2.html#cb403-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(vip)</span>
+<span id="cb403-2"><a href="04-Part_2.html#cb403-2" aria-hidden="true" tabindex="-1"></a><span class="fu">vip</span>(cv_tree1, <span class="at">num_features =</span> <span class="dv">20</span>, <span class="at">geom =</span> <span class="st">&quot;point&quot;</span>)</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:cart1"></span>
 <img src="04-Part_2_files/figure-html/cart1-1.png" alt="Variable importance based on the total reduction in MSE " width="672" />
 <p class="caption">
@@ -895,9 +895,9 @@ Figure 15.3: Variable importance based on the total reduction in MSE
 <li><p>Let’s visualise tree using the first model</p></li>
 <li><p>Use rpart.plot</p></li>
 </ul>
-<div class="sourceCode" id="cb403"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb403-1"><a href="04-Part_2.html#cb403-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rpart.plot)</span>
-<span id="cb403-2"><a href="04-Part_2.html#cb403-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rpart.plot</span>(cv_tree1<span class="sc">$</span>finalModel, <span class="at">main =</span> <span class="st">&quot;Decision Tree using Gini Index&quot;</span>,</span>
-<span id="cb403-3"><a href="04-Part_2.html#cb403-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">tweak =</span> <span class="fl">1.4</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb404"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb404-1"><a href="04-Part_2.html#cb404-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rpart.plot)</span>
+<span id="cb404-2"><a href="04-Part_2.html#cb404-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rpart.plot</span>(cv_tree1<span class="sc">$</span>finalModel, <span class="at">main =</span> <span class="st">&quot;Decision Tree using Gini Index&quot;</span>,</span>
+<span id="cb404-3"><a href="04-Part_2.html#cb404-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">tweak =</span> <span class="fl">1.4</span>)</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:cart2"></span>
 <img src="04-Part_2_files/figure-html/cart2-1.png" alt="Decision Tree using rpart.plot" width="1344" />
 <p class="caption">

@@ -23,7 +23,7 @@
 <meta name="author" content="Abhay Singh" />
 
 
-<meta name="date" content="2022-11-09" />
+<meta name="date" content="2022-11-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -565,46 +565,46 @@ dist(p,q)=\sqrt{(p_{1}-q_{1})^{2}+(p_{2}-q_{2})^{2}+\ldots+(p_{n}-q_{n})^{2}}
 \end{equation}\]</span>
 <div id="data-indicators" class="section level3 hasAnchor" number="14.3.1">
 <h3><span class="header-section-number">14.3.1</span> Data &amp; Indicators<a href="04-Part_3_logistic.html#data-indicators" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb355"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb355-1"><a href="04-Part_3_logistic.html#cb355-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(quantmod)</span>
-<span id="cb355-2"><a href="04-Part_3_logistic.html#cb355-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(TTR)</span>
-<span id="cb355-3"><a href="04-Part_3_logistic.html#cb355-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(xts)  <span class="co">#required as the data was saved as an xts object</span></span>
-<span id="cb355-4"><a href="04-Part_3_logistic.html#cb355-4" aria-hidden="true" tabindex="-1"></a>d_bhp <span class="ot">=</span> <span class="fu">readRDS</span>(<span class="st">&quot;data/bhp_prices.rds&quot;</span>)</span>
-<span id="cb355-5"><a href="04-Part_3_logistic.html#cb355-5" aria-hidden="true" tabindex="-1"></a>d_bhp <span class="ot">=</span> d_bhp<span class="sc">$</span>BHP.AX.Close  <span class="co">#select close prices</span></span>
-<span id="cb355-6"><a href="04-Part_3_logistic.html#cb355-6" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(d_bhp) <span class="ot">=</span> <span class="st">&quot;Price&quot;</span></span>
-<span id="cb355-7"><a href="04-Part_3_logistic.html#cb355-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb355-8"><a href="04-Part_3_logistic.html#cb355-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb355-9"><a href="04-Part_3_logistic.html#cb355-9" aria-hidden="true" tabindex="-1"></a><span class="co"># SMA</span></span>
-<span id="cb355-10"><a href="04-Part_3_logistic.html#cb355-10" aria-hidden="true" tabindex="-1"></a>sma5 <span class="ot">=</span> <span class="fu">lag</span>(<span class="fu">SMA</span>(d_bhp, <span class="at">n =</span> <span class="dv">5</span>))  <span class="co">#notice the use of the lag function to take lagged values</span></span>
-<span id="cb355-11"><a href="04-Part_3_logistic.html#cb355-11" aria-hidden="true" tabindex="-1"></a><span class="co"># EMA</span></span>
-<span id="cb355-12"><a href="04-Part_3_logistic.html#cb355-12" aria-hidden="true" tabindex="-1"></a>ema5 <span class="ot">=</span> <span class="fu">lag</span>(<span class="fu">EMA</span>(d_bhp, <span class="at">n =</span> <span class="dv">5</span>))</span>
-<span id="cb355-13"><a href="04-Part_3_logistic.html#cb355-13" aria-hidden="true" tabindex="-1"></a><span class="co"># MACD</span></span>
-<span id="cb355-14"><a href="04-Part_3_logistic.html#cb355-14" aria-hidden="true" tabindex="-1"></a>macd1 <span class="ot">=</span> <span class="fu">lag</span>(<span class="fu">MACD</span>(d_bhp))</span>
-<span id="cb355-15"><a href="04-Part_3_logistic.html#cb355-15" aria-hidden="true" tabindex="-1"></a><span class="co"># RSI</span></span>
-<span id="cb355-16"><a href="04-Part_3_logistic.html#cb355-16" aria-hidden="true" tabindex="-1"></a>rsi1 <span class="ot">=</span> <span class="fu">lag</span>(<span class="fu">RSI</span>(d_bhp, <span class="dv">5</span>))</span>
-<span id="cb355-17"><a href="04-Part_3_logistic.html#cb355-17" aria-hidden="true" tabindex="-1"></a><span class="co"># log returns</span></span>
-<span id="cb355-18"><a href="04-Part_3_logistic.html#cb355-18" aria-hidden="true" tabindex="-1"></a>ret1 <span class="ot">=</span> <span class="fu">lag</span>(<span class="fu">dailyReturn</span>(d_bhp, <span class="at">type =</span> <span class="st">&quot;log&quot;</span>))</span>
-<span id="cb355-19"><a href="04-Part_3_logistic.html#cb355-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb355-20"><a href="04-Part_3_logistic.html#cb355-20" aria-hidden="true" tabindex="-1"></a><span class="co"># price director indicator</span></span>
-<span id="cb355-21"><a href="04-Part_3_logistic.html#cb355-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb355-22"><a href="04-Part_3_logistic.html#cb355-22" aria-hidden="true" tabindex="-1"></a>dir <span class="ot">=</span> <span class="fu">ifelse</span>(d_bhp<span class="sc">$</span>Price <span class="sc">&gt;=</span> <span class="fu">lag</span>(d_bhp<span class="sc">$</span>Price, <span class="dv">5</span>), <span class="dv">1</span>, <span class="dv">0</span>)  <span class="co">#direction variable compared to  5 day before price</span></span></code></pre></div>
+<div class="sourceCode" id="cb356"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb356-1"><a href="04-Part_3_logistic.html#cb356-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(quantmod)</span>
+<span id="cb356-2"><a href="04-Part_3_logistic.html#cb356-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(TTR)</span>
+<span id="cb356-3"><a href="04-Part_3_logistic.html#cb356-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(xts)  <span class="co">#required as the data was saved as an xts object</span></span>
+<span id="cb356-4"><a href="04-Part_3_logistic.html#cb356-4" aria-hidden="true" tabindex="-1"></a>d_bhp <span class="ot">=</span> <span class="fu">readRDS</span>(<span class="st">&quot;data/bhp_prices.rds&quot;</span>)</span>
+<span id="cb356-5"><a href="04-Part_3_logistic.html#cb356-5" aria-hidden="true" tabindex="-1"></a>d_bhp <span class="ot">=</span> d_bhp<span class="sc">$</span>BHP.AX.Close  <span class="co">#select close prices</span></span>
+<span id="cb356-6"><a href="04-Part_3_logistic.html#cb356-6" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(d_bhp) <span class="ot">=</span> <span class="st">&quot;Price&quot;</span></span>
+<span id="cb356-7"><a href="04-Part_3_logistic.html#cb356-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb356-8"><a href="04-Part_3_logistic.html#cb356-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb356-9"><a href="04-Part_3_logistic.html#cb356-9" aria-hidden="true" tabindex="-1"></a><span class="co"># SMA</span></span>
+<span id="cb356-10"><a href="04-Part_3_logistic.html#cb356-10" aria-hidden="true" tabindex="-1"></a>sma5 <span class="ot">=</span> <span class="fu">lag</span>(<span class="fu">SMA</span>(d_bhp, <span class="at">n =</span> <span class="dv">5</span>))  <span class="co">#notice the use of the lag function to take lagged values</span></span>
+<span id="cb356-11"><a href="04-Part_3_logistic.html#cb356-11" aria-hidden="true" tabindex="-1"></a><span class="co"># EMA</span></span>
+<span id="cb356-12"><a href="04-Part_3_logistic.html#cb356-12" aria-hidden="true" tabindex="-1"></a>ema5 <span class="ot">=</span> <span class="fu">lag</span>(<span class="fu">EMA</span>(d_bhp, <span class="at">n =</span> <span class="dv">5</span>))</span>
+<span id="cb356-13"><a href="04-Part_3_logistic.html#cb356-13" aria-hidden="true" tabindex="-1"></a><span class="co"># MACD</span></span>
+<span id="cb356-14"><a href="04-Part_3_logistic.html#cb356-14" aria-hidden="true" tabindex="-1"></a>macd1 <span class="ot">=</span> <span class="fu">lag</span>(<span class="fu">MACD</span>(d_bhp))</span>
+<span id="cb356-15"><a href="04-Part_3_logistic.html#cb356-15" aria-hidden="true" tabindex="-1"></a><span class="co"># RSI</span></span>
+<span id="cb356-16"><a href="04-Part_3_logistic.html#cb356-16" aria-hidden="true" tabindex="-1"></a>rsi1 <span class="ot">=</span> <span class="fu">lag</span>(<span class="fu">RSI</span>(d_bhp, <span class="dv">5</span>))</span>
+<span id="cb356-17"><a href="04-Part_3_logistic.html#cb356-17" aria-hidden="true" tabindex="-1"></a><span class="co"># log returns</span></span>
+<span id="cb356-18"><a href="04-Part_3_logistic.html#cb356-18" aria-hidden="true" tabindex="-1"></a>ret1 <span class="ot">=</span> <span class="fu">lag</span>(<span class="fu">dailyReturn</span>(d_bhp, <span class="at">type =</span> <span class="st">&quot;log&quot;</span>))</span>
+<span id="cb356-19"><a href="04-Part_3_logistic.html#cb356-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb356-20"><a href="04-Part_3_logistic.html#cb356-20" aria-hidden="true" tabindex="-1"></a><span class="co"># price director indicator</span></span>
+<span id="cb356-21"><a href="04-Part_3_logistic.html#cb356-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb356-22"><a href="04-Part_3_logistic.html#cb356-22" aria-hidden="true" tabindex="-1"></a>dir <span class="ot">=</span> <span class="fu">ifelse</span>(d_bhp<span class="sc">$</span>Price <span class="sc">&gt;=</span> <span class="fu">lag</span>(d_bhp<span class="sc">$</span>Price, <span class="dv">5</span>), <span class="dv">1</span>, <span class="dv">0</span>)  <span class="co">#direction variable compared to  5 day before price</span></span></code></pre></div>
 <ul>
 <li>Combine all the indicators and response variable in a data frame</li>
 </ul>
-<div class="sourceCode" id="cb356"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb356-1"><a href="04-Part_3_logistic.html#cb356-1" aria-hidden="true" tabindex="-1"></a>d_ex1 <span class="ot">=</span> <span class="fu">cbind</span>(dir, ret1, sma5, ema5, macd1, rsi1)</span>
-<span id="cb356-2"><a href="04-Part_3_logistic.html#cb356-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb356-3"><a href="04-Part_3_logistic.html#cb356-3" aria-hidden="true" tabindex="-1"></a><span class="co"># change column names</span></span>
-<span id="cb356-4"><a href="04-Part_3_logistic.html#cb356-4" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(d_ex1) <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;Direction&quot;</span>, <span class="st">&quot;Ret&quot;</span>, <span class="st">&quot;SMA&quot;</span>, <span class="st">&quot;EMA&quot;</span>, <span class="st">&quot;MACD&quot;</span>, <span class="st">&quot;Signal&quot;</span>,</span>
-<span id="cb356-5"><a href="04-Part_3_logistic.html#cb356-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;RSI&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb357"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb357-1"><a href="04-Part_3_logistic.html#cb357-1" aria-hidden="true" tabindex="-1"></a>d_ex1 <span class="ot">=</span> <span class="fu">cbind</span>(dir, ret1, sma5, ema5, macd1, rsi1)</span>
+<span id="cb357-2"><a href="04-Part_3_logistic.html#cb357-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb357-3"><a href="04-Part_3_logistic.html#cb357-3" aria-hidden="true" tabindex="-1"></a><span class="co"># change column names</span></span>
+<span id="cb357-4"><a href="04-Part_3_logistic.html#cb357-4" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(d_ex1) <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;Direction&quot;</span>, <span class="st">&quot;Ret&quot;</span>, <span class="st">&quot;SMA&quot;</span>, <span class="st">&quot;EMA&quot;</span>, <span class="st">&quot;MACD&quot;</span>, <span class="st">&quot;Signal&quot;</span>,</span>
+<span id="cb357-5"><a href="04-Part_3_logistic.html#cb357-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;RSI&quot;</span>)</span></code></pre></div>
 </div>
 <div id="visualise-the-data" class="section level3 hasAnchor" number="14.3.2">
 <h3><span class="header-section-number">14.3.2</span> Visualise the data<a href="04-Part_3_logistic.html#visualise-the-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li>Using the quantmod package</li>
 </ul>
-<div class="sourceCode" id="cb357"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb357-1"><a href="04-Part_3_logistic.html#cb357-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chartSeries</span>(d_bhp, <span class="at">theme =</span> <span class="st">&quot;white&quot;</span>, <span class="at">name =</span> <span class="st">&quot;BHP Closing Prices and Indicators&quot;</span>)</span>
-<span id="cb357-2"><a href="04-Part_3_logistic.html#cb357-2" aria-hidden="true" tabindex="-1"></a><span class="fu">addTA</span>(d_ex1[, <span class="dv">1</span>], <span class="at">col =</span> <span class="dv">1</span>, <span class="at">legend =</span> <span class="st">&quot;Direction&quot;</span>)  <span class="co">#Direction</span></span>
-<span id="cb357-3"><a href="04-Part_3_logistic.html#cb357-3" aria-hidden="true" tabindex="-1"></a><span class="fu">addTA</span>(d_ex1[, <span class="sc">-</span><span class="dv">1</span>], <span class="at">on =</span> <span class="cn">NA</span>, <span class="at">col =</span> <span class="fu">rainbow</span>(<span class="dv">6</span>), <span class="at">legend =</span> <span class="fu">as.character</span>(<span class="fu">colnames</span>(d_ex1[,</span>
-<span id="cb357-4"><a href="04-Part_3_logistic.html#cb357-4" aria-hidden="true" tabindex="-1"></a>    <span class="sc">-</span><span class="dv">1</span>])))</span></code></pre></div>
+<div class="sourceCode" id="cb358"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb358-1"><a href="04-Part_3_logistic.html#cb358-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chartSeries</span>(d_bhp, <span class="at">theme =</span> <span class="st">&quot;white&quot;</span>, <span class="at">name =</span> <span class="st">&quot;BHP Closing Prices and Indicators&quot;</span>)</span>
+<span id="cb358-2"><a href="04-Part_3_logistic.html#cb358-2" aria-hidden="true" tabindex="-1"></a><span class="fu">addTA</span>(d_ex1[, <span class="dv">1</span>], <span class="at">col =</span> <span class="dv">1</span>, <span class="at">legend =</span> <span class="st">&quot;Direction&quot;</span>)  <span class="co">#Direction</span></span>
+<span id="cb358-3"><a href="04-Part_3_logistic.html#cb358-3" aria-hidden="true" tabindex="-1"></a><span class="fu">addTA</span>(d_ex1[, <span class="sc">-</span><span class="dv">1</span>], <span class="at">on =</span> <span class="cn">NA</span>, <span class="at">col =</span> <span class="fu">rainbow</span>(<span class="dv">6</span>), <span class="at">legend =</span> <span class="fu">as.character</span>(<span class="fu">colnames</span>(d_ex1[,</span>
+<span id="cb358-4"><a href="04-Part_3_logistic.html#cb358-4" aria-hidden="true" tabindex="-1"></a>    <span class="sc">-</span><span class="dv">1</span>])))</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:ex1f1"></span>
 <img src="04-Part_3_logistic_files/figure-html/ex1f1-1.png" alt="Direction and Technical Indicators" width="672" />
 <p class="caption">
@@ -614,23 +614,23 @@ Figure 14.1: Direction and Technical Indicators
 <ul>
 <li>The above graph can be improved using ggplot2</li>
 </ul>
-<div class="sourceCode" id="cb358"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb358-1"><a href="04-Part_3_logistic.html#cb358-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
-<span id="cb358-2"><a href="04-Part_3_logistic.html#cb358-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb358-3"><a href="04-Part_3_logistic.html#cb358-3" aria-hidden="true" tabindex="-1"></a><span class="co"># create a dataset and convert data to long</span></span>
-<span id="cb358-4"><a href="04-Part_3_logistic.html#cb358-4" aria-hidden="true" tabindex="-1"></a>d_plot <span class="ot">=</span> <span class="fu">merge.xts</span>(d_bhp, d_ex1)</span>
-<span id="cb358-5"><a href="04-Part_3_logistic.html#cb358-5" aria-hidden="true" tabindex="-1"></a><span class="co"># remove NAs and then convert to long</span></span>
-<span id="cb358-6"><a href="04-Part_3_logistic.html#cb358-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb358-7"><a href="04-Part_3_logistic.html#cb358-7" aria-hidden="true" tabindex="-1"></a>d_plot <span class="ot">=</span> <span class="fu">na.omit</span>(d_plot)</span>
-<span id="cb358-8"><a href="04-Part_3_logistic.html#cb358-8" aria-hidden="true" tabindex="-1"></a><span class="co"># convert to dataframe</span></span>
-<span id="cb358-9"><a href="04-Part_3_logistic.html#cb358-9" aria-hidden="true" tabindex="-1"></a>d_plot <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">Date =</span> <span class="fu">index</span>(d_plot), <span class="fu">coredata</span>(d_plot))</span>
-<span id="cb358-10"><a href="04-Part_3_logistic.html#cb358-10" aria-hidden="true" tabindex="-1"></a>d_plot_long <span class="ot">=</span> <span class="fu">pivot_longer</span>(d_plot, <span class="sc">-</span><span class="fu">c</span>(Date, Direction), <span class="at">values_to =</span> <span class="st">&quot;value&quot;</span>,</span>
-<span id="cb358-11"><a href="04-Part_3_logistic.html#cb358-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="st">&quot;Indicator&quot;</span>)</span>
-<span id="cb358-12"><a href="04-Part_3_logistic.html#cb358-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb358-13"><a href="04-Part_3_logistic.html#cb358-13" aria-hidden="true" tabindex="-1"></a><span class="co"># change direction to a factor</span></span>
-<span id="cb358-14"><a href="04-Part_3_logistic.html#cb358-14" aria-hidden="true" tabindex="-1"></a>d_plot_long<span class="sc">$</span>Direction <span class="ot">=</span> <span class="fu">as.factor</span>(d_plot_long<span class="sc">$</span>Direction)</span>
-<span id="cb358-15"><a href="04-Part_3_logistic.html#cb358-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb358-16"><a href="04-Part_3_logistic.html#cb358-16" aria-hidden="true" tabindex="-1"></a>(<span class="at">p2_ex =</span> <span class="fu">ggplot</span>(d_plot_long, <span class="fu">aes</span>(Date, value, <span class="at">color =</span> Indicator)) <span class="sc">+</span> <span class="fu">geom_path</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
-<span id="cb358-17"><a href="04-Part_3_logistic.html#cb358-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_grid</span>(Indicator <span class="sc">~</span> ., <span class="at">scale =</span> <span class="st">&quot;free&quot;</span>) <span class="sc">+</span> <span class="fu">theme_minimal</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb359-1"><a href="04-Part_3_logistic.html#cb359-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb359-2"><a href="04-Part_3_logistic.html#cb359-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb359-3"><a href="04-Part_3_logistic.html#cb359-3" aria-hidden="true" tabindex="-1"></a><span class="co"># create a dataset and convert data to long</span></span>
+<span id="cb359-4"><a href="04-Part_3_logistic.html#cb359-4" aria-hidden="true" tabindex="-1"></a>d_plot <span class="ot">=</span> <span class="fu">merge.xts</span>(d_bhp, d_ex1)</span>
+<span id="cb359-5"><a href="04-Part_3_logistic.html#cb359-5" aria-hidden="true" tabindex="-1"></a><span class="co"># remove NAs and then convert to long</span></span>
+<span id="cb359-6"><a href="04-Part_3_logistic.html#cb359-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb359-7"><a href="04-Part_3_logistic.html#cb359-7" aria-hidden="true" tabindex="-1"></a>d_plot <span class="ot">=</span> <span class="fu">na.omit</span>(d_plot)</span>
+<span id="cb359-8"><a href="04-Part_3_logistic.html#cb359-8" aria-hidden="true" tabindex="-1"></a><span class="co"># convert to dataframe</span></span>
+<span id="cb359-9"><a href="04-Part_3_logistic.html#cb359-9" aria-hidden="true" tabindex="-1"></a>d_plot <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">Date =</span> <span class="fu">index</span>(d_plot), <span class="fu">coredata</span>(d_plot))</span>
+<span id="cb359-10"><a href="04-Part_3_logistic.html#cb359-10" aria-hidden="true" tabindex="-1"></a>d_plot_long <span class="ot">=</span> <span class="fu">pivot_longer</span>(d_plot, <span class="sc">-</span><span class="fu">c</span>(Date, Direction), <span class="at">values_to =</span> <span class="st">&quot;value&quot;</span>,</span>
+<span id="cb359-11"><a href="04-Part_3_logistic.html#cb359-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="st">&quot;Indicator&quot;</span>)</span>
+<span id="cb359-12"><a href="04-Part_3_logistic.html#cb359-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb359-13"><a href="04-Part_3_logistic.html#cb359-13" aria-hidden="true" tabindex="-1"></a><span class="co"># change direction to a factor</span></span>
+<span id="cb359-14"><a href="04-Part_3_logistic.html#cb359-14" aria-hidden="true" tabindex="-1"></a>d_plot_long<span class="sc">$</span>Direction <span class="ot">=</span> <span class="fu">as.factor</span>(d_plot_long<span class="sc">$</span>Direction)</span>
+<span id="cb359-15"><a href="04-Part_3_logistic.html#cb359-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb359-16"><a href="04-Part_3_logistic.html#cb359-16" aria-hidden="true" tabindex="-1"></a>(<span class="at">p2_ex =</span> <span class="fu">ggplot</span>(d_plot_long, <span class="fu">aes</span>(Date, value, <span class="at">color =</span> Indicator)) <span class="sc">+</span> <span class="fu">geom_path</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
+<span id="cb359-17"><a href="04-Part_3_logistic.html#cb359-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_grid</span>(Indicator <span class="sc">~</span> ., <span class="at">scale =</span> <span class="st">&quot;free&quot;</span>) <span class="sc">+</span> <span class="fu">theme_minimal</span>())</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:ex1f2"></span>
 <img src="04-Part_3_logistic_files/figure-html/ex1f2-1.png" alt="Indicators and Prices (ggplot2)" width="672" />
 <p class="caption">
@@ -640,11 +640,11 @@ Figure 14.2: Indicators and Prices (ggplot2)
 <ul>
 <li>The above is a line chart of indicators and prices. We can also create a box plot to visualise the variance in the values relative to the direction</li>
 </ul>
-<div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb359-1"><a href="04-Part_3_logistic.html#cb359-1" aria-hidden="true" tabindex="-1"></a>p2_ex <span class="ot">=</span> <span class="fu">ggplot</span>(d_plot_long, <span class="fu">aes</span>(value, Indicator, <span class="at">fill =</span> Direction)) <span class="sc">+</span></span>
-<span id="cb359-2"><a href="04-Part_3_logistic.html#cb359-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>()</span>
-<span id="cb359-3"><a href="04-Part_3_logistic.html#cb359-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb359-4"><a href="04-Part_3_logistic.html#cb359-4" aria-hidden="true" tabindex="-1"></a>p2_ex <span class="sc">+</span> <span class="fu">theme_minimal</span>() <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;TA Indicators vs Price Direction&quot;</span>) <span class="sc">+</span></span>
-<span id="cb359-5"><a href="04-Part_3_logistic.html#cb359-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_manual</span>(<span class="at">name =</span> <span class="st">&quot;Price Direction&quot;</span>, <span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;orange&quot;</span>, <span class="st">&quot;lightblue&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb360"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb360-1"><a href="04-Part_3_logistic.html#cb360-1" aria-hidden="true" tabindex="-1"></a>p2_ex <span class="ot">=</span> <span class="fu">ggplot</span>(d_plot_long, <span class="fu">aes</span>(value, Indicator, <span class="at">fill =</span> Direction)) <span class="sc">+</span></span>
+<span id="cb360-2"><a href="04-Part_3_logistic.html#cb360-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>()</span>
+<span id="cb360-3"><a href="04-Part_3_logistic.html#cb360-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb360-4"><a href="04-Part_3_logistic.html#cb360-4" aria-hidden="true" tabindex="-1"></a>p2_ex <span class="sc">+</span> <span class="fu">theme_minimal</span>() <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;TA Indicators vs Price Direction&quot;</span>) <span class="sc">+</span></span>
+<span id="cb360-5"><a href="04-Part_3_logistic.html#cb360-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_manual</span>(<span class="at">name =</span> <span class="st">&quot;Price Direction&quot;</span>, <span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;orange&quot;</span>, <span class="st">&quot;lightblue&quot;</span>))</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:ex1f3"></span>
 <img src="04-Part_3_logistic_files/figure-html/ex1f3-1.png" alt="Box Plot of Indicators" width="672" />
 <p class="caption">
@@ -664,34 +664,34 @@ Figure 14.3: Box Plot of Indicators
 <li>Stratified sampling will not keep the time order and hence its avoided</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb360"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb360-1"><a href="04-Part_3_logistic.html#cb360-1" aria-hidden="true" tabindex="-1"></a><span class="co"># remove NAs</span></span>
-<span id="cb360-2"><a href="04-Part_3_logistic.html#cb360-2" aria-hidden="true" tabindex="-1"></a>d_ex1 <span class="ot">=</span> <span class="fu">na.omit</span>(d_ex1)</span>
-<span id="cb360-3"><a href="04-Part_3_logistic.html#cb360-3" aria-hidden="true" tabindex="-1"></a><span class="co"># convert to data frame</span></span>
-<span id="cb360-4"><a href="04-Part_3_logistic.html#cb360-4" aria-hidden="true" tabindex="-1"></a>d_ex1 <span class="ot">=</span> <span class="fu">as.data.frame</span>(d_ex1)</span>
-<span id="cb360-5"><a href="04-Part_3_logistic.html#cb360-5" aria-hidden="true" tabindex="-1"></a><span class="co"># convert direction to a factor for classification</span></span>
-<span id="cb360-6"><a href="04-Part_3_logistic.html#cb360-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb360-7"><a href="04-Part_3_logistic.html#cb360-7" aria-hidden="true" tabindex="-1"></a>d_ex1<span class="sc">$</span>Direction <span class="ot">=</span> <span class="fu">as.factor</span>(d_ex1<span class="sc">$</span>Direction)</span>
-<span id="cb360-8"><a href="04-Part_3_logistic.html#cb360-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb360-9"><a href="04-Part_3_logistic.html#cb360-9" aria-hidden="true" tabindex="-1"></a>idx1 <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">round</span>(<span class="fu">nrow</span>(d_ex1) <span class="sc">*</span> <span class="fl">0.7</span>))  <span class="co">#create index for first 70% values to be in the testing set</span></span>
-<span id="cb360-10"><a href="04-Part_3_logistic.html#cb360-10" aria-hidden="true" tabindex="-1"></a>d_train1 <span class="ot">=</span> d_ex1[idx1, ]  <span class="co">#training set</span></span>
-<span id="cb360-11"><a href="04-Part_3_logistic.html#cb360-11" aria-hidden="true" tabindex="-1"></a>d_test1 <span class="ot">=</span> d_ex1[<span class="sc">-</span>idx1, ]  <span class="co">#testing set</span></span></code></pre></div>
+<div class="sourceCode" id="cb361"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb361-1"><a href="04-Part_3_logistic.html#cb361-1" aria-hidden="true" tabindex="-1"></a><span class="co"># remove NAs</span></span>
+<span id="cb361-2"><a href="04-Part_3_logistic.html#cb361-2" aria-hidden="true" tabindex="-1"></a>d_ex1 <span class="ot">=</span> <span class="fu">na.omit</span>(d_ex1)</span>
+<span id="cb361-3"><a href="04-Part_3_logistic.html#cb361-3" aria-hidden="true" tabindex="-1"></a><span class="co"># convert to data frame</span></span>
+<span id="cb361-4"><a href="04-Part_3_logistic.html#cb361-4" aria-hidden="true" tabindex="-1"></a>d_ex1 <span class="ot">=</span> <span class="fu">as.data.frame</span>(d_ex1)</span>
+<span id="cb361-5"><a href="04-Part_3_logistic.html#cb361-5" aria-hidden="true" tabindex="-1"></a><span class="co"># convert direction to a factor for classification</span></span>
+<span id="cb361-6"><a href="04-Part_3_logistic.html#cb361-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb361-7"><a href="04-Part_3_logistic.html#cb361-7" aria-hidden="true" tabindex="-1"></a>d_ex1<span class="sc">$</span>Direction <span class="ot">=</span> <span class="fu">as.factor</span>(d_ex1<span class="sc">$</span>Direction)</span>
+<span id="cb361-8"><a href="04-Part_3_logistic.html#cb361-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb361-9"><a href="04-Part_3_logistic.html#cb361-9" aria-hidden="true" tabindex="-1"></a>idx1 <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">round</span>(<span class="fu">nrow</span>(d_ex1) <span class="sc">*</span> <span class="fl">0.7</span>))  <span class="co">#create index for first 70% values to be in the testing set</span></span>
+<span id="cb361-10"><a href="04-Part_3_logistic.html#cb361-10" aria-hidden="true" tabindex="-1"></a>d_train1 <span class="ot">=</span> d_ex1[idx1, ]  <span class="co">#training set</span></span>
+<span id="cb361-11"><a href="04-Part_3_logistic.html#cb361-11" aria-hidden="true" tabindex="-1"></a>d_test1 <span class="ot">=</span> d_ex1[<span class="sc">-</span>idx1, ]  <span class="co">#testing set</span></span></code></pre></div>
 <p><strong>Training Setup</strong></p>
 <ul>
 <li>Time series cross validate for resampling: 250 day window 30 days for prediction (this can be changed)</li>
 <li>Data preprocessing is conducted to normalise the scale of the values</li>
 <li><code>glm</code> method with binomial family for the binary classification</li>
 </ul>
-<div class="sourceCode" id="cb361"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb361-1"><a href="04-Part_3_logistic.html#cb361-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(caret)</span>
-<span id="cb361-2"><a href="04-Part_3_logistic.html#cb361-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">999</span>)</span>
-<span id="cb361-3"><a href="04-Part_3_logistic.html#cb361-3" aria-hidden="true" tabindex="-1"></a><span class="co"># control</span></span>
-<span id="cb361-4"><a href="04-Part_3_logistic.html#cb361-4" aria-hidden="true" tabindex="-1"></a>cntrl1 <span class="ot">=</span> <span class="fu">trainControl</span>(<span class="at">method =</span> <span class="st">&quot;timeslice&quot;</span>, <span class="at">initialWindow =</span> <span class="dv">250</span>, <span class="at">horizon =</span> <span class="dv">30</span>,</span>
-<span id="cb361-5"><a href="04-Part_3_logistic.html#cb361-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">fixedWindow =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb361-6"><a href="04-Part_3_logistic.html#cb361-6" aria-hidden="true" tabindex="-1"></a><span class="co"># preprocesing</span></span>
-<span id="cb361-7"><a href="04-Part_3_logistic.html#cb361-7" aria-hidden="true" tabindex="-1"></a>prep1 <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;center&quot;</span>, <span class="st">&quot;scale&quot;</span>)</span>
-<span id="cb361-8"><a href="04-Part_3_logistic.html#cb361-8" aria-hidden="true" tabindex="-1"></a><span class="co"># logistic regression</span></span>
-<span id="cb361-9"><a href="04-Part_3_logistic.html#cb361-9" aria-hidden="true" tabindex="-1"></a>logit_ex1 <span class="ot">=</span> <span class="fu">train</span>(Direction <span class="sc">~</span> ., <span class="at">data =</span> d_train1, <span class="at">method =</span> <span class="st">&quot;glm&quot;</span>, <span class="at">family =</span> <span class="st">&quot;binomial&quot;</span>,</span>
-<span id="cb361-10"><a href="04-Part_3_logistic.html#cb361-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">trControl =</span> cntrl1, <span class="at">preProcess =</span> prep1)</span>
-<span id="cb361-11"><a href="04-Part_3_logistic.html#cb361-11" aria-hidden="true" tabindex="-1"></a>logit_ex1  <span class="co">#final model accuracy</span></span></code></pre></div>
+<div class="sourceCode" id="cb362"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb362-1"><a href="04-Part_3_logistic.html#cb362-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(caret)</span>
+<span id="cb362-2"><a href="04-Part_3_logistic.html#cb362-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">999</span>)</span>
+<span id="cb362-3"><a href="04-Part_3_logistic.html#cb362-3" aria-hidden="true" tabindex="-1"></a><span class="co"># control</span></span>
+<span id="cb362-4"><a href="04-Part_3_logistic.html#cb362-4" aria-hidden="true" tabindex="-1"></a>cntrl1 <span class="ot">=</span> <span class="fu">trainControl</span>(<span class="at">method =</span> <span class="st">&quot;timeslice&quot;</span>, <span class="at">initialWindow =</span> <span class="dv">250</span>, <span class="at">horizon =</span> <span class="dv">30</span>,</span>
+<span id="cb362-5"><a href="04-Part_3_logistic.html#cb362-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">fixedWindow =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb362-6"><a href="04-Part_3_logistic.html#cb362-6" aria-hidden="true" tabindex="-1"></a><span class="co"># preprocesing</span></span>
+<span id="cb362-7"><a href="04-Part_3_logistic.html#cb362-7" aria-hidden="true" tabindex="-1"></a>prep1 <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;center&quot;</span>, <span class="st">&quot;scale&quot;</span>)</span>
+<span id="cb362-8"><a href="04-Part_3_logistic.html#cb362-8" aria-hidden="true" tabindex="-1"></a><span class="co"># logistic regression</span></span>
+<span id="cb362-9"><a href="04-Part_3_logistic.html#cb362-9" aria-hidden="true" tabindex="-1"></a>logit_ex1 <span class="ot">=</span> <span class="fu">train</span>(Direction <span class="sc">~</span> ., <span class="at">data =</span> d_train1, <span class="at">method =</span> <span class="st">&quot;glm&quot;</span>, <span class="at">family =</span> <span class="st">&quot;binomial&quot;</span>,</span>
+<span id="cb362-10"><a href="04-Part_3_logistic.html#cb362-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">trControl =</span> cntrl1, <span class="at">preProcess =</span> prep1)</span>
+<span id="cb362-11"><a href="04-Part_3_logistic.html#cb362-11" aria-hidden="true" tabindex="-1"></a>logit_ex1  <span class="co">#final model accuracy</span></span></code></pre></div>
 <pre><code>Generalized Linear Model 
 
 434 samples
@@ -705,7 +705,7 @@ Resampling results:
 
   Accuracy   Kappa    
   0.7324731  0.4658076</code></pre>
-<div class="sourceCode" id="cb363"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb363-1"><a href="04-Part_3_logistic.html#cb363-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(logit_ex1<span class="sc">$</span>finalModel)  <span class="co">#summary of the final model</span></span></code></pre></div>
+<div class="sourceCode" id="cb364"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb364-1"><a href="04-Part_3_logistic.html#cb364-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(logit_ex1<span class="sc">$</span>finalModel)  <span class="co">#summary of the final model</span></span></code></pre></div>
 <pre><code>
 Call:
 NULL
@@ -737,8 +737,8 @@ Number of Fisher Scoring iterations: 5</code></pre>
 <li>Variable importance</li>
 <li>In the case of multiple predictor variables, we want to understand which variable is the most influential in predicting the response variable.</li>
 </ul>
-<div class="sourceCode" id="cb365"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb365-1"><a href="04-Part_3_logistic.html#cb365-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(vip)</span>
-<span id="cb365-2"><a href="04-Part_3_logistic.html#cb365-2" aria-hidden="true" tabindex="-1"></a><span class="fu">vip</span>(logit_ex1, <span class="at">geom =</span> <span class="st">&quot;point&quot;</span>) <span class="sc">+</span> <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb366"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb366-1"><a href="04-Part_3_logistic.html#cb366-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(vip)</span>
+<span id="cb366-2"><a href="04-Part_3_logistic.html#cb366-2" aria-hidden="true" tabindex="-1"></a><span class="fu">vip</span>(logit_ex1, <span class="at">geom =</span> <span class="st">&quot;point&quot;</span>) <span class="sc">+</span> <span class="fu">theme_minimal</span>()</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:ex1f4"></span>
 <img src="04-Part_3_logistic_files/figure-html/ex1f4-1.png" alt="Variable Importance" width="672" />
 <p class="caption">
@@ -760,8 +760,8 @@ Figure 14.4: Variable Importance
 <li><p>Alternatively, when we do not predict a level or event and it does happen that this is called a false negative (i.e. a customer that we did not predict to redeem a coupon does).</p></li>
 <li><p>Let’s predict using the final model and assess using the confusion matrix.</p></li>
 </ul>
-<div class="sourceCode" id="cb366"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb366-1"><a href="04-Part_3_logistic.html#cb366-1" aria-hidden="true" tabindex="-1"></a>pred1 <span class="ot">=</span> <span class="fu">predict</span>(logit_ex1, <span class="at">newdata =</span> d_test1)  <span class="co">#prediction on the test data</span></span>
-<span id="cb366-2"><a href="04-Part_3_logistic.html#cb366-2" aria-hidden="true" tabindex="-1"></a><span class="fu">confusionMatrix</span>(<span class="at">data =</span> pred1, <span class="at">reference =</span> d_test1<span class="sc">$</span>Direction)</span></code></pre></div>
+<div class="sourceCode" id="cb367"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb367-1"><a href="04-Part_3_logistic.html#cb367-1" aria-hidden="true" tabindex="-1"></a>pred1 <span class="ot">=</span> <span class="fu">predict</span>(logit_ex1, <span class="at">newdata =</span> d_test1)  <span class="co">#prediction on the test data</span></span>
+<span id="cb367-2"><a href="04-Part_3_logistic.html#cb367-2" aria-hidden="true" tabindex="-1"></a><span class="fu">confusionMatrix</span>(<span class="at">data =</span> pred1, <span class="at">reference =</span> d_test1<span class="sc">$</span>Direction)</span></code></pre></div>
 <pre><code>Confusion Matrix and Statistics
 
           Reference
@@ -804,21 +804,21 @@ Prediction  0  1
 <li>Kappa (Cohen’s Kappa): Its like Accuracy but it is normalised at the baseline of random chance on the dataset. It compares observed accuracy to expected accuracy.</li>
 <li>A grid search is used to search for an optimal value for k</li>
 </ul>
-<div class="sourceCode" id="cb368"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb368-1"><a href="04-Part_3_logistic.html#cb368-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">999</span>)</span>
-<span id="cb368-2"><a href="04-Part_3_logistic.html#cb368-2" aria-hidden="true" tabindex="-1"></a>grid1 <span class="ot">=</span> <span class="fu">expand.grid</span>(<span class="at">k =</span> <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">10</span>, <span class="at">by =</span> <span class="dv">2</span>))  <span class="co">#to search from k=1 to k=10 </span></span>
-<span id="cb368-3"><a href="04-Part_3_logistic.html#cb368-3" aria-hidden="true" tabindex="-1"></a>knn_ex1 <span class="ot">=</span> <span class="fu">train</span>(Direction <span class="sc">~</span> ., <span class="at">data =</span> d_train1, <span class="at">method =</span> <span class="st">&quot;knn&quot;</span>, <span class="at">tuneGrid =</span> grid1,</span>
-<span id="cb368-4"><a href="04-Part_3_logistic.html#cb368-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">trControl =</span> cntrl1, <span class="at">preProcess =</span> prep1)</span></code></pre></div>
+<div class="sourceCode" id="cb369"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb369-1"><a href="04-Part_3_logistic.html#cb369-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">999</span>)</span>
+<span id="cb369-2"><a href="04-Part_3_logistic.html#cb369-2" aria-hidden="true" tabindex="-1"></a>grid1 <span class="ot">=</span> <span class="fu">expand.grid</span>(<span class="at">k =</span> <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">10</span>, <span class="at">by =</span> <span class="dv">2</span>))  <span class="co">#to search from k=1 to k=10 </span></span>
+<span id="cb369-3"><a href="04-Part_3_logistic.html#cb369-3" aria-hidden="true" tabindex="-1"></a>knn_ex1 <span class="ot">=</span> <span class="fu">train</span>(Direction <span class="sc">~</span> ., <span class="at">data =</span> d_train1, <span class="at">method =</span> <span class="st">&quot;knn&quot;</span>, <span class="at">tuneGrid =</span> grid1,</span>
+<span id="cb369-4"><a href="04-Part_3_logistic.html#cb369-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">trControl =</span> cntrl1, <span class="at">preProcess =</span> prep1)</span></code></pre></div>
 <ul>
 <li>View the fit</li>
 </ul>
-<div class="sourceCode" id="cb369"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb369-1"><a href="04-Part_3_logistic.html#cb369-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(knn_ex1)  <span class="co">#may suggest using a wider grid</span></span></code></pre></div>
+<div class="sourceCode" id="cb370"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb370-1"><a href="04-Part_3_logistic.html#cb370-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(knn_ex1)  <span class="co">#may suggest using a wider grid</span></span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:ex1f5"></span>
 <img src="04-Part_3_logistic_files/figure-html/ex1f5-1.png" alt="Grid plot" width="672" />
 <p class="caption">
 Figure 14.5: Grid plot
 </p>
 </div>
-<div class="sourceCode" id="cb370"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb370-1"><a href="04-Part_3_logistic.html#cb370-1" aria-hidden="true" tabindex="-1"></a>knn_ex1</span></code></pre></div>
+<div class="sourceCode" id="cb371"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb371-1"><a href="04-Part_3_logistic.html#cb371-1" aria-hidden="true" tabindex="-1"></a>knn_ex1</span></code></pre></div>
 <pre><code>k-Nearest Neighbors 
 
 434 samples
@@ -842,8 +842,8 @@ The final value used for the model was k = 7.</code></pre>
 <p><em>Variable importance can’t be obtained here as KNN does not produce a model</em></p>
 <p><strong>Predictive Accuracy</strong></p>
 <p>Let’s predict using the final model and assess using the confusion matrix.</p>
-<div class="sourceCode" id="cb372"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb372-1"><a href="04-Part_3_logistic.html#cb372-1" aria-hidden="true" tabindex="-1"></a>pred2 <span class="ot">=</span> <span class="fu">predict</span>(knn_ex1, <span class="at">newdata =</span> d_test1)  <span class="co">#prediction on the test data</span></span>
-<span id="cb372-2"><a href="04-Part_3_logistic.html#cb372-2" aria-hidden="true" tabindex="-1"></a><span class="fu">confusionMatrix</span>(<span class="at">data =</span> pred2, <span class="at">reference =</span> d_test1<span class="sc">$</span>Direction)</span></code></pre></div>
+<div class="sourceCode" id="cb373"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb373-1"><a href="04-Part_3_logistic.html#cb373-1" aria-hidden="true" tabindex="-1"></a>pred2 <span class="ot">=</span> <span class="fu">predict</span>(knn_ex1, <span class="at">newdata =</span> d_test1)  <span class="co">#prediction on the test data</span></span>
+<span id="cb373-2"><a href="04-Part_3_logistic.html#cb373-2" aria-hidden="true" tabindex="-1"></a><span class="fu">confusionMatrix</span>(<span class="at">data =</span> pred2, <span class="at">reference =</span> d_test1<span class="sc">$</span>Direction)</span></code></pre></div>
 <pre><code>Confusion Matrix and Statistics
 
           Reference
@@ -877,9 +877,9 @@ Prediction  0  1
 <li><p>The random number seeds should be initialised to the same value for resampling comparison.</p></li>
 <li><p>The following code compares the model fits.</p></li>
 </ul>
-<div class="sourceCode" id="cb374"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb374-1"><a href="04-Part_3_logistic.html#cb374-1" aria-hidden="true" tabindex="-1"></a>resamp1 <span class="ot">=</span> <span class="fu">resamples</span>(<span class="fu">list</span>(<span class="at">logit =</span> logit_ex1, <span class="at">knn =</span> knn_ex1))</span>
-<span id="cb374-2"><a href="04-Part_3_logistic.html#cb374-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb374-3"><a href="04-Part_3_logistic.html#cb374-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(resamp1)</span></code></pre></div>
+<div class="sourceCode" id="cb375"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb375-1"><a href="04-Part_3_logistic.html#cb375-1" aria-hidden="true" tabindex="-1"></a>resamp1 <span class="ot">=</span> <span class="fu">resamples</span>(<span class="fu">list</span>(<span class="at">logit =</span> logit_ex1, <span class="at">knn =</span> knn_ex1))</span>
+<span id="cb375-2"><a href="04-Part_3_logistic.html#cb375-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb375-3"><a href="04-Part_3_logistic.html#cb375-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(resamp1)</span></code></pre></div>
 <pre><code>
 Call:
 summary.resamples(object = resamp1)
@@ -896,7 +896,7 @@ Kappa
             Min.   1st Qu.    Median      Mean   3rd Qu.      Max. NA&#39;s
 logit  0.1208791 0.3333333 0.4666667 0.4658076 0.5838144 0.7887324    0
 knn   -0.1860465 0.1558442 0.3243243 0.3194890 0.4666667 0.7235023    0</code></pre>
-<div class="sourceCode" id="cb376"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb376-1"><a href="04-Part_3_logistic.html#cb376-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bwplot</span>(resamp1, <span class="at">metric =</span> <span class="st">&quot;Accuracy&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb377"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb377-1"><a href="04-Part_3_logistic.html#cb377-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bwplot</span>(resamp1, <span class="at">metric =</span> <span class="st">&quot;Accuracy&quot;</span>)</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:ex1f6"></span>
 <img src="04-Part_3_logistic_files/figure-html/ex1f6-1.png" alt="Resample Accuracy comparison" width="672" />
 <p class="caption">

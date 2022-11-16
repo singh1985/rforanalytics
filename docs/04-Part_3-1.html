@@ -23,7 +23,7 @@
 <meta name="author" content="Abhay Singh" />
 
 
-<meta name="date" content="2022-11-09" />
+<meta name="date" content="2022-11-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -517,12 +517,12 @@ div.csl-indent {
 <div id="base-r" class="section level3 hasAnchor" number="13.3.1">
 <h3><span class="header-section-number">13.3.1</span> Base R<a href="04-Part_3-1.html#base-r" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The following code uses the BHP close prices to perform a simple random sample using base R <code>sample</code> function.</p>
-<div class="sourceCode" id="cb337"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb337-1"><a href="04-Part_3-1.html#cb337-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import data and select the closing prices</span></span>
-<span id="cb337-2"><a href="04-Part_3-1.html#cb337-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(xts)  <span class="co">#required as the data was saved as an xts object</span></span>
-<span id="cb337-3"><a href="04-Part_3-1.html#cb337-3" aria-hidden="true" tabindex="-1"></a>d_bhp <span class="ot">=</span> <span class="fu">readRDS</span>(<span class="st">&quot;data/bhp_prices.rds&quot;</span>)</span>
-<span id="cb337-4"><a href="04-Part_3-1.html#cb337-4" aria-hidden="true" tabindex="-1"></a>d_bhp <span class="ot">=</span> d_bhp<span class="sc">$</span>BHP.AX.Close  <span class="co">#select close prices</span></span>
-<span id="cb337-5"><a href="04-Part_3-1.html#cb337-5" aria-hidden="true" tabindex="-1"></a>d_bhp <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">Date =</span> <span class="fu">as.Date</span>(<span class="fu">index</span>(d_bhp)), <span class="at">Price =</span> <span class="fu">coredata</span>(d_bhp))  <span class="co">#convert to data frame (for convenience not necessaily required)</span></span>
-<span id="cb337-6"><a href="04-Part_3-1.html#cb337-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(d_bhp)</span></code></pre></div>
+<div class="sourceCode" id="cb338"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb338-1"><a href="04-Part_3-1.html#cb338-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import data and select the closing prices</span></span>
+<span id="cb338-2"><a href="04-Part_3-1.html#cb338-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(xts)  <span class="co">#required as the data was saved as an xts object</span></span>
+<span id="cb338-3"><a href="04-Part_3-1.html#cb338-3" aria-hidden="true" tabindex="-1"></a>d_bhp <span class="ot">=</span> <span class="fu">readRDS</span>(<span class="st">&quot;data/bhp_prices.rds&quot;</span>)</span>
+<span id="cb338-4"><a href="04-Part_3-1.html#cb338-4" aria-hidden="true" tabindex="-1"></a>d_bhp <span class="ot">=</span> d_bhp<span class="sc">$</span>BHP.AX.Close  <span class="co">#select close prices</span></span>
+<span id="cb338-5"><a href="04-Part_3-1.html#cb338-5" aria-hidden="true" tabindex="-1"></a>d_bhp <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">Date =</span> <span class="fu">as.Date</span>(<span class="fu">index</span>(d_bhp)), <span class="at">Price =</span> <span class="fu">coredata</span>(d_bhp))  <span class="co">#convert to data frame (for convenience not necessaily required)</span></span>
+<span id="cb338-6"><a href="04-Part_3-1.html#cb338-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(d_bhp)</span></code></pre></div>
 <pre><code>        Date BHP.AX.Close
 1 2019-01-02        33.68
 2 2019-01-03        33.68
@@ -530,27 +530,27 @@ div.csl-indent {
 4 2019-01-07        34.39
 5 2019-01-08        34.43
 6 2019-01-09        34.30</code></pre>
-<div class="sourceCode" id="cb339"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb339-1"><a href="04-Part_3-1.html#cb339-1" aria-hidden="true" tabindex="-1"></a><span class="co"># use base R function</span></span>
-<span id="cb339-2"><a href="04-Part_3-1.html#cb339-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb339-3"><a href="04-Part_3-1.html#cb339-3" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">999</span>)  <span class="co">#seed is set for reproducibility as the random number generator picks a different seed each time unless specified</span></span>
-<span id="cb339-4"><a href="04-Part_3-1.html#cb339-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb339-5"><a href="04-Part_3-1.html#cb339-5" aria-hidden="true" tabindex="-1"></a>idx1 <span class="ot">=</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(d_bhp), <span class="fu">round</span>(<span class="fu">nrow</span>(d_bhp) <span class="sc">*</span> <span class="fl">0.7</span>))  <span class="co">#70%</span></span>
-<span id="cb339-6"><a href="04-Part_3-1.html#cb339-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb339-7"><a href="04-Part_3-1.html#cb339-7" aria-hidden="true" tabindex="-1"></a><span class="co"># training set</span></span>
-<span id="cb339-8"><a href="04-Part_3-1.html#cb339-8" aria-hidden="true" tabindex="-1"></a>train1 <span class="ot">=</span> d_bhp[idx1, ]</span>
-<span id="cb339-9"><a href="04-Part_3-1.html#cb339-9" aria-hidden="true" tabindex="-1"></a><span class="co"># testing set (remaining data)</span></span>
-<span id="cb339-10"><a href="04-Part_3-1.html#cb339-10" aria-hidden="true" tabindex="-1"></a>test1 <span class="ot">=</span> d_bhp[<span class="sc">-</span>idx1, ]</span></code></pre></div>
+<div class="sourceCode" id="cb340"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb340-1"><a href="04-Part_3-1.html#cb340-1" aria-hidden="true" tabindex="-1"></a><span class="co"># use base R function</span></span>
+<span id="cb340-2"><a href="04-Part_3-1.html#cb340-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb340-3"><a href="04-Part_3-1.html#cb340-3" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">999</span>)  <span class="co">#seed is set for reproducibility as the random number generator picks a different seed each time unless specified</span></span>
+<span id="cb340-4"><a href="04-Part_3-1.html#cb340-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb340-5"><a href="04-Part_3-1.html#cb340-5" aria-hidden="true" tabindex="-1"></a>idx1 <span class="ot">=</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(d_bhp), <span class="fu">round</span>(<span class="fu">nrow</span>(d_bhp) <span class="sc">*</span> <span class="fl">0.7</span>))  <span class="co">#70%</span></span>
+<span id="cb340-6"><a href="04-Part_3-1.html#cb340-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb340-7"><a href="04-Part_3-1.html#cb340-7" aria-hidden="true" tabindex="-1"></a><span class="co"># training set</span></span>
+<span id="cb340-8"><a href="04-Part_3-1.html#cb340-8" aria-hidden="true" tabindex="-1"></a>train1 <span class="ot">=</span> d_bhp[idx1, ]</span>
+<span id="cb340-9"><a href="04-Part_3-1.html#cb340-9" aria-hidden="true" tabindex="-1"></a><span class="co"># testing set (remaining data)</span></span>
+<span id="cb340-10"><a href="04-Part_3-1.html#cb340-10" aria-hidden="true" tabindex="-1"></a>test1 <span class="ot">=</span> d_bhp[<span class="sc">-</span>idx1, ]</span></code></pre></div>
 <p><em>Note: Sampling is a random process and random number generator produces different results on each execution. Setting a seed in the code keeps it consistent allows for reproducibility.</em></p>
 <ul>
 <li>Visualise the distribution of training and testing set</li>
 </ul>
-<div class="sourceCode" id="cb340"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb340-1"><a href="04-Part_3-1.html#cb340-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb340-2"><a href="04-Part_3-1.html#cb340-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb340-3"><a href="04-Part_3-1.html#cb340-3" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">=</span> <span class="fu">ggplot</span>(train1, <span class="fu">aes</span>(<span class="at">x =</span> BHP.AX.Close)) <span class="sc">+</span> <span class="fu">geom_density</span>(<span class="at">trim =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb340-4"><a href="04-Part_3-1.html#cb340-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">color =</span> <span class="st">&quot;Training&quot;</span>), <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span> <span class="fu">geom_density</span>(<span class="at">data =</span> test1, <span class="fu">aes</span>(<span class="at">x =</span> BHP.AX.Close,</span>
-<span id="cb340-5"><a href="04-Part_3-1.html#cb340-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">&quot;Testing&quot;</span>), <span class="at">trim =</span> <span class="cn">TRUE</span>, <span class="at">size =</span> <span class="dv">1</span>, <span class="at">linetype =</span> <span class="dv">2</span>)</span>
-<span id="cb340-6"><a href="04-Part_3-1.html#cb340-6" aria-hidden="true" tabindex="-1"></a>(<span class="at">p1 =</span> p1 <span class="sc">+</span> <span class="fu">theme_bw</span>() <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">color =</span> <span class="st">&quot;Density&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Random Sampling (Base R)&quot;</span>,</span>
-<span id="cb340-7"><a href="04-Part_3-1.html#cb340-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;BHP Prices&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Density&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb341"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb341-1"><a href="04-Part_3-1.html#cb341-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb341-2"><a href="04-Part_3-1.html#cb341-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb341-3"><a href="04-Part_3-1.html#cb341-3" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">=</span> <span class="fu">ggplot</span>(train1, <span class="fu">aes</span>(<span class="at">x =</span> BHP.AX.Close)) <span class="sc">+</span> <span class="fu">geom_density</span>(<span class="at">trim =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb341-4"><a href="04-Part_3-1.html#cb341-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">color =</span> <span class="st">&quot;Training&quot;</span>), <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span> <span class="fu">geom_density</span>(<span class="at">data =</span> test1, <span class="fu">aes</span>(<span class="at">x =</span> BHP.AX.Close,</span>
+<span id="cb341-5"><a href="04-Part_3-1.html#cb341-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">&quot;Testing&quot;</span>), <span class="at">trim =</span> <span class="cn">TRUE</span>, <span class="at">size =</span> <span class="dv">1</span>, <span class="at">linetype =</span> <span class="dv">2</span>)</span>
+<span id="cb341-6"><a href="04-Part_3-1.html#cb341-6" aria-hidden="true" tabindex="-1"></a>(<span class="at">p1 =</span> p1 <span class="sc">+</span> <span class="fu">theme_bw</span>() <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">color =</span> <span class="st">&quot;Density&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Random Sampling (Base R)&quot;</span>,</span>
+<span id="cb341-7"><a href="04-Part_3-1.html#cb341-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;BHP Prices&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Density&quot;</span>))</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:rs1"></span>
 <img src="04-Part_3-1_files/figure-html/rs1-1.png" alt="Training/Testing using Base R" width="672" />
 <p class="caption">
@@ -563,18 +563,18 @@ Figure 13.1: Training/Testing using Base R
 <ul>
 <li>We can use the <code>caret</code> package to create the training and testing samples</li>
 </ul>
-<div class="sourceCode" id="cb341"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb341-1"><a href="04-Part_3-1.html#cb341-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">999</span>)</span>
-<span id="cb341-2"><a href="04-Part_3-1.html#cb341-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(caret)</span>
-<span id="cb341-3"><a href="04-Part_3-1.html#cb341-3" aria-hidden="true" tabindex="-1"></a>idx2 <span class="ot">=</span> <span class="fu">createDataPartition</span>(d_bhp<span class="sc">$</span>BHP.AX.Close, <span class="at">p =</span> <span class="fl">0.7</span>, <span class="at">list =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb341-4"><a href="04-Part_3-1.html#cb341-4" aria-hidden="true" tabindex="-1"></a>train2 <span class="ot">=</span> d_bhp[idx2, ]</span>
-<span id="cb341-5"><a href="04-Part_3-1.html#cb341-5" aria-hidden="true" tabindex="-1"></a>test2 <span class="ot">=</span> d_bhp[<span class="sc">-</span>idx2, ]</span>
-<span id="cb341-6"><a href="04-Part_3-1.html#cb341-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb341-7"><a href="04-Part_3-1.html#cb341-7" aria-hidden="true" tabindex="-1"></a><span class="co"># plot</span></span>
-<span id="cb341-8"><a href="04-Part_3-1.html#cb341-8" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">=</span> <span class="fu">ggplot</span>(train2, <span class="fu">aes</span>(<span class="at">x =</span> BHP.AX.Close)) <span class="sc">+</span> <span class="fu">geom_density</span>(<span class="at">trim =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb341-9"><a href="04-Part_3-1.html#cb341-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">color =</span> <span class="st">&quot;Training&quot;</span>), <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span> <span class="fu">geom_density</span>(<span class="at">data =</span> test2, <span class="fu">aes</span>(<span class="at">x =</span> BHP.AX.Close,</span>
-<span id="cb341-10"><a href="04-Part_3-1.html#cb341-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">&quot;Testing&quot;</span>), <span class="at">trim =</span> <span class="cn">TRUE</span>, <span class="at">size =</span> <span class="dv">1</span>, <span class="at">linetype =</span> <span class="dv">2</span>)</span>
-<span id="cb341-11"><a href="04-Part_3-1.html#cb341-11" aria-hidden="true" tabindex="-1"></a>(<span class="at">p2 =</span> p2 <span class="sc">+</span> <span class="fu">theme_bw</span>() <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">color =</span> <span class="st">&quot;Density&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Random Sampling (Caret package)&quot;</span>,</span>
-<span id="cb341-12"><a href="04-Part_3-1.html#cb341-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;BHP Prices&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Density&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb342"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb342-1"><a href="04-Part_3-1.html#cb342-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">999</span>)</span>
+<span id="cb342-2"><a href="04-Part_3-1.html#cb342-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(caret)</span>
+<span id="cb342-3"><a href="04-Part_3-1.html#cb342-3" aria-hidden="true" tabindex="-1"></a>idx2 <span class="ot">=</span> <span class="fu">createDataPartition</span>(d_bhp<span class="sc">$</span>BHP.AX.Close, <span class="at">p =</span> <span class="fl">0.7</span>, <span class="at">list =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb342-4"><a href="04-Part_3-1.html#cb342-4" aria-hidden="true" tabindex="-1"></a>train2 <span class="ot">=</span> d_bhp[idx2, ]</span>
+<span id="cb342-5"><a href="04-Part_3-1.html#cb342-5" aria-hidden="true" tabindex="-1"></a>test2 <span class="ot">=</span> d_bhp[<span class="sc">-</span>idx2, ]</span>
+<span id="cb342-6"><a href="04-Part_3-1.html#cb342-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb342-7"><a href="04-Part_3-1.html#cb342-7" aria-hidden="true" tabindex="-1"></a><span class="co"># plot</span></span>
+<span id="cb342-8"><a href="04-Part_3-1.html#cb342-8" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">=</span> <span class="fu">ggplot</span>(train2, <span class="fu">aes</span>(<span class="at">x =</span> BHP.AX.Close)) <span class="sc">+</span> <span class="fu">geom_density</span>(<span class="at">trim =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb342-9"><a href="04-Part_3-1.html#cb342-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">color =</span> <span class="st">&quot;Training&quot;</span>), <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span> <span class="fu">geom_density</span>(<span class="at">data =</span> test2, <span class="fu">aes</span>(<span class="at">x =</span> BHP.AX.Close,</span>
+<span id="cb342-10"><a href="04-Part_3-1.html#cb342-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">&quot;Testing&quot;</span>), <span class="at">trim =</span> <span class="cn">TRUE</span>, <span class="at">size =</span> <span class="dv">1</span>, <span class="at">linetype =</span> <span class="dv">2</span>)</span>
+<span id="cb342-11"><a href="04-Part_3-1.html#cb342-11" aria-hidden="true" tabindex="-1"></a>(<span class="at">p2 =</span> p2 <span class="sc">+</span> <span class="fu">theme_bw</span>() <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">color =</span> <span class="st">&quot;Density&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Random Sampling (Caret package)&quot;</span>,</span>
+<span id="cb342-12"><a href="04-Part_3-1.html#cb342-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;BHP Prices&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Density&quot;</span>))</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:rs2"></span>
 <img src="04-Part_3-1_files/figure-html/rs2-1.png" alt="Training/Testing using caret" width="672" />
 <p class="caption">
@@ -587,21 +587,21 @@ Figure 13.2: Training/Testing using caret
 <ul>
 <li>Provides an easy to use method for sampling which is slightly different but can be more convenient due to the function names</li>
 </ul>
-<div class="sourceCode" id="cb342"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb342-1"><a href="04-Part_3-1.html#cb342-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">999</span>)</span>
-<span id="cb342-2"><a href="04-Part_3-1.html#cb342-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rsample)</span>
-<span id="cb342-3"><a href="04-Part_3-1.html#cb342-3" aria-hidden="true" tabindex="-1"></a>idx3 <span class="ot">=</span> <span class="fu">initial_split</span>(d_bhp, <span class="at">prop =</span> <span class="fl">0.7</span>)  <span class="co">#creates an object to further use for training and testing</span></span>
-<span id="cb342-4"><a href="04-Part_3-1.html#cb342-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb342-5"><a href="04-Part_3-1.html#cb342-5" aria-hidden="true" tabindex="-1"></a>train3 <span class="ot">=</span> <span class="fu">training</span>(idx3)</span>
-<span id="cb342-6"><a href="04-Part_3-1.html#cb342-6" aria-hidden="true" tabindex="-1"></a>test3 <span class="ot">=</span> <span class="fu">testing</span>(idx3)</span>
-<span id="cb342-7"><a href="04-Part_3-1.html#cb342-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb342-8"><a href="04-Part_3-1.html#cb342-8" aria-hidden="true" tabindex="-1"></a><span class="co"># plot</span></span>
-<span id="cb342-9"><a href="04-Part_3-1.html#cb342-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb342-10"><a href="04-Part_3-1.html#cb342-10" aria-hidden="true" tabindex="-1"></a>p3 <span class="ot">=</span> <span class="fu">ggplot</span>(train3, <span class="fu">aes</span>(<span class="at">x =</span> BHP.AX.Close)) <span class="sc">+</span> <span class="fu">geom_density</span>(<span class="at">trim =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb342-11"><a href="04-Part_3-1.html#cb342-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">color =</span> <span class="st">&quot;Training&quot;</span>), <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span> <span class="fu">geom_density</span>(<span class="at">data =</span> test3, <span class="fu">aes</span>(<span class="at">x =</span> BHP.AX.Close,</span>
-<span id="cb342-12"><a href="04-Part_3-1.html#cb342-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">&quot;Testing&quot;</span>), <span class="at">trim =</span> <span class="cn">TRUE</span>, <span class="at">size =</span> <span class="dv">1</span>, <span class="at">linetype =</span> <span class="dv">2</span>)</span>
-<span id="cb342-13"><a href="04-Part_3-1.html#cb342-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb342-14"><a href="04-Part_3-1.html#cb342-14" aria-hidden="true" tabindex="-1"></a>(<span class="at">p3 =</span> p3 <span class="sc">+</span> <span class="fu">theme_bw</span>() <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">color =</span> <span class="st">&quot;Density&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Random Sampling (rsample package)&quot;</span>,</span>
-<span id="cb342-15"><a href="04-Part_3-1.html#cb342-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;BHP Prices&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Density&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb343"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb343-1"><a href="04-Part_3-1.html#cb343-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">999</span>)</span>
+<span id="cb343-2"><a href="04-Part_3-1.html#cb343-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rsample)</span>
+<span id="cb343-3"><a href="04-Part_3-1.html#cb343-3" aria-hidden="true" tabindex="-1"></a>idx3 <span class="ot">=</span> <span class="fu">initial_split</span>(d_bhp, <span class="at">prop =</span> <span class="fl">0.7</span>)  <span class="co">#creates an object to further use for training and testing</span></span>
+<span id="cb343-4"><a href="04-Part_3-1.html#cb343-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb343-5"><a href="04-Part_3-1.html#cb343-5" aria-hidden="true" tabindex="-1"></a>train3 <span class="ot">=</span> <span class="fu">training</span>(idx3)</span>
+<span id="cb343-6"><a href="04-Part_3-1.html#cb343-6" aria-hidden="true" tabindex="-1"></a>test3 <span class="ot">=</span> <span class="fu">testing</span>(idx3)</span>
+<span id="cb343-7"><a href="04-Part_3-1.html#cb343-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb343-8"><a href="04-Part_3-1.html#cb343-8" aria-hidden="true" tabindex="-1"></a><span class="co"># plot</span></span>
+<span id="cb343-9"><a href="04-Part_3-1.html#cb343-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb343-10"><a href="04-Part_3-1.html#cb343-10" aria-hidden="true" tabindex="-1"></a>p3 <span class="ot">=</span> <span class="fu">ggplot</span>(train3, <span class="fu">aes</span>(<span class="at">x =</span> BHP.AX.Close)) <span class="sc">+</span> <span class="fu">geom_density</span>(<span class="at">trim =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb343-11"><a href="04-Part_3-1.html#cb343-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">color =</span> <span class="st">&quot;Training&quot;</span>), <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span> <span class="fu">geom_density</span>(<span class="at">data =</span> test3, <span class="fu">aes</span>(<span class="at">x =</span> BHP.AX.Close,</span>
+<span id="cb343-12"><a href="04-Part_3-1.html#cb343-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">&quot;Testing&quot;</span>), <span class="at">trim =</span> <span class="cn">TRUE</span>, <span class="at">size =</span> <span class="dv">1</span>, <span class="at">linetype =</span> <span class="dv">2</span>)</span>
+<span id="cb343-13"><a href="04-Part_3-1.html#cb343-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb343-14"><a href="04-Part_3-1.html#cb343-14" aria-hidden="true" tabindex="-1"></a>(<span class="at">p3 =</span> p3 <span class="sc">+</span> <span class="fu">theme_bw</span>() <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">color =</span> <span class="st">&quot;Density&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Random Sampling (rsample package)&quot;</span>,</span>
+<span id="cb343-15"><a href="04-Part_3-1.html#cb343-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;BHP Prices&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Density&quot;</span>))</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:rs3"></span>
 <img src="04-Part_3-1_files/figure-html/rs3-1.png" alt="Training/Testing using rsample" width="672" />
 <p class="caption">
@@ -612,8 +612,8 @@ Figure 13.3: Training/Testing using rsample
 <ul>
 <li>Notice some differences between the three due to the method used.</li>
 </ul>
-<div class="sourceCode" id="cb343"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb343-1"><a href="04-Part_3-1.html#cb343-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gridExtra)</span>
-<span id="cb343-2"><a href="04-Part_3-1.html#cb343-2" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.arrange</span>(p1, p2, p3, <span class="at">nrow =</span> <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb344"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb344-1"><a href="04-Part_3-1.html#cb344-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gridExtra)</span>
+<span id="cb344-2"><a href="04-Part_3-1.html#cb344-2" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.arrange</span>(p1, p2, p3, <span class="at">nrow =</span> <span class="dv">1</span>)</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:rs4"></span>
 <img src="04-Part_3-1_files/figure-html/rs4-1.png" alt="Splitting using three methods" width="1152" />
 <p class="caption">
@@ -633,18 +633,18 @@ Figure 13.4: Splitting using three methods
 <li><code>rsample</code> package can be used to create stratified samples.</li>
 <li>The following code demonstrates that on a dataset suitable for classification.</li>
 </ul>
-<div class="sourceCode" id="cb344"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb344-1"><a href="04-Part_3-1.html#cb344-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">999</span>)</span>
-<span id="cb344-2"><a href="04-Part_3-1.html#cb344-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;GermanCredit&quot;</span>)  <span class="co">#credit risk data from the caret package</span></span>
-<span id="cb344-3"><a href="04-Part_3-1.html#cb344-3" aria-hidden="true" tabindex="-1"></a>idx4 <span class="ot">=</span> <span class="fu">initial_split</span>(GermanCredit, <span class="at">prop =</span> <span class="fl">0.7</span>, <span class="at">strata =</span> <span class="st">&quot;Class&quot;</span>)  <span class="co">#Class is the binary response variable</span></span>
-<span id="cb344-4"><a href="04-Part_3-1.html#cb344-4" aria-hidden="true" tabindex="-1"></a>train4 <span class="ot">=</span> <span class="fu">training</span>(idx4)</span>
-<span id="cb344-5"><a href="04-Part_3-1.html#cb344-5" aria-hidden="true" tabindex="-1"></a>test4 <span class="ot">=</span> <span class="fu">testing</span>(idx4)</span>
-<span id="cb344-6"><a href="04-Part_3-1.html#cb344-6" aria-hidden="true" tabindex="-1"></a><span class="co"># check the proportion of outcomes</span></span>
-<span id="cb344-7"><a href="04-Part_3-1.html#cb344-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb344-8"><a href="04-Part_3-1.html#cb344-8" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.table</span>(<span class="fu">table</span>(train4<span class="sc">$</span>Class))  <span class="co">#training set</span></span></code></pre></div>
+<div class="sourceCode" id="cb345"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb345-1"><a href="04-Part_3-1.html#cb345-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">999</span>)</span>
+<span id="cb345-2"><a href="04-Part_3-1.html#cb345-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;GermanCredit&quot;</span>)  <span class="co">#credit risk data from the caret package</span></span>
+<span id="cb345-3"><a href="04-Part_3-1.html#cb345-3" aria-hidden="true" tabindex="-1"></a>idx4 <span class="ot">=</span> <span class="fu">initial_split</span>(GermanCredit, <span class="at">prop =</span> <span class="fl">0.7</span>, <span class="at">strata =</span> <span class="st">&quot;Class&quot;</span>)  <span class="co">#Class is the binary response variable</span></span>
+<span id="cb345-4"><a href="04-Part_3-1.html#cb345-4" aria-hidden="true" tabindex="-1"></a>train4 <span class="ot">=</span> <span class="fu">training</span>(idx4)</span>
+<span id="cb345-5"><a href="04-Part_3-1.html#cb345-5" aria-hidden="true" tabindex="-1"></a>test4 <span class="ot">=</span> <span class="fu">testing</span>(idx4)</span>
+<span id="cb345-6"><a href="04-Part_3-1.html#cb345-6" aria-hidden="true" tabindex="-1"></a><span class="co"># check the proportion of outcomes</span></span>
+<span id="cb345-7"><a href="04-Part_3-1.html#cb345-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb345-8"><a href="04-Part_3-1.html#cb345-8" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.table</span>(<span class="fu">table</span>(train4<span class="sc">$</span>Class))  <span class="co">#training set</span></span></code></pre></div>
 <pre><code>
       Bad      Good 
 0.3004292 0.6995708 </code></pre>
-<div class="sourceCode" id="cb346"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb346-1"><a href="04-Part_3-1.html#cb346-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.table</span>(<span class="fu">table</span>(test4<span class="sc">$</span>Class))  <span class="co">#testing set</span></span></code></pre></div>
+<div class="sourceCode" id="cb347"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb347-1"><a href="04-Part_3-1.html#cb347-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.table</span>(<span class="fu">table</span>(test4<span class="sc">$</span>Class))  <span class="co">#testing set</span></span></code></pre></div>
 <pre><code>
       Bad      Good 
 0.2990033 0.7009967 </code></pre>
@@ -687,10 +687,10 @@ Figure 13.4: Splitting using three methods
 <ul>
 <li><code>rsample</code> and <code>caret</code> package provide functionality to create k-fold CV</li>
 </ul>
-<div class="sourceCode" id="cb348"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb348-1"><a href="04-Part_3-1.html#cb348-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">999</span>)</span>
-<span id="cb348-2"><a href="04-Part_3-1.html#cb348-2" aria-hidden="true" tabindex="-1"></a><span class="co"># using rsample package</span></span>
-<span id="cb348-3"><a href="04-Part_3-1.html#cb348-3" aria-hidden="true" tabindex="-1"></a>cv1 <span class="ot">=</span> <span class="fu">vfold_cv</span>(d_bhp[<span class="dv">2</span>], <span class="at">v =</span> <span class="dv">10</span>)  <span class="co">#v is the number of folds</span></span>
-<span id="cb348-4"><a href="04-Part_3-1.html#cb348-4" aria-hidden="true" tabindex="-1"></a>cv1  <span class="co">#10 folds</span></span></code></pre></div>
+<div class="sourceCode" id="cb349"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb349-1"><a href="04-Part_3-1.html#cb349-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">999</span>)</span>
+<span id="cb349-2"><a href="04-Part_3-1.html#cb349-2" aria-hidden="true" tabindex="-1"></a><span class="co"># using rsample package</span></span>
+<span id="cb349-3"><a href="04-Part_3-1.html#cb349-3" aria-hidden="true" tabindex="-1"></a>cv1 <span class="ot">=</span> <span class="fu">vfold_cv</span>(d_bhp[<span class="dv">2</span>], <span class="at">v =</span> <span class="dv">10</span>)  <span class="co">#v is the number of folds</span></span>
+<span id="cb349-4"><a href="04-Part_3-1.html#cb349-4" aria-hidden="true" tabindex="-1"></a>cv1  <span class="co">#10 folds</span></span></code></pre></div>
 <pre><code>#  10-fold cross-validation 
 # A tibble: 10 × 2
    splits           id    
@@ -705,9 +705,9 @@ Figure 13.4: Splitting using three methods
  8 &lt;split [589/65]&gt; Fold08
  9 &lt;split [589/65]&gt; Fold09
 10 &lt;split [589/65]&gt; Fold10</code></pre>
-<div class="sourceCode" id="cb350"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb350-1"><a href="04-Part_3-1.html#cb350-1" aria-hidden="true" tabindex="-1"></a><span class="co"># using caret package</span></span>
-<span id="cb350-2"><a href="04-Part_3-1.html#cb350-2" aria-hidden="true" tabindex="-1"></a>cv2 <span class="ot">=</span> <span class="fu">createFolds</span>(d_bhp<span class="sc">$</span>BHP.AX.Close, <span class="at">k =</span> <span class="dv">10</span>)</span>
-<span id="cb350-3"><a href="04-Part_3-1.html#cb350-3" aria-hidden="true" tabindex="-1"></a>cv2<span class="sc">$</span>Fold01  <span class="co">#gives indices for 10 folds</span></span></code></pre></div>
+<div class="sourceCode" id="cb351"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb351-1"><a href="04-Part_3-1.html#cb351-1" aria-hidden="true" tabindex="-1"></a><span class="co"># using caret package</span></span>
+<span id="cb351-2"><a href="04-Part_3-1.html#cb351-2" aria-hidden="true" tabindex="-1"></a>cv2 <span class="ot">=</span> <span class="fu">createFolds</span>(d_bhp<span class="sc">$</span>BHP.AX.Close, <span class="at">k =</span> <span class="dv">10</span>)</span>
+<span id="cb351-3"><a href="04-Part_3-1.html#cb351-3" aria-hidden="true" tabindex="-1"></a>cv2<span class="sc">$</span>Fold01  <span class="co">#gives indices for 10 folds</span></span></code></pre></div>
 <pre><code> [1]  28  33  38  42  44  52  71  85  97 119 121 122 125 126 135 160 161 168 191
 [20] 194 197 201 222 227 231 239 241 246 265 284 292 298 302 310 319 331 336 344
 [39] 353 362 368 384 386 387 402 403 406 430 466 471 484 500 532 533 539 554 567
@@ -734,8 +734,8 @@ Figure 13.4: Splitting using three methods
 <li>The following creates time slices with a moving window of 500 days (initial window size) with a test period of 100 days (horizon)</li>
 <li>The function returns a list with two elements, train and test with training sample and testing sample</li>
 </ul>
-<div class="sourceCode" id="cb352"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb352-1"><a href="04-Part_3-1.html#cb352-1" aria-hidden="true" tabindex="-1"></a>d_bhp2 <span class="ot">=</span> <span class="fu">xts</span>(d_bhp<span class="sc">$</span>BHP.AX.Close, <span class="at">order.by =</span> d_bhp<span class="sc">$</span>Date)</span>
-<span id="cb352-2"><a href="04-Part_3-1.html#cb352-2" aria-hidden="true" tabindex="-1"></a>cv_ts <span class="ot">=</span> <span class="fu">createTimeSlices</span>(d_bhp2, <span class="at">initialWindow =</span> <span class="dv">500</span>, <span class="at">horizon =</span> <span class="dv">100</span>, <span class="at">fixedWindow =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb353"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb353-1"><a href="04-Part_3-1.html#cb353-1" aria-hidden="true" tabindex="-1"></a>d_bhp2 <span class="ot">=</span> <span class="fu">xts</span>(d_bhp<span class="sc">$</span>BHP.AX.Close, <span class="at">order.by =</span> d_bhp<span class="sc">$</span>Date)</span>
+<span id="cb353-2"><a href="04-Part_3-1.html#cb353-2" aria-hidden="true" tabindex="-1"></a>cv_ts <span class="ot">=</span> <span class="fu">createTimeSlices</span>(d_bhp2, <span class="at">initialWindow =</span> <span class="dv">500</span>, <span class="at">horizon =</span> <span class="dv">100</span>, <span class="at">fixedWindow =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 </div>
 </div>
 <div id="bootstrapping" class="section level2 hasAnchor" number="13.8">
@@ -751,8 +751,8 @@ Figure 13.4: Splitting using three methods
 <ul>
 <li>rsample package provides <code>bootstraps</code> function for bootstrapping a sample</li>
 </ul>
-<div class="sourceCode" id="cb353"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb353-1"><a href="04-Part_3-1.html#cb353-1" aria-hidden="true" tabindex="-1"></a>boot1 <span class="ot">=</span> <span class="fu">bootstraps</span>(d_bhp[<span class="dv">2</span>], <span class="at">times =</span> <span class="dv">10</span>)</span>
-<span id="cb353-2"><a href="04-Part_3-1.html#cb353-2" aria-hidden="true" tabindex="-1"></a>boot1</span></code></pre></div>
+<div class="sourceCode" id="cb354"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb354-1"><a href="04-Part_3-1.html#cb354-1" aria-hidden="true" tabindex="-1"></a>boot1 <span class="ot">=</span> <span class="fu">bootstraps</span>(d_bhp[<span class="dv">2</span>], <span class="at">times =</span> <span class="dv">10</span>)</span>
+<span id="cb354-2"><a href="04-Part_3-1.html#cb354-2" aria-hidden="true" tabindex="-1"></a>boot1</span></code></pre></div>
 <pre><code># Bootstrap sampling 
 # A tibble: 10 × 2
    splits            id         

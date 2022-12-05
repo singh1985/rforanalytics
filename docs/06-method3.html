@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Part IV | R for Data Analytics</title>
   <meta name="description" content="This is a collection of examples on using R for Data Analytics" />
-  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Part IV | R for Data Analytics" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Abhay Singh" />
 
 
-<meta name="date" content="2022-11-16" />
+<meta name="date" content="2022-12-05" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -31,7 +31,7 @@
   
   <link rel="shortcut icon" href="rforda.png" type="image/x-icon" />
 <link rel="prev" href="05-method2.html"/>
-<link rel="next" href="06-summary.html"/>
+<link rel="next" href="07-summary.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -402,53 +402,76 @@ div.csl-indent {
 <li class="chapter" data-level="15.6" data-path="04-Part_2.html"><a href="04-Part_2.html#feature-interpretation"><i class="fa fa-check"></i><b>15.6</b> Feature Interpretation</a></li>
 <li class="chapter" data-level="15.7" data-path="04-Part_2.html"><a href="04-Part_2.html#tree-visualisation"><i class="fa fa-check"></i><b>15.7</b> Tree visualisation</a></li>
 </ul></li>
-<li class="chapter" data-level="16" data-path="05-method2.html"><a href="05-method2.html"><i class="fa fa-check"></i><b>16</b> Text Mining using R</a>
+<li class="chapter" data-level="16" data-path="06-fraud_analytics.html"><a href="06-fraud_analytics.html"><i class="fa fa-check"></i><b>16</b> Financial Fraud Analytics</a>
 <ul>
-<li class="chapter" data-level="16.1" data-path="05-method2.html"><a href="05-method2.html#introduction-to-text-mining"><i class="fa fa-check"></i><b>16.1</b> Introduction to Text Mining</a>
+<li class="chapter" data-level="16.1" data-path="06-fraud_analytics.html"><a href="06-fraud_analytics.html#introduction-to-financial-fraud"><i class="fa fa-check"></i><b>16.1</b> Introduction to Financial Fraud</a>
 <ul>
-<li class="chapter" data-level="16.1.1" data-path="05-method2.html"><a href="05-method2.html#text-data"><i class="fa fa-check"></i><b>16.1.1</b> Text Data</a></li>
-<li class="chapter" data-level="16.1.2" data-path="05-method2.html"><a href="05-method2.html#generic-text-mining-system"><i class="fa fa-check"></i><b>16.1.2</b> Generic Text Mining System</a></li>
-<li class="chapter" data-level="16.1.3" data-path="05-method2.html"><a href="05-method2.html#data-pre-processing-in-text-mining"><i class="fa fa-check"></i><b>16.1.3</b> Data pre-processing in Text Mining</a></li>
+<li class="chapter" data-level="16.1.1" data-path="06-fraud_analytics.html"><a href="06-fraud_analytics.html#types-of-financial-fraud"><i class="fa fa-check"></i><b>16.1.1</b> Types of Financial Fraud</a></li>
+<li class="chapter" data-level="16.1.2" data-path="06-fraud_analytics.html"><a href="06-fraud_analytics.html#ml-and-ai-for-fraud-detection"><i class="fa fa-check"></i><b>16.1.2</b> ML and AI for Fraud Detection</a></li>
+<li class="chapter" data-level="16.1.3" data-path="06-fraud_analytics.html"><a href="06-fraud_analytics.html#ml-and-ai-based-fraud-detection-system-for-credit-card-fraud"><i class="fa fa-check"></i><b>16.1.3</b> ML and AI based Fraud Detection System for Credit Card Fraud</a></li>
 </ul></li>
-<li class="chapter" data-level="16.2" data-path="05-method2.html"><a href="05-method2.html#mining-twitter-text-data-using-r"><i class="fa fa-check"></i><b>16.2</b> Mining Twitter Text Data using R</a>
+<li class="chapter" data-level="16.2" data-path="06-fraud_analytics.html"><a href="06-fraud_analytics.html#detecting-fraud-in-transaction-data"><i class="fa fa-check"></i><b>16.2</b> Detecting Fraud in Transaction Data</a>
 <ul>
-<li class="chapter" data-level="16.2.1" data-path="05-method2.html"><a href="05-method2.html#obtaining-twitter-data"><i class="fa fa-check"></i><b>16.2.1</b> Obtaining Twitter Data</a></li>
+<li class="chapter" data-level="16.2.1" data-path="06-fraud_analytics.html"><a href="06-fraud_analytics.html#data-1"><i class="fa fa-check"></i><b>16.2.1</b> Data</a></li>
+<li class="chapter" data-level="16.2.2" data-path="06-fraud_analytics.html"><a href="06-fraud_analytics.html#summary-of-the-data"><i class="fa fa-check"></i><b>16.2.2</b> Summary of the data</a></li>
+<li class="chapter" data-level="16.2.3" data-path="06-fraud_analytics.html"><a href="06-fraud_analytics.html#visualisation-2"><i class="fa fa-check"></i><b>16.2.3</b> Visualisation</a></li>
 </ul></li>
-<li class="chapter" data-level="16.3" data-path="05-method2.html"><a href="05-method2.html#download-data"><i class="fa fa-check"></i><b>16.3</b> Download Data</a></li>
-<li class="chapter" data-level="16.4" data-path="05-method2.html"><a href="05-method2.html#data-pre-processing"><i class="fa fa-check"></i><b>16.4</b> Data Pre-processing</a></li>
-<li class="chapter" data-level="16.5" data-path="05-method2.html"><a href="05-method2.html#some-visualisation"><i class="fa fa-check"></i><b>16.5</b> Some Visualisation</a></li>
-<li class="chapter" data-level="16.6" data-path="05-method2.html"><a href="05-method2.html#sentiment-analysis"><i class="fa fa-check"></i><b>16.6</b> Sentiment Analysis</a>
+<li class="chapter" data-level="16.3" data-path="06-fraud_analytics.html"><a href="06-fraud_analytics.html#ml-model"><i class="fa fa-check"></i><b>16.3</b> ML Model</a>
 <ul>
-<li class="chapter" data-level="16.6.1" data-path="05-method2.html"><a href="05-method2.html#method"><i class="fa fa-check"></i><b>16.6.1</b> Method</a></li>
+<li class="chapter" data-level="16.3.1" data-path="06-fraud_analytics.html"><a href="06-fraud_analytics.html#setup"><i class="fa fa-check"></i><b>16.3.1</b> Setup</a></li>
+<li class="chapter" data-level="16.3.2" data-path="06-fraud_analytics.html"><a href="06-fraud_analytics.html#sampling-and-resampling"><i class="fa fa-check"></i><b>16.3.2</b> Sampling and Resampling</a></li>
+<li class="chapter" data-level="16.3.3" data-path="06-fraud_analytics.html"><a href="06-fraud_analytics.html#knn"><i class="fa fa-check"></i><b>16.3.3</b> KNN</a></li>
+<li class="chapter" data-level="16.3.4" data-path="06-fraud_analytics.html"><a href="06-fraud_analytics.html#random-forests"><i class="fa fa-check"></i><b>16.3.4</b> Random Forests</a></li>
+<li class="chapter" data-level="16.3.5" data-path="06-fraud_analytics.html"><a href="06-fraud_analytics.html#nnet"><i class="fa fa-check"></i><b>16.3.5</b> NNET</a></li>
 </ul></li>
-<li class="chapter" data-level="16.7" data-path="05-method2.html"><a href="05-method2.html#topic-modelling"><i class="fa fa-check"></i><b>16.7</b> Topic Modelling</a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="05-method2.html"><a href="05-method2.html"><i class="fa fa-check"></i><b>17</b> Text Mining using R</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="05-method2.html"><a href="05-method2.html#introduction-to-text-mining"><i class="fa fa-check"></i><b>17.1</b> Introduction to Text Mining</a>
+<ul>
+<li class="chapter" data-level="17.1.1" data-path="05-method2.html"><a href="05-method2.html#text-data"><i class="fa fa-check"></i><b>17.1.1</b> Text Data</a></li>
+<li class="chapter" data-level="17.1.2" data-path="05-method2.html"><a href="05-method2.html#generic-text-mining-system"><i class="fa fa-check"></i><b>17.1.2</b> Generic Text Mining System</a></li>
+<li class="chapter" data-level="17.1.3" data-path="05-method2.html"><a href="05-method2.html#data-pre-processing-in-text-mining"><i class="fa fa-check"></i><b>17.1.3</b> Data pre-processing in Text Mining</a></li>
+</ul></li>
+<li class="chapter" data-level="17.2" data-path="05-method2.html"><a href="05-method2.html#mining-twitter-text-data-using-r"><i class="fa fa-check"></i><b>17.2</b> Mining Twitter Text Data using R</a>
+<ul>
+<li class="chapter" data-level="17.2.1" data-path="05-method2.html"><a href="05-method2.html#obtaining-twitter-data"><i class="fa fa-check"></i><b>17.2.1</b> Obtaining Twitter Data</a></li>
+</ul></li>
+<li class="chapter" data-level="17.3" data-path="05-method2.html"><a href="05-method2.html#download-data"><i class="fa fa-check"></i><b>17.3</b> Download Data</a></li>
+<li class="chapter" data-level="17.4" data-path="05-method2.html"><a href="05-method2.html#data-pre-processing"><i class="fa fa-check"></i><b>17.4</b> Data Pre-processing</a></li>
+<li class="chapter" data-level="17.5" data-path="05-method2.html"><a href="05-method2.html#some-visualisation"><i class="fa fa-check"></i><b>17.5</b> Some Visualisation</a></li>
+<li class="chapter" data-level="17.6" data-path="05-method2.html"><a href="05-method2.html#sentiment-analysis"><i class="fa fa-check"></i><b>17.6</b> Sentiment Analysis</a>
+<ul>
+<li class="chapter" data-level="17.6.1" data-path="05-method2.html"><a href="05-method2.html#method"><i class="fa fa-check"></i><b>17.6.1</b> Method</a></li>
+</ul></li>
+<li class="chapter" data-level="17.7" data-path="05-method2.html"><a href="05-method2.html#topic-modelling"><i class="fa fa-check"></i><b>17.7</b> Topic Modelling</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="06-method3.html"><a href="06-method3.html"><i class="fa fa-check"></i>Part IV</a></li>
-<li class="chapter" data-level="17" data-path="06-method3.html"><a href="06-method3.html#bibliometrix-analysis-using-r"><i class="fa fa-check"></i><b>17</b> Bibliometrix Analysis using R</a>
+<li class="chapter" data-level="18" data-path="06-method3.html"><a href="06-method3.html#bibliometrix-analysis-using-r"><i class="fa fa-check"></i><b>18</b> Bibliometrix Analysis using R</a>
 <ul>
-<li class="chapter" data-level="17.1" data-path="06-method3.html"><a href="06-method3.html#introduction-to-bibliometric-analysis"><i class="fa fa-check"></i><b>17.1</b> Introduction to Bibliometric Analysis</a></li>
-<li class="chapter" data-level="17.2" data-path="06-method3.html"><a href="06-method3.html#r-and-bibliometric-analysis"><i class="fa fa-check"></i><b>17.2</b> R and Bibliometric analysis</a></li>
-<li class="chapter" data-level="17.3" data-path="06-method3.html"><a href="06-method3.html#bibliometrix-example"><i class="fa fa-check"></i><b>17.3</b> Bibliometrix Example</a></li>
-<li class="chapter" data-level="17.4" data-path="06-method3.html"><a href="06-method3.html#descriptive-analysis"><i class="fa fa-check"></i><b>17.4</b> Descriptive Analysis</a>
+<li class="chapter" data-level="18.1" data-path="06-method3.html"><a href="06-method3.html#introduction-to-bibliometric-analysis"><i class="fa fa-check"></i><b>18.1</b> Introduction to Bibliometric Analysis</a></li>
+<li class="chapter" data-level="18.2" data-path="06-method3.html"><a href="06-method3.html#r-and-bibliometric-analysis"><i class="fa fa-check"></i><b>18.2</b> R and Bibliometric analysis</a></li>
+<li class="chapter" data-level="18.3" data-path="06-method3.html"><a href="06-method3.html#bibliometrix-example"><i class="fa fa-check"></i><b>18.3</b> Bibliometrix Example</a></li>
+<li class="chapter" data-level="18.4" data-path="06-method3.html"><a href="06-method3.html#descriptive-analysis"><i class="fa fa-check"></i><b>18.4</b> Descriptive Analysis</a>
 <ul>
-<li class="chapter" data-level="17.4.1" data-path="06-method3.html"><a href="06-method3.html#productive-authors"><i class="fa fa-check"></i><b>17.4.1</b> Productive Authors</a></li>
-<li class="chapter" data-level="17.4.2" data-path="06-method3.html"><a href="06-method3.html#most-cited-papers"><i class="fa fa-check"></i><b>17.4.2</b> Most cited papers</a></li>
+<li class="chapter" data-level="18.4.1" data-path="06-method3.html"><a href="06-method3.html#productive-authors"><i class="fa fa-check"></i><b>18.4.1</b> Productive Authors</a></li>
+<li class="chapter" data-level="18.4.2" data-path="06-method3.html"><a href="06-method3.html#most-cited-papers"><i class="fa fa-check"></i><b>18.4.2</b> Most cited papers</a></li>
 </ul></li>
-<li class="chapter" data-level="17.5" data-path="06-method3.html"><a href="06-method3.html#information-plots"><i class="fa fa-check"></i><b>17.5</b> Information Plots</a>
+<li class="chapter" data-level="18.5" data-path="06-method3.html"><a href="06-method3.html#information-plots"><i class="fa fa-check"></i><b>18.5</b> Information Plots</a>
 <ul>
-<li class="chapter" data-level="17.5.1" data-path="06-method3.html"><a href="06-method3.html#summary-plot-1-most-porductive-authors"><i class="fa fa-check"></i><b>17.5.1</b> Summary Plot-1 (Most Porductive Authors)</a></li>
-<li class="chapter" data-level="17.5.2" data-path="06-method3.html"><a href="06-method3.html#summary-plot-2-most-productive-countries"><i class="fa fa-check"></i><b>17.5.2</b> Summary Plot-2 (Most Productive Countries)</a></li>
-<li class="chapter" data-level="17.5.3" data-path="06-method3.html"><a href="06-method3.html#summary-plot-3-annual-scientific-production"><i class="fa fa-check"></i><b>17.5.3</b> Summary Plot-3 (Annual Scientific Production)</a></li>
-<li class="chapter" data-level="17.5.4" data-path="06-method3.html"><a href="06-method3.html#summary-plot-4-average-article-citation"><i class="fa fa-check"></i><b>17.5.4</b> Summary Plot-4 (Average Article Citation)</a></li>
-<li class="chapter" data-level="17.5.5" data-path="06-method3.html"><a href="06-method3.html#summary-plot-5-author-production-over-time"><i class="fa fa-check"></i><b>17.5.5</b> Summary Plot-5 (Author Production Over Time)</a></li>
-<li class="chapter" data-level="17.5.6" data-path="06-method3.html"><a href="06-method3.html#sankey-plot"><i class="fa fa-check"></i><b>17.5.6</b> Sankey plot</a></li>
+<li class="chapter" data-level="18.5.1" data-path="06-method3.html"><a href="06-method3.html#summary-plot-1-most-porductive-authors"><i class="fa fa-check"></i><b>18.5.1</b> Summary Plot-1 (Most Porductive Authors)</a></li>
+<li class="chapter" data-level="18.5.2" data-path="06-method3.html"><a href="06-method3.html#summary-plot-2-most-productive-countries"><i class="fa fa-check"></i><b>18.5.2</b> Summary Plot-2 (Most Productive Countries)</a></li>
+<li class="chapter" data-level="18.5.3" data-path="06-method3.html"><a href="06-method3.html#summary-plot-3-annual-scientific-production"><i class="fa fa-check"></i><b>18.5.3</b> Summary Plot-3 (Annual Scientific Production)</a></li>
+<li class="chapter" data-level="18.5.4" data-path="06-method3.html"><a href="06-method3.html#summary-plot-4-average-article-citation"><i class="fa fa-check"></i><b>18.5.4</b> Summary Plot-4 (Average Article Citation)</a></li>
+<li class="chapter" data-level="18.5.5" data-path="06-method3.html"><a href="06-method3.html#summary-plot-5-author-production-over-time"><i class="fa fa-check"></i><b>18.5.5</b> Summary Plot-5 (Author Production Over Time)</a></li>
+<li class="chapter" data-level="18.5.6" data-path="06-method3.html"><a href="06-method3.html#sankey-plot"><i class="fa fa-check"></i><b>18.5.6</b> Sankey plot</a></li>
 </ul></li>
-<li class="chapter" data-level="17.6" data-path="06-method3.html"><a href="06-method3.html#co-word-analysis"><i class="fa fa-check"></i><b>17.6</b> Co-word Analysis</a></li>
-<li class="chapter" data-level="17.7" data-path="06-method3.html"><a href="06-method3.html#author-collaboration-network"><i class="fa fa-check"></i><b>17.7</b> Author collaboration network</a></li>
-<li class="chapter" data-level="17.8" data-path="06-method3.html"><a href="06-method3.html#keyword-co-occurance"><i class="fa fa-check"></i><b>17.8</b> Keyword co-occurance</a></li>
-<li class="chapter" data-level="17.9" data-path="06-method3.html"><a href="06-method3.html#thematic-map"><i class="fa fa-check"></i><b>17.9</b> Thematic Map</a></li>
+<li class="chapter" data-level="18.6" data-path="06-method3.html"><a href="06-method3.html#co-word-analysis"><i class="fa fa-check"></i><b>18.6</b> Co-word Analysis</a></li>
+<li class="chapter" data-level="18.7" data-path="06-method3.html"><a href="06-method3.html#author-collaboration-network"><i class="fa fa-check"></i><b>18.7</b> Author collaboration network</a></li>
+<li class="chapter" data-level="18.8" data-path="06-method3.html"><a href="06-method3.html#keyword-co-occurance"><i class="fa fa-check"></i><b>18.8</b> Keyword co-occurance</a></li>
+<li class="chapter" data-level="18.9" data-path="06-method3.html"><a href="06-method3.html#thematic-map"><i class="fa fa-check"></i><b>18.9</b> Thematic Map</a></li>
 </ul></li>
-<li class="chapter" data-level="18" data-path="06-summary.html"><a href="06-summary.html"><i class="fa fa-check"></i><b>18</b> Work in Progress</a></li>
+<li class="chapter" data-level="19" data-path="07-summary.html"><a href="07-summary.html"><i class="fa fa-check"></i><b>19</b> Work in Progress</a></li>
 <li class="chapter" data-level="" data-path="07-references.html"><a href="07-references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><img src="firebrick3RA_img.png" height="60" width="60" style="position:bottom:0px;right:0px;"/></li>
@@ -472,11 +495,11 @@ div.csl-indent {
 <div id="part-iv" class="section level1 unnumbered hasAnchor">
 <h1>Part IV<a href="06-method3.html#part-iv" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 </div>
-<div id="bibliometrix-analysis-using-r" class="section level1 hasAnchor" number="17">
-<h1><span class="header-section-number">Topic 17</span> Bibliometrix Analysis using R<a href="06-method3.html#bibliometrix-analysis-using-r" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="bibliometrix-analysis-using-r" class="section level1 hasAnchor" number="18">
+<h1><span class="header-section-number">Topic 18</span> Bibliometrix Analysis using R<a href="06-method3.html#bibliometrix-analysis-using-r" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p><img src="rforda.png" height="100" width="100" style="position:absolute;top:0px;right:0px;" /></p>
-<div id="introduction-to-bibliometric-analysis" class="section level2 hasAnchor" number="17.1">
-<h2><span class="header-section-number">17.1</span> Introduction to Bibliometric Analysis<a href="06-method3.html#introduction-to-bibliometric-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="introduction-to-bibliometric-analysis" class="section level2 hasAnchor" number="18.1">
+<h2><span class="header-section-number">18.1</span> Introduction to Bibliometric Analysis<a href="06-method3.html#introduction-to-bibliometric-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
 <li>Bibliometric analysis is a widely used method for explorative and analytical studies of large volumes of research data.</li>
 <li>The analysis is helpful in discovering various evolutionary variations in a specific field of study as well as highligting emerging topics in the field.</li>
@@ -484,8 +507,8 @@ div.csl-indent {
 <li>Various methods are used to analyse the publication data to evaluate growth, maturity, leading authors, conceptual stuctures, trends, topical evolution etc.</li>
 </ul>
 </div>
-<div id="r-and-bibliometric-analysis" class="section level2 hasAnchor" number="17.2">
-<h2><span class="header-section-number">17.2</span> R and Bibliometric analysis<a href="06-method3.html#r-and-bibliometric-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="r-and-bibliometric-analysis" class="section level2 hasAnchor" number="18.2">
+<h2><span class="header-section-number">18.2</span> R and Bibliometric analysis<a href="06-method3.html#r-and-bibliometric-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>R’s package ecosystem is one of its major advantages, there are packages available for most widely used statistical and data analysis &amp; visualisation techniques used several packages added almost daily on new and upcoming methods published by academic researchers or industry practitioners.</p>
 <ul>
 <li><p>R provide packages for various areas of interest (see <a href="https://cran.r-project.org/web/views/" class="uri">https://cran.r-project.org/web/views/</a> for a list of task views grouping packages according to their functionality ) including systematic literature review or the related field of meta analysis.</p></li>
@@ -495,36 +518,36 @@ div.csl-indent {
 <li><p><span class="citation">Linnenluecke, Marrone, &amp; Singh (<a href="#ref-Linnenluecke2020" role="doc-biblioref">2020</a>)</span>, <span class="citation">Ahadi, Singh, Bower, &amp; Garrett (<a href="#ref-Ahadi2022" role="doc-biblioref">2022</a>)</span> provide two examples of using Bibliometric analysis in a Systematic Literature Review</p></li>
 </ul>
 </div>
-<div id="bibliometrix-example" class="section level2 hasAnchor" number="17.3">
-<h2><span class="header-section-number">17.3</span> Bibliometrix Example<a href="06-method3.html#bibliometrix-example" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="bibliometrix-example" class="section level2 hasAnchor" number="18.3">
+<h2><span class="header-section-number">18.3</span> Bibliometrix Example<a href="06-method3.html#bibliometrix-example" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
 <li><p>Bibliometrix (<a href="https://www.bibliometrix.org/" class="uri">https://www.bibliometrix.org/</a>) allows R users to import a bibliography database generated using SCOPUS and Web of Science stored either as a Bibtex (.bib) or Plain Text (.txt) file.</p></li>
 <li><p>The package has simple functions which allows for descriptive analyses as shown in table-1 to table-3.</p></li>
 <li><p>The analysis can also be easily visualised as shown in figure-17.1 to 17.5.</p></li>
 </ul>
-<div class="sourceCode" id="cb419"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb419-1"><a href="06-method3.html#cb419-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(bibliometrix)  <span class="co">#load the package</span></span>
-<span id="cb419-2"><a href="06-method3.html#cb419-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pander)  <span class="co">#other required packages</span></span>
-<span id="cb419-3"><a href="06-method3.html#cb419-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
-<span id="cb419-4"><a href="06-method3.html#cb419-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span>
-<span id="cb419-5"><a href="06-method3.html#cb419-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb419-6"><a href="06-method3.html#cb419-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(bibliometrixData)</span>
-<span id="cb419-7"><a href="06-method3.html#cb419-7" aria-hidden="true" tabindex="-1"></a><span class="co"># use scopuscollection data from the package</span></span>
-<span id="cb419-8"><a href="06-method3.html#cb419-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb419-9"><a href="06-method3.html#cb419-9" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;scientometrics&quot;</span>)</span>
-<span id="cb419-10"><a href="06-method3.html#cb419-10" aria-hidden="true" tabindex="-1"></a><span class="co"># M=convert2df(file=&#39;scopus.bib&#39;,format=&#39;bibtex&#39;,dbsource = &#39;scopus&#39;)#convert</span></span>
-<span id="cb419-11"><a href="06-method3.html#cb419-11" aria-hidden="true" tabindex="-1"></a><span class="co"># external data to data frame</span></span></code></pre></div>
+<div class="sourceCode" id="cb449"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb449-1"><a href="06-method3.html#cb449-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(bibliometrix)  <span class="co">#load the package</span></span>
+<span id="cb449-2"><a href="06-method3.html#cb449-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pander)  <span class="co">#other required packages</span></span>
+<span id="cb449-3"><a href="06-method3.html#cb449-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb449-4"><a href="06-method3.html#cb449-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span>
+<span id="cb449-5"><a href="06-method3.html#cb449-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb449-6"><a href="06-method3.html#cb449-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(bibliometrixData)</span>
+<span id="cb449-7"><a href="06-method3.html#cb449-7" aria-hidden="true" tabindex="-1"></a><span class="co"># use scopuscollection data from the package</span></span>
+<span id="cb449-8"><a href="06-method3.html#cb449-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb449-9"><a href="06-method3.html#cb449-9" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;scientometrics&quot;</span>)</span>
+<span id="cb449-10"><a href="06-method3.html#cb449-10" aria-hidden="true" tabindex="-1"></a><span class="co"># M=convert2df(file=&#39;scopus.bib&#39;,format=&#39;bibtex&#39;,dbsource = &#39;scopus&#39;)#convert</span></span>
+<span id="cb449-11"><a href="06-method3.html#cb449-11" aria-hidden="true" tabindex="-1"></a><span class="co"># external data to data frame</span></span></code></pre></div>
 </div>
-<div id="descriptive-analysis" class="section level2 hasAnchor" number="17.4">
-<h2><span class="header-section-number">17.4</span> Descriptive Analysis<a href="06-method3.html#descriptive-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb420"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb420-1"><a href="06-method3.html#cb420-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Descriptive analysis</span></span>
-<span id="cb420-2"><a href="06-method3.html#cb420-2" aria-hidden="true" tabindex="-1"></a>M <span class="ot">=</span> scientometrics  <span class="co">#just to reuse the other code</span></span>
-<span id="cb420-3"><a href="06-method3.html#cb420-3" aria-hidden="true" tabindex="-1"></a>res1 <span class="ot">=</span> <span class="fu">biblioAnalysis</span>(M, <span class="at">sep =</span> <span class="st">&quot;;&quot;</span>)</span>
-<span id="cb420-4"><a href="06-method3.html#cb420-4" aria-hidden="true" tabindex="-1"></a>s1 <span class="ot">=</span> <span class="fu">summary</span>(res1, <span class="at">k =</span> <span class="dv">10</span>, <span class="at">pause =</span> <span class="cn">FALSE</span>, <span class="at">verbose =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb420-5"><a href="06-method3.html#cb420-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb420-6"><a href="06-method3.html#cb420-6" aria-hidden="true" tabindex="-1"></a>d1 <span class="ot">=</span> s1<span class="sc">$</span>MainInformationDF  <span class="co">#main information </span></span>
-<span id="cb420-7"><a href="06-method3.html#cb420-7" aria-hidden="true" tabindex="-1"></a>d2 <span class="ot">=</span> s1<span class="sc">$</span>MostProdAuthors  <span class="co">#Most productive Authors </span></span>
-<span id="cb420-8"><a href="06-method3.html#cb420-8" aria-hidden="true" tabindex="-1"></a>d3 <span class="ot">=</span> s1<span class="sc">$</span>MostCitedPapers  <span class="co">#most cited papers </span></span>
-<span id="cb420-9"><a href="06-method3.html#cb420-9" aria-hidden="true" tabindex="-1"></a><span class="fu">pander</span>(d1, <span class="at">caption =</span> <span class="st">&quot;Summary Information&quot;</span>)</span></code></pre></div>
+<div id="descriptive-analysis" class="section level2 hasAnchor" number="18.4">
+<h2><span class="header-section-number">18.4</span> Descriptive Analysis<a href="06-method3.html#descriptive-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb450"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb450-1"><a href="06-method3.html#cb450-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Descriptive analysis</span></span>
+<span id="cb450-2"><a href="06-method3.html#cb450-2" aria-hidden="true" tabindex="-1"></a>M <span class="ot">=</span> scientometrics  <span class="co">#just to reuse the other code</span></span>
+<span id="cb450-3"><a href="06-method3.html#cb450-3" aria-hidden="true" tabindex="-1"></a>res1 <span class="ot">=</span> <span class="fu">biblioAnalysis</span>(M, <span class="at">sep =</span> <span class="st">&quot;;&quot;</span>)</span>
+<span id="cb450-4"><a href="06-method3.html#cb450-4" aria-hidden="true" tabindex="-1"></a>s1 <span class="ot">=</span> <span class="fu">summary</span>(res1, <span class="at">k =</span> <span class="dv">10</span>, <span class="at">pause =</span> <span class="cn">FALSE</span>, <span class="at">verbose =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb450-5"><a href="06-method3.html#cb450-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb450-6"><a href="06-method3.html#cb450-6" aria-hidden="true" tabindex="-1"></a>d1 <span class="ot">=</span> s1<span class="sc">$</span>MainInformationDF  <span class="co">#main information </span></span>
+<span id="cb450-7"><a href="06-method3.html#cb450-7" aria-hidden="true" tabindex="-1"></a>d2 <span class="ot">=</span> s1<span class="sc">$</span>MostProdAuthors  <span class="co">#Most productive Authors </span></span>
+<span id="cb450-8"><a href="06-method3.html#cb450-8" aria-hidden="true" tabindex="-1"></a>d3 <span class="ot">=</span> s1<span class="sc">$</span>MostCitedPapers  <span class="co">#most cited papers </span></span>
+<span id="cb450-9"><a href="06-method3.html#cb450-9" aria-hidden="true" tabindex="-1"></a><span class="fu">pander</span>(d1, <span class="at">caption =</span> <span class="st">&quot;Summary Information&quot;</span>)</span></code></pre></div>
 <table style="width:62%;">
 <caption>Summary Information</caption>
 <colgroup>
@@ -648,9 +671,9 @@ documents</td>
 </tr>
 </tbody>
 </table>
-<div id="productive-authors" class="section level3 hasAnchor" number="17.4.1">
-<h3><span class="header-section-number">17.4.1</span> Productive Authors<a href="06-method3.html#productive-authors" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb421"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb421-1"><a href="06-method3.html#cb421-1" aria-hidden="true" tabindex="-1"></a>s1<span class="sc">$</span>MostProdAuthors</span></code></pre></div>
+<div id="productive-authors" class="section level3 hasAnchor" number="18.4.1">
+<h3><span class="header-section-number">18.4.1</span> Productive Authors<a href="06-method3.html#productive-authors" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb451"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb451-1"><a href="06-method3.html#cb451-1" aria-hidden="true" tabindex="-1"></a>s1<span class="sc">$</span>MostProdAuthors</span></code></pre></div>
 <pre><code>   Authors        Articles Authors        Articles Fractionalized
 1  SMALL H               8 SMALL H                           6.33
 2  ZITT M                6 ZITT M                            3.00
@@ -662,7 +685,7 @@ documents</td>
 8  CHEN DZ               3 THIJS B                           1.67
 9  JARNEVING B           3 LEYDESDORFF L                     1.50
 10 QIU JP                3 MILMAN BL                         1.50</code></pre>
-<div class="sourceCode" id="cb423"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb423-1"><a href="06-method3.html#cb423-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pander</span>(d2, <span class="at">caption =</span> <span class="st">&quot;Most Productive Authors&quot;</span>, <span class="at">table.split =</span> <span class="cn">Inf</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb453"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb453-1"><a href="06-method3.html#cb453-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pander</span>(d2, <span class="at">caption =</span> <span class="st">&quot;Most Productive Authors&quot;</span>, <span class="at">table.split =</span> <span class="cn">Inf</span>)</span></code></pre></div>
 <table style="width:99%;">
 <caption>Most Productive Authors</caption>
 <colgroup>
@@ -743,9 +766,9 @@ documents</td>
 </tbody>
 </table>
 </div>
-<div id="most-cited-papers" class="section level3 hasAnchor" number="17.4.2">
-<h3><span class="header-section-number">17.4.2</span> Most cited papers<a href="06-method3.html#most-cited-papers" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb424"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb424-1"><a href="06-method3.html#cb424-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pander</span>(d3, <span class="at">caption =</span> <span class="st">&quot;Most Cited Papers&quot;</span>)</span></code></pre></div>
+<div id="most-cited-papers" class="section level3 hasAnchor" number="18.4.2">
+<h3><span class="header-section-number">18.4.2</span> Most cited papers<a href="06-method3.html#most-cited-papers" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb454"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb454-1"><a href="06-method3.html#cb454-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pander</span>(d3, <span class="at">caption =</span> <span class="st">&quot;Most Cited Papers&quot;</span>)</span></code></pre></div>
 <table style="width:90%;">
 <caption>Most Cited Papers</caption>
 <colgroup>
@@ -843,139 +866,139 @@ SCIENTOMETRICS</td>
 </table>
 </div>
 </div>
-<div id="information-plots" class="section level2 hasAnchor" number="17.5">
-<h2><span class="header-section-number">17.5</span> Information Plots<a href="06-method3.html#information-plots" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb425"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb425-1"><a href="06-method3.html#cb425-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">=</span> <span class="fu">plot</span>(res1, <span class="at">pause =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
-<div id="summary-plot-1-most-porductive-authors" class="section level3 hasAnchor" number="17.5.1">
-<h3><span class="header-section-number">17.5.1</span> Summary Plot-1 (Most Porductive Authors)<a href="06-method3.html#summary-plot-1-most-porductive-authors" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb426"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb426-1"><a href="06-method3.html#cb426-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb426-2"><a href="06-method3.html#cb426-2" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_bw</span>())</span>
-<span id="cb426-3"><a href="06-method3.html#cb426-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb426-4"><a href="06-method3.html#cb426-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb426-5"><a href="06-method3.html#cb426-5" aria-hidden="true" tabindex="-1"></a>p1[[<span class="dv">1</span>]] <span class="sc">+</span> <span class="fu">theme_bw</span>() <span class="sc">+</span> <span class="fu">scale_x_discrete</span>(<span class="at">limits =</span> <span class="fu">rev</span>(<span class="fu">levels</span>(<span class="fu">as.factor</span>(p1[[<span class="dv">1</span>]]<span class="sc">$</span>data<span class="sc">$</span>AU))))</span></code></pre></div>
+<div id="information-plots" class="section level2 hasAnchor" number="18.5">
+<h2><span class="header-section-number">18.5</span> Information Plots<a href="06-method3.html#information-plots" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb455"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb455-1"><a href="06-method3.html#cb455-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">=</span> <span class="fu">plot</span>(res1, <span class="at">pause =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div id="summary-plot-1-most-porductive-authors" class="section level3 hasAnchor" number="18.5.1">
+<h3><span class="header-section-number">18.5.1</span> Summary Plot-1 (Most Porductive Authors)<a href="06-method3.html#summary-plot-1-most-porductive-authors" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb456"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb456-1"><a href="06-method3.html#cb456-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb456-2"><a href="06-method3.html#cb456-2" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_bw</span>())</span>
+<span id="cb456-3"><a href="06-method3.html#cb456-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb456-4"><a href="06-method3.html#cb456-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb456-5"><a href="06-method3.html#cb456-5" aria-hidden="true" tabindex="-1"></a>p1[[<span class="dv">1</span>]] <span class="sc">+</span> <span class="fu">theme_bw</span>() <span class="sc">+</span> <span class="fu">scale_x_discrete</span>(<span class="at">limits =</span> <span class="fu">rev</span>(<span class="fu">levels</span>(<span class="fu">as.factor</span>(p1[[<span class="dv">1</span>]]<span class="sc">$</span>data<span class="sc">$</span>AU))))</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:bib1"></span>
 <img src="06-method3_files/figure-html/bib1-1.png" alt="Most Productive Authors" width="672" />
 <p class="caption">
-Figure 17.1: Most Productive Authors
+Figure 18.1: Most Productive Authors
 </p>
 </div>
 </div>
-<div id="summary-plot-2-most-productive-countries" class="section level3 hasAnchor" number="17.5.2">
-<h3><span class="header-section-number">17.5.2</span> Summary Plot-2 (Most Productive Countries)<a href="06-method3.html#summary-plot-2-most-productive-countries" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb427"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb427-1"><a href="06-method3.html#cb427-1" aria-hidden="true" tabindex="-1"></a>p1[[<span class="dv">2</span>]]</span></code></pre></div>
+<div id="summary-plot-2-most-productive-countries" class="section level3 hasAnchor" number="18.5.2">
+<h3><span class="header-section-number">18.5.2</span> Summary Plot-2 (Most Productive Countries)<a href="06-method3.html#summary-plot-2-most-productive-countries" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb457"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb457-1"><a href="06-method3.html#cb457-1" aria-hidden="true" tabindex="-1"></a>p1[[<span class="dv">2</span>]]</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:bib2"></span>
 <img src="06-method3_files/figure-html/bib2-1.png" alt="Most Productive Countries" width="672" />
 <p class="caption">
-Figure 17.2: Most Productive Countries
+Figure 18.2: Most Productive Countries
 </p>
 </div>
 </div>
-<div id="summary-plot-3-annual-scientific-production" class="section level3 hasAnchor" number="17.5.3">
-<h3><span class="header-section-number">17.5.3</span> Summary Plot-3 (Annual Scientific Production)<a href="06-method3.html#summary-plot-3-annual-scientific-production" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb428"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb428-1"><a href="06-method3.html#cb428-1" aria-hidden="true" tabindex="-1"></a>p1[[<span class="dv">3</span>]]</span></code></pre></div>
+<div id="summary-plot-3-annual-scientific-production" class="section level3 hasAnchor" number="18.5.3">
+<h3><span class="header-section-number">18.5.3</span> Summary Plot-3 (Annual Scientific Production)<a href="06-method3.html#summary-plot-3-annual-scientific-production" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb458"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb458-1"><a href="06-method3.html#cb458-1" aria-hidden="true" tabindex="-1"></a>p1[[<span class="dv">3</span>]]</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:bib3"></span>
 <img src="06-method3_files/figure-html/bib3-1.png" alt="Annual Scientific Production" width="672" />
 <p class="caption">
-Figure 17.3: Annual Scientific Production
+Figure 18.3: Annual Scientific Production
 </p>
 </div>
 </div>
-<div id="summary-plot-4-average-article-citation" class="section level3 hasAnchor" number="17.5.4">
-<h3><span class="header-section-number">17.5.4</span> Summary Plot-4 (Average Article Citation)<a href="06-method3.html#summary-plot-4-average-article-citation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb429"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb429-1"><a href="06-method3.html#cb429-1" aria-hidden="true" tabindex="-1"></a>p1[[<span class="dv">4</span>]]</span></code></pre></div>
+<div id="summary-plot-4-average-article-citation" class="section level3 hasAnchor" number="18.5.4">
+<h3><span class="header-section-number">18.5.4</span> Summary Plot-4 (Average Article Citation)<a href="06-method3.html#summary-plot-4-average-article-citation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb459"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb459-1"><a href="06-method3.html#cb459-1" aria-hidden="true" tabindex="-1"></a>p1[[<span class="dv">4</span>]]</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:bib4"></span>
 <img src="06-method3_files/figure-html/bib4-1.png" alt="Average Article Citation" width="672" />
 <p class="caption">
-Figure 17.4: Average Article Citation
+Figure 18.4: Average Article Citation
 </p>
 </div>
 </div>
-<div id="summary-plot-5-author-production-over-time" class="section level3 hasAnchor" number="17.5.5">
-<h3><span class="header-section-number">17.5.5</span> Summary Plot-5 (Author Production Over Time)<a href="06-method3.html#summary-plot-5-author-production-over-time" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="summary-plot-5-author-production-over-time" class="section level3 hasAnchor" number="18.5.5">
+<h3><span class="header-section-number">18.5.5</span> Summary Plot-5 (Author Production Over Time)<a href="06-method3.html#summary-plot-5-author-production-over-time" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li><p>A graph for author statistics over time can also be produced.</p></li>
 <li><p>Figure-17.5 shows a graph of top 10 authors over time. The information from these plots can be easily extracted to summarise them in a table.</p></li>
 </ul>
-<div class="sourceCode" id="cb430"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb430-1"><a href="06-method3.html#cb430-1" aria-hidden="true" tabindex="-1"></a>topAU <span class="ot">=</span> <span class="fu">authorProdOverTime</span>(M, <span class="at">k =</span> <span class="dv">10</span>, <span class="at">graph =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb460"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb460-1"><a href="06-method3.html#cb460-1" aria-hidden="true" tabindex="-1"></a>topAU <span class="ot">=</span> <span class="fu">authorProdOverTime</span>(M, <span class="at">k =</span> <span class="dv">10</span>, <span class="at">graph =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:bib5"></span>
 <img src="06-method3_files/figure-html/bib5-1.png" alt="Author Production Over Time" width="960" />
 <p class="caption">
-Figure 17.5: Author Production Over Time
+Figure 18.5: Author Production Over Time
 </p>
 </div>
 </div>
-<div id="sankey-plot" class="section level3 hasAnchor" number="17.5.6">
-<h3><span class="header-section-number">17.5.6</span> Sankey plot<a href="06-method3.html#sankey-plot" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="sankey-plot" class="section level3 hasAnchor" number="18.5.6">
+<h3><span class="header-section-number">18.5.6</span> Sankey plot<a href="06-method3.html#sankey-plot" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li>Bibliometrix provides another useful function to plot a Sankey diagram to visualise multiple attributes at the same time. For example, figure-9 provides a three fields plot for Author, Author Keywords and Cited References.</li>
 </ul>
-<div class="sourceCode" id="cb431"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb431-1"><a href="06-method3.html#cb431-1" aria-hidden="true" tabindex="-1"></a><span class="fu">threeFieldsPlot</span>(M, <span class="at">fields =</span> <span class="fu">c</span>(<span class="st">&quot;DE&quot;</span>, <span class="st">&quot;AU&quot;</span>, <span class="st">&quot;AU_CO&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb461"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb461-1"><a href="06-method3.html#cb461-1" aria-hidden="true" tabindex="-1"></a><span class="fu">threeFieldsPlot</span>(M, <span class="at">fields =</span> <span class="fu">c</span>(<span class="st">&quot;DE&quot;</span>, <span class="st">&quot;AU&quot;</span>, <span class="st">&quot;AU_CO&quot;</span>))</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:bib6"></span>
-<div id="htmlwidget-e5e443f84f3c5eb137f8" style="width:20cm;height:15cm;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-e5e443f84f3c5eb137f8">{"x":{"visdat":{"1ba82dbb257f":["function () ","plotlyVisDat"]},"cur_data":"1ba82dbb257f","attrs":{"1ba82dbb257f":{"arrangement":"snap","node":{"label":["bibliographic coupling","bibliometrics","co-citation analysis","co-citation","citation analysis","cluster analysis","author co-citation analysis","research fronts","science mapping","text mining","intellectual structure","document co-citation analysis","hybrid clustering","small h","zitt m","bassecoulard e","glanzel w","huang mh","thijs b","ahlgren p","chen dz","jarneving b","qiu jp","tsay my","zhang j","zhao ry","boyack kw","chang cp","chen cm","dastidar pg","dwivedi yk","guan jc","ingwersen p","china","usa","france","belgium","netherlands","sweden","hungary","germany","united kingdom","india","denmark","austria"],"x":[0,0,0,0,0,0,0,0,0,0,0,0,0,0.454545454545455,0.454545454545455,0.454545454545455,0.454545454545455,0.454545454545455,0.454545454545455,0.454545454545455,0.454545454545455,0.454545454545455,0.454545454545455,0.454545454545455,0.454545454545455,0.454545454545455,0.454545454545455,0.454545454545455,0.454545454545455,0.454545454545455,0.454545454545455,0.454545454545455,0.454545454545455,0.909090909090909,0.909090909090909,0.909090909090909,0.909090909090909,0.909090909090909,0.909090909090909,0.909090909090909,0.909090909090909,0.909090909090909,0.909090909090909,0.909090909090909,0.909090909090909],"y":[0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1],"color":["#A60A43","#AE1345","#B71C47","#BF2649","#C72F4B","#D0384D","#D7414E","#DB484C","#E04F4A","#E55648","#EA5D46","#F99354","#FA9D59","#FDB063","#FDB869","#FDBF6F","#FDC776","#FDCF7C","#FDD683","#FDDE89","#FBE28C","#F7E58E","#F3E890","#F0EC92","#ECEF94","#E8F296","#E4F498","#DBF09A","#D2EC9C","#C8E99D","#C0E59F","#B7E1A1","#ADDEA3","#A3DAA4","#99D6A4","#8ED2A4","#84CDA4","#79C9A4","#6FC5A4","#65C1A5","#5DB8A9","#4DA6B0","#459DB4","#4371B2","#5060AA"],"pad":4},"link":{"source":[7,0,1,8,0,1,8,0,5,9,12,0,3,7,0,5,9,12,0,5,8,0,0,1,6,0,3,5,6,11,2,0,3,7,2,3,4,10,16,17,18,20,22,23,24,25,27,28,30,31,13,22,23,24,26,28,14,15,16,18,19,19,21,16,18,16,30,29,32,16,18],"target":[13,14,14,14,15,15,15,16,16,16,16,17,17,17,18,18,18,18,19,19,19,20,22,22,22,23,24,24,25,25,26,27,27,27,28,30,30,30,33,33,33,33,33,33,33,33,33,33,33,33,34,34,34,34,34,34,35,35,36,36,37,38,38,39,39,40,41,42,43,44,44],"value":[1,1,1,1,1,1,1,3,1,3,3,2,2,2,3,1,3,3,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,2,1,2,1,1,1,13,1,11,5,6,8,5,4,1,2,4,10,1,2,2,5,3,11,10,6,6,1,5,3,5,4,3,2,4,3,1,1]},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"sankey"}},"layout":{"margin":{"b":100,"l":50,"t":100,"r":50,"pad":2},"annotations":[{"text":"DE","x":0,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"DE","x":0,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"DE","x":0,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"DE","x":0,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"DE","x":0,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"DE","x":0,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"DE","x":0,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"DE","x":0,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"DE","x":0,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"DE","x":0,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"DE","x":0,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"DE","x":0,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"DE","x":0,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"AU","x":0.454545454545455,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"AU","x":0.454545454545455,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"AU","x":0.454545454545455,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"AU","x":0.454545454545455,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"AU","x":0.454545454545455,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"AU","x":0.454545454545455,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"AU","x":0.454545454545455,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"AU","x":0.454545454545455,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"AU","x":0.454545454545455,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"AU","x":0.454545454545455,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"AU","x":0.454545454545455,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"AU","x":0.454545454545455,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"AU","x":0.454545454545455,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"AU","x":0.454545454545455,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"AU","x":0.454545454545455,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"AU","x":0.454545454545455,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"AU","x":0.454545454545455,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"AU","x":0.454545454545455,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"AU","x":0.454545454545455,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"AU","x":0.454545454545455,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"AU_CO","x":0.909090909090909,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"AU_CO","x":0.909090909090909,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"AU_CO","x":0.909090909090909,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"AU_CO","x":0.909090909090909,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"AU_CO","x":0.909090909090909,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"AU_CO","x":0.909090909090909,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"AU_CO","x":0.909090909090909,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"AU_CO","x":0.909090909090909,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"AU_CO","x":0.909090909090909,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"AU_CO","x":0.909090909090909,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"AU_CO","x":0.909090909090909,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"AU_CO","x":0.909090909090909,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}}],"hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"arrangement":"snap","node":{"label":["bibliographic coupling","bibliometrics","co-citation analysis","co-citation","citation analysis","cluster analysis","author co-citation analysis","research fronts","science mapping","text mining","intellectual structure","document co-citation analysis","hybrid clustering","small h","zitt m","bassecoulard e","glanzel w","huang mh","thijs b","ahlgren p","chen dz","jarneving b","qiu jp","tsay my","zhang j","zhao ry","boyack kw","chang cp","chen cm","dastidar pg","dwivedi yk","guan jc","ingwersen p","china","usa","france","belgium","netherlands","sweden","hungary","germany","united kingdom","india","denmark","austria"],"x":[0,0,0,0,0,0,0,0,0,0,0,0,0,0.454545454545455,0.454545454545455,0.454545454545455,0.454545454545455,0.454545454545455,0.454545454545455,0.454545454545455,0.454545454545455,0.454545454545455,0.454545454545455,0.454545454545455,0.454545454545455,0.454545454545455,0.454545454545455,0.454545454545455,0.454545454545455,0.454545454545455,0.454545454545455,0.454545454545455,0.454545454545455,0.909090909090909,0.909090909090909,0.909090909090909,0.909090909090909,0.909090909090909,0.909090909090909,0.909090909090909,0.909090909090909,0.909090909090909,0.909090909090909,0.909090909090909,0.909090909090909],"y":[0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1],"color":["#A60A43","#AE1345","#B71C47","#BF2649","#C72F4B","#D0384D","#D7414E","#DB484C","#E04F4A","#E55648","#EA5D46","#F99354","#FA9D59","#FDB063","#FDB869","#FDBF6F","#FDC776","#FDCF7C","#FDD683","#FDDE89","#FBE28C","#F7E58E","#F3E890","#F0EC92","#ECEF94","#E8F296","#E4F498","#DBF09A","#D2EC9C","#C8E99D","#C0E59F","#B7E1A1","#ADDEA3","#A3DAA4","#99D6A4","#8ED2A4","#84CDA4","#79C9A4","#6FC5A4","#65C1A5","#5DB8A9","#4DA6B0","#459DB4","#4371B2","#5060AA"],"pad":4},"link":{"source":[7,0,1,8,0,1,8,0,5,9,12,0,3,7,0,5,9,12,0,5,8,0,0,1,6,0,3,5,6,11,2,0,3,7,2,3,4,10,16,17,18,20,22,23,24,25,27,28,30,31,13,22,23,24,26,28,14,15,16,18,19,19,21,16,18,16,30,29,32,16,18],"target":[13,14,14,14,15,15,15,16,16,16,16,17,17,17,18,18,18,18,19,19,19,20,22,22,22,23,24,24,25,25,26,27,27,27,28,30,30,30,33,33,33,33,33,33,33,33,33,33,33,33,34,34,34,34,34,34,35,35,36,36,37,38,38,39,39,40,41,42,43,44,44],"value":[1,1,1,1,1,1,1,3,1,3,3,2,2,2,3,1,3,3,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,2,1,2,1,1,1,13,1,11,5,6,8,5,4,1,2,4,10,1,2,2,5,3,11,10,6,6,1,5,3,5,4,3,2,4,3,1,1]},"type":"sankey","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-40afcf1cfe157a5f3686" style="width:20cm;height:15cm;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-40afcf1cfe157a5f3686">{"x":{"visdat":{"46a81ad144a5":["function () ","plotlyVisDat"]},"cur_data":"46a81ad144a5","attrs":{"46a81ad144a5":{"arrangement":"snap","node":{"label":["bibliographic coupling","bibliometrics","co-citation analysis","co-citation","citation analysis","cluster analysis","author co-citation analysis","research fronts","science mapping","text mining","intellectual structure","document co-citation analysis","hybrid clustering","small h","zitt m","bassecoulard e","glanzel w","huang mh","thijs b","ahlgren p","chen dz","jarneving b","qiu jp","tsay my","zhang j","zhao ry","boyack kw","chang cp","chen cm","dastidar pg","dwivedi yk","guan jc","ingwersen p","china","usa","france","belgium","netherlands","sweden","hungary","germany","united kingdom","india","denmark","austria"],"x":[0,0,0,0,0,0,0,0,0,0,0,0,0,0.454545454545455,0.454545454545455,0.454545454545455,0.454545454545455,0.454545454545455,0.454545454545455,0.454545454545455,0.454545454545455,0.454545454545455,0.454545454545455,0.454545454545455,0.454545454545455,0.454545454545455,0.454545454545455,0.454545454545455,0.454545454545455,0.454545454545455,0.454545454545455,0.454545454545455,0.454545454545455,0.909090909090909,0.909090909090909,0.909090909090909,0.909090909090909,0.909090909090909,0.909090909090909,0.909090909090909,0.909090909090909,0.909090909090909,0.909090909090909,0.909090909090909,0.909090909090909],"y":[0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1],"color":["#A60A43","#AE1345","#B71C47","#BF2649","#C72F4B","#D0384D","#D7414E","#DB484C","#E04F4A","#E55648","#EA5D46","#F99354","#FA9D59","#FDB063","#FDB869","#FDBF6F","#FDC776","#FDCF7C","#FDD683","#FDDE89","#FBE28C","#F7E58E","#F3E890","#F0EC92","#ECEF94","#E8F296","#E4F498","#DBF09A","#D2EC9C","#C8E99D","#C0E59F","#B7E1A1","#ADDEA3","#A3DAA4","#99D6A4","#8ED2A4","#84CDA4","#79C9A4","#6FC5A4","#65C1A5","#5DB8A9","#4DA6B0","#459DB4","#4371B2","#5060AA"],"pad":4},"link":{"source":[7,0,1,8,0,1,8,0,5,9,12,0,3,7,0,5,9,12,0,5,8,0,0,1,6,0,3,5,6,11,2,0,3,7,2,3,4,10,16,17,18,20,22,23,24,25,27,28,30,31,13,22,23,24,26,28,14,15,16,18,19,19,21,16,18,16,30,29,32,16,18],"target":[13,14,14,14,15,15,15,16,16,16,16,17,17,17,18,18,18,18,19,19,19,20,22,22,22,23,24,24,25,25,26,27,27,27,28,30,30,30,33,33,33,33,33,33,33,33,33,33,33,33,34,34,34,34,34,34,35,35,36,36,37,38,38,39,39,40,41,42,43,44,44],"value":[1,1,1,1,1,1,1,3,1,3,3,2,2,2,3,1,3,3,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,2,1,2,1,1,1,13,1,11,5,6,8,5,4,1,2,4,10,1,2,2,5,3,11,10,6,6,1,5,3,5,4,3,2,4,3,1,1]},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"sankey"}},"layout":{"margin":{"b":100,"l":50,"t":100,"r":50,"pad":2},"annotations":[{"text":"DE","x":0,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"DE","x":0,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"DE","x":0,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"DE","x":0,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"DE","x":0,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"DE","x":0,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"DE","x":0,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"DE","x":0,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"DE","x":0,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"DE","x":0,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"DE","x":0,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"DE","x":0,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"DE","x":0,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"AU","x":0.454545454545455,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"AU","x":0.454545454545455,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"AU","x":0.454545454545455,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"AU","x":0.454545454545455,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"AU","x":0.454545454545455,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"AU","x":0.454545454545455,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"AU","x":0.454545454545455,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"AU","x":0.454545454545455,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"AU","x":0.454545454545455,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"AU","x":0.454545454545455,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"AU","x":0.454545454545455,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"AU","x":0.454545454545455,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"AU","x":0.454545454545455,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"AU","x":0.454545454545455,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"AU","x":0.454545454545455,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"AU","x":0.454545454545455,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"AU","x":0.454545454545455,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"AU","x":0.454545454545455,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"AU","x":0.454545454545455,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"AU","x":0.454545454545455,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"AU_CO","x":0.909090909090909,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"AU_CO","x":0.909090909090909,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"AU_CO","x":0.909090909090909,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"AU_CO","x":0.909090909090909,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"AU_CO","x":0.909090909090909,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"AU_CO","x":0.909090909090909,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"AU_CO","x":0.909090909090909,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"AU_CO","x":0.909090909090909,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"AU_CO","x":0.909090909090909,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"AU_CO","x":0.909090909090909,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"AU_CO","x":0.909090909090909,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}},{"text":"AU_CO","x":0.909090909090909,"y":1.08,"showarrow":false,"xanchor":"center","font":{"color":"Dark","family":"TimesNewRoman","size":14}}],"hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"arrangement":"snap","node":{"label":["bibliographic coupling","bibliometrics","co-citation analysis","co-citation","citation analysis","cluster analysis","author co-citation analysis","research fronts","science mapping","text mining","intellectual structure","document co-citation analysis","hybrid clustering","small h","zitt m","bassecoulard e","glanzel w","huang mh","thijs b","ahlgren p","chen dz","jarneving b","qiu jp","tsay my","zhang j","zhao ry","boyack kw","chang cp","chen cm","dastidar pg","dwivedi yk","guan jc","ingwersen p","china","usa","france","belgium","netherlands","sweden","hungary","germany","united kingdom","india","denmark","austria"],"x":[0,0,0,0,0,0,0,0,0,0,0,0,0,0.454545454545455,0.454545454545455,0.454545454545455,0.454545454545455,0.454545454545455,0.454545454545455,0.454545454545455,0.454545454545455,0.454545454545455,0.454545454545455,0.454545454545455,0.454545454545455,0.454545454545455,0.454545454545455,0.454545454545455,0.454545454545455,0.454545454545455,0.454545454545455,0.454545454545455,0.454545454545455,0.909090909090909,0.909090909090909,0.909090909090909,0.909090909090909,0.909090909090909,0.909090909090909,0.909090909090909,0.909090909090909,0.909090909090909,0.909090909090909,0.909090909090909,0.909090909090909],"y":[0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1],"color":["#A60A43","#AE1345","#B71C47","#BF2649","#C72F4B","#D0384D","#D7414E","#DB484C","#E04F4A","#E55648","#EA5D46","#F99354","#FA9D59","#FDB063","#FDB869","#FDBF6F","#FDC776","#FDCF7C","#FDD683","#FDDE89","#FBE28C","#F7E58E","#F3E890","#F0EC92","#ECEF94","#E8F296","#E4F498","#DBF09A","#D2EC9C","#C8E99D","#C0E59F","#B7E1A1","#ADDEA3","#A3DAA4","#99D6A4","#8ED2A4","#84CDA4","#79C9A4","#6FC5A4","#65C1A5","#5DB8A9","#4DA6B0","#459DB4","#4371B2","#5060AA"],"pad":4},"link":{"source":[7,0,1,8,0,1,8,0,5,9,12,0,3,7,0,5,9,12,0,5,8,0,0,1,6,0,3,5,6,11,2,0,3,7,2,3,4,10,16,17,18,20,22,23,24,25,27,28,30,31,13,22,23,24,26,28,14,15,16,18,19,19,21,16,18,16,30,29,32,16,18],"target":[13,14,14,14,15,15,15,16,16,16,16,17,17,17,18,18,18,18,19,19,19,20,22,22,22,23,24,24,25,25,26,27,27,27,28,30,30,30,33,33,33,33,33,33,33,33,33,33,33,33,34,34,34,34,34,34,35,35,36,36,37,38,38,39,39,40,41,42,43,44,44],"value":[1,1,1,1,1,1,1,3,1,3,3,2,2,2,3,1,3,3,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,2,1,2,1,1,1,13,1,11,5,6,8,5,4,1,2,4,10,1,2,2,5,3,11,10,6,6,1,5,3,5,4,3,2,4,3,1,1]},"type":"sankey","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 <p class="caption">
-Figure 17.6: Sankey Diagram
+Figure 18.6: Sankey Diagram
 </p>
 </div>
 </div>
 </div>
-<div id="co-word-analysis" class="section level2 hasAnchor" number="17.6">
-<h2><span class="header-section-number">17.6</span> Co-word Analysis<a href="06-method3.html#co-word-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="co-word-analysis" class="section level2 hasAnchor" number="18.6">
+<h2><span class="header-section-number">18.6</span> Co-word Analysis<a href="06-method3.html#co-word-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
 <li>Analysis of the conceptual structure among the articles analysed.</li>
 <li>Bibliomentrix can conduct a co-word analysis to map the conceptual structure of a framework using the word co-occurrences in a bibliographic database.</li>
 <li>The analysis in Figure-2 is conducted using the Correspondence Analysis and K-Means clustering using Author’s keywords. This analysis includes Natural Language Processing and is conducted without stemming.</li>
 </ul>
-<div class="sourceCode" id="cb432"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb432-1"><a href="06-method3.html#cb432-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gridExtra)</span>
-<span id="cb432-2"><a href="06-method3.html#cb432-2" aria-hidden="true" tabindex="-1"></a>CS <span class="ot">=</span> <span class="fu">conceptualStructure</span>(M, <span class="at">field =</span> <span class="st">&quot;DE&quot;</span>, <span class="at">method =</span> <span class="st">&quot;CA&quot;</span>, <span class="at">minDegree =</span> <span class="dv">4</span>, <span class="at">clust =</span> <span class="st">&quot;auto&quot;</span>,</span>
-<span id="cb432-3"><a href="06-method3.html#cb432-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">stemming =</span> <span class="cn">FALSE</span>, <span class="at">labelsize =</span> <span class="dv">8</span>, <span class="at">documents =</span> <span class="dv">10</span>, <span class="at">graph =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb432-4"><a href="06-method3.html#cb432-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb432-5"><a href="06-method3.html#cb432-5" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.arrange</span>(CS[[<span class="dv">4</span>]], CS[[<span class="dv">5</span>]], <span class="at">ncol =</span> <span class="dv">2</span>, <span class="at">nrow =</span> <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb462"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb462-1"><a href="06-method3.html#cb462-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gridExtra)</span>
+<span id="cb462-2"><a href="06-method3.html#cb462-2" aria-hidden="true" tabindex="-1"></a>CS <span class="ot">=</span> <span class="fu">conceptualStructure</span>(M, <span class="at">field =</span> <span class="st">&quot;DE&quot;</span>, <span class="at">method =</span> <span class="st">&quot;CA&quot;</span>, <span class="at">minDegree =</span> <span class="dv">4</span>, <span class="at">clust =</span> <span class="st">&quot;auto&quot;</span>,</span>
+<span id="cb462-3"><a href="06-method3.html#cb462-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">stemming =</span> <span class="cn">FALSE</span>, <span class="at">labelsize =</span> <span class="dv">8</span>, <span class="at">documents =</span> <span class="dv">10</span>, <span class="at">graph =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb462-4"><a href="06-method3.html#cb462-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb462-5"><a href="06-method3.html#cb462-5" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.arrange</span>(CS[[<span class="dv">4</span>]], CS[[<span class="dv">5</span>]], <span class="at">ncol =</span> <span class="dv">2</span>, <span class="at">nrow =</span> <span class="dv">1</span>)</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:bib7"></span>
 <img src="06-method3_files/figure-html/bib7-1.png" alt="Conceptual Structures-1" width="960" />
 <p class="caption">
-Figure 17.7: Conceptual Structures-1
+Figure 18.7: Conceptual Structures-1
 </p>
 </div>
 </div>
-<div id="author-collaboration-network" class="section level2 hasAnchor" number="17.7">
-<h2><span class="header-section-number">17.7</span> Author collaboration network<a href="06-method3.html#author-collaboration-network" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb433"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb433-1"><a href="06-method3.html#cb433-1" aria-hidden="true" tabindex="-1"></a>NetMatrix <span class="ot">&lt;-</span> <span class="fu">biblioNetwork</span>(M, <span class="at">analysis =</span> <span class="st">&quot;collaboration&quot;</span>, <span class="at">network =</span> <span class="st">&quot;authors&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;;&quot;</span>)</span>
-<span id="cb433-2"><a href="06-method3.html#cb433-2" aria-hidden="true" tabindex="-1"></a>net <span class="ot">=</span> <span class="fu">networkPlot</span>(NetMatrix, <span class="at">n =</span> <span class="dv">50</span>, <span class="at">Title =</span> <span class="st">&quot;Author collaboration&quot;</span>, <span class="at">type =</span> <span class="st">&quot;auto&quot;</span>,</span>
-<span id="cb433-3"><a href="06-method3.html#cb433-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> <span class="dv">10</span>, <span class="at">size.cex =</span> T, <span class="at">edgesize =</span> <span class="dv">3</span>, <span class="at">labelsize =</span> <span class="fl">0.6</span>)</span></code></pre></div>
+<div id="author-collaboration-network" class="section level2 hasAnchor" number="18.7">
+<h2><span class="header-section-number">18.7</span> Author collaboration network<a href="06-method3.html#author-collaboration-network" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb463"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb463-1"><a href="06-method3.html#cb463-1" aria-hidden="true" tabindex="-1"></a>NetMatrix <span class="ot">&lt;-</span> <span class="fu">biblioNetwork</span>(M, <span class="at">analysis =</span> <span class="st">&quot;collaboration&quot;</span>, <span class="at">network =</span> <span class="st">&quot;authors&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;;&quot;</span>)</span>
+<span id="cb463-2"><a href="06-method3.html#cb463-2" aria-hidden="true" tabindex="-1"></a>net <span class="ot">=</span> <span class="fu">networkPlot</span>(NetMatrix, <span class="at">n =</span> <span class="dv">50</span>, <span class="at">Title =</span> <span class="st">&quot;Author collaboration&quot;</span>, <span class="at">type =</span> <span class="st">&quot;auto&quot;</span>,</span>
+<span id="cb463-3"><a href="06-method3.html#cb463-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> <span class="dv">10</span>, <span class="at">size.cex =</span> T, <span class="at">edgesize =</span> <span class="dv">3</span>, <span class="at">labelsize =</span> <span class="fl">0.6</span>)</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:bib8"></span>
 <img src="06-method3_files/figure-html/bib8-1.png" alt="Author Collaboration Network" width="1152" />
 <p class="caption">
-Figure 17.8: Author Collaboration Network
+Figure 18.8: Author Collaboration Network
 </p>
 </div>
 </div>
-<div id="keyword-co-occurance" class="section level2 hasAnchor" number="17.8">
-<h2><span class="header-section-number">17.8</span> Keyword co-occurance<a href="06-method3.html#keyword-co-occurance" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb434"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb434-1"><a href="06-method3.html#cb434-1" aria-hidden="true" tabindex="-1"></a>Netmatrix2 <span class="ot">=</span> <span class="fu">biblioNetwork</span>(M, <span class="at">analysis =</span> <span class="st">&quot;co-occurrences&quot;</span>, <span class="at">network =</span> <span class="st">&quot;keywords&quot;</span>,</span>
-<span id="cb434-2"><a href="06-method3.html#cb434-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">sep =</span> <span class="st">&quot;;&quot;</span>)</span>
-<span id="cb434-3"><a href="06-method3.html#cb434-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb434-4"><a href="06-method3.html#cb434-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the network</span></span>
-<span id="cb434-5"><a href="06-method3.html#cb434-5" aria-hidden="true" tabindex="-1"></a>net <span class="ot">=</span> <span class="fu">networkPlot</span>(Netmatrix2, <span class="at">normalize =</span> <span class="st">&quot;association&quot;</span>, <span class="at">weighted =</span> T, <span class="at">n =</span> <span class="dv">50</span>, <span class="at">Title =</span> <span class="st">&quot;Keyword Co-occurrences&quot;</span>,</span>
-<span id="cb434-6"><a href="06-method3.html#cb434-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">type =</span> <span class="st">&quot;fruchterman&quot;</span>, <span class="at">size =</span> T, <span class="at">edgesize =</span> <span class="dv">5</span>, <span class="at">labelsize =</span> <span class="fl">0.7</span>)</span></code></pre></div>
+<div id="keyword-co-occurance" class="section level2 hasAnchor" number="18.8">
+<h2><span class="header-section-number">18.8</span> Keyword co-occurance<a href="06-method3.html#keyword-co-occurance" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb464"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb464-1"><a href="06-method3.html#cb464-1" aria-hidden="true" tabindex="-1"></a>Netmatrix2 <span class="ot">=</span> <span class="fu">biblioNetwork</span>(M, <span class="at">analysis =</span> <span class="st">&quot;co-occurrences&quot;</span>, <span class="at">network =</span> <span class="st">&quot;keywords&quot;</span>,</span>
+<span id="cb464-2"><a href="06-method3.html#cb464-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">sep =</span> <span class="st">&quot;;&quot;</span>)</span>
+<span id="cb464-3"><a href="06-method3.html#cb464-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb464-4"><a href="06-method3.html#cb464-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the network</span></span>
+<span id="cb464-5"><a href="06-method3.html#cb464-5" aria-hidden="true" tabindex="-1"></a>net <span class="ot">=</span> <span class="fu">networkPlot</span>(Netmatrix2, <span class="at">normalize =</span> <span class="st">&quot;association&quot;</span>, <span class="at">weighted =</span> T, <span class="at">n =</span> <span class="dv">50</span>, <span class="at">Title =</span> <span class="st">&quot;Keyword Co-occurrences&quot;</span>,</span>
+<span id="cb464-6"><a href="06-method3.html#cb464-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">type =</span> <span class="st">&quot;fruchterman&quot;</span>, <span class="at">size =</span> T, <span class="at">edgesize =</span> <span class="dv">5</span>, <span class="at">labelsize =</span> <span class="fl">0.7</span>)</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:bib9"></span>
 <img src="06-method3_files/figure-html/bib9-1.png" alt="Keyword co-occurance" width="1152" />
 <p class="caption">
-Figure 17.9: Keyword co-occurance
+Figure 18.9: Keyword co-occurance
 </p>
 </div>
 </div>
-<div id="thematic-map" class="section level2 hasAnchor" number="17.9">
-<h2><span class="header-section-number">17.9</span> Thematic Map<a href="06-method3.html#thematic-map" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="thematic-map" class="section level2 hasAnchor" number="18.9">
+<h2><span class="header-section-number">18.9</span> Thematic Map<a href="06-method3.html#thematic-map" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Co-word analysis draws clusters of keywords. They are considered as themes, whose density and centrality can be used in classifying themes and mapping in a two-dimensional diagram.</p>
 <p>Thematic map is a very intuitive plot and we can analyze themes according to the quadrant in which they are placed: (1) upper-right quadrant: motor-themes; (2) lower-right quadrant: basic themes; (3) lower-left quadrant: emerging or disappearing themes; (4) upper-left quadrant: very specialized/niche themes.</p>
-<div class="sourceCode" id="cb435"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb435-1"><a href="06-method3.html#cb435-1" aria-hidden="true" tabindex="-1"></a>Map <span class="ot">=</span> <span class="fu">thematicMap</span>(M, <span class="at">field =</span> <span class="st">&quot;ID&quot;</span>, <span class="at">n =</span> <span class="dv">1000</span>, <span class="at">minfreq =</span> <span class="dv">5</span>, <span class="at">stemming =</span> <span class="cn">FALSE</span>, <span class="at">size =</span> <span class="fl">0.5</span>,</span>
-<span id="cb435-2"><a href="06-method3.html#cb435-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">n.labels =</span> <span class="dv">4</span>, <span class="at">repel =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb435-3"><a href="06-method3.html#cb435-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(Map<span class="sc">$</span>map)</span></code></pre></div>
+<div class="sourceCode" id="cb465"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb465-1"><a href="06-method3.html#cb465-1" aria-hidden="true" tabindex="-1"></a>Map <span class="ot">=</span> <span class="fu">thematicMap</span>(M, <span class="at">field =</span> <span class="st">&quot;ID&quot;</span>, <span class="at">n =</span> <span class="dv">1000</span>, <span class="at">minfreq =</span> <span class="dv">5</span>, <span class="at">stemming =</span> <span class="cn">FALSE</span>, <span class="at">size =</span> <span class="fl">0.5</span>,</span>
+<span id="cb465-2"><a href="06-method3.html#cb465-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">n.labels =</span> <span class="dv">4</span>, <span class="at">repel =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb465-3"><a href="06-method3.html#cb465-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(Map<span class="sc">$</span>map)</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:ThematicMap"></span>
 <img src="06-method3_files/figure-html/ThematicMap-1.png" alt="Thematic Map" width="1152" />
 <p class="caption">
-Figure 17.10: Thematic Map
+Figure 18.10: Thematic Map
 </p>
 </div>
 <blockquote>
@@ -1020,7 +1043,7 @@ Westgate, M. J. (2018). Revtools: Bibliographic data visualization for evidence 
         </div>
       </div>
 <a href="05-method2.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="06-summary.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="07-summary.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

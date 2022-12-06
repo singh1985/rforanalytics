@@ -1,0 +1,1665 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Part II | R for Data Analytics</title>
+  <meta name="description" content="This is a collection of examples on using R for Data Analytics" />
+  <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Part II | R for Data Analytics" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="This is a collection of examples on using R for Data Analytics" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Part II | R for Data Analytics" />
+  
+  <meta name="twitter:description" content="This is a collection of examples on using R for Data Analytics" />
+  
+
+<meta name="author" content="Abhay Singh" />
+
+
+<meta name="date" content="2022-12-07" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  <link rel="shortcut icon" href="rforda.png" type="image/x-icon" />
+<link rel="prev" href="06-plotsRmd.html"/>
+<link rel="next" href="01-Part_1.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<link href="libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.10.1/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
+<link href="libs/wordcloud2-0.0.1/wordcloud.css" rel="stylesheet" />
+<script src="libs/wordcloud2-0.0.1/wordcloud2-all.js"></script>
+<script src="libs/wordcloud2-0.0.1/hover.js"></script>
+<script src="libs/wordcloud2-binding-0.2.1/wordcloud2.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">R for Data Analytics</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#about-the-author"><i class="fa fa-check"></i>About the author</a></li>
+<li class="chapter" data-level="" data-path="01-intro.html"><a href="01-intro.html"><i class="fa fa-check"></i>Part I</a></li>
+<li class="chapter" data-level="1" data-path="01-intro.html"><a href="01-intro.html#what-is-r"><i class="fa fa-check"></i><b>1</b> What is R?</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="01-intro.html"><a href="01-intro.html#why-should-we-learn-r"><i class="fa fa-check"></i><b>1.1</b> Why should we learn R?</a></li>
+<li class="chapter" data-level="1.2" data-path="01-intro.html"><a href="01-intro.html#Rinstall"><i class="fa fa-check"></i><b>1.2</b> Installing R and RStudio on Windows</a></li>
+<li class="chapter" data-level="1.3" data-path="01-intro.html"><a href="01-intro.html#rstudio-guiide"><i class="fa fa-check"></i><b>1.3</b> RStudio GUI/IDE</a></li>
+<li class="chapter" data-level="1.4" data-path="01-intro.html"><a href="01-intro.html#installing-packages"><i class="fa fa-check"></i><b>1.4</b> Installing Packages</a></li>
+<li class="chapter" data-level="1.5" data-path="01-intro.html"><a href="01-intro.html#getting-help"><i class="fa fa-check"></i><b>1.5</b> Getting Help</a></li>
+<li class="chapter" data-level="1.6" data-path="01-intro.html"><a href="01-intro.html#task-views-in-r-introduction-installation"><i class="fa fa-check"></i><b>1.6</b> Task Views in R-Introduction &amp; Installation</a></li>
+<li class="chapter" data-level="1.7" data-path="01-intro.html"><a href="01-intro.html#r-core-packages"><i class="fa fa-check"></i><b>1.7</b> R core packages</a></li>
+<li class="chapter" data-level="1.8" data-path="01-intro.html"><a href="01-intro.html#example-1-hello-r"><i class="fa fa-check"></i><b>1.8</b> Example-1 Hello R!</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="02-data.html"><a href="02-data.html"><i class="fa fa-check"></i><b>2</b> R Data Types and Data Structures</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="02-data.html"><a href="02-data.html#data-types"><i class="fa fa-check"></i><b>2.1</b> Data Types</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="02-data.html"><a href="02-data.html#double"><i class="fa fa-check"></i><b>2.1.1</b> Double</a></li>
+<li class="chapter" data-level="2.1.2" data-path="02-data.html"><a href="02-data.html#integer"><i class="fa fa-check"></i><b>2.1.2</b> Integer</a></li>
+<li class="chapter" data-level="2.1.3" data-path="02-data.html"><a href="02-data.html#logical"><i class="fa fa-check"></i><b>2.1.3</b> Logical</a></li>
+<li class="chapter" data-level="2.1.4" data-path="02-data.html"><a href="02-data.html#character"><i class="fa fa-check"></i><b>2.1.4</b> Character</a></li>
+<li class="chapter" data-level="2.1.5" data-path="02-data.html"><a href="02-data.html#factor"><i class="fa fa-check"></i><b>2.1.5</b> Factor</a></li>
+<li class="chapter" data-level="2.1.6" data-path="02-data.html"><a href="02-data.html#date-time"><i class="fa fa-check"></i><b>2.1.6</b> Date &amp; Time</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="02-data.html"><a href="02-data.html#data-structures-in-r"><i class="fa fa-check"></i><b>2.2</b> Data Structures in R</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="02-data.html"><a href="02-data.html#vector"><i class="fa fa-check"></i><b>2.2.1</b> Vector</a></li>
+<li class="chapter" data-level="2.2.2" data-path="02-data.html"><a href="02-data.html#matrices"><i class="fa fa-check"></i><b>2.2.2</b> Matrices</a></li>
+<li class="chapter" data-level="2.2.3" data-path="02-data.html"><a href="02-data.html#arrays"><i class="fa fa-check"></i><b>2.2.3</b> Arrays</a></li>
+<li class="chapter" data-level="2.2.4" data-path="02-data.html"><a href="02-data.html#data-frames"><i class="fa fa-check"></i><b>2.2.4</b> Data Frames</a></li>
+<li class="chapter" data-level="2.2.5" data-path="02-data.html"><a href="02-data.html#lists"><i class="fa fa-check"></i><b>2.2.5</b> Lists</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="02-data.html"><a href="02-data.html#data-importexport-in-r"><i class="fa fa-check"></i><b>2.3</b> Data Import/Export in R</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="02-data.html"><a href="02-data.html#reading-data-from-a-text-file"><i class="fa fa-check"></i><b>2.3.1</b> Reading Data from a Text File</a></li>
+<li class="chapter" data-level="2.3.2" data-path="02-data.html"><a href="02-data.html#reading-data-from-csv-files"><i class="fa fa-check"></i><b>2.3.2</b> Reading Data from CSV files</a></li>
+<li class="chapter" data-level="2.3.3" data-path="02-data.html"><a href="02-data.html#reading-from-excel-files"><i class="fa fa-check"></i><b>2.3.3</b> Reading from Excel Files</a></li>
+<li class="chapter" data-level="2.3.4" data-path="02-data.html"><a href="02-data.html#reading-from-data-files-from-other-statistical-systems"><i class="fa fa-check"></i><b>2.3.4</b> Reading from Data Files from other Statistical Systems</a></li>
+<li class="chapter" data-level="2.3.5" data-path="02-data.html"><a href="02-data.html#importing-data-using-rstudio"><i class="fa fa-check"></i><b>2.3.5</b> Importing Data using RStudio</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="03-programming_data_preprocessing.html"><a href="03-programming_data_preprocessing.html"><i class="fa fa-check"></i><b>3</b> R Programming - Short Introduction</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="03-programming_data_preprocessing.html"><a href="03-programming_data_preprocessing.html#programming-control-flow"><i class="fa fa-check"></i><b>3.1</b> Programming Control Flow</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="03-programming_data_preprocessing.html"><a href="03-programming_data_preprocessing.html#if-else-conditional-statements"><i class="fa fa-check"></i><b>3.1.1</b> if-else Conditional Statements</a></li>
+<li class="chapter" data-level="3.1.2" data-path="03-programming_data_preprocessing.html"><a href="03-programming_data_preprocessing.html#loops"><i class="fa fa-check"></i><b>3.1.2</b> Loops</a></li>
+<li class="chapter" data-level="3.1.3" data-path="03-programming_data_preprocessing.html"><a href="03-programming_data_preprocessing.html#mathttwhile-loop"><i class="fa fa-check"></i><b>3.1.3</b> <span class="math inline">\(\mathtt{while}\)</span> loop</a></li>
+<li class="chapter" data-level="3.1.4" data-path="03-programming_data_preprocessing.html"><a href="03-programming_data_preprocessing.html#mathttrepeat-loop"><i class="fa fa-check"></i><b>3.1.4</b> <span class="math inline">\(\mathtt{repeat}\)</span> loop</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="03-programming_data_preprocessing.html"><a href="03-programming_data_preprocessing.html#functions-in-r"><i class="fa fa-check"></i><b>3.2</b> Functions in R</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="04-Data_Exploration.html"><a href="04-Data_Exploration.html"><i class="fa fa-check"></i><b>4</b> Data Exploration</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="04-Data_Exploration.html"><a href="04-Data_Exploration.html#data-preprocessing"><i class="fa fa-check"></i><b>4.1</b> Data Preprocessing</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="04-Data_Exploration.html"><a href="04-Data_Exploration.html#extracting-data"><i class="fa fa-check"></i><b>4.1.1</b> Extracting Data</a></li>
+<li class="chapter" data-level="4.1.2" data-path="04-Data_Exploration.html"><a href="04-Data_Exploration.html#combining-data-frames"><i class="fa fa-check"></i><b>4.1.2</b> Combining Data Frames</a></li>
+<li class="chapter" data-level="4.1.3" data-path="04-Data_Exploration.html"><a href="04-Data_Exploration.html#sub-setting-and-logical-data-selection"><i class="fa fa-check"></i><b>4.1.3</b> Sub setting and Logical Data Selection</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="04-Data_Exploration.html"><a href="04-Data_Exploration.html#data-transformation-from-wide-to-long-or-vice-versa"><i class="fa fa-check"></i><b>4.2</b> Data Transformation from Wide to Long (or vice versa)</a></li>
+<li class="chapter" data-level="4.3" data-path="04-Data_Exploration.html"><a href="04-Data_Exploration.html#summary-statistics"><i class="fa fa-check"></i><b>4.3</b> Summary Statistics</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="04-Data_Exploration.html"><a href="04-Data_Exploration.html#example-descriptive-statistics-of-stock-returns"><i class="fa fa-check"></i><b>4.3.1</b> Example-Descriptive Statistics of Stock Returns</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="05-plots.html"><a href="05-plots.html"><i class="fa fa-check"></i><b>5</b> Graphics in R (Part-I)</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="05-plots.html"><a href="05-plots.html#basic-plots-in-r"><i class="fa fa-check"></i><b>5.1</b> Basic Plots in R</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="05-plots.html"><a href="05-plots.html#scatter-plot"><i class="fa fa-check"></i><b>5.1.1</b> Scatter Plot</a></li>
+<li class="chapter" data-level="5.1.2" data-path="05-plots.html"><a href="05-plots.html#line-plot"><i class="fa fa-check"></i><b>5.1.2</b> Line Plot</a></li>
+<li class="chapter" data-level="5.1.3" data-path="05-plots.html"><a href="05-plots.html#bar-plot"><i class="fa fa-check"></i><b>5.1.3</b> Bar Plot</a></li>
+<li class="chapter" data-level="5.1.4" data-path="05-plots.html"><a href="05-plots.html#pie-chart"><i class="fa fa-check"></i><b>5.1.4</b> Pie Chart</a></li>
+<li class="chapter" data-level="5.1.5" data-path="05-plots.html"><a href="05-plots.html#scatter-plot-1"><i class="fa fa-check"></i><b>5.1.5</b> Scatter Plot</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="05-plots.html"><a href="05-plots.html#r-graphical-parameters"><i class="fa fa-check"></i><b>5.2</b> R Graphical Parameters</a></li>
+<li class="chapter" data-level="5.3" data-path="05-plots.html"><a href="05-plots.html#introduction-to-ggplot2"><i class="fa fa-check"></i><b>5.3</b> Introduction to ggplot2</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="05-plots.html"><a href="05-plots.html#mathttqplot"><i class="fa fa-check"></i><b>5.3.1</b> <span class="math inline">\(\mathtt{qplot}\)</span></a></li>
+<li class="chapter" data-level="5.3.2" data-path="05-plots.html"><a href="05-plots.html#layered-graphics-using-mathttggplot"><i class="fa fa-check"></i><b>5.3.2</b> Layered graphics using <span class="math inline">\(\mathtt{ggplot}\)</span></a></li>
+<li class="chapter" data-level="5.3.3" data-path="05-plots.html"><a href="05-plots.html#arranging-plots-using-gridextra"><i class="fa fa-check"></i><b>5.3.3</b> Arranging plots using gridExtra</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="06-plotsRmd.html"><a href="06-plotsRmd.html"><i class="fa fa-check"></i><b>6</b> Graphics in R (Part-II)</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="06-plotsRmd.html"><a href="06-plotsRmd.html#interactive-plots-using-plotly"><i class="fa fa-check"></i><b>6.1</b> Interactive Plots using Plotly</a></li>
+<li class="chapter" data-level="6.2" data-path="06-plotsRmd.html"><a href="06-plotsRmd.html#animation-using-gganimate"><i class="fa fa-check"></i><b>6.2</b> Animation using gganimate</a></li>
+<li class="chapter" data-level="6.3" data-path="06-plotsRmd.html"><a href="06-plotsRmd.html#plot-maps"><i class="fa fa-check"></i><b>6.3</b> Plot Maps</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="062-regression_1.html"><a href="062-regression_1.html"><i class="fa fa-check"></i>Part II</a></li>
+<li class="chapter" data-level="7" data-path="062-regression_1.html"><a href="062-regression_1.html#linear-regression"><i class="fa fa-check"></i><b>7</b> Linear Regression</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="062-regression_1.html"><a href="062-regression_1.html#investment-beta-using-r-single-index-model"><i class="fa fa-check"></i><b>7.1</b> Investment <span class="math inline">\(\beta\)</span> using R (Single Index Model)</a></li>
+<li class="chapter" data-level="7.2" data-path="062-regression_1.html"><a href="062-regression_1.html#data-preprocessing-1"><i class="fa fa-check"></i><b>7.2</b> Data preprocessing</a></li>
+<li class="chapter" data-level="7.3" data-path="062-regression_1.html"><a href="062-regression_1.html#visualisation"><i class="fa fa-check"></i><b>7.3</b> Visualisation</a></li>
+<li class="chapter" data-level="7.4" data-path="062-regression_1.html"><a href="062-regression_1.html#regression-analysis-using-lm"><i class="fa fa-check"></i><b>7.4</b> Regression analysis using lm</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="062-regression_1.html"><a href="062-regression_1.html#multiple-regression"><i class="fa fa-check"></i><b>8</b> Multiple Regression</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="062-regression_1.html"><a href="062-regression_1.html#fama-french-three-factor-model"><i class="fa fa-check"></i><b>8.1</b> Fama-French Three Factor Model</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="062-regression_1.html"><a href="062-regression_1.html#data-preprocessing-2"><i class="fa fa-check"></i><b>8.1.1</b> Data Preprocessing</a></li>
+<li class="chapter" data-level="8.1.2" data-path="062-regression_1.html"><a href="062-regression_1.html#regression-analysis"><i class="fa fa-check"></i><b>8.1.2</b> Regression Analysis</a></li>
+<li class="chapter" data-level="8.1.3" data-path="062-regression_1.html"><a href="062-regression_1.html#visualisation-1"><i class="fa fa-check"></i><b>8.1.3</b> Visualisation</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="062-regression_1.html"><a href="062-regression_1.html#panel-regression"><i class="fa fa-check"></i><b>9</b> Panel Regression</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="062-regression_1.html"><a href="062-regression_1.html#fixed-and-random-effects-using-the-plm-package"><i class="fa fa-check"></i><b>9.1</b> Fixed and Random effects using the <code>plm</code> package</a></li>
+<li class="chapter" data-level="9.2" data-path="062-regression_1.html"><a href="062-regression_1.html#fixed-effects-model"><i class="fa fa-check"></i><b>9.2</b> Fixed Effects Model</a></li>
+<li class="chapter" data-level="9.3" data-path="062-regression_1.html"><a href="062-regression_1.html#random-effects-model"><i class="fa fa-check"></i><b>9.3</b> Random Effects Model</a></li>
+<li class="chapter" data-level="9.4" data-path="062-regression_1.html"><a href="062-regression_1.html#testing"><i class="fa fa-check"></i><b>9.4</b> Testing</a>
+<ul>
+<li class="chapter" data-level="9.4.1" data-path="062-regression_1.html"><a href="062-regression_1.html#panel-or-ols"><i class="fa fa-check"></i><b>9.4.1</b> Panel or OLS</a></li>
+<li class="chapter" data-level="9.4.2" data-path="062-regression_1.html"><a href="062-regression_1.html#fixed-effect-or-random-effect"><i class="fa fa-check"></i><b>9.4.2</b> Fixed Effect or Random Effect</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="01-Part_1.html"><a href="01-Part_1.html"><i class="fa fa-check"></i><b>10</b> Technical Analysis using R</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="01-Part_1.html"><a href="01-Part_1.html#technical-analysis-ta-using-r"><i class="fa fa-check"></i><b>10.1</b> Technical Analysis (TA) using R</a></li>
+<li class="chapter" data-level="10.2" data-path="01-Part_1.html"><a href="01-Part_1.html#technical-charts"><i class="fa fa-check"></i><b>10.2</b> Technical Charts</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="01-Part_1.html"><a href="01-Part_1.html#candlesticks-and-ohlc-chart"><i class="fa fa-check"></i><b>10.2.1</b> Candlesticks and OHLC chart</a></li>
+<li class="chapter" data-level="10.2.2" data-path="01-Part_1.html"><a href="01-Part_1.html#line-chart"><i class="fa fa-check"></i><b>10.2.2</b> Line chart</a></li>
+<li class="chapter" data-level="10.2.3" data-path="01-Part_1.html"><a href="01-Part_1.html#candlestick-chart"><i class="fa fa-check"></i><b>10.2.3</b> Candlestick chart</a></li>
+<li class="chapter" data-level="10.2.4" data-path="01-Part_1.html"><a href="01-Part_1.html#add-technical-indicators"><i class="fa fa-check"></i><b>10.2.4</b> Add technical indicators</a></li>
+<li class="chapter" data-level="10.2.5" data-path="01-Part_1.html"><a href="01-Part_1.html#adding-indicators-sequentially"><i class="fa fa-check"></i><b>10.2.5</b> Adding indicators sequentially</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="01-Part_1.html"><a href="01-Part_1.html#forecasting-var-using-garch-models"><i class="fa fa-check"></i><b>11</b> Forecasting VaR using GARCH Models</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="01-Part_1.html"><a href="01-Part_1.html#value-at-risk"><i class="fa fa-check"></i><b>11.1</b> Value at Risk</a></li>
+<li class="chapter" data-level="11.2" data-path="01-Part_1.html"><a href="01-Part_1.html#volatility-modelling-forecasting-using-garch"><i class="fa fa-check"></i><b>11.2</b> Volatility Modelling &amp; Forecasting using GARCH</a></li>
+<li class="chapter" data-level="11.3" data-path="01-Part_1.html"><a href="01-Part_1.html#garch11-to-forecast-var"><i class="fa fa-check"></i><b>11.3</b> GARCH(1,1) to forecast VaR</a></li>
+<li class="chapter" data-level="11.4" data-path="01-Part_1.html"><a href="01-Part_1.html#var-forecasts-using-out-of-sample"><i class="fa fa-check"></i><b>11.4</b> VaR forecasts using out of sample</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="01-Part_2_portfolio.html"><a href="01-Part_2_portfolio.html"><i class="fa fa-check"></i><b>12</b> Portfolio Modelling using R</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="01-Part_2_portfolio.html"><a href="01-Part_2_portfolio.html#portfolio-analysis-quick-intro"><i class="fa fa-check"></i><b>12.1</b> Portfolio Analysis (Quick Intro)</a></li>
+<li class="chapter" data-level="12.2" data-path="01-Part_2_portfolio.html"><a href="01-Part_2_portfolio.html#mean-variance-portfolio-important-concepts"><i class="fa fa-check"></i><b>12.2</b> Mean Variance Portfolio: Important concepts</a>
+<ul>
+<li class="chapter" data-level="" data-path="01-Part_2_portfolio.html"><a href="01-Part_2_portfolio.html#expected-return"><i class="fa fa-check"></i>Expected Return</a></li>
+<li class="chapter" data-level="" data-path="01-Part_2_portfolio.html"><a href="01-Part_2_portfolio.html#risk"><i class="fa fa-check"></i>Risk</a></li>
+<li class="chapter" data-level="" data-path="01-Part_2_portfolio.html"><a href="01-Part_2_portfolio.html#covariance-of-returns"><i class="fa fa-check"></i>Covariance of Returns</a></li>
+<li class="chapter" data-level="" data-path="01-Part_2_portfolio.html"><a href="01-Part_2_portfolio.html#correlation"><i class="fa fa-check"></i>Correlation</a></li>
+<li class="chapter" data-level="" data-path="01-Part_2_portfolio.html"><a href="01-Part_2_portfolio.html#portfolio-return"><i class="fa fa-check"></i>Portfolio Return</a></li>
+<li class="chapter" data-level="" data-path="01-Part_2_portfolio.html"><a href="01-Part_2_portfolio.html#portfolio-risk"><i class="fa fa-check"></i>Portfolio Risk</a></li>
+<li class="chapter" data-level="" data-path="01-Part_2_portfolio.html"><a href="01-Part_2_portfolio.html#portfolio-risk-for-n-assets"><i class="fa fa-check"></i>Portfolio Risk for <em>N</em> Assets</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="01-Part_2_portfolio.html"><a href="01-Part_2_portfolio.html#diversification-markowitz-minimum-variance-portfolio"><i class="fa fa-check"></i><b>12.3</b> Diversification &amp; Markowitz Minimum Variance Portfolio</a></li>
+<li class="chapter" data-level="12.4" data-path="01-Part_2_portfolio.html"><a href="01-Part_2_portfolio.html#minimum-variance-portfolio"><i class="fa fa-check"></i><b>12.4</b> Minimum Variance Portfolio</a>
+<ul>
+<li class="chapter" data-level="12.4.1" data-path="01-Part_2_portfolio.html"><a href="01-Part_2_portfolio.html#efficient-weights-for-two-assets"><i class="fa fa-check"></i><b>12.4.1</b> Efficient Weights for Two Assets</a></li>
+<li class="chapter" data-level="12.4.2" data-path="01-Part_2_portfolio.html"><a href="01-Part_2_portfolio.html#portfolio-with-n-risky-assets"><i class="fa fa-check"></i><b>12.4.2</b> Portfolio with N Risky Assets</a></li>
+</ul></li>
+<li class="chapter" data-level="12.5" data-path="01-Part_2_portfolio.html"><a href="01-Part_2_portfolio.html#using-r-to-construct-multi-asset-portfolio"><i class="fa fa-check"></i><b>12.5</b> Using R to Construct Multi-Asset Portfolio</a>
+<ul>
+<li class="chapter" data-level="12.5.1" data-path="01-Part_2_portfolio.html"><a href="01-Part_2_portfolio.html#data"><i class="fa fa-check"></i><b>12.5.1</b> Data</a></li>
+<li class="chapter" data-level="12.5.2" data-path="01-Part_2_portfolio.html"><a href="01-Part_2_portfolio.html#portfolios-with-random-weights"><i class="fa fa-check"></i><b>12.5.2</b> Portfolios with random weights</a></li>
+</ul></li>
+<li class="chapter" data-level="12.6" data-path="01-Part_2_portfolio.html"><a href="01-Part_2_portfolio.html#efficient-minimum-variance-portfolio-using-r-packages"><i class="fa fa-check"></i><b>12.6</b> Efficient (Minimum Variance) Portfolio using R packages</a>
+<ul>
+<li class="chapter" data-level="12.6.1" data-path="01-Part_2_portfolio.html"><a href="01-Part_2_portfolio.html#minimum-variance-and-portfolio-for-a-given-level-of-return"><i class="fa fa-check"></i><b>12.6.1</b> Minimum Variance and portfolio for a given level of return</a></li>
+<li class="chapter" data-level="12.6.2" data-path="01-Part_2_portfolio.html"><a href="01-Part_2_portfolio.html#portfolio-with-box-constraints"><i class="fa fa-check"></i><b>12.6.2</b> Portfolio with Box Constraints</a></li>
+</ul></li>
+<li class="chapter" data-level="12.7" data-path="01-Part_2_portfolio.html"><a href="01-Part_2_portfolio.html#evaluating-portfoios-risk-adjusted-performance"><i class="fa fa-check"></i><b>12.7</b> Evaluating Portfoios: Risk Adjusted Performance</a>
+<ul>
+<li class="chapter" data-level="12.7.1" data-path="01-Part_2_portfolio.html"><a href="01-Part_2_portfolio.html#sharpe-ratio"><i class="fa fa-check"></i><b>12.7.1</b> Sharpe Ratio</a></li>
+<li class="chapter" data-level="12.7.2" data-path="01-Part_2_portfolio.html"><a href="01-Part_2_portfolio.html#roys-safety-ratio"><i class="fa fa-check"></i><b>12.7.2</b> Roy’s Safety Ratio</a></li>
+<li class="chapter" data-level="12.7.3" data-path="01-Part_2_portfolio.html"><a href="01-Part_2_portfolio.html#treynors-ratio"><i class="fa fa-check"></i><b>12.7.3</b> Treynor’s Ratio</a></li>
+<li class="chapter" data-level="12.7.4" data-path="01-Part_2_portfolio.html"><a href="01-Part_2_portfolio.html#sharpe-ratio-portfolio-in-r"><i class="fa fa-check"></i><b>12.7.4</b> Sharpe Ratio (Portfolio) in R</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="04-Part_3-1.html"><a href="04-Part_3-1.html"><i class="fa fa-check"></i>Part III</a></li>
+<li class="chapter" data-level="13" data-path="04-Part_3-1.html"><a href="04-Part_3-1.html#machine-learning-using-r-introduction-to-data-splitting-sampling-resampling"><i class="fa fa-check"></i><b>13</b> Machine Learning using R-Introduction to Data Splitting, Sampling &amp; Resampling</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="04-Part_3-1.html"><a href="04-Part_3-1.html#machine-learning-process-quick-intro"><i class="fa fa-check"></i><b>13.1</b> Machine Learning Process (Quick Intro)</a></li>
+<li class="chapter" data-level="13.2" data-path="04-Part_3-1.html"><a href="04-Part_3-1.html#data-splitting-sampling"><i class="fa fa-check"></i><b>13.2</b> Data Splitting: Sampling</a></li>
+<li class="chapter" data-level="13.3" data-path="04-Part_3-1.html"><a href="04-Part_3-1.html#random-sampling"><i class="fa fa-check"></i><b>13.3</b> Random Sampling</a>
+<ul>
+<li class="chapter" data-level="13.3.1" data-path="04-Part_3-1.html"><a href="04-Part_3-1.html#base-r"><i class="fa fa-check"></i><b>13.3.1</b> Base R</a></li>
+<li class="chapter" data-level="13.3.2" data-path="04-Part_3-1.html"><a href="04-Part_3-1.html#using-the-caret-package"><i class="fa fa-check"></i><b>13.3.2</b> Using the <code>caret</code> package</a></li>
+<li class="chapter" data-level="13.3.3" data-path="04-Part_3-1.html"><a href="04-Part_3-1.html#using-the-rsample-package"><i class="fa fa-check"></i><b>13.3.3</b> Using the <code>rsample</code> package</a></li>
+</ul></li>
+<li class="chapter" data-level="13.4" data-path="04-Part_3-1.html"><a href="04-Part_3-1.html#stratified-sampling"><i class="fa fa-check"></i><b>13.4</b> Stratified Sampling</a></li>
+<li class="chapter" data-level="13.5" data-path="04-Part_3-1.html"><a href="04-Part_3-1.html#resampling"><i class="fa fa-check"></i><b>13.5</b> Resampling</a></li>
+<li class="chapter" data-level="13.6" data-path="04-Part_3-1.html"><a href="04-Part_3-1.html#k-fold-cross-validation"><i class="fa fa-check"></i><b>13.6</b> K-fold Cross Validation</a>
+<ul>
+<li class="chapter" data-level="" data-path="04-Part_3-1.html"><a href="04-Part_3-1.html#k-fold-cv-in-r"><i class="fa fa-check"></i>K-fold CV in R</a></li>
+</ul></li>
+<li class="chapter" data-level="13.7" data-path="04-Part_3-1.html"><a href="04-Part_3-1.html#cv-for-time-series-data"><i class="fa fa-check"></i><b>13.7</b> CV for time series data</a>
+<ul>
+<li class="chapter" data-level="" data-path="04-Part_3-1.html"><a href="04-Part_3-1.html#cv-for-time-series-in-r"><i class="fa fa-check"></i>CV for time series in R</a></li>
+</ul></li>
+<li class="chapter" data-level="13.8" data-path="04-Part_3-1.html"><a href="04-Part_3-1.html#bootstrapping"><i class="fa fa-check"></i><b>13.8</b> Bootstrapping</a>
+<ul>
+<li class="chapter" data-level="" data-path="04-Part_3-1.html"><a href="04-Part_3-1.html#bootsrapping-in-r"><i class="fa fa-check"></i>Bootsrapping in R</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="04-Part_3_logistic.html"><a href="04-Part_3_logistic.html"><i class="fa fa-check"></i><b>14</b> Logistic Regression &amp; K-Nearest Neighbour (kNN) for Classification</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="04-Part_3_logistic.html"><a href="04-Part_3_logistic.html#logistic-regression"><i class="fa fa-check"></i><b>14.1</b> Logistic Regression</a></li>
+<li class="chapter" data-level="14.2" data-path="04-Part_3_logistic.html"><a href="04-Part_3_logistic.html#k-nearest-neighbour"><i class="fa fa-check"></i><b>14.2</b> K-Nearest Neighbour</a>
+<ul>
+<li class="chapter" data-level="" data-path="04-Part_3_logistic.html"><a href="04-Part_3_logistic.html#nearest-neighbour-classification-quick-introduction"><i class="fa fa-check"></i>Nearest Neighbour classification (Quick Introduction)</a></li>
+<li class="chapter" data-level="" data-path="04-Part_3_logistic.html"><a href="04-Part_3_logistic.html#k-nn-algorithm"><i class="fa fa-check"></i>k-NN Algorithm</a></li>
+</ul></li>
+<li class="chapter" data-level="14.3" data-path="04-Part_3_logistic.html"><a href="04-Part_3_logistic.html#forecasting-stock-price-movement-using-ml"><i class="fa fa-check"></i><b>14.3</b> Forecasting Stock Price Movement using ML</a>
+<ul>
+<li class="chapter" data-level="14.3.1" data-path="04-Part_3_logistic.html"><a href="04-Part_3_logistic.html#data-indicators"><i class="fa fa-check"></i><b>14.3.1</b> Data &amp; Indicators</a></li>
+<li class="chapter" data-level="14.3.2" data-path="04-Part_3_logistic.html"><a href="04-Part_3_logistic.html#visualise-the-data"><i class="fa fa-check"></i><b>14.3.2</b> Visualise the data</a></li>
+<li class="chapter" data-level="14.3.3" data-path="04-Part_3_logistic.html"><a href="04-Part_3_logistic.html#using-logistic-regression"><i class="fa fa-check"></i><b>14.3.3</b> Using Logistic Regression</a></li>
+<li class="chapter" data-level="14.3.4" data-path="04-Part_3_logistic.html"><a href="04-Part_3_logistic.html#using-k-nn"><i class="fa fa-check"></i><b>14.3.4</b> Using K-NN</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="04-Part_2.html"><a href="04-Part_2.html"><i class="fa fa-check"></i><b>15</b> Decision Trees using R</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="04-Part_2.html"><a href="04-Part_2.html#import-data-and-pre-processing"><i class="fa fa-check"></i><b>15.1</b> Import Data and Pre-processing</a></li>
+<li class="chapter" data-level="15.2" data-path="04-Part_2.html"><a href="04-Part_2.html#visualisation-some-features"><i class="fa fa-check"></i><b>15.2</b> Visualisation some features</a></li>
+<li class="chapter" data-level="15.3" data-path="04-Part_2.html"><a href="04-Part_2.html#creating-training-and-testing-set-and-control"><i class="fa fa-check"></i><b>15.3</b> Creating Training and Testing Set and Control</a></li>
+<li class="chapter" data-level="15.4" data-path="04-Part_2.html"><a href="04-Part_2.html#train-the-model-on-the-training-set"><i class="fa fa-check"></i><b>15.4</b> Train the model on the training set</a></li>
+<li class="chapter" data-level="15.5" data-path="04-Part_2.html"><a href="04-Part_2.html#prediction-and-accuracy"><i class="fa fa-check"></i><b>15.5</b> Prediction and Accuracy</a>
+<ul>
+<li class="chapter" data-level="15.5.1" data-path="04-Part_2.html"><a href="04-Part_2.html#model-1"><i class="fa fa-check"></i><b>15.5.1</b> Model-1</a></li>
+<li class="chapter" data-level="15.5.2" data-path="04-Part_2.html"><a href="04-Part_2.html#model-2"><i class="fa fa-check"></i><b>15.5.2</b> Model-2</a></li>
+</ul></li>
+<li class="chapter" data-level="15.6" data-path="04-Part_2.html"><a href="04-Part_2.html#feature-interpretation"><i class="fa fa-check"></i><b>15.6</b> Feature Interpretation</a></li>
+<li class="chapter" data-level="15.7" data-path="04-Part_2.html"><a href="04-Part_2.html#tree-visualisation"><i class="fa fa-check"></i><b>15.7</b> Tree visualisation</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="06-fraud_analytics.html"><a href="06-fraud_analytics.html"><i class="fa fa-check"></i><b>16</b> Financial Fraud Analytics</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="06-fraud_analytics.html"><a href="06-fraud_analytics.html#introduction-to-financial-fraud"><i class="fa fa-check"></i><b>16.1</b> Introduction to Financial Fraud</a>
+<ul>
+<li class="chapter" data-level="16.1.1" data-path="06-fraud_analytics.html"><a href="06-fraud_analytics.html#types-of-financial-fraud"><i class="fa fa-check"></i><b>16.1.1</b> Types of Financial Fraud</a></li>
+<li class="chapter" data-level="16.1.2" data-path="06-fraud_analytics.html"><a href="06-fraud_analytics.html#ml-and-ai-for-fraud-detection"><i class="fa fa-check"></i><b>16.1.2</b> ML and AI for Fraud Detection</a></li>
+<li class="chapter" data-level="16.1.3" data-path="06-fraud_analytics.html"><a href="06-fraud_analytics.html#ml-and-ai-based-fraud-detection-system-for-credit-card-fraud"><i class="fa fa-check"></i><b>16.1.3</b> ML and AI based Fraud Detection System for Credit Card Fraud</a></li>
+</ul></li>
+<li class="chapter" data-level="16.2" data-path="06-fraud_analytics.html"><a href="06-fraud_analytics.html#detecting-fraud-in-transaction-data"><i class="fa fa-check"></i><b>16.2</b> Detecting Fraud in Transaction Data</a>
+<ul>
+<li class="chapter" data-level="16.2.1" data-path="06-fraud_analytics.html"><a href="06-fraud_analytics.html#data-1"><i class="fa fa-check"></i><b>16.2.1</b> Data</a></li>
+<li class="chapter" data-level="16.2.2" data-path="06-fraud_analytics.html"><a href="06-fraud_analytics.html#summary-of-the-data"><i class="fa fa-check"></i><b>16.2.2</b> Summary of the data</a></li>
+<li class="chapter" data-level="16.2.3" data-path="06-fraud_analytics.html"><a href="06-fraud_analytics.html#visualisation-2"><i class="fa fa-check"></i><b>16.2.3</b> Visualisation</a></li>
+</ul></li>
+<li class="chapter" data-level="16.3" data-path="06-fraud_analytics.html"><a href="06-fraud_analytics.html#ml-model"><i class="fa fa-check"></i><b>16.3</b> ML Model</a>
+<ul>
+<li class="chapter" data-level="16.3.1" data-path="06-fraud_analytics.html"><a href="06-fraud_analytics.html#setup"><i class="fa fa-check"></i><b>16.3.1</b> Setup</a></li>
+<li class="chapter" data-level="16.3.2" data-path="06-fraud_analytics.html"><a href="06-fraud_analytics.html#sampling-and-resampling"><i class="fa fa-check"></i><b>16.3.2</b> Sampling and Resampling</a></li>
+<li class="chapter" data-level="16.3.3" data-path="06-fraud_analytics.html"><a href="06-fraud_analytics.html#knn"><i class="fa fa-check"></i><b>16.3.3</b> KNN</a></li>
+<li class="chapter" data-level="16.3.4" data-path="06-fraud_analytics.html"><a href="06-fraud_analytics.html#random-forests"><i class="fa fa-check"></i><b>16.3.4</b> Random Forests</a></li>
+<li class="chapter" data-level="16.3.5" data-path="06-fraud_analytics.html"><a href="06-fraud_analytics.html#nnet"><i class="fa fa-check"></i><b>16.3.5</b> NNET</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="05-method2.html"><a href="05-method2.html"><i class="fa fa-check"></i><b>17</b> Text Mining using R</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="05-method2.html"><a href="05-method2.html#introduction-to-text-mining"><i class="fa fa-check"></i><b>17.1</b> Introduction to Text Mining</a>
+<ul>
+<li class="chapter" data-level="17.1.1" data-path="05-method2.html"><a href="05-method2.html#text-data"><i class="fa fa-check"></i><b>17.1.1</b> Text Data</a></li>
+<li class="chapter" data-level="17.1.2" data-path="05-method2.html"><a href="05-method2.html#generic-text-mining-system"><i class="fa fa-check"></i><b>17.1.2</b> Generic Text Mining System</a></li>
+<li class="chapter" data-level="17.1.3" data-path="05-method2.html"><a href="05-method2.html#data-pre-processing-in-text-mining"><i class="fa fa-check"></i><b>17.1.3</b> Data pre-processing in Text Mining</a></li>
+</ul></li>
+<li class="chapter" data-level="17.2" data-path="05-method2.html"><a href="05-method2.html#mining-twitter-text-data-using-r"><i class="fa fa-check"></i><b>17.2</b> Mining Twitter Text Data using R</a>
+<ul>
+<li class="chapter" data-level="17.2.1" data-path="05-method2.html"><a href="05-method2.html#obtaining-twitter-data"><i class="fa fa-check"></i><b>17.2.1</b> Obtaining Twitter Data</a></li>
+</ul></li>
+<li class="chapter" data-level="17.3" data-path="05-method2.html"><a href="05-method2.html#download-data"><i class="fa fa-check"></i><b>17.3</b> Download Data</a></li>
+<li class="chapter" data-level="17.4" data-path="05-method2.html"><a href="05-method2.html#data-pre-processing"><i class="fa fa-check"></i><b>17.4</b> Data Pre-processing</a></li>
+<li class="chapter" data-level="17.5" data-path="05-method2.html"><a href="05-method2.html#some-visualisation"><i class="fa fa-check"></i><b>17.5</b> Some Visualisation</a></li>
+<li class="chapter" data-level="17.6" data-path="05-method2.html"><a href="05-method2.html#sentiment-analysis"><i class="fa fa-check"></i><b>17.6</b> Sentiment Analysis</a>
+<ul>
+<li class="chapter" data-level="17.6.1" data-path="05-method2.html"><a href="05-method2.html#method"><i class="fa fa-check"></i><b>17.6.1</b> Method</a></li>
+</ul></li>
+<li class="chapter" data-level="17.7" data-path="05-method2.html"><a href="05-method2.html#topic-modelling"><i class="fa fa-check"></i><b>17.7</b> Topic Modelling</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="06-method3.html"><a href="06-method3.html"><i class="fa fa-check"></i>Part IV</a></li>
+<li class="chapter" data-level="18" data-path="06-method3.html"><a href="06-method3.html#bibliometrix-analysis-using-r"><i class="fa fa-check"></i><b>18</b> Bibliometrix Analysis using R</a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="06-method3.html"><a href="06-method3.html#introduction-to-bibliometric-analysis"><i class="fa fa-check"></i><b>18.1</b> Introduction to Bibliometric Analysis</a></li>
+<li class="chapter" data-level="18.2" data-path="06-method3.html"><a href="06-method3.html#r-and-bibliometric-analysis"><i class="fa fa-check"></i><b>18.2</b> R and Bibliometric analysis</a></li>
+<li class="chapter" data-level="18.3" data-path="06-method3.html"><a href="06-method3.html#bibliometrix-example"><i class="fa fa-check"></i><b>18.3</b> Bibliometrix Example</a></li>
+<li class="chapter" data-level="18.4" data-path="06-method3.html"><a href="06-method3.html#descriptive-analysis"><i class="fa fa-check"></i><b>18.4</b> Descriptive Analysis</a>
+<ul>
+<li class="chapter" data-level="18.4.1" data-path="06-method3.html"><a href="06-method3.html#productive-authors"><i class="fa fa-check"></i><b>18.4.1</b> Productive Authors</a></li>
+<li class="chapter" data-level="18.4.2" data-path="06-method3.html"><a href="06-method3.html#most-cited-papers"><i class="fa fa-check"></i><b>18.4.2</b> Most cited papers</a></li>
+</ul></li>
+<li class="chapter" data-level="18.5" data-path="06-method3.html"><a href="06-method3.html#information-plots"><i class="fa fa-check"></i><b>18.5</b> Information Plots</a>
+<ul>
+<li class="chapter" data-level="18.5.1" data-path="06-method3.html"><a href="06-method3.html#summary-plot-1-most-porductive-authors"><i class="fa fa-check"></i><b>18.5.1</b> Summary Plot-1 (Most Porductive Authors)</a></li>
+<li class="chapter" data-level="18.5.2" data-path="06-method3.html"><a href="06-method3.html#summary-plot-2-most-productive-countries"><i class="fa fa-check"></i><b>18.5.2</b> Summary Plot-2 (Most Productive Countries)</a></li>
+<li class="chapter" data-level="18.5.3" data-path="06-method3.html"><a href="06-method3.html#summary-plot-3-annual-scientific-production"><i class="fa fa-check"></i><b>18.5.3</b> Summary Plot-3 (Annual Scientific Production)</a></li>
+<li class="chapter" data-level="18.5.4" data-path="06-method3.html"><a href="06-method3.html#summary-plot-4-average-article-citation"><i class="fa fa-check"></i><b>18.5.4</b> Summary Plot-4 (Average Article Citation)</a></li>
+<li class="chapter" data-level="18.5.5" data-path="06-method3.html"><a href="06-method3.html#summary-plot-5-author-production-over-time"><i class="fa fa-check"></i><b>18.5.5</b> Summary Plot-5 (Author Production Over Time)</a></li>
+<li class="chapter" data-level="18.5.6" data-path="06-method3.html"><a href="06-method3.html#sankey-plot"><i class="fa fa-check"></i><b>18.5.6</b> Sankey plot</a></li>
+</ul></li>
+<li class="chapter" data-level="18.6" data-path="06-method3.html"><a href="06-method3.html#co-word-analysis"><i class="fa fa-check"></i><b>18.6</b> Co-word Analysis</a></li>
+<li class="chapter" data-level="18.7" data-path="06-method3.html"><a href="06-method3.html#author-collaboration-network"><i class="fa fa-check"></i><b>18.7</b> Author collaboration network</a></li>
+<li class="chapter" data-level="18.8" data-path="06-method3.html"><a href="06-method3.html#keyword-co-occurance"><i class="fa fa-check"></i><b>18.8</b> Keyword co-occurance</a></li>
+<li class="chapter" data-level="18.9" data-path="06-method3.html"><a href="06-method3.html#thematic-map"><i class="fa fa-check"></i><b>18.9</b> Thematic Map</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="07-summary.html"><a href="07-summary.html"><i class="fa fa-check"></i><b>19</b> Work in Progress</a></li>
+<li class="chapter" data-level="" data-path="07-references.html"><a href="07-references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><img src="firebrick3RA_img.png" height="60" width="60" style="position:bottom:0px;right:0px;"/></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R for Data Analytics</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="part-ii" class="section level1 unnumbered hasAnchor">
+<h1>Part II<a href="062-regression_1.html#part-ii" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+</div>
+<div id="linear-regression" class="section level1 hasAnchor" number="7">
+<h1><span class="header-section-number">Topic 7</span> Linear Regression<a href="062-regression_1.html#linear-regression" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><img src="blackRA_img.png" height="100" width="100" style="position:absolute;top:0px;right:0px;" />
+<strong>Introduction</strong></p>
+<ul>
+<li><p>Regression analysis is one of the most widely used tool in quantitative research which is used to analyse the relationship between variables.</p></li>
+<li><p>One or more variables are considered to be explanatory variables, and the other is considered to be the dependent variable.</p></li>
+<li><p>In general linear regression is used to predict a continuous dependent variable (regressand) from a number of independent variables (regressors) assuming that the relationship between the dependent and independent variables is linear.</p></li>
+<li><p>If we have a dependent (or response) variable Y which is related to a predictor variables <span class="math inline">\(X_{i}\)</span>. The simple regression model is given by</p></li>
+</ul>
+<p><span class="math display" id="eq:lm">\[\begin{equation}
+
+Y=\alpha+\beta X_{i}+\epsilon_{i}
+\tag{7.1}
+
+\end{equation}\]</span></p>
+<ul>
+<li><p>R has the function <span class="math inline">\(\mathtt{lm}\)</span> (linear model) for linear regression.</p></li>
+<li><p>The main arguments to the function <span class="math inline">\(\mathtt{lm}\)</span> are a formula and the data. <span class="math inline">\(\mathtt{lm}\)</span> takes the defining model input as a formula</p></li>
+<li><p>A formula object is also used in other statistical function like <span class="math inline">\(\mathtt{glm,\,nls,\,rq}\)</span> etc, which is from a <em>formula</em> class.</p></li>
+</ul>
+<div id="investment-beta-using-r-single-index-model" class="section level2 hasAnchor" number="7.1">
+<h2><span class="header-section-number">7.1</span> Investment <span class="math inline">\(\beta\)</span> using R (Single Index Model)<a href="062-regression_1.html#investment-beta-using-r-single-index-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The ‘market model’ regression can be represented as the following regression.</p>
+<p><span class="math display" id="eq:mmod">\[\begin{equation}
+
+R_{i}=\alpha+\beta_{i}R_{M}+\epsilon
+\tag{7.2}
+
+\end{equation}\]</span></p>
+</div>
+<div id="data-preprocessing-1" class="section level2 hasAnchor" number="7.2">
+<h2><span class="header-section-number">7.2</span> Data preprocessing<a href="062-regression_1.html#data-preprocessing-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li><p>Download stock data using R’s quantmod package</p></li>
+<li><p>Convert data to returns</p></li>
+<li><p>Generate some descriptive statistics</p></li>
+<li><p>Some plots</p></li>
+<li><p>Data</p></li>
+</ul>
+<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="062-regression_1.html#cb245-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run the following to download and save the data, this should be</span></span>
+<span id="cb245-2"><a href="062-regression_1.html#cb245-2" aria-hidden="true" tabindex="-1"></a><span class="co"># done once and when updating the time period</span></span>
+<span id="cb245-3"><a href="062-regression_1.html#cb245-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(quantmod)</span>
+<span id="cb245-4"><a href="062-regression_1.html#cb245-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pander)</span>
+<span id="cb245-5"><a href="062-regression_1.html#cb245-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(xts)</span>
+<span id="cb245-6"><a href="062-regression_1.html#cb245-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(TTR)</span>
+<span id="cb245-7"><a href="062-regression_1.html#cb245-7" aria-hidden="true" tabindex="-1"></a><span class="co"># download stock</span></span>
+<span id="cb245-8"><a href="062-regression_1.html#cb245-8" aria-hidden="true" tabindex="-1"></a>BHP <span class="ot">=</span> <span class="fu">getSymbols</span>(<span class="st">&quot;BHP.AX&quot;</span>, <span class="at">from =</span> <span class="st">&quot;2019-01-01&quot;</span>, <span class="at">to =</span> <span class="st">&quot;2021-07-31&quot;</span>, <span class="at">auto.assign =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb245-9"><a href="062-regression_1.html#cb245-9" aria-hidden="true" tabindex="-1"></a><span class="co"># download index</span></span>
+<span id="cb245-10"><a href="062-regression_1.html#cb245-10" aria-hidden="true" tabindex="-1"></a>ASX <span class="ot">=</span> <span class="fu">getSymbols</span>(<span class="st">&quot;^AXJO&quot;</span>, <span class="at">from =</span> <span class="st">&quot;2019-01-01&quot;</span>, <span class="at">to =</span> <span class="st">&quot;2021-07-31&quot;</span>, <span class="at">auto.assign =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb245-11"><a href="062-regression_1.html#cb245-11" aria-hidden="true" tabindex="-1"></a><span class="co"># save both in rds (to be used in the TA chapter)</span></span>
+<span id="cb245-12"><a href="062-regression_1.html#cb245-12" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(BHP, <span class="at">file =</span> <span class="st">&quot;data/bhp_prices.rds&quot;</span>)</span>
+<span id="cb245-13"><a href="062-regression_1.html#cb245-13" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(ASX, <span class="at">file =</span> <span class="st">&quot;data/asx200.rds&quot;</span>)</span></code></pre></div>
+<ul>
+<li>Convert to returns</li>
+</ul>
+<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="062-regression_1.html#cb246-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(quantmod)</span>
+<span id="cb246-2"><a href="062-regression_1.html#cb246-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pander)</span>
+<span id="cb246-3"><a href="062-regression_1.html#cb246-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(xts)</span>
+<span id="cb246-4"><a href="062-regression_1.html#cb246-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(TTR)</span>
+<span id="cb246-5"><a href="062-regression_1.html#cb246-5" aria-hidden="true" tabindex="-1"></a><span class="co"># load data from the saved files (not required if we execute the</span></span>
+<span id="cb246-6"><a href="062-regression_1.html#cb246-6" aria-hidden="true" tabindex="-1"></a><span class="co"># chunk above)</span></span>
+<span id="cb246-7"><a href="062-regression_1.html#cb246-7" aria-hidden="true" tabindex="-1"></a>BHP <span class="ot">=</span> <span class="fu">readRDS</span>(<span class="st">&quot;data/bhp_prices.rds&quot;</span>)</span>
+<span id="cb246-8"><a href="062-regression_1.html#cb246-8" aria-hidden="true" tabindex="-1"></a>ASX <span class="ot">=</span> <span class="fu">readRDS</span>(<span class="st">&quot;data/asx200.rds&quot;</span>)</span>
+<span id="cb246-9"><a href="062-regression_1.html#cb246-9" aria-hidden="true" tabindex="-1"></a><span class="co"># using close prices</span></span>
+<span id="cb246-10"><a href="062-regression_1.html#cb246-10" aria-hidden="true" tabindex="-1"></a>bhp2 <span class="ot">=</span> BHP<span class="sc">$</span>BHP.AX.Close</span>
+<span id="cb246-11"><a href="062-regression_1.html#cb246-11" aria-hidden="true" tabindex="-1"></a>asx2 <span class="ot">=</span> ASX<span class="sc">$</span>AXJO.Close</span>
+<span id="cb246-12"><a href="062-regression_1.html#cb246-12" aria-hidden="true" tabindex="-1"></a><span class="co"># covert to returns</span></span>
+<span id="cb246-13"><a href="062-regression_1.html#cb246-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb246-14"><a href="062-regression_1.html#cb246-14" aria-hidden="true" tabindex="-1"></a>bhp_ret <span class="ot">=</span> <span class="fu">dailyReturn</span>(bhp2, <span class="at">type =</span> <span class="st">&quot;log&quot;</span>)</span>
+<span id="cb246-15"><a href="062-regression_1.html#cb246-15" aria-hidden="true" tabindex="-1"></a>asx_ret <span class="ot">=</span> <span class="fu">dailyReturn</span>(asx2, <span class="at">type =</span> <span class="st">&quot;log&quot;</span>)</span>
+<span id="cb246-16"><a href="062-regression_1.html#cb246-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb246-17"><a href="062-regression_1.html#cb246-17" aria-hidden="true" tabindex="-1"></a><span class="co"># merge the two with &#39;inner&#39; join to get the same dates</span></span>
+<span id="cb246-18"><a href="062-regression_1.html#cb246-18" aria-hidden="true" tabindex="-1"></a>data_lm1 <span class="ot">=</span> <span class="fu">merge.xts</span>(bhp_ret, asx_ret, <span class="at">join =</span> <span class="st">&quot;inner&quot;</span>)</span>
+<span id="cb246-19"><a href="062-regression_1.html#cb246-19" aria-hidden="true" tabindex="-1"></a><span class="co"># convert to data frame</span></span>
+<span id="cb246-20"><a href="062-regression_1.html#cb246-20" aria-hidden="true" tabindex="-1"></a>data_lm2 <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="fu">index</span>(data_lm1), data_lm1<span class="sc">$</span>daily.returns, data_lm1<span class="sc">$</span>daily.returns<span class="fl">.1</span>)</span>
+<span id="cb246-21"><a href="062-regression_1.html#cb246-21" aria-hidden="true" tabindex="-1"></a><span class="co"># change column names</span></span>
+<span id="cb246-22"><a href="062-regression_1.html#cb246-22" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(data_lm2) <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;Date&quot;</span>, <span class="st">&quot;bhp&quot;</span>, <span class="st">&quot;asx&quot;</span>)</span>
+<span id="cb246-23"><a href="062-regression_1.html#cb246-23" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data_lm2)  <span class="co">#there are row names which can be removed if required</span></span></code></pre></div>
+<pre><code>                 Date          bhp          asx
+2019-01-02 2019-01-02  0.000000000  0.000000000
+2019-01-03 2019-01-03  0.000000000  0.013510839
+2019-01-04 2019-01-04 -0.008947241 -0.002488271
+2019-01-07 2019-01-07  0.029808847  0.011289609
+2019-01-08 2019-01-08  0.001162482  0.006873792
+2019-01-09 2019-01-09 -0.003782952  0.009721207</code></pre>
+<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="062-regression_1.html#cb248-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pastecs)</span>
+<span id="cb248-2"><a href="062-regression_1.html#cb248-2" aria-hidden="true" tabindex="-1"></a>desc_stat1 <span class="ot">=</span> <span class="fu">stat.desc</span>(data_lm2[, <span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>], <span class="at">norm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb248-3"><a href="062-regression_1.html#cb248-3" aria-hidden="true" tabindex="-1"></a><span class="fu">pander</span>(desc_stat1, <span class="at">caption =</span> <span class="st">&quot;Descriptive Statistics&quot;</span>, <span class="at">split.table =</span> <span class="cn">Inf</span>)</span></code></pre></div>
+<table style="width:60%;">
+<caption>Descriptive Statistics</caption>
+<colgroup>
+<col width="26%" />
+<col width="16%" />
+<col width="16%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center"> </th>
+<th align="center">bhp</th>
+<th align="center">asx</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><strong>nbr.val</strong></td>
+<td align="center">653</td>
+<td align="center">653</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>nbr.null</strong></td>
+<td align="center">9</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>nbr.na</strong></td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>min</strong></td>
+<td align="center">-0.1557</td>
+<td align="center">-0.102</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>max</strong></td>
+<td align="center">0.1128</td>
+<td align="center">0.06766</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>range</strong></td>
+<td align="center">0.2685</td>
+<td align="center">0.1697</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>sum</strong></td>
+<td align="center">0.4948</td>
+<td align="center">0.2853</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>median</strong></td>
+<td align="center">0</td>
+<td align="center">0.001163</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>mean</strong></td>
+<td align="center">0.0007577</td>
+<td align="center">0.0004369</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>SE.mean</strong></td>
+<td align="center">0.0007444</td>
+<td align="center">0.0005075</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>CI.mean.0.95</strong></td>
+<td align="center">0.001462</td>
+<td align="center">0.0009966</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>var</strong></td>
+<td align="center">0.0003618</td>
+<td align="center">0.0001682</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>std.dev</strong></td>
+<td align="center">0.01902</td>
+<td align="center">0.01297</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>coef.var</strong></td>
+<td align="center">25.1</td>
+<td align="center">29.69</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>skewness</strong></td>
+<td align="center">-0.4883</td>
+<td align="center">-1.443</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>skew.2SE</strong></td>
+<td align="center">-2.553</td>
+<td align="center">-7.546</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>kurtosis</strong></td>
+<td align="center">9.991</td>
+<td align="center">13.32</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>kurt.2SE</strong></td>
+<td align="center">26.16</td>
+<td align="center">34.86</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>normtest.W</strong></td>
+<td align="center">0.9198</td>
+<td align="center">0.8266</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>normtest.p</strong></td>
+<td align="center">3.885e-18</td>
+<td align="center">5.497e-26</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="visualisation" class="section level2 hasAnchor" number="7.3">
+<h2><span class="header-section-number">7.3</span> Visualisation<a href="062-regression_1.html#visualisation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="062-regression_1.html#cb249-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb249-2"><a href="062-regression_1.html#cb249-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb249-3"><a href="062-regression_1.html#cb249-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb249-4"><a href="062-regression_1.html#cb249-4" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">=</span> <span class="fu">ggplot</span>(data_lm2, <span class="fu">aes</span>(asx, bhp))</span>
+<span id="cb249-5"><a href="062-regression_1.html#cb249-5" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">colour =</span> <span class="st">&quot;brown&quot;</span>) <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="sc">+</span> <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb249-6"><a href="062-regression_1.html#cb249-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Scatter plot of BHPvsASX and Linear Fit&quot;</span>)</span></code></pre></div>
+<p><img src="062-regression_1_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="062-regression_1.html#cb250-1" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">=</span> <span class="fu">ggplot</span>(data_lm2, <span class="fu">aes</span>(Date))</span>
+<span id="cb250-2"><a href="062-regression_1.html#cb250-2" aria-hidden="true" tabindex="-1"></a>p2 <span class="sc">+</span> <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> bhp, <span class="at">color =</span> <span class="st">&quot;bhp&quot;</span>), <span class="at">size =</span> <span class="dv">1</span>, <span class="at">lty =</span> <span class="dv">1</span>) <span class="sc">+</span> <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> asx,</span>
+<span id="cb250-3"><a href="062-regression_1.html#cb250-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">&quot;asx&quot;</span>), <span class="at">size =</span> <span class="dv">1</span>, <span class="at">lty =</span> <span class="dv">2</span>) <span class="sc">+</span> <span class="fu">scale_color_discrete</span>(<span class="st">&quot;Asset&quot;</span>) <span class="sc">+</span></span>
+<span id="cb250-4"><a href="062-regression_1.html#cb250-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>() <span class="sc">+</span> <span class="fu">labs</span>(<span class="st">&quot;Line Chart of Returns&quot;</span>)</span></code></pre></div>
+<p><img src="062-regression_1_files/figure-html/unnamed-chunk-4-2.png" width="672" /></p>
+</div>
+<div id="regression-analysis-using-lm" class="section level2 hasAnchor" number="7.4">
+<h2><span class="header-section-number">7.4</span> Regression analysis using lm<a href="062-regression_1.html#regression-analysis-using-lm" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>Use lm to model the SIM</li>
+</ul>
+<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="062-regression_1.html#cb251-1" aria-hidden="true" tabindex="-1"></a>lreg1 <span class="ot">=</span> <span class="fu">lm</span>(<span class="at">formula =</span> bhp <span class="sc">~</span> asx, <span class="at">data =</span> data_lm2)</span>
+<span id="cb251-2"><a href="062-regression_1.html#cb251-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lreg1)  <span class="co">#to generate main results</span></span></code></pre></div>
+<pre><code>
+Call:
+lm(formula = bhp ~ asx, data = data_lm2)
+
+Residuals:
+      Min        1Q    Median        3Q       Max 
+-0.077007 -0.008153 -0.000162  0.007500  0.060409 
+
+Coefficients:
+             Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) 0.0003046  0.0005270   0.578    0.564    
+asx         1.0372279  0.0406422  25.521   &lt;2e-16 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 0.01346 on 651 degrees of freedom
+Multiple R-squared:  0.5001,    Adjusted R-squared:  0.4994 
+F-statistic: 651.3 on 1 and 651 DF,  p-value: &lt; 2.2e-16</code></pre>
+<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="062-regression_1.html#cb253-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pander</span>(lreg1, <span class="at">add.significance.stars =</span> T)  <span class="co">#to tabulate</span></span></code></pre></div>
+<table>
+<caption>Fitting linear model: bhp ~ asx</caption>
+<colgroup>
+<col width="24%" />
+<col width="16%" />
+<col width="17%" />
+<col width="13%" />
+<col width="17%" />
+<col width="10%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center"> </th>
+<th align="center">Estimate</th>
+<th align="center">Std. Error</th>
+<th align="center">t value</th>
+<th align="center">Pr(&gt;|t|)</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><strong>(Intercept)</strong></td>
+<td align="center">0.0003046</td>
+<td align="center">0.000527</td>
+<td align="center">0.5779</td>
+<td align="center">0.5635</td>
+<td></td>
+</tr>
+<tr class="even">
+<td align="center"><strong>asx</strong></td>
+<td align="center">1.037</td>
+<td align="center">0.04064</td>
+<td align="center">25.52</td>
+<td align="center">4.215e-100</td>
+<td>* * *</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Using stargazer to print the output</li>
+</ul>
+<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="062-regression_1.html#cb254-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stargazer)</span>
+<span id="cb254-2"><a href="062-regression_1.html#cb254-2" aria-hidden="true" tabindex="-1"></a><span class="fu">stargazer</span>(lreg1, <span class="at">type =</span> <span class="st">&quot;html&quot;</span>, <span class="at">title =</span> <span class="st">&quot;Regression Results&quot;</span>)</span></code></pre></div>
+<table style="text-align:center">
+<caption>
+<strong>Regression Results</strong>
+</caption>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+<em>Dependent variable:</em>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td colspan="1" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+bhp
+</td>
+</tr>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+asx
+</td>
+<td>
+1.037<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(0.041)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Constant
+</td>
+<td>
+0.0003
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(0.001)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Observations
+</td>
+<td>
+653
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+R<sup>2</sup>
+</td>
+<td>
+0.500
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Adjusted R<sup>2</sup>
+</td>
+<td>
+0.499
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Residual Std. Error
+</td>
+<td>
+0.013 (df = 651)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+F Statistic
+</td>
+<td>
+651.320<sup>***</sup> (df = 1; 651)
+</td>
+</tr>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+<em>Note:</em>
+</td>
+<td style="text-align:right">
+<sup><em></sup>p&lt;0.1; <sup><strong></sup>p&lt;0.05; <sup></strong></em></sup>p&lt;0.01
+</td>
+</tr>
+</table>
+<ul>
+<li>Diagnostic Plots</li>
+</ul>
+<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="062-regression_1.html#cb255-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb255-2"><a href="062-regression_1.html#cb255-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lreg1)</span></code></pre></div>
+<p><img src="062-regression_1_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+</div>
+</div>
+<div id="multiple-regression" class="section level1 hasAnchor" number="8">
+<h1><span class="header-section-number">Topic 8</span> Multiple Regression<a href="062-regression_1.html#multiple-regression" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<ul>
+<li>Multiple regression extends simple linear regression with more than one (1) predictor variables</li>
+<li>We have one response variable and multiple independent predictor variable.</li>
+</ul>
+<p><span class="math display" id="eq:multilm">\[\begin{equation}
+
+y_{i}=\alpha+\beta_{1}x_{1}+\beta_{2}x_{2}+\ldots+\varepsilon_{i}
+\tag{8.1}
+
+\end{equation}\]</span></p>
+<ul>
+<li>The estimation process is similar to the univariate case where the additional predictors are added with <code>+</code> operator</li>
+<li>A multifactor example demonstrates in the next section</li>
+</ul>
+<div id="fama-french-three-factor-model" class="section level2 hasAnchor" number="8.1">
+<h2><span class="header-section-number">8.1</span> Fama-French Three Factor Model<a href="062-regression_1.html#fama-french-three-factor-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li><p><span class="citation">Fama &amp; French (<a href="#ref-Fama1992" role="doc-biblioref">1992</a>)</span>;<span class="citation">Fama &amp; French (<a href="#ref-Fama1993" role="doc-biblioref">1993</a>)</span> extended the basic CAPM to include size and book-to-market effects as explanatory factors in explaining the cross-section of stock returns.</p></li>
+<li><p>SMB (Small minus Big) gives the size premium which is the additional return received by investors from investing in companies having a low market capitalization.</p></li>
+<li><p>HML (High minus Low), gives the value premium which is the return provided to investors for investing in companies having high book-to-market values.</p></li>
+<li><p>The three factor Fama-French model is written as:</p></li>
+</ul>
+<p><span class="math display">\[\begin{equation}
+
+r_{A}-r_{F}=+\beta_{A}(r_{M}-r_{F})+s_{A}SMB+h_{A}HML+\alpha+e
+
+\#eq:ff1)
+
+\end{equation}\]</span></p>
+<p>Where <span class="math inline">\(s_{A}\)</span> and <span class="math inline">\(h_{A}\)</span> capture the security’s sensitivity to these two additional factors.</p>
+<div id="data-preprocessing-2" class="section level3 hasAnchor" number="8.1.1">
+<h3><span class="header-section-number">8.1.1</span> Data Preprocessing<a href="062-regression_1.html#data-preprocessing-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>The three factors daily data is downloaded as a CSV file from the Kenneth French website. Link: <a href="https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/data_library.html" class="uri">https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/data_library.html</a></li>
+<li>AAPL stock prices are downloaded using the quantmod package</li>
+<li>The following code snippets will pre-process three factor data and stock return data and then combine it in one single</li>
+</ul>
+<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="062-regression_1.html#cb256-1" aria-hidden="true" tabindex="-1"></a><span class="co"># use read.table for text file</span></span>
+<span id="cb256-2"><a href="062-regression_1.html#cb256-2" aria-hidden="true" tabindex="-1"></a>ff_data <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/F-F_Research_Data_Factors_daily.CSV&quot;</span>, <span class="at">skip =</span> <span class="dv">3</span>)</span>
+<span id="cb256-3"><a href="062-regression_1.html#cb256-3" aria-hidden="true" tabindex="-1"></a>ff_data <span class="ot">=</span> <span class="fu">na.omit</span>(ff_data)  <span class="co">#remove missing values</span></span>
+<span id="cb256-4"><a href="062-regression_1.html#cb256-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb256-5"><a href="062-regression_1.html#cb256-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(ff_data)  <span class="co">#date is missing column names</span></span></code></pre></div>
+<pre><code>         X Mkt.RF   SMB   HML    RF
+1 19260701   0.10 -0.23 -0.28 0.009
+2 19260702   0.45 -0.34 -0.03 0.009
+3 19260706   0.17  0.29 -0.38 0.009
+4 19260707   0.09 -0.59  0.00 0.009
+5 19260708   0.21 -0.38  0.18 0.009
+6 19260709  -0.71  0.44  0.58 0.009</code></pre>
+<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="062-regression_1.html#cb258-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(ff_data)[<span class="dv">1</span>] <span class="ot">=</span> <span class="st">&quot;Date&quot;</span></span>
+<span id="cb258-2"><a href="062-regression_1.html#cb258-2" aria-hidden="true" tabindex="-1"></a><span class="co"># convert dates in R date format</span></span>
+<span id="cb258-3"><a href="062-regression_1.html#cb258-3" aria-hidden="true" tabindex="-1"></a>ff_data<span class="sc">$</span>Date <span class="ot">=</span> <span class="fu">as.Date</span>(<span class="fu">strptime</span>(ff_data<span class="sc">$</span>Date, <span class="at">format =</span> <span class="st">&quot;%Y%m%d&quot;</span>))</span>
+<span id="cb258-4"><a href="062-regression_1.html#cb258-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(ff_data)</span></code></pre></div>
+<pre><code>        Date Mkt.RF   SMB   HML    RF
+1 1926-07-01   0.10 -0.23 -0.28 0.009
+2 1926-07-02   0.45 -0.34 -0.03 0.009
+3 1926-07-06   0.17  0.29 -0.38 0.009
+4 1926-07-07   0.09 -0.59  0.00 0.009
+5 1926-07-08   0.21 -0.38  0.18 0.009
+6 1926-07-09  -0.71  0.44  0.58 0.009</code></pre>
+<ul>
+<li>Download the data and convert to returns</li>
+</ul>
+<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="062-regression_1.html#cb260-1" aria-hidden="true" tabindex="-1"></a>d_aapl <span class="ot">=</span> <span class="fu">getSymbols</span>(<span class="st">&quot;AAPL&quot;</span>, <span class="at">from =</span> <span class="st">&quot;2019-01-01&quot;</span>, <span class="at">to =</span> <span class="st">&quot;2021-09-30&quot;</span>, <span class="at">auto.assign =</span> F)</span>
+<span id="cb260-2"><a href="062-regression_1.html#cb260-2" aria-hidden="true" tabindex="-1"></a><span class="co"># select closing prices and covert to log returns</span></span>
+<span id="cb260-3"><a href="062-regression_1.html#cb260-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb260-4"><a href="062-regression_1.html#cb260-4" aria-hidden="true" tabindex="-1"></a>aapl <span class="ot">=</span> d_aapl<span class="sc">$</span>AAPL.Close</span>
+<span id="cb260-5"><a href="062-regression_1.html#cb260-5" aria-hidden="true" tabindex="-1"></a>aapl_ret <span class="ot">=</span> <span class="fu">dailyReturn</span>(aapl, <span class="at">type =</span> <span class="st">&quot;log&quot;</span>)</span>
+<span id="cb260-6"><a href="062-regression_1.html#cb260-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb260-7"><a href="062-regression_1.html#cb260-7" aria-hidden="true" tabindex="-1"></a><span class="co"># convert to data frame</span></span>
+<span id="cb260-8"><a href="062-regression_1.html#cb260-8" aria-hidden="true" tabindex="-1"></a>aapl_ret2 <span class="ot">=</span> <span class="fu">fortify.zoo</span>(aapl_ret)  <span class="co">#Dates column will be named Index</span></span>
+<span id="cb260-9"><a href="062-regression_1.html#cb260-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb260-10"><a href="062-regression_1.html#cb260-10" aria-hidden="true" tabindex="-1"></a><span class="co"># rename</span></span>
+<span id="cb260-11"><a href="062-regression_1.html#cb260-11" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(aapl_ret2) <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;Date&quot;</span>, <span class="st">&quot;AAPL&quot;</span>)</span>
+<span id="cb260-12"><a href="062-regression_1.html#cb260-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb260-13"><a href="062-regression_1.html#cb260-13" aria-hidden="true" tabindex="-1"></a><span class="co"># use merge (can use left_join from dplyr as well) to combine the</span></span>
+<span id="cb260-14"><a href="062-regression_1.html#cb260-14" aria-hidden="true" tabindex="-1"></a><span class="co"># stock returns and factor data</span></span>
+<span id="cb260-15"><a href="062-regression_1.html#cb260-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb260-16"><a href="062-regression_1.html#cb260-16" aria-hidden="true" tabindex="-1"></a>data_ffex <span class="ot">=</span> <span class="fu">merge</span>(aapl_ret2, ff_data, <span class="at">by =</span> <span class="st">&quot;Date&quot;</span>)</span></code></pre></div>
+</div>
+<div id="regression-analysis" class="section level3 hasAnchor" number="8.1.2">
+<h3><span class="header-section-number">8.1.2</span> Regression Analysis<a href="062-regression_1.html#regression-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>The Fama-French regression uses excess returns so first convert Apple returns to excess returns and then fit the model using the <code>lm</code> function</li>
+</ul>
+<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="062-regression_1.html#cb261-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create another column with AAPL-RF</span></span>
+<span id="cb261-2"><a href="062-regression_1.html#cb261-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb261-3"><a href="062-regression_1.html#cb261-3" aria-hidden="true" tabindex="-1"></a>data_ffex<span class="sc">$</span>AAPL.Rf <span class="ot">=</span> data_ffex<span class="sc">$</span>AAPL <span class="sc">-</span> data_ffex<span class="sc">$</span>RF</span>
+<span id="cb261-4"><a href="062-regression_1.html#cb261-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb261-5"><a href="062-regression_1.html#cb261-5" aria-hidden="true" tabindex="-1"></a>ff_lreg <span class="ot">=</span> <span class="fu">lm</span>(AAPL.Rf <span class="sc">~</span> Mkt.RF <span class="sc">+</span> SMB <span class="sc">+</span> HML, <span class="at">data =</span> data_ffex)</span></code></pre></div>
+<ul>
+<li>A plot function can be used to plot the four regression plots similar to simple regression.</li>
+</ul>
+<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="062-regression_1.html#cb262-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb262-2"><a href="062-regression_1.html#cb262-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ff_lreg)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-12"></span>
+<img src="062-regression_1_files/figure-html/unnamed-chunk-12-1.png" alt="Linear Regression Plots" width="672" />
+<p class="caption">
+Figure 8.1: Linear Regression Plots
+</p>
+</div>
+<ul>
+<li>There are packages in R which provide functions to export the summary output of a regression model in a LaTeX, HTML or ASCII files.</li>
+<li>The output can also be exported to an HTML or LaTeX file which can be later used in a word/LaTeX document.</li>
+</ul>
+<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="062-regression_1.html#cb263-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stargazer</span>(ff_lreg, <span class="at">summary =</span> T, <span class="at">title =</span> <span class="st">&quot;Fama-French Regression OLS&quot;</span>, <span class="at">type =</span> <span class="st">&quot;html&quot;</span>)</span></code></pre></div>
+<table style="text-align:center">
+<caption>
+<strong>Fama-French Regression OLS</strong>
+</caption>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+<em>Dependent variable:</em>
+</td>
+</tr>
+<tr>
+<td>
+</td>
+<td colspan="1" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+AAPL.Rf
+</td>
+</tr>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Mkt.RF
+</td>
+<td>
+0.013<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(0.0003)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+SMB
+</td>
+<td>
+-0.003<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(0.001)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+HML
+</td>
+<td>
+-0.004<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(0.0004)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Constant
+</td>
+<td>
+-0.003<sup>***</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(0.0005)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Observations
+</td>
+<td>
+692
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+R<sup>2</sup>
+</td>
+<td>
+0.677
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Adjusted R<sup>2</sup>
+</td>
+<td>
+0.676
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+Residual Std. Error
+</td>
+<td>
+0.013 (df = 688)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+F Statistic
+</td>
+<td>
+481.374<sup>***</sup> (df = 3; 688)
+</td>
+</tr>
+<tr>
+<td colspan="2" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+<em>Note:</em>
+</td>
+<td style="text-align:right">
+<sup><em></sup>p&lt;0.1; <sup><strong></sup>p&lt;0.05; <sup></strong></em></sup>p&lt;0.01
+</td>
+</tr>
+</table>
+</div>
+<div id="visualisation-1" class="section level3 hasAnchor" number="8.1.3">
+<h3><span class="header-section-number">8.1.3</span> Visualisation<a href="062-regression_1.html#visualisation-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>We can visulise the coefficients with their confidence intervals</li>
+</ul>
+<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="062-regression_1.html#cb264-1" aria-hidden="true" tabindex="-1"></a>s1 <span class="ot">=</span> <span class="fu">summary</span>(ff_lreg)</span>
+<span id="cb264-2"><a href="062-regression_1.html#cb264-2" aria-hidden="true" tabindex="-1"></a>c1 <span class="ot">=</span> <span class="fu">confint</span>(ff_lreg)</span>
+<span id="cb264-3"><a href="062-regression_1.html#cb264-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb264-4"><a href="062-regression_1.html#cb264-4" aria-hidden="true" tabindex="-1"></a>est1 <span class="ot">=</span> <span class="fu">as.data.frame</span>(<span class="fu">cbind</span>(s1<span class="sc">$</span>coefficients, c1))</span>
+<span id="cb264-5"><a href="062-regression_1.html#cb264-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb264-6"><a href="062-regression_1.html#cb264-6" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">=</span> <span class="fu">ggplot</span>(est1, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">row.names</span>(est1), <span class="at">y =</span> Estimate, <span class="at">color =</span> <span class="fu">row.names</span>(est1))) <span class="sc">+</span></span>
+<span id="cb264-7"><a href="062-regression_1.html#cb264-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>()</span>
+<span id="cb264-8"><a href="062-regression_1.html#cb264-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb264-9"><a href="062-regression_1.html#cb264-9" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">+</span> <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> est1<span class="sc">$</span><span class="st">`</span><span class="at">2.5 %</span><span class="st">`</span>, <span class="at">ymax =</span> est1<span class="sc">$</span><span class="st">`</span><span class="at">97.5 %</span><span class="st">`</span>)) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;FF 3-Factor Coefficients&quot;</span>,</span>
+<span id="cb264-10"><a href="062-regression_1.html#cb264-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;&quot;</span>, <span class="at">y =</span> <span class="st">&quot;coefficient&quot;</span>, <span class="at">caption =</span> <span class="st">&quot;data source: Fama French website&quot;</span>) <span class="sc">+</span></span>
+<span id="cb264-11"><a href="062-regression_1.html#cb264-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-14"></span>
+<img src="062-regression_1_files/figure-html/unnamed-chunk-14-1.png" alt="FF Factors with Confidence Interval" width="672" />
+<p class="caption">
+Figure 8.2: FF Factors with Confidence Interval
+</p>
+</div>
+<ul>
+<li>The ggeffects package provides good functionality on visualising the marginal effects and adjusted predictions. The predictions generated by a model by varying one independent variable and keeping the others constant.</li>
+<li>The following example visualises the predictions based on the SMB factor</li>
+</ul>
+<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="062-regression_1.html#cb265-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggeffects)</span>
+<span id="cb265-2"><a href="062-regression_1.html#cb265-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb265-3"><a href="062-regression_1.html#cb265-3" aria-hidden="true" tabindex="-1"></a>mydf <span class="ot">=</span> <span class="fu">ggpredict</span>(ff_lreg, <span class="at">terms =</span> <span class="fu">c</span>(<span class="st">&quot;SMB&quot;</span>))</span>
+<span id="cb265-4"><a href="062-regression_1.html#cb265-4" aria-hidden="true" tabindex="-1"></a>(<span class="at">p_ff =</span> <span class="fu">plot</span>(mydf) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">data =</span> data_ffex, <span class="fu">aes</span>(<span class="at">x =</span> SMB, <span class="at">y =</span> AAPL.Rf),</span>
+<span id="cb265-5"><a href="062-regression_1.html#cb265-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">&quot;darkblue&quot;</span>))</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-15"></span>
+<img src="062-regression_1_files/figure-html/unnamed-chunk-15-1.png" alt="Marginal Effect" width="672" />
+<p class="caption">
+Figure 8.3: Marginal Effect
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="panel-regression" class="section level1 hasAnchor" number="9">
+<h1><span class="header-section-number">Topic 9</span> Panel Regression<a href="062-regression_1.html#panel-regression" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<ul>
+<li>Panel data or longitudinal data is a data structure which contains individuals/variables (e.g., persons, firms, countries, cities etc) observed at several points in time (days, months, years, quarters etc).</li>
+<li>The dataset <code>GDP_l.RData</code> is an example of panel data where each country’s GDP is recorded over several years in time.</li>
+</ul>
+<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="062-regression_1.html#cb266-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">&quot;data/GDP_l.RData&quot;</span>)</span>
+<span id="cb266-2"><a href="062-regression_1.html#cb266-2" aria-hidden="true" tabindex="-1"></a><span class="co"># data snapshot</span></span>
+<span id="cb266-3"><a href="062-regression_1.html#cb266-3" aria-hidden="true" tabindex="-1"></a>GDP_l[<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">25</span><span class="sc">:</span><span class="dv">29</span>, <span class="dv">241</span><span class="sc">:</span><span class="dv">245</span>), ]</span></code></pre></div>
+<pre><code>    Year   Country        GDP
+1   1990 Australia 18247.3946
+2   1991 Australia 18837.1893
+3   1992 Australia 18599.0012
+4   1993 Australia 17658.0794
+5   1994 Australia 18080.6975
+25  1990     China   314.4310
+26  1991     China   329.7491
+27  1992     China   362.8081
+28  1993     China   373.8003
+29  1994     China   469.2128
+241 1990     World  4220.6460
+242 1991     World  4357.3096
+243 1992     World  4591.0928
+244 1993     World  4604.2533
+245 1994     World  4882.0794</code></pre>
+<ul>
+<li><p>Some visualisation</p></li>
+<li><p>Line Chart</p></li>
+</ul>
+<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="062-regression_1.html#cb268-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb268-2"><a href="062-regression_1.html#cb268-2" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">=</span> <span class="fu">ggplot</span>(GDP_l, <span class="fu">aes</span>(Year, GDP, <span class="at">group =</span> Country))</span>
+<span id="cb268-3"><a href="062-regression_1.html#cb268-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb268-4"><a href="062-regression_1.html#cb268-4" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">+</span> <span class="fu">geom_path</span>(<span class="fu">aes</span>(<span class="at">color =</span> Country)) <span class="sc">+</span> <span class="fu">theme_minimal</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;top&quot;</span>)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:pchrt1"></span>
+<img src="062-regression_1_files/figure-html/pchrt1-1.png" alt="Panel Data Line Chart" width="672" />
+<p class="caption">
+Figure 9.1: Panel Data Line Chart
+</p>
+</div>
+<ul>
+<li>Bar Chart</li>
+</ul>
+<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="062-regression_1.html#cb269-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">+</span> <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">fill =</span> Country)) <span class="sc">+</span> <span class="fu">theme_minimal</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;top&quot;</span>)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:pchrt2"></span>
+<img src="062-regression_1_files/figure-html/pchrt2-1.png" alt="Panel Data Bar Chart" width="672" />
+<p class="caption">
+Figure 9.2: Panel Data Bar Chart
+</p>
+</div>
+<ul>
+<li>Bar Chart for each country</li>
+</ul>
+<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="062-regression_1.html#cb270-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">+</span> <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">fill =</span> Country)) <span class="sc">+</span> <span class="fu">facet_grid</span>(Country <span class="sc">~</span> .) <span class="sc">+</span> <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb270-2"><a href="062-regression_1.html#cb270-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;top&quot;</span>)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:pchrt3"></span>
+<img src="062-regression_1_files/figure-html/pchrt3-1.png" alt="Panel Data Bar Chart" width="672" />
+<p class="caption">
+Figure 9.3: Panel Data Bar Chart
+</p>
+</div>
+<ul>
+<li>Box plot</li>
+</ul>
+<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="062-regression_1.html#cb271-1" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">=</span> <span class="fu">ggplot</span>(GDP_l, <span class="fu">aes</span>(Country, GDP))</span>
+<span id="cb271-2"><a href="062-regression_1.html#cb271-2" aria-hidden="true" tabindex="-1"></a>p2 <span class="sc">+</span> <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">fill =</span> Country)) <span class="sc">+</span> <span class="fu">theme_minimal</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;top&quot;</span>)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:pchrt4"></span>
+<img src="062-regression_1_files/figure-html/pchrt4-1.png" alt="Panel Data Box Plot" width="672" />
+<p class="caption">
+Figure 9.4: Panel Data Box Plot
+</p>
+</div>
+<ul>
+<li><p>The GDP data here has a balanced panel structure, where all the variables have values for all points in time.</p></li>
+<li><p>This chapter discussed the two basic panel regression models viz, Fixed Effect Model and Random Effect Model for balanced panel data.</p></li>
+<li><p>For an extensive discussion see econometrics textbooks including <span class="citation">Baltagi (<a href="#ref-Baltagi2005" role="doc-biblioref">2005</a>)</span>,<span class="citation">Wooldridge (<a href="#ref-Wooldridge2010" role="doc-biblioref">2010</a>)</span>,<span class="citation">Greene (<a href="#ref-Greene2008" role="doc-biblioref">2008</a>)</span> and <span class="citation">Stock &amp; Watson (<a href="#ref-Stock2012" role="doc-biblioref">2012</a>)</span>.</p></li>
+<li><p>The package plm <span class="citation">Croissant &amp; Millo (<a href="#ref-Croissant2008" role="doc-biblioref">2008</a>)</span> provides methods for calculating these models, which will be used for in illustrative code.</p></li>
+<li><p>We will use the very popular Grunfeld panel dataset <span class="citation">Grunfeld (<a href="#ref-Grunfeld1958" role="doc-biblioref">1958</a>)</span> available in the plm package for demostration which are based on similar examples in <span class="citation">Croissant &amp; Millo (<a href="#ref-Croissant2008" role="doc-biblioref">2008</a>)</span> and <span class="citation">Kleiber &amp; Zeileis (<a href="#ref-Kleiber2008" role="doc-biblioref">2008</a>)</span>.</p></li>
+</ul>
+<div id="fixed-and-random-effects-using-the-plm-package" class="section level2 hasAnchor" number="9.1">
+<h2><span class="header-section-number">9.1</span> Fixed and Random effects using the <code>plm</code> package<a href="062-regression_1.html#fixed-and-random-effects-using-the-plm-package" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li><p>The argument in is set to for fixed effects model and for a random effects model.</p></li>
+<li><p>The data can be converted to the required panel format using function, which transforms a regular data frame object into a panel data structure.</p></li>
+<li><p> is the main argument in the function which specifies the panel structure, i.e, columns with individual and time variables.</p></li>
+</ul>
+<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="062-regression_1.html#cb272-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Grunfeld Data representation as per pdata.frame function</span></span>
+<span id="cb272-2"><a href="062-regression_1.html#cb272-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plm)</span>
+<span id="cb272-3"><a href="062-regression_1.html#cb272-3" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(Grunfeld)  <span class="co">#load data</span></span>
+<span id="cb272-4"><a href="062-regression_1.html#cb272-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(Grunfeld)  <span class="co">#data snapshot</span></span></code></pre></div>
+<pre><code>  firm year   inv  value capital
+1    1 1935 317.6 3078.5     2.8
+2    1 1936 391.8 4661.7    52.6
+3    1 1937 410.6 5387.1   156.9
+4    1 1938 257.7 2792.2   209.2
+5    1 1939 330.8 4313.2   203.4
+6    1 1940 461.2 4643.9   207.2</code></pre>
+<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="062-regression_1.html#cb274-1" aria-hidden="true" tabindex="-1"></a>pdata1 <span class="ot">=</span> <span class="fu">pdata.frame</span>(Grunfeld, <span class="at">index =</span> <span class="fu">c</span>(<span class="st">&quot;firm&quot;</span>, <span class="st">&quot;year&quot;</span>))</span>
+<span id="cb274-2"><a href="062-regression_1.html#cb274-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pdata1)</span></code></pre></div>
+<pre><code>       firm year   inv  value capital
+1-1935    1 1935 317.6 3078.5     2.8
+1-1936    1 1936 391.8 4661.7    52.6
+1-1937    1 1937 410.6 5387.1   156.9
+1-1938    1 1938 257.7 2792.2   209.2
+1-1939    1 1939 330.8 4313.2   203.4
+1-1940    1 1940 461.2 4643.9   207.2</code></pre>
+</div>
+<div id="fixed-effects-model" class="section level2 hasAnchor" number="9.2">
+<h2><span class="header-section-number">9.2</span> Fixed Effects Model<a href="062-regression_1.html#fixed-effects-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>We can use the plm package to replicate the following investment equation as considered by Grunfeld (Grunfeld, 1958).</li>
+</ul>
+<p><span class="math display" id="eq:fixef">\[\begin{equation}
+
+I_{it}=\alpha+\beta_{1}F_{it}+\beta_{2}C_{it}+\varepsilon_{it}
+\tag{9.1}
+
+\end{equation}\]</span></p>
+<p>The model in equation-1 is a one-way panel regression model which attempts to quantify the dependence of real gross investment (<span class="math inline">\(I_{it}\)</span>) on the real value of the company (<span class="math inline">\(F_{it}\)</span>) and real value of its capital stock (<span class="math inline">\(C_{it}\)</span>).</p>
+<ul>
+<li><span class="citation">Grunfeld (<a href="#ref-Grunfeld1958" role="doc-biblioref">1958</a>)</span> studied 10 large manufacturing firms from the United States over 20 years (1935-954). A fixed effect estimation can be obtained with the following code</li>
+</ul>
+<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="062-regression_1.html#cb276-1" aria-hidden="true" tabindex="-1"></a><span class="co"># using plm with &#39;within&#39; estimator for fixed effects</span></span>
+<span id="cb276-2"><a href="062-regression_1.html#cb276-2" aria-hidden="true" tabindex="-1"></a>fe1 <span class="ot">=</span> <span class="fu">plm</span>(inv <span class="sc">~</span> value <span class="sc">+</span> capital, <span class="at">data =</span> pdata1, <span class="at">model =</span> <span class="st">&quot;within&quot;</span>)</span>
+<span id="cb276-3"><a href="062-regression_1.html#cb276-3" aria-hidden="true" tabindex="-1"></a><span class="co"># the output can be summarised with summary</span></span>
+<span id="cb276-4"><a href="062-regression_1.html#cb276-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fe1)</span></code></pre></div>
+<pre><code>Oneway (individual) effect Within Model
+
+Call:
+plm(formula = inv ~ value + capital, data = pdata1, model = &quot;within&quot;)
+
+Balanced Panel: n = 10, T = 20, N = 200
+
+Residuals:
+      Min.    1st Qu.     Median    3rd Qu.       Max. 
+-184.00857  -17.64316    0.56337   19.19222  250.70974 
+
+Coefficients:
+        Estimate Std. Error t-value  Pr(&gt;|t|)    
+value   0.110124   0.011857  9.2879 &lt; 2.2e-16 ***
+capital 0.310065   0.017355 17.8666 &lt; 2.2e-16 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Total Sum of Squares:    2244400
+Residual Sum of Squares: 523480
+R-Squared:      0.76676
+Adj. R-Squared: 0.75311
+F-statistic: 309.014 on 2 and 188 DF, p-value: &lt; 2.22e-16</code></pre>
+<ul>
+<li><p>The summary output for the fitted model object gives details about the fitted object.</p></li>
+<li><p>The individual fixed effects can be obtained using the function , a summary method is also available as shown next</p></li>
+</ul>
+<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="062-regression_1.html#cb278-1" aria-hidden="true" tabindex="-1"></a><span class="co"># individual fixed effects</span></span>
+<span id="cb278-2"><a href="062-regression_1.html#cb278-2" aria-hidden="true" tabindex="-1"></a><span class="fu">fixef</span>(fe1)</span></code></pre></div>
+<pre><code>        1         2         3         4         5         6         7         8 
+ -70.2967  101.9058 -235.5718  -27.8093 -114.6168  -23.1613  -66.5535  -57.5457 
+        9        10 
+ -87.2223   -6.5678 </code></pre>
+<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="062-regression_1.html#cb280-1" aria-hidden="true" tabindex="-1"></a><span class="co"># summary</span></span>
+<span id="cb280-2"><a href="062-regression_1.html#cb280-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">fixef</span>(fe1))</span></code></pre></div>
+<pre><code>    Estimate Std. Error t-value  Pr(&gt;|t|)    
+1   -70.2967    49.7080 -1.4142   0.15896    
+2   101.9058    24.9383  4.0863 6.485e-05 ***
+3  -235.5718    24.4316 -9.6421 &lt; 2.2e-16 ***
+4   -27.8093    14.0778 -1.9754   0.04969 *  
+5  -114.6168    14.1654 -8.0913 7.141e-14 ***
+6   -23.1613    12.6687 -1.8282   0.06910 .  
+7   -66.5535    12.8430 -5.1821 5.629e-07 ***
+8   -57.5457    13.9931 -4.1124 5.848e-05 ***
+9   -87.2223    12.8919 -6.7657 1.635e-10 ***
+10   -6.5678    11.8269 -0.5553   0.57933    
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+</div>
+<div id="random-effects-model" class="section level2 hasAnchor" number="9.3">
+<h2><span class="header-section-number">9.3</span> Random Effects Model<a href="062-regression_1.html#random-effects-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li><p>A random effect model can be estimated by setting the argument to .</p></li>
+<li><p>There are five different methods available for estimation of the variance component (<span class="citation">Baltagi (<a href="#ref-Baltagi2005" role="doc-biblioref">2005</a>)</span>) which can be selected using the argument.</p></li>
+</ul>
+<p>• The following output is obtained using the default Swamy-Arora (<span class="citation">Swamy &amp; Arora (<a href="#ref-Swamy1972" role="doc-biblioref">1972</a>)</span>) random method.</p>
+<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="062-regression_1.html#cb282-1" aria-hidden="true" tabindex="-1"></a><span class="co"># random effect model</span></span>
+<span id="cb282-2"><a href="062-regression_1.html#cb282-2" aria-hidden="true" tabindex="-1"></a>re1 <span class="ot">=</span> <span class="fu">plm</span>(inv <span class="sc">~</span> value <span class="sc">+</span> capital, <span class="at">data =</span> pdata1, <span class="at">model =</span> <span class="st">&quot;random&quot;</span>)</span>
+<span id="cb282-3"><a href="062-regression_1.html#cb282-3" aria-hidden="true" tabindex="-1"></a><span class="co"># summary</span></span>
+<span id="cb282-4"><a href="062-regression_1.html#cb282-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(re1)</span></code></pre></div>
+<pre><code>Oneway (individual) effect Random Effect Model 
+   (Swamy-Arora&#39;s transformation)
+
+Call:
+plm(formula = inv ~ value + capital, data = pdata1, model = &quot;random&quot;)
+
+Balanced Panel: n = 10, T = 20, N = 200
+
+Effects:
+                  var std.dev share
+idiosyncratic 2784.46   52.77 0.282
+individual    7089.80   84.20 0.718
+theta: 0.8612
+
+Residuals:
+     Min.   1st Qu.    Median   3rd Qu.      Max. 
+-177.6063  -19.7350    4.6851   19.5105  252.8743 
+
+Coefficients:
+              Estimate Std. Error z-value Pr(&gt;|z|)    
+(Intercept) -57.834415  28.898935 -2.0013  0.04536 *  
+value         0.109781   0.010493 10.4627  &lt; 2e-16 ***
+capital       0.308113   0.017180 17.9339  &lt; 2e-16 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Total Sum of Squares:    2381400
+Residual Sum of Squares: 548900
+R-Squared:      0.7695
+Adj. R-Squared: 0.76716
+Chisq: 657.674 on 2 DF, p-value: &lt; 2.22e-16</code></pre>
+</div>
+<div id="testing" class="section level2 hasAnchor" number="9.4">
+<h2><span class="header-section-number">9.4</span> Testing<a href="062-regression_1.html#testing" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="panel-or-ols" class="section level3 hasAnchor" number="9.4.1">
+<h3><span class="header-section-number">9.4.1</span> Panel or OLS<a href="062-regression_1.html#panel-or-ols" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><p>It is important to test if the panel regression model is signficantly different from the OLS model. In other words, do we need a panel model or OLS model is good enough?</p></li>
+<li><p>The function in the plm package can be used to test a fitted fixed effect model against a fitted OLS model to check which regression is a better choice.</p></li>
+</ul>
+<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="062-regression_1.html#cb284-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Simple OLS (without the intercept) using pooling</span></span>
+<span id="cb284-2"><a href="062-regression_1.html#cb284-2" aria-hidden="true" tabindex="-1"></a>ols1 <span class="ot">=</span> <span class="fu">plm</span>(inv <span class="sc">~</span> value <span class="sc">+</span> capital <span class="sc">-</span> <span class="dv">1</span>, <span class="at">data =</span> pdata1, <span class="at">model =</span> <span class="st">&quot;pooling&quot;</span>)</span>
+<span id="cb284-3"><a href="062-regression_1.html#cb284-3" aria-hidden="true" tabindex="-1"></a><span class="co"># summary of results</span></span>
+<span id="cb284-4"><a href="062-regression_1.html#cb284-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols1)</span></code></pre></div>
+<pre><code>Pooling Model
+
+Call:
+plm(formula = inv ~ value + capital - 1, data = pdata1, model = &quot;pooling&quot;)
+
+Balanced Panel: n = 10, T = 20, N = 200
+
+Residuals:
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+-270.32  -51.32  -23.69  -21.04   -4.51  476.74 
+
+Coefficients:
+         Estimate Std. Error t-value  Pr(&gt;|t|)    
+value   0.1076384  0.0058256 18.4769 &lt; 2.2e-16 ***
+capital 0.1832062  0.0242750  7.5471 1.587e-12 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Total Sum of Squares:    9359900
+Residual Sum of Squares: 1935600
+R-Squared:      0.8113
+Adj. R-Squared: 0.81035
+F-statistic: 597.659 on 2 and 198 DF, p-value: &lt; 2.22e-16</code></pre>
+<ul>
+<li>The above OLS model can now be tested against the fixed effect model to check for the best fit.</li>
+</ul>
+<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="062-regression_1.html#cb286-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Testing for the better model, null: OLS is a better</span></span>
+<span id="cb286-2"><a href="062-regression_1.html#cb286-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pFtest</span>(fe1, ols1)</span></code></pre></div>
+<pre><code>
+    F test for individual effects
+
+data:  inv ~ value + capital
+F = 50.714, df1 = 10, df2 = 188, p-value &lt; 2.2e-16
+alternative hypothesis: significant effects</code></pre>
+<ul>
+<li>Similar to the fixed effect and OLS comparison one can also check if the random effects are needed using one of the available Langrange multiplier tests (<span class="citation">Breusch &amp; Pagan (<a href="#ref-Breusch1980" role="doc-biblioref">1980</a>)</span> test here) test in function as illustrated below</li>
+</ul>
+<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="062-regression_1.html#cb288-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plmtest using the Breuch-Pagan method</span></span>
+<span id="cb288-2"><a href="062-regression_1.html#cb288-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plmtest</span>(ols1, <span class="at">type =</span> <span class="fu">c</span>(<span class="st">&quot;bp&quot;</span>))</span></code></pre></div>
+<pre><code>
+    Lagrange Multiplier Test - (Breusch-Pagan)
+
+data:  inv ~ value + capital - 1
+chisq = 727.84, df = 1, p-value &lt; 2.2e-16
+alternative hypothesis: significant effects</code></pre>
+<ul>
+<li>A p-value&lt;0.05 in the above test indicates that the Random Effect model is required.</li>
+</ul>
+</div>
+<div id="fixed-effect-or-random-effect" class="section level3 hasAnchor" number="9.4.2">
+<h3><span class="header-section-number">9.4.2</span> Fixed Effect or Random Effect<a href="062-regression_1.html#fixed-effect-or-random-effect" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>The Hausman test (<span class="citation">Hausman (<a href="#ref-Hausman1978" role="doc-biblioref">1978</a>)</span>) is the standard approach to test for model specification which can be computed using the function in the plm package.</li>
+</ul>
+<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="062-regression_1.html#cb290-1" aria-hidden="true" tabindex="-1"></a><span class="co"># phtest using the fitted models in fe1 and re1</span></span>
+<span id="cb290-2"><a href="062-regression_1.html#cb290-2" aria-hidden="true" tabindex="-1"></a><span class="fu">phtest</span>(fe1, re1)</span></code></pre></div>
+<pre><code>
+    Hausman Test
+
+data:  inv ~ value + capital
+chisq = 2.3304, df = 2, p-value = 0.3119
+alternative hypothesis: one model is inconsistent</code></pre>
+<ul>
+<li>A p-value&lt;0.05 suggests that the fixed effect model is appropriate so in this case the random effect model should be used.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<h3>References<a href="07-references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="refs" class="references csl-bib-body hanging-indent" line-spacing="2">
+<div id="ref-Baltagi2005" class="csl-entry">
+Baltagi, B. (2005). <em>Econometric analysis of panel data</em> (3rd ed.). John Wiley &amp; Sons.
+</div>
+<div id="ref-Breusch1980" class="csl-entry">
+Breusch, T. S., &amp; Pagan, A. R. (1980). The lagrange multiplier test and its applications to model specification in econometrics. <em>The Review of Economic Studies</em>, 239–253.
+</div>
+<div id="ref-Croissant2008" class="csl-entry">
+Croissant, Y., &amp; Millo, G. (2008). Panel data econometrics in r: The plm package. <em>Journal of Statistical Software</em>, <em>27</em>(2), 1–43.
+</div>
+<div id="ref-Fama1992" class="csl-entry">
+Fama, E. F., &amp; French, K. R. (1992). The cross-section of expected stock returns. <em>The Journal of Finance</em>, <em>47</em>(2), 427–465.
+</div>
+<div id="ref-Fama1993" class="csl-entry">
+Fama, E. F., &amp; French, K. R. (1993). Common risk factors in the returns on stocks and bonds. <em>Journal of Financial Economics</em>, <em>33</em>(1), 3–56.
+</div>
+<div id="ref-Greene2008" class="csl-entry">
+Greene, W. H. (2008). <em>Econometric analysis</em>. Granite Hill Publishers.
+</div>
+<div id="ref-Grunfeld1958" class="csl-entry">
+Grunfeld, Y. (1958). <em>The determinants of corporate investment: A study of a number of large corporations in the united states</em> (PhD thesis). Department of Photoduplication, University of Chicago Library.
+</div>
+<div id="ref-Hausman1978" class="csl-entry">
+Hausman, J. (1978). Specification tests in econometrics. <em>Econometrica</em>.
+</div>
+<div id="ref-Kleiber2008" class="csl-entry">
+Kleiber, C., &amp; Zeileis, A. (2008). <em>Applied econometrics with r</em>. Springer Science &amp; Business Media.
+</div>
+<div id="ref-Stock2012" class="csl-entry">
+Stock, J. H., &amp; Watson, M. W. (2012). <em>Introduction to econometrics: Global edition</em>. Pearson Education.
+</div>
+<div id="ref-Swamy1972" class="csl-entry">
+Swamy, P., &amp; Arora, S. S. (1972). The exact finite sample properties of the estimators of coefficients in the error components regression models. <em>Econometrica: Journal of the Econometric Society</em>, 261–275.
+</div>
+<div id="ref-Wooldridge2010" class="csl-entry">
+Wooldridge, J. M. (2010). <em>Econometric analysis of cross section and panel data</em>. MIT press.
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="06-plotsRmd.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="01-Part_1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

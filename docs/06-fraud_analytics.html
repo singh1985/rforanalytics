@@ -1,0 +1,1374 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Topic 16 Financial Fraud Analytics | R for Data Analytics</title>
+  <meta name="description" content="This is a collection of examples on using R for Data Analytics" />
+  <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Topic 16 Financial Fraud Analytics | R for Data Analytics" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="This is a collection of examples on using R for Data Analytics" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Topic 16 Financial Fraud Analytics | R for Data Analytics" />
+  
+  <meta name="twitter:description" content="This is a collection of examples on using R for Data Analytics" />
+  
+
+<meta name="author" content="Abhay Singh" />
+
+
+<meta name="date" content="2022-12-07" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  <link rel="shortcut icon" href="rforda.png" type="image/x-icon" />
+<link rel="prev" href="04-Part_2.html"/>
+<link rel="next" href="05-method2.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<link href="libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.10.1/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
+<link href="libs/wordcloud2-0.0.1/wordcloud.css" rel="stylesheet" />
+<script src="libs/wordcloud2-0.0.1/wordcloud2-all.js"></script>
+<script src="libs/wordcloud2-0.0.1/hover.js"></script>
+<script src="libs/wordcloud2-binding-0.2.1/wordcloud2.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">R for Data Analytics</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#about-the-author"><i class="fa fa-check"></i>About the author</a></li>
+<li class="chapter" data-level="" data-path="01-intro.html"><a href="01-intro.html"><i class="fa fa-check"></i>Part I</a></li>
+<li class="chapter" data-level="1" data-path="01-intro.html"><a href="01-intro.html#what-is-r"><i class="fa fa-check"></i><b>1</b> What is R?</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="01-intro.html"><a href="01-intro.html#why-should-we-learn-r"><i class="fa fa-check"></i><b>1.1</b> Why should we learn R?</a></li>
+<li class="chapter" data-level="1.2" data-path="01-intro.html"><a href="01-intro.html#Rinstall"><i class="fa fa-check"></i><b>1.2</b> Installing R and RStudio on Windows</a></li>
+<li class="chapter" data-level="1.3" data-path="01-intro.html"><a href="01-intro.html#rstudio-guiide"><i class="fa fa-check"></i><b>1.3</b> RStudio GUI/IDE</a></li>
+<li class="chapter" data-level="1.4" data-path="01-intro.html"><a href="01-intro.html#installing-packages"><i class="fa fa-check"></i><b>1.4</b> Installing Packages</a></li>
+<li class="chapter" data-level="1.5" data-path="01-intro.html"><a href="01-intro.html#getting-help"><i class="fa fa-check"></i><b>1.5</b> Getting Help</a></li>
+<li class="chapter" data-level="1.6" data-path="01-intro.html"><a href="01-intro.html#task-views-in-r-introduction-installation"><i class="fa fa-check"></i><b>1.6</b> Task Views in R-Introduction &amp; Installation</a></li>
+<li class="chapter" data-level="1.7" data-path="01-intro.html"><a href="01-intro.html#r-core-packages"><i class="fa fa-check"></i><b>1.7</b> R core packages</a></li>
+<li class="chapter" data-level="1.8" data-path="01-intro.html"><a href="01-intro.html#example-1-hello-r"><i class="fa fa-check"></i><b>1.8</b> Example-1 Hello R!</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="02-data.html"><a href="02-data.html"><i class="fa fa-check"></i><b>2</b> R Data Types and Data Structures</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="02-data.html"><a href="02-data.html#data-types"><i class="fa fa-check"></i><b>2.1</b> Data Types</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="02-data.html"><a href="02-data.html#double"><i class="fa fa-check"></i><b>2.1.1</b> Double</a></li>
+<li class="chapter" data-level="2.1.2" data-path="02-data.html"><a href="02-data.html#integer"><i class="fa fa-check"></i><b>2.1.2</b> Integer</a></li>
+<li class="chapter" data-level="2.1.3" data-path="02-data.html"><a href="02-data.html#logical"><i class="fa fa-check"></i><b>2.1.3</b> Logical</a></li>
+<li class="chapter" data-level="2.1.4" data-path="02-data.html"><a href="02-data.html#character"><i class="fa fa-check"></i><b>2.1.4</b> Character</a></li>
+<li class="chapter" data-level="2.1.5" data-path="02-data.html"><a href="02-data.html#factor"><i class="fa fa-check"></i><b>2.1.5</b> Factor</a></li>
+<li class="chapter" data-level="2.1.6" data-path="02-data.html"><a href="02-data.html#date-time"><i class="fa fa-check"></i><b>2.1.6</b> Date &amp; Time</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="02-data.html"><a href="02-data.html#data-structures-in-r"><i class="fa fa-check"></i><b>2.2</b> Data Structures in R</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="02-data.html"><a href="02-data.html#vector"><i class="fa fa-check"></i><b>2.2.1</b> Vector</a></li>
+<li class="chapter" data-level="2.2.2" data-path="02-data.html"><a href="02-data.html#matrices"><i class="fa fa-check"></i><b>2.2.2</b> Matrices</a></li>
+<li class="chapter" data-level="2.2.3" data-path="02-data.html"><a href="02-data.html#arrays"><i class="fa fa-check"></i><b>2.2.3</b> Arrays</a></li>
+<li class="chapter" data-level="2.2.4" data-path="02-data.html"><a href="02-data.html#data-frames"><i class="fa fa-check"></i><b>2.2.4</b> Data Frames</a></li>
+<li class="chapter" data-level="2.2.5" data-path="02-data.html"><a href="02-data.html#lists"><i class="fa fa-check"></i><b>2.2.5</b> Lists</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="02-data.html"><a href="02-data.html#data-importexport-in-r"><i class="fa fa-check"></i><b>2.3</b> Data Import/Export in R</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="02-data.html"><a href="02-data.html#reading-data-from-a-text-file"><i class="fa fa-check"></i><b>2.3.1</b> Reading Data from a Text File</a></li>
+<li class="chapter" data-level="2.3.2" data-path="02-data.html"><a href="02-data.html#reading-data-from-csv-files"><i class="fa fa-check"></i><b>2.3.2</b> Reading Data from CSV files</a></li>
+<li class="chapter" data-level="2.3.3" data-path="02-data.html"><a href="02-data.html#reading-from-excel-files"><i class="fa fa-check"></i><b>2.3.3</b> Reading from Excel Files</a></li>
+<li class="chapter" data-level="2.3.4" data-path="02-data.html"><a href="02-data.html#reading-from-data-files-from-other-statistical-systems"><i class="fa fa-check"></i><b>2.3.4</b> Reading from Data Files from other Statistical Systems</a></li>
+<li class="chapter" data-level="2.3.5" data-path="02-data.html"><a href="02-data.html#importing-data-using-rstudio"><i class="fa fa-check"></i><b>2.3.5</b> Importing Data using RStudio</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="03-programming_data_preprocessing.html"><a href="03-programming_data_preprocessing.html"><i class="fa fa-check"></i><b>3</b> R Programming - Short Introduction</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="03-programming_data_preprocessing.html"><a href="03-programming_data_preprocessing.html#programming-control-flow"><i class="fa fa-check"></i><b>3.1</b> Programming Control Flow</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="03-programming_data_preprocessing.html"><a href="03-programming_data_preprocessing.html#if-else-conditional-statements"><i class="fa fa-check"></i><b>3.1.1</b> if-else Conditional Statements</a></li>
+<li class="chapter" data-level="3.1.2" data-path="03-programming_data_preprocessing.html"><a href="03-programming_data_preprocessing.html#loops"><i class="fa fa-check"></i><b>3.1.2</b> Loops</a></li>
+<li class="chapter" data-level="3.1.3" data-path="03-programming_data_preprocessing.html"><a href="03-programming_data_preprocessing.html#mathttwhile-loop"><i class="fa fa-check"></i><b>3.1.3</b> <span class="math inline">\(\mathtt{while}\)</span> loop</a></li>
+<li class="chapter" data-level="3.1.4" data-path="03-programming_data_preprocessing.html"><a href="03-programming_data_preprocessing.html#mathttrepeat-loop"><i class="fa fa-check"></i><b>3.1.4</b> <span class="math inline">\(\mathtt{repeat}\)</span> loop</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="03-programming_data_preprocessing.html"><a href="03-programming_data_preprocessing.html#functions-in-r"><i class="fa fa-check"></i><b>3.2</b> Functions in R</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="04-Data_Exploration.html"><a href="04-Data_Exploration.html"><i class="fa fa-check"></i><b>4</b> Data Exploration</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="04-Data_Exploration.html"><a href="04-Data_Exploration.html#data-preprocessing"><i class="fa fa-check"></i><b>4.1</b> Data Preprocessing</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="04-Data_Exploration.html"><a href="04-Data_Exploration.html#extracting-data"><i class="fa fa-check"></i><b>4.1.1</b> Extracting Data</a></li>
+<li class="chapter" data-level="4.1.2" data-path="04-Data_Exploration.html"><a href="04-Data_Exploration.html#combining-data-frames"><i class="fa fa-check"></i><b>4.1.2</b> Combining Data Frames</a></li>
+<li class="chapter" data-level="4.1.3" data-path="04-Data_Exploration.html"><a href="04-Data_Exploration.html#sub-setting-and-logical-data-selection"><i class="fa fa-check"></i><b>4.1.3</b> Sub setting and Logical Data Selection</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="04-Data_Exploration.html"><a href="04-Data_Exploration.html#data-transformation-from-wide-to-long-or-vice-versa"><i class="fa fa-check"></i><b>4.2</b> Data Transformation from Wide to Long (or vice versa)</a></li>
+<li class="chapter" data-level="4.3" data-path="04-Data_Exploration.html"><a href="04-Data_Exploration.html#summary-statistics"><i class="fa fa-check"></i><b>4.3</b> Summary Statistics</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="04-Data_Exploration.html"><a href="04-Data_Exploration.html#example-descriptive-statistics-of-stock-returns"><i class="fa fa-check"></i><b>4.3.1</b> Example-Descriptive Statistics of Stock Returns</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="05-plots.html"><a href="05-plots.html"><i class="fa fa-check"></i><b>5</b> Graphics in R (Part-I)</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="05-plots.html"><a href="05-plots.html#basic-plots-in-r"><i class="fa fa-check"></i><b>5.1</b> Basic Plots in R</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="05-plots.html"><a href="05-plots.html#scatter-plot"><i class="fa fa-check"></i><b>5.1.1</b> Scatter Plot</a></li>
+<li class="chapter" data-level="5.1.2" data-path="05-plots.html"><a href="05-plots.html#line-plot"><i class="fa fa-check"></i><b>5.1.2</b> Line Plot</a></li>
+<li class="chapter" data-level="5.1.3" data-path="05-plots.html"><a href="05-plots.html#bar-plot"><i class="fa fa-check"></i><b>5.1.3</b> Bar Plot</a></li>
+<li class="chapter" data-level="5.1.4" data-path="05-plots.html"><a href="05-plots.html#pie-chart"><i class="fa fa-check"></i><b>5.1.4</b> Pie Chart</a></li>
+<li class="chapter" data-level="5.1.5" data-path="05-plots.html"><a href="05-plots.html#scatter-plot-1"><i class="fa fa-check"></i><b>5.1.5</b> Scatter Plot</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="05-plots.html"><a href="05-plots.html#r-graphical-parameters"><i class="fa fa-check"></i><b>5.2</b> R Graphical Parameters</a></li>
+<li class="chapter" data-level="5.3" data-path="05-plots.html"><a href="05-plots.html#introduction-to-ggplot2"><i class="fa fa-check"></i><b>5.3</b> Introduction to ggplot2</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="05-plots.html"><a href="05-plots.html#mathttqplot"><i class="fa fa-check"></i><b>5.3.1</b> <span class="math inline">\(\mathtt{qplot}\)</span></a></li>
+<li class="chapter" data-level="5.3.2" data-path="05-plots.html"><a href="05-plots.html#layered-graphics-using-mathttggplot"><i class="fa fa-check"></i><b>5.3.2</b> Layered graphics using <span class="math inline">\(\mathtt{ggplot}\)</span></a></li>
+<li class="chapter" data-level="5.3.3" data-path="05-plots.html"><a href="05-plots.html#arranging-plots-using-gridextra"><i class="fa fa-check"></i><b>5.3.3</b> Arranging plots using gridExtra</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="06-plotsRmd.html"><a href="06-plotsRmd.html"><i class="fa fa-check"></i><b>6</b> Graphics in R (Part-II)</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="06-plotsRmd.html"><a href="06-plotsRmd.html#interactive-plots-using-plotly"><i class="fa fa-check"></i><b>6.1</b> Interactive Plots using Plotly</a></li>
+<li class="chapter" data-level="6.2" data-path="06-plotsRmd.html"><a href="06-plotsRmd.html#animation-using-gganimate"><i class="fa fa-check"></i><b>6.2</b> Animation using gganimate</a></li>
+<li class="chapter" data-level="6.3" data-path="06-plotsRmd.html"><a href="06-plotsRmd.html#plot-maps"><i class="fa fa-check"></i><b>6.3</b> Plot Maps</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="062-regression_1.html"><a href="062-regression_1.html"><i class="fa fa-check"></i>Part II</a></li>
+<li class="chapter" data-level="7" data-path="062-regression_1.html"><a href="062-regression_1.html#linear-regression"><i class="fa fa-check"></i><b>7</b> Linear Regression</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="062-regression_1.html"><a href="062-regression_1.html#investment-beta-using-r-single-index-model"><i class="fa fa-check"></i><b>7.1</b> Investment <span class="math inline">\(\beta\)</span> using R (Single Index Model)</a></li>
+<li class="chapter" data-level="7.2" data-path="062-regression_1.html"><a href="062-regression_1.html#data-preprocessing-1"><i class="fa fa-check"></i><b>7.2</b> Data preprocessing</a></li>
+<li class="chapter" data-level="7.3" data-path="062-regression_1.html"><a href="062-regression_1.html#visualisation"><i class="fa fa-check"></i><b>7.3</b> Visualisation</a></li>
+<li class="chapter" data-level="7.4" data-path="062-regression_1.html"><a href="062-regression_1.html#regression-analysis-using-lm"><i class="fa fa-check"></i><b>7.4</b> Regression analysis using lm</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="062-regression_1.html"><a href="062-regression_1.html#multiple-regression"><i class="fa fa-check"></i><b>8</b> Multiple Regression</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="062-regression_1.html"><a href="062-regression_1.html#fama-french-three-factor-model"><i class="fa fa-check"></i><b>8.1</b> Fama-French Three Factor Model</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="062-regression_1.html"><a href="062-regression_1.html#data-preprocessing-2"><i class="fa fa-check"></i><b>8.1.1</b> Data Preprocessing</a></li>
+<li class="chapter" data-level="8.1.2" data-path="062-regression_1.html"><a href="062-regression_1.html#regression-analysis"><i class="fa fa-check"></i><b>8.1.2</b> Regression Analysis</a></li>
+<li class="chapter" data-level="8.1.3" data-path="062-regression_1.html"><a href="062-regression_1.html#visualisation-1"><i class="fa fa-check"></i><b>8.1.3</b> Visualisation</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="062-regression_1.html"><a href="062-regression_1.html#panel-regression"><i class="fa fa-check"></i><b>9</b> Panel Regression</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="062-regression_1.html"><a href="062-regression_1.html#fixed-and-random-effects-using-the-plm-package"><i class="fa fa-check"></i><b>9.1</b> Fixed and Random effects using the <code>plm</code> package</a></li>
+<li class="chapter" data-level="9.2" data-path="062-regression_1.html"><a href="062-regression_1.html#fixed-effects-model"><i class="fa fa-check"></i><b>9.2</b> Fixed Effects Model</a></li>
+<li class="chapter" data-level="9.3" data-path="062-regression_1.html"><a href="062-regression_1.html#random-effects-model"><i class="fa fa-check"></i><b>9.3</b> Random Effects Model</a></li>
+<li class="chapter" data-level="9.4" data-path="062-regression_1.html"><a href="062-regression_1.html#testing"><i class="fa fa-check"></i><b>9.4</b> Testing</a>
+<ul>
+<li class="chapter" data-level="9.4.1" data-path="062-regression_1.html"><a href="062-regression_1.html#panel-or-ols"><i class="fa fa-check"></i><b>9.4.1</b> Panel or OLS</a></li>
+<li class="chapter" data-level="9.4.2" data-path="062-regression_1.html"><a href="062-regression_1.html#fixed-effect-or-random-effect"><i class="fa fa-check"></i><b>9.4.2</b> Fixed Effect or Random Effect</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="01-Part_1.html"><a href="01-Part_1.html"><i class="fa fa-check"></i><b>10</b> Technical Analysis using R</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="01-Part_1.html"><a href="01-Part_1.html#technical-analysis-ta-using-r"><i class="fa fa-check"></i><b>10.1</b> Technical Analysis (TA) using R</a></li>
+<li class="chapter" data-level="10.2" data-path="01-Part_1.html"><a href="01-Part_1.html#technical-charts"><i class="fa fa-check"></i><b>10.2</b> Technical Charts</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="01-Part_1.html"><a href="01-Part_1.html#candlesticks-and-ohlc-chart"><i class="fa fa-check"></i><b>10.2.1</b> Candlesticks and OHLC chart</a></li>
+<li class="chapter" data-level="10.2.2" data-path="01-Part_1.html"><a href="01-Part_1.html#line-chart"><i class="fa fa-check"></i><b>10.2.2</b> Line chart</a></li>
+<li class="chapter" data-level="10.2.3" data-path="01-Part_1.html"><a href="01-Part_1.html#candlestick-chart"><i class="fa fa-check"></i><b>10.2.3</b> Candlestick chart</a></li>
+<li class="chapter" data-level="10.2.4" data-path="01-Part_1.html"><a href="01-Part_1.html#add-technical-indicators"><i class="fa fa-check"></i><b>10.2.4</b> Add technical indicators</a></li>
+<li class="chapter" data-level="10.2.5" data-path="01-Part_1.html"><a href="01-Part_1.html#adding-indicators-sequentially"><i class="fa fa-check"></i><b>10.2.5</b> Adding indicators sequentially</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="01-Part_1.html"><a href="01-Part_1.html#forecasting-var-using-garch-models"><i class="fa fa-check"></i><b>11</b> Forecasting VaR using GARCH Models</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="01-Part_1.html"><a href="01-Part_1.html#value-at-risk"><i class="fa fa-check"></i><b>11.1</b> Value at Risk</a></li>
+<li class="chapter" data-level="11.2" data-path="01-Part_1.html"><a href="01-Part_1.html#volatility-modelling-forecasting-using-garch"><i class="fa fa-check"></i><b>11.2</b> Volatility Modelling &amp; Forecasting using GARCH</a></li>
+<li class="chapter" data-level="11.3" data-path="01-Part_1.html"><a href="01-Part_1.html#garch11-to-forecast-var"><i class="fa fa-check"></i><b>11.3</b> GARCH(1,1) to forecast VaR</a></li>
+<li class="chapter" data-level="11.4" data-path="01-Part_1.html"><a href="01-Part_1.html#var-forecasts-using-out-of-sample"><i class="fa fa-check"></i><b>11.4</b> VaR forecasts using out of sample</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="01-Part_2_portfolio.html"><a href="01-Part_2_portfolio.html"><i class="fa fa-check"></i><b>12</b> Portfolio Modelling using R</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="01-Part_2_portfolio.html"><a href="01-Part_2_portfolio.html#portfolio-analysis-quick-intro"><i class="fa fa-check"></i><b>12.1</b> Portfolio Analysis (Quick Intro)</a></li>
+<li class="chapter" data-level="12.2" data-path="01-Part_2_portfolio.html"><a href="01-Part_2_portfolio.html#mean-variance-portfolio-important-concepts"><i class="fa fa-check"></i><b>12.2</b> Mean Variance Portfolio: Important concepts</a>
+<ul>
+<li class="chapter" data-level="" data-path="01-Part_2_portfolio.html"><a href="01-Part_2_portfolio.html#expected-return"><i class="fa fa-check"></i>Expected Return</a></li>
+<li class="chapter" data-level="" data-path="01-Part_2_portfolio.html"><a href="01-Part_2_portfolio.html#risk"><i class="fa fa-check"></i>Risk</a></li>
+<li class="chapter" data-level="" data-path="01-Part_2_portfolio.html"><a href="01-Part_2_portfolio.html#covariance-of-returns"><i class="fa fa-check"></i>Covariance of Returns</a></li>
+<li class="chapter" data-level="" data-path="01-Part_2_portfolio.html"><a href="01-Part_2_portfolio.html#correlation"><i class="fa fa-check"></i>Correlation</a></li>
+<li class="chapter" data-level="" data-path="01-Part_2_portfolio.html"><a href="01-Part_2_portfolio.html#portfolio-return"><i class="fa fa-check"></i>Portfolio Return</a></li>
+<li class="chapter" data-level="" data-path="01-Part_2_portfolio.html"><a href="01-Part_2_portfolio.html#portfolio-risk"><i class="fa fa-check"></i>Portfolio Risk</a></li>
+<li class="chapter" data-level="" data-path="01-Part_2_portfolio.html"><a href="01-Part_2_portfolio.html#portfolio-risk-for-n-assets"><i class="fa fa-check"></i>Portfolio Risk for <em>N</em> Assets</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="01-Part_2_portfolio.html"><a href="01-Part_2_portfolio.html#diversification-markowitz-minimum-variance-portfolio"><i class="fa fa-check"></i><b>12.3</b> Diversification &amp; Markowitz Minimum Variance Portfolio</a></li>
+<li class="chapter" data-level="12.4" data-path="01-Part_2_portfolio.html"><a href="01-Part_2_portfolio.html#minimum-variance-portfolio"><i class="fa fa-check"></i><b>12.4</b> Minimum Variance Portfolio</a>
+<ul>
+<li class="chapter" data-level="12.4.1" data-path="01-Part_2_portfolio.html"><a href="01-Part_2_portfolio.html#efficient-weights-for-two-assets"><i class="fa fa-check"></i><b>12.4.1</b> Efficient Weights for Two Assets</a></li>
+<li class="chapter" data-level="12.4.2" data-path="01-Part_2_portfolio.html"><a href="01-Part_2_portfolio.html#portfolio-with-n-risky-assets"><i class="fa fa-check"></i><b>12.4.2</b> Portfolio with N Risky Assets</a></li>
+</ul></li>
+<li class="chapter" data-level="12.5" data-path="01-Part_2_portfolio.html"><a href="01-Part_2_portfolio.html#using-r-to-construct-multi-asset-portfolio"><i class="fa fa-check"></i><b>12.5</b> Using R to Construct Multi-Asset Portfolio</a>
+<ul>
+<li class="chapter" data-level="12.5.1" data-path="01-Part_2_portfolio.html"><a href="01-Part_2_portfolio.html#data"><i class="fa fa-check"></i><b>12.5.1</b> Data</a></li>
+<li class="chapter" data-level="12.5.2" data-path="01-Part_2_portfolio.html"><a href="01-Part_2_portfolio.html#portfolios-with-random-weights"><i class="fa fa-check"></i><b>12.5.2</b> Portfolios with random weights</a></li>
+</ul></li>
+<li class="chapter" data-level="12.6" data-path="01-Part_2_portfolio.html"><a href="01-Part_2_portfolio.html#efficient-minimum-variance-portfolio-using-r-packages"><i class="fa fa-check"></i><b>12.6</b> Efficient (Minimum Variance) Portfolio using R packages</a>
+<ul>
+<li class="chapter" data-level="12.6.1" data-path="01-Part_2_portfolio.html"><a href="01-Part_2_portfolio.html#minimum-variance-and-portfolio-for-a-given-level-of-return"><i class="fa fa-check"></i><b>12.6.1</b> Minimum Variance and portfolio for a given level of return</a></li>
+<li class="chapter" data-level="12.6.2" data-path="01-Part_2_portfolio.html"><a href="01-Part_2_portfolio.html#portfolio-with-box-constraints"><i class="fa fa-check"></i><b>12.6.2</b> Portfolio with Box Constraints</a></li>
+</ul></li>
+<li class="chapter" data-level="12.7" data-path="01-Part_2_portfolio.html"><a href="01-Part_2_portfolio.html#evaluating-portfoios-risk-adjusted-performance"><i class="fa fa-check"></i><b>12.7</b> Evaluating Portfoios: Risk Adjusted Performance</a>
+<ul>
+<li class="chapter" data-level="12.7.1" data-path="01-Part_2_portfolio.html"><a href="01-Part_2_portfolio.html#sharpe-ratio"><i class="fa fa-check"></i><b>12.7.1</b> Sharpe Ratio</a></li>
+<li class="chapter" data-level="12.7.2" data-path="01-Part_2_portfolio.html"><a href="01-Part_2_portfolio.html#roys-safety-ratio"><i class="fa fa-check"></i><b>12.7.2</b> Roy’s Safety Ratio</a></li>
+<li class="chapter" data-level="12.7.3" data-path="01-Part_2_portfolio.html"><a href="01-Part_2_portfolio.html#treynors-ratio"><i class="fa fa-check"></i><b>12.7.3</b> Treynor’s Ratio</a></li>
+<li class="chapter" data-level="12.7.4" data-path="01-Part_2_portfolio.html"><a href="01-Part_2_portfolio.html#sharpe-ratio-portfolio-in-r"><i class="fa fa-check"></i><b>12.7.4</b> Sharpe Ratio (Portfolio) in R</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="04-Part_3-1.html"><a href="04-Part_3-1.html"><i class="fa fa-check"></i>Part III</a></li>
+<li class="chapter" data-level="13" data-path="04-Part_3-1.html"><a href="04-Part_3-1.html#machine-learning-using-r-introduction-to-data-splitting-sampling-resampling"><i class="fa fa-check"></i><b>13</b> Machine Learning using R-Introduction to Data Splitting, Sampling &amp; Resampling</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="04-Part_3-1.html"><a href="04-Part_3-1.html#machine-learning-process-quick-intro"><i class="fa fa-check"></i><b>13.1</b> Machine Learning Process (Quick Intro)</a></li>
+<li class="chapter" data-level="13.2" data-path="04-Part_3-1.html"><a href="04-Part_3-1.html#data-splitting-sampling"><i class="fa fa-check"></i><b>13.2</b> Data Splitting: Sampling</a></li>
+<li class="chapter" data-level="13.3" data-path="04-Part_3-1.html"><a href="04-Part_3-1.html#random-sampling"><i class="fa fa-check"></i><b>13.3</b> Random Sampling</a>
+<ul>
+<li class="chapter" data-level="13.3.1" data-path="04-Part_3-1.html"><a href="04-Part_3-1.html#base-r"><i class="fa fa-check"></i><b>13.3.1</b> Base R</a></li>
+<li class="chapter" data-level="13.3.2" data-path="04-Part_3-1.html"><a href="04-Part_3-1.html#using-the-caret-package"><i class="fa fa-check"></i><b>13.3.2</b> Using the <code>caret</code> package</a></li>
+<li class="chapter" data-level="13.3.3" data-path="04-Part_3-1.html"><a href="04-Part_3-1.html#using-the-rsample-package"><i class="fa fa-check"></i><b>13.3.3</b> Using the <code>rsample</code> package</a></li>
+</ul></li>
+<li class="chapter" data-level="13.4" data-path="04-Part_3-1.html"><a href="04-Part_3-1.html#stratified-sampling"><i class="fa fa-check"></i><b>13.4</b> Stratified Sampling</a></li>
+<li class="chapter" data-level="13.5" data-path="04-Part_3-1.html"><a href="04-Part_3-1.html#resampling"><i class="fa fa-check"></i><b>13.5</b> Resampling</a></li>
+<li class="chapter" data-level="13.6" data-path="04-Part_3-1.html"><a href="04-Part_3-1.html#k-fold-cross-validation"><i class="fa fa-check"></i><b>13.6</b> K-fold Cross Validation</a>
+<ul>
+<li class="chapter" data-level="" data-path="04-Part_3-1.html"><a href="04-Part_3-1.html#k-fold-cv-in-r"><i class="fa fa-check"></i>K-fold CV in R</a></li>
+</ul></li>
+<li class="chapter" data-level="13.7" data-path="04-Part_3-1.html"><a href="04-Part_3-1.html#cv-for-time-series-data"><i class="fa fa-check"></i><b>13.7</b> CV for time series data</a>
+<ul>
+<li class="chapter" data-level="" data-path="04-Part_3-1.html"><a href="04-Part_3-1.html#cv-for-time-series-in-r"><i class="fa fa-check"></i>CV for time series in R</a></li>
+</ul></li>
+<li class="chapter" data-level="13.8" data-path="04-Part_3-1.html"><a href="04-Part_3-1.html#bootstrapping"><i class="fa fa-check"></i><b>13.8</b> Bootstrapping</a>
+<ul>
+<li class="chapter" data-level="" data-path="04-Part_3-1.html"><a href="04-Part_3-1.html#bootsrapping-in-r"><i class="fa fa-check"></i>Bootsrapping in R</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="04-Part_3_logistic.html"><a href="04-Part_3_logistic.html"><i class="fa fa-check"></i><b>14</b> Logistic Regression &amp; K-Nearest Neighbour (kNN) for Classification</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="04-Part_3_logistic.html"><a href="04-Part_3_logistic.html#logistic-regression"><i class="fa fa-check"></i><b>14.1</b> Logistic Regression</a></li>
+<li class="chapter" data-level="14.2" data-path="04-Part_3_logistic.html"><a href="04-Part_3_logistic.html#k-nearest-neighbour"><i class="fa fa-check"></i><b>14.2</b> K-Nearest Neighbour</a>
+<ul>
+<li class="chapter" data-level="" data-path="04-Part_3_logistic.html"><a href="04-Part_3_logistic.html#nearest-neighbour-classification-quick-introduction"><i class="fa fa-check"></i>Nearest Neighbour classification (Quick Introduction)</a></li>
+<li class="chapter" data-level="" data-path="04-Part_3_logistic.html"><a href="04-Part_3_logistic.html#k-nn-algorithm"><i class="fa fa-check"></i>k-NN Algorithm</a></li>
+</ul></li>
+<li class="chapter" data-level="14.3" data-path="04-Part_3_logistic.html"><a href="04-Part_3_logistic.html#forecasting-stock-price-movement-using-ml"><i class="fa fa-check"></i><b>14.3</b> Forecasting Stock Price Movement using ML</a>
+<ul>
+<li class="chapter" data-level="14.3.1" data-path="04-Part_3_logistic.html"><a href="04-Part_3_logistic.html#data-indicators"><i class="fa fa-check"></i><b>14.3.1</b> Data &amp; Indicators</a></li>
+<li class="chapter" data-level="14.3.2" data-path="04-Part_3_logistic.html"><a href="04-Part_3_logistic.html#visualise-the-data"><i class="fa fa-check"></i><b>14.3.2</b> Visualise the data</a></li>
+<li class="chapter" data-level="14.3.3" data-path="04-Part_3_logistic.html"><a href="04-Part_3_logistic.html#using-logistic-regression"><i class="fa fa-check"></i><b>14.3.3</b> Using Logistic Regression</a></li>
+<li class="chapter" data-level="14.3.4" data-path="04-Part_3_logistic.html"><a href="04-Part_3_logistic.html#using-k-nn"><i class="fa fa-check"></i><b>14.3.4</b> Using K-NN</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="04-Part_2.html"><a href="04-Part_2.html"><i class="fa fa-check"></i><b>15</b> Decision Trees using R</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="04-Part_2.html"><a href="04-Part_2.html#import-data-and-pre-processing"><i class="fa fa-check"></i><b>15.1</b> Import Data and Pre-processing</a></li>
+<li class="chapter" data-level="15.2" data-path="04-Part_2.html"><a href="04-Part_2.html#visualisation-some-features"><i class="fa fa-check"></i><b>15.2</b> Visualisation some features</a></li>
+<li class="chapter" data-level="15.3" data-path="04-Part_2.html"><a href="04-Part_2.html#creating-training-and-testing-set-and-control"><i class="fa fa-check"></i><b>15.3</b> Creating Training and Testing Set and Control</a></li>
+<li class="chapter" data-level="15.4" data-path="04-Part_2.html"><a href="04-Part_2.html#train-the-model-on-the-training-set"><i class="fa fa-check"></i><b>15.4</b> Train the model on the training set</a></li>
+<li class="chapter" data-level="15.5" data-path="04-Part_2.html"><a href="04-Part_2.html#prediction-and-accuracy"><i class="fa fa-check"></i><b>15.5</b> Prediction and Accuracy</a>
+<ul>
+<li class="chapter" data-level="15.5.1" data-path="04-Part_2.html"><a href="04-Part_2.html#model-1"><i class="fa fa-check"></i><b>15.5.1</b> Model-1</a></li>
+<li class="chapter" data-level="15.5.2" data-path="04-Part_2.html"><a href="04-Part_2.html#model-2"><i class="fa fa-check"></i><b>15.5.2</b> Model-2</a></li>
+</ul></li>
+<li class="chapter" data-level="15.6" data-path="04-Part_2.html"><a href="04-Part_2.html#feature-interpretation"><i class="fa fa-check"></i><b>15.6</b> Feature Interpretation</a></li>
+<li class="chapter" data-level="15.7" data-path="04-Part_2.html"><a href="04-Part_2.html#tree-visualisation"><i class="fa fa-check"></i><b>15.7</b> Tree visualisation</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="06-fraud_analytics.html"><a href="06-fraud_analytics.html"><i class="fa fa-check"></i><b>16</b> Financial Fraud Analytics</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="06-fraud_analytics.html"><a href="06-fraud_analytics.html#introduction-to-financial-fraud"><i class="fa fa-check"></i><b>16.1</b> Introduction to Financial Fraud</a>
+<ul>
+<li class="chapter" data-level="16.1.1" data-path="06-fraud_analytics.html"><a href="06-fraud_analytics.html#types-of-financial-fraud"><i class="fa fa-check"></i><b>16.1.1</b> Types of Financial Fraud</a></li>
+<li class="chapter" data-level="16.1.2" data-path="06-fraud_analytics.html"><a href="06-fraud_analytics.html#ml-and-ai-for-fraud-detection"><i class="fa fa-check"></i><b>16.1.2</b> ML and AI for Fraud Detection</a></li>
+<li class="chapter" data-level="16.1.3" data-path="06-fraud_analytics.html"><a href="06-fraud_analytics.html#ml-and-ai-based-fraud-detection-system-for-credit-card-fraud"><i class="fa fa-check"></i><b>16.1.3</b> ML and AI based Fraud Detection System for Credit Card Fraud</a></li>
+</ul></li>
+<li class="chapter" data-level="16.2" data-path="06-fraud_analytics.html"><a href="06-fraud_analytics.html#detecting-fraud-in-transaction-data"><i class="fa fa-check"></i><b>16.2</b> Detecting Fraud in Transaction Data</a>
+<ul>
+<li class="chapter" data-level="16.2.1" data-path="06-fraud_analytics.html"><a href="06-fraud_analytics.html#data-1"><i class="fa fa-check"></i><b>16.2.1</b> Data</a></li>
+<li class="chapter" data-level="16.2.2" data-path="06-fraud_analytics.html"><a href="06-fraud_analytics.html#summary-of-the-data"><i class="fa fa-check"></i><b>16.2.2</b> Summary of the data</a></li>
+<li class="chapter" data-level="16.2.3" data-path="06-fraud_analytics.html"><a href="06-fraud_analytics.html#visualisation-2"><i class="fa fa-check"></i><b>16.2.3</b> Visualisation</a></li>
+</ul></li>
+<li class="chapter" data-level="16.3" data-path="06-fraud_analytics.html"><a href="06-fraud_analytics.html#ml-model"><i class="fa fa-check"></i><b>16.3</b> ML Model</a>
+<ul>
+<li class="chapter" data-level="16.3.1" data-path="06-fraud_analytics.html"><a href="06-fraud_analytics.html#setup"><i class="fa fa-check"></i><b>16.3.1</b> Setup</a></li>
+<li class="chapter" data-level="16.3.2" data-path="06-fraud_analytics.html"><a href="06-fraud_analytics.html#sampling-and-resampling"><i class="fa fa-check"></i><b>16.3.2</b> Sampling and Resampling</a></li>
+<li class="chapter" data-level="16.3.3" data-path="06-fraud_analytics.html"><a href="06-fraud_analytics.html#knn"><i class="fa fa-check"></i><b>16.3.3</b> KNN</a></li>
+<li class="chapter" data-level="16.3.4" data-path="06-fraud_analytics.html"><a href="06-fraud_analytics.html#random-forests"><i class="fa fa-check"></i><b>16.3.4</b> Random Forests</a></li>
+<li class="chapter" data-level="16.3.5" data-path="06-fraud_analytics.html"><a href="06-fraud_analytics.html#nnet"><i class="fa fa-check"></i><b>16.3.5</b> NNET</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="05-method2.html"><a href="05-method2.html"><i class="fa fa-check"></i><b>17</b> Text Mining using R</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="05-method2.html"><a href="05-method2.html#introduction-to-text-mining"><i class="fa fa-check"></i><b>17.1</b> Introduction to Text Mining</a>
+<ul>
+<li class="chapter" data-level="17.1.1" data-path="05-method2.html"><a href="05-method2.html#text-data"><i class="fa fa-check"></i><b>17.1.1</b> Text Data</a></li>
+<li class="chapter" data-level="17.1.2" data-path="05-method2.html"><a href="05-method2.html#generic-text-mining-system"><i class="fa fa-check"></i><b>17.1.2</b> Generic Text Mining System</a></li>
+<li class="chapter" data-level="17.1.3" data-path="05-method2.html"><a href="05-method2.html#data-pre-processing-in-text-mining"><i class="fa fa-check"></i><b>17.1.3</b> Data pre-processing in Text Mining</a></li>
+</ul></li>
+<li class="chapter" data-level="17.2" data-path="05-method2.html"><a href="05-method2.html#mining-twitter-text-data-using-r"><i class="fa fa-check"></i><b>17.2</b> Mining Twitter Text Data using R</a>
+<ul>
+<li class="chapter" data-level="17.2.1" data-path="05-method2.html"><a href="05-method2.html#obtaining-twitter-data"><i class="fa fa-check"></i><b>17.2.1</b> Obtaining Twitter Data</a></li>
+</ul></li>
+<li class="chapter" data-level="17.3" data-path="05-method2.html"><a href="05-method2.html#download-data"><i class="fa fa-check"></i><b>17.3</b> Download Data</a></li>
+<li class="chapter" data-level="17.4" data-path="05-method2.html"><a href="05-method2.html#data-pre-processing"><i class="fa fa-check"></i><b>17.4</b> Data Pre-processing</a></li>
+<li class="chapter" data-level="17.5" data-path="05-method2.html"><a href="05-method2.html#some-visualisation"><i class="fa fa-check"></i><b>17.5</b> Some Visualisation</a></li>
+<li class="chapter" data-level="17.6" data-path="05-method2.html"><a href="05-method2.html#sentiment-analysis"><i class="fa fa-check"></i><b>17.6</b> Sentiment Analysis</a>
+<ul>
+<li class="chapter" data-level="17.6.1" data-path="05-method2.html"><a href="05-method2.html#method"><i class="fa fa-check"></i><b>17.6.1</b> Method</a></li>
+</ul></li>
+<li class="chapter" data-level="17.7" data-path="05-method2.html"><a href="05-method2.html#topic-modelling"><i class="fa fa-check"></i><b>17.7</b> Topic Modelling</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="06-method3.html"><a href="06-method3.html"><i class="fa fa-check"></i>Part IV</a></li>
+<li class="chapter" data-level="18" data-path="06-method3.html"><a href="06-method3.html#bibliometrix-analysis-using-r"><i class="fa fa-check"></i><b>18</b> Bibliometrix Analysis using R</a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="06-method3.html"><a href="06-method3.html#introduction-to-bibliometric-analysis"><i class="fa fa-check"></i><b>18.1</b> Introduction to Bibliometric Analysis</a></li>
+<li class="chapter" data-level="18.2" data-path="06-method3.html"><a href="06-method3.html#r-and-bibliometric-analysis"><i class="fa fa-check"></i><b>18.2</b> R and Bibliometric analysis</a></li>
+<li class="chapter" data-level="18.3" data-path="06-method3.html"><a href="06-method3.html#bibliometrix-example"><i class="fa fa-check"></i><b>18.3</b> Bibliometrix Example</a></li>
+<li class="chapter" data-level="18.4" data-path="06-method3.html"><a href="06-method3.html#descriptive-analysis"><i class="fa fa-check"></i><b>18.4</b> Descriptive Analysis</a>
+<ul>
+<li class="chapter" data-level="18.4.1" data-path="06-method3.html"><a href="06-method3.html#productive-authors"><i class="fa fa-check"></i><b>18.4.1</b> Productive Authors</a></li>
+<li class="chapter" data-level="18.4.2" data-path="06-method3.html"><a href="06-method3.html#most-cited-papers"><i class="fa fa-check"></i><b>18.4.2</b> Most cited papers</a></li>
+</ul></li>
+<li class="chapter" data-level="18.5" data-path="06-method3.html"><a href="06-method3.html#information-plots"><i class="fa fa-check"></i><b>18.5</b> Information Plots</a>
+<ul>
+<li class="chapter" data-level="18.5.1" data-path="06-method3.html"><a href="06-method3.html#summary-plot-1-most-porductive-authors"><i class="fa fa-check"></i><b>18.5.1</b> Summary Plot-1 (Most Porductive Authors)</a></li>
+<li class="chapter" data-level="18.5.2" data-path="06-method3.html"><a href="06-method3.html#summary-plot-2-most-productive-countries"><i class="fa fa-check"></i><b>18.5.2</b> Summary Plot-2 (Most Productive Countries)</a></li>
+<li class="chapter" data-level="18.5.3" data-path="06-method3.html"><a href="06-method3.html#summary-plot-3-annual-scientific-production"><i class="fa fa-check"></i><b>18.5.3</b> Summary Plot-3 (Annual Scientific Production)</a></li>
+<li class="chapter" data-level="18.5.4" data-path="06-method3.html"><a href="06-method3.html#summary-plot-4-average-article-citation"><i class="fa fa-check"></i><b>18.5.4</b> Summary Plot-4 (Average Article Citation)</a></li>
+<li class="chapter" data-level="18.5.5" data-path="06-method3.html"><a href="06-method3.html#summary-plot-5-author-production-over-time"><i class="fa fa-check"></i><b>18.5.5</b> Summary Plot-5 (Author Production Over Time)</a></li>
+<li class="chapter" data-level="18.5.6" data-path="06-method3.html"><a href="06-method3.html#sankey-plot"><i class="fa fa-check"></i><b>18.5.6</b> Sankey plot</a></li>
+</ul></li>
+<li class="chapter" data-level="18.6" data-path="06-method3.html"><a href="06-method3.html#co-word-analysis"><i class="fa fa-check"></i><b>18.6</b> Co-word Analysis</a></li>
+<li class="chapter" data-level="18.7" data-path="06-method3.html"><a href="06-method3.html#author-collaboration-network"><i class="fa fa-check"></i><b>18.7</b> Author collaboration network</a></li>
+<li class="chapter" data-level="18.8" data-path="06-method3.html"><a href="06-method3.html#keyword-co-occurance"><i class="fa fa-check"></i><b>18.8</b> Keyword co-occurance</a></li>
+<li class="chapter" data-level="18.9" data-path="06-method3.html"><a href="06-method3.html#thematic-map"><i class="fa fa-check"></i><b>18.9</b> Thematic Map</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="07-summary.html"><a href="07-summary.html"><i class="fa fa-check"></i><b>19</b> Work in Progress</a></li>
+<li class="chapter" data-level="" data-path="07-references.html"><a href="07-references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><img src="firebrick3RA_img.png" height="60" width="60" style="position:bottom:0px;right:0px;"/></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R for Data Analytics</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="financial-fraud-analytics" class="section level1 hasAnchor" number="16">
+<h1><span class="header-section-number">Topic 16</span> Financial Fraud Analytics<a href="06-fraud_analytics.html#financial-fraud-analytics" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><img src="rforda.png" height="100" width="100" style="position:absolute;top:0px;right:0px;" /></p>
+<div id="introduction-to-financial-fraud" class="section level2 hasAnchor" number="16.1">
+<h2><span class="header-section-number">16.1</span> Introduction to Financial Fraud<a href="06-fraud_analytics.html#introduction-to-financial-fraud" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li><p>Financial institutions deliver several kinds of critical services usually managing high-volume transactions.</p></li>
+<li><p>Each of these services is afflicted by specific frauds aiming at making illegal profits by unauthorized access to someone’s funds</p></li>
+<li><p>Earnings manipulation and accounting fraud leads to reduced firm valuation in the long run and a public distrust in the company and its management.</p></li>
+<li><p>The phenomena of earnings manipulation is not new globally. In 2001, Enron filed for bankruptcy after an accounting fraud resulted in $ 74 billion loss to the shareholders</p></li>
+<li><p>Firms can manipulate earnings by utilizing their accounting choices known as accrual manipulations.</p></li>
+</ul>
+<div id="types-of-financial-fraud" class="section level3 hasAnchor" number="16.1.1">
+<h3><span class="header-section-number">16.1.1</span> Types of Financial Fraud<a href="06-fraud_analytics.html#types-of-financial-fraud" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>There are various types of financial fraud. The following lists types of financial frauds as listed in <span class="citation">Al-Hashedi &amp; Magalingam (<a href="#ref-AlHashedi2021" role="doc-biblioref">2021</a>)</span></p>
+<ul>
+<li>Credit Card Fraud</li>
+<li>Mortgage Fraud</li>
+<li>Money Laundering</li>
+<li>Financial statement fraud</li>
+<li>Securities and commodities fraud</li>
+<li>Insurance Fraud</li>
+<li>Cryptocurrency Fraud</li>
+<li>Cyber Financial Fraud</li>
+</ul>
+</div>
+<div id="ml-and-ai-for-fraud-detection" class="section level3 hasAnchor" number="16.1.2">
+<h3><span class="header-section-number">16.1.2</span> ML and AI for Fraud Detection<a href="06-fraud_analytics.html#ml-and-ai-for-fraud-detection" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>There are various statistics and ML based classification techniques which are used for detecting fraud. Some of these techniques are</p>
+<ul>
+<li>Support Vector Machines</li>
+<li>Naive Bayes</li>
+<li>Neural Network and Deep Learning</li>
+<li>Random Forests</li>
+<li>Logistic Regression</li>
+<li>KNN</li>
+<li>Decision Trees</li>
+<li>Genetic Algorithms</li>
+<li>Clustering</li>
+</ul>
+<p><span class="citation">Ali et al. (<a href="#ref-Ali2022" role="doc-biblioref">2022</a>)</span>, <span class="citation">Bin Sulaiman, Schetinin, &amp; Sant (<a href="#ref-BinSulaiman2022" role="doc-biblioref">2022</a>)</span>, <span class="citation">Ashtiani &amp; Raahemi (<a href="#ref-Ashtiani2021" role="doc-biblioref">2021</a>)</span>, <span class="citation">Al-Hashedi &amp; Magalingam (<a href="#ref-AlHashedi2021" role="doc-biblioref">2021</a>)</span>, <span class="citation">Sadgali, Sael, &amp; Benabbou (<a href="#ref-Sadgali2019" role="doc-biblioref">2019</a>)</span> provide a review of ML and AI techniques used for financial fraud detection. <span class="citation">Bin Sulaiman et al. (<a href="#ref-BinSulaiman2022" role="doc-biblioref">2022</a>)</span> provides a review of ML approaches used for Credit Card Fraud Detection.</p>
+</div>
+<div id="ml-and-ai-based-fraud-detection-system-for-credit-card-fraud" class="section level3 hasAnchor" number="16.1.3">
+<h3><span class="header-section-number">16.1.3</span> ML and AI based Fraud Detection System for Credit Card Fraud<a href="06-fraud_analytics.html#ml-and-ai-based-fraud-detection-system-for-credit-card-fraud" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Fig-16.1 providesan example of a credit card fraud detection system (source: <span class="citation">Le Borgne, Siblini, Lebichot, &amp; Bontempi (<a href="#ref-LeBorgne2022" role="doc-biblioref">2022</a>)</span> <a href="https://fraud-detection-handbook.github.io/fraud-detection-handbook/Foreword.html">Link</a>)</p>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-2"></span>
+<img src="pasted1.png" alt="Fraud Detection System (@LeBorgne2022)" width="656" />
+<p class="caption">
+Figure 5.1: Fraud Detection System (<span class="citation">Le Borgne et al. (<a href="#ref-LeBorgne2022" role="doc-biblioref">2022</a>)</span>)
+</p>
+</div>
+<blockquote>
+<p>Next we will discuss a brief example on using ML for Fraud Detection using Labelled data</p>
+</blockquote>
+</div>
+</div>
+<div id="detecting-fraud-in-transaction-data" class="section level2 hasAnchor" number="16.2">
+<h2><span class="header-section-number">16.2</span> Detecting Fraud in Transaction Data<a href="06-fraud_analytics.html#detecting-fraud-in-transaction-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="data-1" class="section level3 hasAnchor" number="16.2.1">
+<h3><span class="header-section-number">16.2.1</span> Data<a href="06-fraud_analytics.html#data-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><p>The data is a sample from the simulated transaction dataset availabe on Kaggle.</p></li>
+<li><p>The kaggle datasets <a href="https://www.kaggle.com/datasets/ealaxi/paysim1?select=PS_20174392719_1491204439457_log.csv">link</a> provides a description of the dataset.</p></li>
+<li><p>The kaggle dataset is highly unbalanced and requires subsampling techniques like <a href="https://doi.org/10.1613/jair.953">SMOTE</a>.</p></li>
+<li><p><a href="https://topepo.github.io/caret/subsampling-for-class-imbalances.html">Chapter-11</a> of the caret package manual provides a good introduction to subsampling for class imbalances.</p></li>
+<li><p>The data sample here consists of 10000 observations of 80:20, fraud and no fraud classifications.</p></li>
+</ul>
+<blockquote>
+<p>Overview of the data</p>
+</blockquote>
+<div class="sourceCode" id="cb405"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb405-1"><a href="06-fraud_analytics.html#cb405-1" aria-hidden="true" tabindex="-1"></a>data1 <span class="ot">=</span> <span class="fu">readRDS</span>(<span class="st">&quot;data/fraud_sim.rds&quot;</span>)</span>
+<span id="cb405-2"><a href="06-fraud_analytics.html#cb405-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data1)</span></code></pre></div>
+<pre><code>        step     type    amount    nameOrig oldbalanceOrg newbalanceOrig
+3193213  247 CASH_OUT  802421.4  C369107118      802421.4              0
+6001559  427 TRANSFER  225324.0 C1109518048      225324.0              0
+6009616  441 TRANSFER  107363.5  C564631760      107363.5              0
+6020272  461 CASH_OUT 1028284.8 C2004363483     1028284.8              0
+6034233  476 CASH_OUT 1146381.4  C169415375     1146381.4              0
+1030588   74 TRANSFER 4582074.5 C1151172465     4582074.5              0
+           nameDest oldbalanceDest newbalanceDest isFraud isFlaggedFraud
+3193213  C463164064     11846261.7       12648683       1              0
+6001559 C1691016675            0.0              0       1              0
+6009616   C43570912            0.0              0       1              0
+6020272  C165602524            0.0        1028285       1              0
+6034233 C1774696541       484779.2        1631161       1              0
+1030588 C2088124795            0.0              0       1              0</code></pre>
+<ul>
+<li>Data description
+<ul>
+<li>The data consists of 11 attributes</li>
+<li>step: Unit of time, 1 step is 1 hour</li>
+<li>Type: CASH-IN, CASH-OUT, DEBIT, PAYMENT and TRANSFER</li>
+<li>amount: amount of the transaction in local currency</li>
+<li>nameOrg: customer starting the transaction</li>
+<li>oldbalanceorg: initial balance before the transaction</li>
+<li>newlabalanceorig: balance after the transaction</li>
+<li>nameDest: recepient ID of the transaction</li>
+<li>oldBalanceDest: initial recepient balance before the transaction</li>
+<li>newBalanceDest: recepients balance after the transaction</li>
+<li>isFraud: is fradualant (1), not fradualant (0)</li>
+<li>isFlaggedFraud: flags illegal attemps to transfer more that 200,000 units at a time</li>
+</ul></li>
+</ul>
+</div>
+<div id="summary-of-the-data" class="section level3 hasAnchor" number="16.2.2">
+<h3><span class="header-section-number">16.2.2</span> Summary of the data<a href="06-fraud_analytics.html#summary-of-the-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb407"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb407-1"><a href="06-fraud_analytics.html#cb407-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb407-2"><a href="06-fraud_analytics.html#cb407-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
+<span id="cb407-3"><a href="06-fraud_analytics.html#cb407-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pastecs)</span>
+<span id="cb407-4"><a href="06-fraud_analytics.html#cb407-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb407-5"><a href="06-fraud_analytics.html#cb407-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pander)</span>
+<span id="cb407-6"><a href="06-fraud_analytics.html#cb407-6" aria-hidden="true" tabindex="-1"></a><span class="fu">pander</span>(<span class="fu">stat.desc</span>(data1))</span></code></pre></div>
+<table>
+<caption>Table continues below</caption>
+<colgroup>
+<col width="25%" />
+<col width="13%" />
+<col width="9%" />
+<col width="16%" />
+<col width="14%" />
+<col width="21%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center"> </th>
+<th align="center">step</th>
+<th align="center">type</th>
+<th align="center">amount</th>
+<th align="center">nameOrig</th>
+<th align="center">oldbalanceOrg</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><strong>nbr.val</strong></td>
+<td align="center">10000</td>
+<td align="center">NA</td>
+<td align="center">10000</td>
+<td align="center">NA</td>
+<td align="center">10000</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>nbr.null</strong></td>
+<td align="center">0</td>
+<td align="center">NA</td>
+<td align="center">3</td>
+<td align="center">NA</td>
+<td align="center">2683</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>nbr.na</strong></td>
+<td align="center">0</td>
+<td align="center">NA</td>
+<td align="center">0</td>
+<td align="center">NA</td>
+<td align="center">0</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>min</strong></td>
+<td align="center">1</td>
+<td align="center">NA</td>
+<td align="center">0</td>
+<td align="center">NA</td>
+<td align="center">0</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>max</strong></td>
+<td align="center">743</td>
+<td align="center">NA</td>
+<td align="center">22925830</td>
+<td align="center">NA</td>
+<td align="center">59585040</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>range</strong></td>
+<td align="center">742</td>
+<td align="center">NA</td>
+<td align="center">22925830</td>
+<td align="center">NA</td>
+<td align="center">59585040</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>sum</strong></td>
+<td align="center">2671835</td>
+<td align="center">NA</td>
+<td align="center">4.433e+09</td>
+<td align="center">NA</td>
+<td align="center">9.918e+09</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>median</strong></td>
+<td align="center">255.5</td>
+<td align="center">NA</td>
+<td align="center">108649</td>
+<td align="center">NA</td>
+<td align="center">31011</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>mean</strong></td>
+<td align="center">267.2</td>
+<td align="center">NA</td>
+<td align="center">443257</td>
+<td align="center">NA</td>
+<td align="center">991799</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>SE.mean</strong></td>
+<td align="center">1.67</td>
+<td align="center">NA</td>
+<td align="center">13125</td>
+<td align="center">NA</td>
+<td align="center">30621</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>CI.mean.0.95</strong></td>
+<td align="center">3.273</td>
+<td align="center">NA</td>
+<td align="center">25728</td>
+<td align="center">NA</td>
+<td align="center">60022</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>var</strong></td>
+<td align="center">27878</td>
+<td align="center">NA</td>
+<td align="center">1.723e+12</td>
+<td align="center">NA</td>
+<td align="center">9.376e+12</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>std.dev</strong></td>
+<td align="center">167</td>
+<td align="center">NA</td>
+<td align="center">1312501</td>
+<td align="center">NA</td>
+<td align="center">3062058</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>coef.var</strong></td>
+<td align="center">0.6249</td>
+<td align="center">NA</td>
+<td align="center">2.961</td>
+<td align="center">NA</td>
+<td align="center">3.087</td>
+</tr>
+</tbody>
+</table>
+<table>
+<caption>Table continues below</caption>
+<colgroup>
+<col width="23%" />
+<col width="20%" />
+<col width="13%" />
+<col width="20%" />
+<col width="20%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center"> </th>
+<th align="center">newbalanceOrig</th>
+<th align="center">nameDest</th>
+<th align="center">oldbalanceDest</th>
+<th align="center">newbalanceDest</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><strong>nbr.val</strong></td>
+<td align="center">10000</td>
+<td align="center">NA</td>
+<td align="center">10000</td>
+<td align="center">10000</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>nbr.null</strong></td>
+<td align="center">6619</td>
+<td align="center">NA</td>
+<td align="center">4709</td>
+<td align="center">4038</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>nbr.na</strong></td>
+<td align="center">0</td>
+<td align="center">NA</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>min</strong></td>
+<td align="center">0</td>
+<td align="center">NA</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>max</strong></td>
+<td align="center">49585040</td>
+<td align="center">NA</td>
+<td align="center">93819985</td>
+<td align="center">94779646</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>range</strong></td>
+<td align="center">49585040</td>
+<td align="center">NA</td>
+<td align="center">93819985</td>
+<td align="center">94779646</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>sum</strong></td>
+<td align="center">7.137e+09</td>
+<td align="center">NA</td>
+<td align="center">9.446e+09</td>
+<td align="center">1.202e+10</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>median</strong></td>
+<td align="center">0</td>
+<td align="center">NA</td>
+<td align="center">42762</td>
+<td align="center">195569</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>mean</strong></td>
+<td align="center">713720</td>
+<td align="center">NA</td>
+<td align="center">944604</td>
+<td align="center">1202204</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>SE.mean</strong></td>
+<td align="center">27920</td>
+<td align="center">NA</td>
+<td align="center">28396</td>
+<td align="center">32128</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>CI.mean.0.95</strong></td>
+<td align="center">54729</td>
+<td align="center">NA</td>
+<td align="center">55661</td>
+<td align="center">62978</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>var</strong></td>
+<td align="center">7.795e+12</td>
+<td align="center">NA</td>
+<td align="center">8.063e+12</td>
+<td align="center">1.032e+13</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>std.dev</strong></td>
+<td align="center">2791998</td>
+<td align="center">NA</td>
+<td align="center">2839565</td>
+<td align="center">3212822</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>coef.var</strong></td>
+<td align="center">3.912</td>
+<td align="center">NA</td>
+<td align="center">3.006</td>
+<td align="center">2.672</td>
+</tr>
+</tbody>
+</table>
+<table style="width:65%;">
+<colgroup>
+<col width="26%" />
+<col width="15%" />
+<col width="23%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center"> </th>
+<th align="center">isFraud</th>
+<th align="center">isFlaggedFraud</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><strong>nbr.val</strong></td>
+<td align="center">10000</td>
+<td align="center">10000</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>nbr.null</strong></td>
+<td align="center">8000</td>
+<td align="center">9996</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>nbr.na</strong></td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>min</strong></td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>max</strong></td>
+<td align="center">1</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>range</strong></td>
+<td align="center">1</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>sum</strong></td>
+<td align="center">2000</td>
+<td align="center">4</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>median</strong></td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>mean</strong></td>
+<td align="center">0.2</td>
+<td align="center">4e-04</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>SE.mean</strong></td>
+<td align="center">0.004</td>
+<td align="center">2e-04</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>CI.mean.0.95</strong></td>
+<td align="center">0.007841</td>
+<td align="center">0.000392</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>var</strong></td>
+<td align="center">0.16</td>
+<td align="center">0.0003999</td>
+</tr>
+<tr class="odd">
+<td align="center"><strong>std.dev</strong></td>
+<td align="center">0.4</td>
+<td align="center">0.02</td>
+</tr>
+<tr class="even">
+<td align="center"><strong>coef.var</strong></td>
+<td align="center">2</td>
+<td align="center">49.99</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb408"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb408-1"><a href="06-fraud_analytics.html#cb408-1" aria-hidden="true" tabindex="-1"></a><span class="co"># summarise(data1) %&gt;% select(name,type,na, mean, median, min, max, nlevs)</span></span>
+<span id="cb408-2"><a href="06-fraud_analytics.html#cb408-2" aria-hidden="true" tabindex="-1"></a><span class="co"># summary(data1)</span></span></code></pre></div>
+<ul>
+<li>Number of frauds/nofrauds</li>
+</ul>
+<div class="sourceCode" id="cb409"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb409-1"><a href="06-fraud_analytics.html#cb409-1" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.table</span>(<span class="fu">table</span>(data1<span class="sc">$</span>isFraud))</span></code></pre></div>
+<pre><code>
+  0   1 
+0.8 0.2 </code></pre>
+</div>
+<div id="visualisation-2" class="section level3 hasAnchor" number="16.2.3">
+<h3><span class="header-section-number">16.2.3</span> Visualisation<a href="06-fraud_analytics.html#visualisation-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb411"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb411-1"><a href="06-fraud_analytics.html#cb411-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb411-2"><a href="06-fraud_analytics.html#cb411-2" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_minimal</span>())  <span class="co">#globally sets the theme</span></span>
+<span id="cb411-3"><a href="06-fraud_analytics.html#cb411-3" aria-hidden="true" tabindex="-1"></a>data1 <span class="sc">%&gt;%</span></span>
+<span id="cb411-4"><a href="06-fraud_analytics.html#cb411-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(isFraud, <span class="at">fill =</span> <span class="fu">factor</span>(isFraud))) <span class="sc">+</span> <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;count&quot;</span>) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Fraud vs Not Fraud&quot;</span>,</span>
+<span id="cb411-5"><a href="06-fraud_analytics.html#cb411-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Frequency&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;FraudVNon-Fraud&quot;</span>)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:fig2"></span>
+<img src="06-fraud_analytics_files/figure-html/fig2-1.png" alt="FraudVNon-Fraud" width="672" />
+<p class="caption">
+Figure 16.1: FraudVNon-Fraud
+</p>
+</div>
+<ul>
+<li>Transactions based on Fraud</li>
+</ul>
+<div class="sourceCode" id="cb412"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb412-1"><a href="06-fraud_analytics.html#cb412-1" aria-hidden="true" tabindex="-1"></a>data1 <span class="sc">%&gt;%</span></span>
+<span id="cb412-2"><a href="06-fraud_analytics.html#cb412-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> type, <span class="at">fill =</span> <span class="fu">factor</span>(isFraud))) <span class="sc">+</span> <span class="fu">geom_bar</span>()</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:fg2"></span>
+<img src="06-fraud_analytics_files/figure-html/fg2-1.png" alt="Transaction by Fraud" width="672" />
+<p class="caption">
+Figure 16.2: Transaction by Fraud
+</p>
+</div>
+<p>The figure shows that most frauds in the data sample are committed in CASH_OUT of in TRANSFER transaction type</p>
+<ul>
+<li>Distribution of Transactions</li>
+</ul>
+<div class="sourceCode" id="cb413"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb413-1"><a href="06-fraud_analytics.html#cb413-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb413-2"><a href="06-fraud_analytics.html#cb413-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scales)</span>
+<span id="cb413-3"><a href="06-fraud_analytics.html#cb413-3" aria-hidden="true" tabindex="-1"></a>data1 <span class="sc">%&gt;%</span></span>
+<span id="cb413-4"><a href="06-fraud_analytics.html#cb413-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(isFraud <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb413-5"><a href="06-fraud_analytics.html#cb413-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(amount)) <span class="sc">+</span> <span class="fu">geom_histogram</span>() <span class="sc">+</span> <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> comma)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:fg4"></span>
+<img src="06-fraud_analytics_files/figure-html/fg4-1.png" alt="Fradualent Amount" width="672" />
+<p class="caption">
+Figure 16.3: Fradualent Amount
+</p>
+</div>
+<ul>
+<li>What about balance in accounts?</li>
+</ul>
+<div class="sourceCode" id="cb414"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb414-1"><a href="06-fraud_analytics.html#cb414-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">=</span> data1 <span class="sc">%&gt;%</span></span>
+<span id="cb414-2"><a href="06-fraud_analytics.html#cb414-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(isFraud), <span class="at">y =</span> <span class="fu">log</span>(oldbalanceOrg), <span class="at">fill =</span> <span class="fu">factor</span>(isFraud))) <span class="sc">+</span></span>
+<span id="cb414-3"><a href="06-fraud_analytics.html#cb414-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>() <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;old balance in sender account&quot;</span>)</span>
+<span id="cb414-4"><a href="06-fraud_analytics.html#cb414-4" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">=</span> data1 <span class="sc">%&gt;%</span></span>
+<span id="cb414-5"><a href="06-fraud_analytics.html#cb414-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(isFraud), <span class="at">y =</span> <span class="fu">log</span>(oldbalanceDest), <span class="at">fill =</span> <span class="fu">factor</span>(isFraud))) <span class="sc">+</span></span>
+<span id="cb414-6"><a href="06-fraud_analytics.html#cb414-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>() <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;old balance in receiver account&quot;</span>)</span>
+<span id="cb414-7"><a href="06-fraud_analytics.html#cb414-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gridExtra)</span>
+<span id="cb414-8"><a href="06-fraud_analytics.html#cb414-8" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.arrange</span>(p1, p2, <span class="at">nrow =</span> <span class="dv">1</span>)</span></code></pre></div>
+<div class="figure"><span style="display:block;" id="fig:fg5"></span>
+<img src="06-fraud_analytics_files/figure-html/fg5-1.png" alt="Balance (sender/receiver)" width="672" />
+<p class="caption">
+Figure 16.4: Balance (sender/receiver)
+</p>
+</div>
+<p><em>Task: Create other visualisations to visually analyse the data </em></p>
+</div>
+</div>
+<div id="ml-model" class="section level2 hasAnchor" number="16.3">
+<h2><span class="header-section-number">16.3</span> ML Model<a href="06-fraud_analytics.html#ml-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>There are various ML models possible but we will use KNN, Random Forests and Neural Networks</li>
+</ul>
+<div id="setup" class="section level3 hasAnchor" number="16.3.1">
+<h3><span class="header-section-number">16.3.1</span> Setup<a href="06-fraud_analytics.html#setup" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Select the most useful columns</p>
+<div class="sourceCode" id="cb415"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb415-1"><a href="06-fraud_analytics.html#cb415-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fastDummies)  <span class="co">#for creating dummy columns</span></span>
+<span id="cb415-2"><a href="06-fraud_analytics.html#cb415-2" aria-hidden="true" tabindex="-1"></a>data2 <span class="ot">=</span> data1 <span class="sc">%&gt;%</span></span>
+<span id="cb415-3"><a href="06-fraud_analytics.html#cb415-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(<span class="st">&quot;step&quot;</span>, <span class="st">&quot;nameOrig&quot;</span>, <span class="st">&quot;nameDest&quot;</span>, <span class="st">&quot;isFlaggedFraud&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb415-4"><a href="06-fraud_analytics.html#cb415-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(type <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;CASH_OUT&quot;</span>, <span class="st">&quot;TRANSFER&quot;</span>))</span>
+<span id="cb415-5"><a href="06-fraud_analytics.html#cb415-5" aria-hidden="true" tabindex="-1"></a>data3 <span class="ot">=</span> <span class="fu">dummy_cols</span>(data2)  <span class="co">#takes the column with factors and creates dummies based on that</span></span>
+<span id="cb415-6"><a href="06-fraud_analytics.html#cb415-6" aria-hidden="true" tabindex="-1"></a>data3<span class="sc">$</span>isFraud <span class="ot">=</span> <span class="fu">as.factor</span>(data3<span class="sc">$</span>isFraud)</span>
+<span id="cb415-7"><a href="06-fraud_analytics.html#cb415-7" aria-hidden="true" tabindex="-1"></a>data3 <span class="ot">=</span> data3[, <span class="sc">-</span><span class="dv">1</span>]</span></code></pre></div>
+</div>
+<div id="sampling-and-resampling" class="section level3 hasAnchor" number="16.3.2">
+<h3><span class="header-section-number">16.3.2</span> Sampling and Resampling<a href="06-fraud_analytics.html#sampling-and-resampling" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>As this is a sample which does not depend on the time series structure, we can use random sampling stratified by the default</li>
+</ul>
+<div class="sourceCode" id="cb416"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb416-1"><a href="06-fraud_analytics.html#cb416-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rsample)</span>
+<span id="cb416-2"><a href="06-fraud_analytics.html#cb416-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb416-3"><a href="06-fraud_analytics.html#cb416-3" aria-hidden="true" tabindex="-1"></a>idx <span class="ot">=</span> <span class="fu">initial_split</span>(data3, <span class="at">prop =</span> <span class="fl">0.7</span>, <span class="at">strata =</span> <span class="st">&quot;isFraud&quot;</span>)</span>
+<span id="cb416-4"><a href="06-fraud_analytics.html#cb416-4" aria-hidden="true" tabindex="-1"></a>d_train1 <span class="ot">=</span> <span class="fu">training</span>(idx)</span>
+<span id="cb416-5"><a href="06-fraud_analytics.html#cb416-5" aria-hidden="true" tabindex="-1"></a>d_test1 <span class="ot">=</span> <span class="fu">testing</span>(idx)</span></code></pre></div>
+<ul>
+<li>Resampling</li>
+</ul>
+<div class="sourceCode" id="cb417"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb417-1"><a href="06-fraud_analytics.html#cb417-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(caret)</span>
+<span id="cb417-2"><a href="06-fraud_analytics.html#cb417-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb417-3"><a href="06-fraud_analytics.html#cb417-3" aria-hidden="true" tabindex="-1"></a>cntrl1 <span class="ot">=</span> <span class="fu">trainControl</span>(<span class="at">method =</span> <span class="st">&quot;repeatedcv&quot;</span>, <span class="at">number =</span> <span class="dv">10</span>, <span class="at">repeats =</span> <span class="dv">2</span>, <span class="at">allowParallel =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb417-4"><a href="06-fraud_analytics.html#cb417-4" aria-hidden="true" tabindex="-1"></a>prep1 <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;center&quot;</span>, <span class="st">&quot;scale&quot;</span>, <span class="st">&quot;zv&quot;</span>)</span></code></pre></div>
+</div>
+<div id="knn" class="section level3 hasAnchor" number="16.3.3">
+<h3><span class="header-section-number">16.3.3</span> KNN<a href="06-fraud_analytics.html#knn" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb418"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb418-1"><a href="06-fraud_analytics.html#cb418-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb418-2"><a href="06-fraud_analytics.html#cb418-2" aria-hidden="true" tabindex="-1"></a>mod1_fraud_knn <span class="ot">=</span> <span class="fu">train</span>(isFraud <span class="sc">~</span> ., <span class="at">data =</span> d_train1, <span class="at">method =</span> <span class="st">&quot;knn&quot;</span>, <span class="at">tuneLength =</span> <span class="dv">10</span>,</span>
+<span id="cb418-3"><a href="06-fraud_analytics.html#cb418-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">preProcess =</span> prep1, <span class="at">trControl =</span> cntrl1)</span></code></pre></div>
+<ul>
+<li>Model</li>
+</ul>
+<div class="sourceCode" id="cb419"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb419-1"><a href="06-fraud_analytics.html#cb419-1" aria-hidden="true" tabindex="-1"></a>mod1_fraud_knn</span></code></pre></div>
+<pre><code>k-Nearest Neighbors 
+
+3889 samples
+   7 predictor
+   2 classes: &#39;0&#39;, &#39;1&#39; 
+
+Pre-processing: centered (7), scaled (7) 
+Resampling: Cross-Validated (10 fold, repeated 2 times) 
+Summary of sample sizes: 3500, 3500, 3500, 3500, 3500, 3500, ... 
+Resampling results across tuning parameters:
+
+  k   Accuracy   Kappa    
+   5  0.9497300  0.8905007
+   7  0.9483165  0.8873509
+   9  0.9466455  0.8834357
+  11  0.9458736  0.8816692
+  13  0.9429167  0.8750019
+  15  0.9411165  0.8707704
+  17  0.9381596  0.8640186
+  19  0.9368746  0.8611598
+  21  0.9343039  0.8554145
+  23  0.9328887  0.8522490
+
+Accuracy was used to select the optimal model using the largest value.
+The final value used for the model was k = 5.</code></pre>
+<ul>
+<li>Predictive Accuracy</li>
+</ul>
+<div class="sourceCode" id="cb421"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb421-1"><a href="06-fraud_analytics.html#cb421-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb421-2"><a href="06-fraud_analytics.html#cb421-2" aria-hidden="true" tabindex="-1"></a>pred1 <span class="ot">=</span> <span class="fu">predict</span>(mod1_fraud_knn, <span class="at">newdata =</span> d_test1)</span>
+<span id="cb421-3"><a href="06-fraud_analytics.html#cb421-3" aria-hidden="true" tabindex="-1"></a><span class="fu">confusionMatrix</span>(pred1, d_test1<span class="sc">$</span>isFraud)</span></code></pre></div>
+<pre><code>Confusion Matrix and Statistics
+
+          Reference
+Prediction    0    1
+         0 1026   50
+         1   41  550
+                                          
+               Accuracy : 0.9454          
+                 95% CI : (0.9334, 0.9558)
+    No Information Rate : 0.6401          
+    P-Value [Acc &gt; NIR] : &lt;2e-16          
+                                          
+                  Kappa : 0.8811          
+                                          
+ Mcnemar&#39;s Test P-Value : 0.4017          
+                                          
+            Sensitivity : 0.9616          
+            Specificity : 0.9167          
+         Pos Pred Value : 0.9535          
+         Neg Pred Value : 0.9306          
+             Prevalence : 0.6401          
+         Detection Rate : 0.6155          
+   Detection Prevalence : 0.6455          
+      Balanced Accuracy : 0.9391          
+                                          
+       &#39;Positive&#39; Class : 0               
+                                          </code></pre>
+</div>
+<div id="random-forests" class="section level3 hasAnchor" number="16.3.4">
+<h3><span class="header-section-number">16.3.4</span> Random Forests<a href="06-fraud_analytics.html#random-forests" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb423"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb423-1"><a href="06-fraud_analytics.html#cb423-1" aria-hidden="true" tabindex="-1"></a>mtry <span class="ot">=</span> <span class="fu">sqrt</span>(<span class="fu">ncol</span>(d_test1))</span>
+<span id="cb423-2"><a href="06-fraud_analytics.html#cb423-2" aria-hidden="true" tabindex="-1"></a>tunegrid <span class="ot">=</span> <span class="fu">expand.grid</span>(<span class="at">.mtry =</span> mtry)</span>
+<span id="cb423-3"><a href="06-fraud_analytics.html#cb423-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(doParallel)</span>
+<span id="cb423-4"><a href="06-fraud_analytics.html#cb423-4" aria-hidden="true" tabindex="-1"></a>cl <span class="ot">=</span> <span class="fu">makePSOCKcluster</span>(<span class="fu">detectCores</span>()<span class="sc">/</span><span class="dv">2</span>)</span>
+<span id="cb423-5"><a href="06-fraud_analytics.html#cb423-5" aria-hidden="true" tabindex="-1"></a><span class="fu">registerDoParallel</span>(cl)</span>
+<span id="cb423-6"><a href="06-fraud_analytics.html#cb423-6" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb423-7"><a href="06-fraud_analytics.html#cb423-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb423-8"><a href="06-fraud_analytics.html#cb423-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb423-9"><a href="06-fraud_analytics.html#cb423-9" aria-hidden="true" tabindex="-1"></a>rf_fraud <span class="ot">=</span> <span class="fu">train</span>(isFraud <span class="sc">~</span> ., <span class="at">data =</span> d_train1, <span class="at">method =</span> <span class="st">&quot;rf&quot;</span>, <span class="at">tuneGrid =</span> tunegrid,</span>
+<span id="cb423-10"><a href="06-fraud_analytics.html#cb423-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">trControl =</span> cntrl1, <span class="at">preProcess =</span> prep1)</span>
+<span id="cb423-11"><a href="06-fraud_analytics.html#cb423-11" aria-hidden="true" tabindex="-1"></a><span class="fu">stopCluster</span>(cl)</span>
+<span id="cb423-12"><a href="06-fraud_analytics.html#cb423-12" aria-hidden="true" tabindex="-1"></a><span class="fu">registerDoSEQ</span>()</span></code></pre></div>
+<ul>
+<li>Model</li>
+</ul>
+<div class="sourceCode" id="cb424"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb424-1"><a href="06-fraud_analytics.html#cb424-1" aria-hidden="true" tabindex="-1"></a>rf_fraud</span></code></pre></div>
+<pre><code>Random Forest 
+
+3889 samples
+   7 predictor
+   2 classes: &#39;0&#39;, &#39;1&#39; 
+
+Pre-processing: centered (7), scaled (7) 
+Resampling: Cross-Validated (10 fold, repeated 2 times) 
+Summary of sample sizes: 3500, 3500, 3500, 3500, 3500, 3500, ... 
+Resampling results:
+
+  Accuracy   Kappa    
+  0.9755708  0.9469659
+
+Tuning parameter &#39;mtry&#39; was held constant at a value of 2.828427</code></pre>
+<ul>
+<li>Predictive Accuracy</li>
+</ul>
+<div class="sourceCode" id="cb426"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb426-1"><a href="06-fraud_analytics.html#cb426-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb426-2"><a href="06-fraud_analytics.html#cb426-2" aria-hidden="true" tabindex="-1"></a>pred2 <span class="ot">=</span> <span class="fu">predict</span>(rf_fraud, <span class="at">newdata =</span> d_test1)</span>
+<span id="cb426-3"><a href="06-fraud_analytics.html#cb426-3" aria-hidden="true" tabindex="-1"></a><span class="fu">confusionMatrix</span>(pred2, d_test1<span class="sc">$</span>isFraud)</span></code></pre></div>
+<pre><code>Confusion Matrix and Statistics
+
+          Reference
+Prediction    0    1
+         0 1049   15
+         1   18  585
+                                          
+               Accuracy : 0.9802          
+                 95% CI : (0.9723, 0.9863)
+    No Information Rate : 0.6401          
+    P-Value [Acc &gt; NIR] : &lt;2e-16          
+                                          
+                  Kappa : 0.9571          
+                                          
+ Mcnemar&#39;s Test P-Value : 0.7277          
+                                          
+            Sensitivity : 0.9831          
+            Specificity : 0.9750          
+         Pos Pred Value : 0.9859          
+         Neg Pred Value : 0.9701          
+             Prevalence : 0.6401          
+         Detection Rate : 0.6293          
+   Detection Prevalence : 0.6383          
+      Balanced Accuracy : 0.9791          
+                                          
+       &#39;Positive&#39; Class : 0               
+                                          </code></pre>
+</div>
+<div id="nnet" class="section level3 hasAnchor" number="16.3.5">
+<h3><span class="header-section-number">16.3.5</span> NNET<a href="06-fraud_analytics.html#nnet" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb428"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb428-1"><a href="06-fraud_analytics.html#cb428-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(doParallel)</span>
+<span id="cb428-2"><a href="06-fraud_analytics.html#cb428-2" aria-hidden="true" tabindex="-1"></a>cl <span class="ot">=</span> <span class="fu">makePSOCKcluster</span>(<span class="fu">detectCores</span>()<span class="sc">/</span><span class="dv">2</span>)</span>
+<span id="cb428-3"><a href="06-fraud_analytics.html#cb428-3" aria-hidden="true" tabindex="-1"></a><span class="fu">registerDoParallel</span>(cl)</span>
+<span id="cb428-4"><a href="06-fraud_analytics.html#cb428-4" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb428-5"><a href="06-fraud_analytics.html#cb428-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb428-6"><a href="06-fraud_analytics.html#cb428-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb428-7"><a href="06-fraud_analytics.html#cb428-7" aria-hidden="true" tabindex="-1"></a>nnet_fraud <span class="ot">=</span> <span class="fu">train</span>(isFraud <span class="sc">~</span> ., <span class="at">data =</span> d_train1, <span class="at">method =</span> <span class="st">&quot;nnet&quot;</span>, <span class="at">trControl =</span> cntrl1,</span>
+<span id="cb428-8"><a href="06-fraud_analytics.html#cb428-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">preProcess =</span> prep1)</span></code></pre></div>
+<pre><code># weights:  28
+initial  value 2899.085170 
+iter  10 value 1454.628563
+iter  20 value 537.562073
+iter  30 value 332.100069
+iter  40 value 189.749918
+iter  50 value 152.552874
+iter  60 value 112.587854
+iter  70 value 106.284558
+iter  80 value 98.840062
+iter  90 value 95.032644
+iter 100 value 93.058743
+final  value 93.058743 
+stopped after 100 iterations</code></pre>
+<div class="sourceCode" id="cb430"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb430-1"><a href="06-fraud_analytics.html#cb430-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stopCluster</span>(cl)</span>
+<span id="cb430-2"><a href="06-fraud_analytics.html#cb430-2" aria-hidden="true" tabindex="-1"></a><span class="fu">registerDoSEQ</span>()</span></code></pre></div>
+<ul>
+<li>Model</li>
+</ul>
+<div class="sourceCode" id="cb431"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb431-1"><a href="06-fraud_analytics.html#cb431-1" aria-hidden="true" tabindex="-1"></a>nnet_fraud</span></code></pre></div>
+<pre><code>Neural Network 
+
+3889 samples
+   7 predictor
+   2 classes: &#39;0&#39;, &#39;1&#39; 
+
+Pre-processing: centered (7), scaled (7) 
+Resampling: Cross-Validated (10 fold, repeated 2 times) 
+Summary of sample sizes: 3500, 3500, 3500, 3500, 3500, 3500, ... 
+Resampling results across tuning parameters:
+
+  size  decay  Accuracy   Kappa    
+  1     0e+00  0.9805866  0.9575230
+  1     1e-04  0.9820012  0.9610373
+  1     1e-01  0.9553895  0.9021244
+  3     0e+00  0.9845725  0.9665263
+  3     1e-04  0.9822559  0.9615537
+  3     1e-01  0.9628459  0.9186841
+  5     0e+00  0.9832875  0.9636761
+  5     1e-04  0.9823854  0.9618194
+  5     1e-01  0.9633603  0.9197440
+
+Accuracy was used to select the optimal model using the largest value.
+The final values used for the model were size = 3 and decay = 0.</code></pre>
+<ul>
+<li>Predictive Accuracy</li>
+</ul>
+<div class="sourceCode" id="cb433"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb433-1"><a href="06-fraud_analytics.html#cb433-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb433-2"><a href="06-fraud_analytics.html#cb433-2" aria-hidden="true" tabindex="-1"></a>pred3 <span class="ot">=</span> <span class="fu">predict</span>(nnet_fraud, <span class="at">newdata =</span> d_test1)</span>
+<span id="cb433-3"><a href="06-fraud_analytics.html#cb433-3" aria-hidden="true" tabindex="-1"></a><span class="fu">confusionMatrix</span>(pred3, d_test1<span class="sc">$</span>isFraud)</span></code></pre></div>
+<pre><code>Confusion Matrix and Statistics
+
+          Reference
+Prediction    0    1
+         0 1060    9
+         1    7  591
+                                          
+               Accuracy : 0.9904          
+                 95% CI : (0.9845, 0.9945)
+    No Information Rate : 0.6401          
+    P-Value [Acc &gt; NIR] : &lt;2e-16          
+                                          
+                  Kappa : 0.9792          
+                                          
+ Mcnemar&#39;s Test P-Value : 0.8026          
+                                          
+            Sensitivity : 0.9934          
+            Specificity : 0.9850          
+         Pos Pred Value : 0.9916          
+         Neg Pred Value : 0.9883          
+             Prevalence : 0.6401          
+         Detection Rate : 0.6359          
+   Detection Prevalence : 0.6413          
+      Balanced Accuracy : 0.9892          
+                                          
+       &#39;Positive&#39; Class : 0               
+                                          </code></pre>
+
+</div>
+</div>
+</div>
+<h3>References<a href="07-references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="refs" class="references csl-bib-body hanging-indent" line-spacing="2">
+<div id="ref-AlHashedi2021" class="csl-entry">
+Al-Hashedi, K. G., &amp; Magalingam, P. (2021). Financial fraud detection applying data mining techniques: A comprehensive review from 2009 to 2019. <em>Computer Science Review</em>, <em>40</em>, 100402. https://doi.org/<a href="https://doi.org/10.1016/j.cosrev.2021.100402">https://doi.org/10.1016/j.cosrev.2021.100402</a>
+</div>
+<div id="ref-Ali2022" class="csl-entry">
+Ali, A., Abd Razak, S., Othman, S. H., Eisa, T. A. E., Al-Dhaqm, A., Nasser, M., … Saif, A. (2022). Financial fraud detection based on machine learning: A systematic literature review. <em>Applied Sciences</em>, <em>12</em>(19). <a href="https://doi.org/10.3390/app12199637">https://doi.org/10.3390/app12199637</a>
+</div>
+<div id="ref-Ashtiani2021" class="csl-entry">
+Ashtiani, M. N., &amp; Raahemi, B. (2021). Intelligent fraud detection in financial statements using machine learning and data mining: A systematic literature review. <em>IEEE Access</em>, <em>10</em>, 72504–72525.
+</div>
+<div id="ref-BinSulaiman2022" class="csl-entry">
+Bin Sulaiman, R., Schetinin, V., &amp; Sant, P. (2022). Review of machine learning approach on credit card fraud detection. <em>Human-Centric Intelligent Systems</em>, 1–14.
+</div>
+<div id="ref-LeBorgne2022" class="csl-entry">
+Le Borgne, Y.-A., Siblini, W., Lebichot, B., &amp; Bontempi, G. (2022). <em>Reproducible machine learning for credit card fraud detection - practical handbook</em>. Universit<span>é</span> Libre de Bruxelles. Retrieved from <a href="https://fraud-detection-handbook.github.io/fraud-detection-handbook/Foreword.html">https://fraud-detection-handbook.github.io/fraud-detection-handbook/Foreword.html</a>
+</div>
+<div id="ref-Sadgali2019" class="csl-entry">
+Sadgali, I., Sael, N., &amp; Benabbou, F. (2019). Performance of machine learning techniques in the detection of financial frauds. <em>Procedia Computer Science</em>, <em>148</em>, 45–54.
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="04-Part_2.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="05-method2.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

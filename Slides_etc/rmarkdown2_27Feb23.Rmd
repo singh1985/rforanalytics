@@ -1,0 +1,118 @@
+---
+title: "R Graphs"
+author: "Abhay Singh"
+date: "`r Sys.Date()`"
+output:
+  bookdown::word_document2: default
+  html_document: default
+  word_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, comment="#")
+```
+
+# Graphs in R using ggplot2
+
+## Scatter plot
+
+```{r}
+x=rnorm(100)
+y=rnorm(100)
+plot(x,y)
+```
+
+- Scatter plot using ggplot2
+
+```{r}
+library(ggplot2)
+qplot(x,y)
+```
+
+- gdp data
+
+```{r,fig.width=10,fig.height=4}
+load("GDP_l.RData")
+head(GDP_l)
+unique(GDP_l$Country)
+p1=ggplot(data=GDP_l,aes(Year,GDP,color=Country,group=Country))
+p2=p1+geom_line()
+p3=p2+labs(title="GDP Per Capita for Countries",x="Yearly",y="GDP Per Capita")
+p3+theme_minimal()+theme(legend.position = "top")
+```
+
+- Bar chart
+
+```{r}
+p1=ggplot(GDP_l,aes(Country,GDP,fill=Year))
+p1+geom_col()
+```
+
+- Import the csv
+
+```{r}
+data1=read.csv("data_fin.csv")
+data_plot=data1[,c(1:6)]
+head(data_plot)
+data_plot$Date=as.Date(data_plot$Date,format="%d/%m/%Y")
+head(data_plot)
+library(tidyr)
+data_plot_long=pivot_longer(data_plot,-Date)
+head(data_plot_long)
+```
+
+- Line chart
+
+```{r}
+p1=ggplot(data_plot_long,aes(Date,log(value),color=name))
+p1+geom_line()
+```
+
+- Faceting
+
+```{r}
+p1=ggplot(data_plot_long,aes(Date,value,color=name))
+p2=p1+geom_line()
+p2+facet_grid(name~.,scale="free")
+```
+
+- Box plot
+
+
+```{r}
+p1=ggplot(data_plot_long,aes(name,log(value),fill=name))
+p2=p1+geom_boxplot()+labs(x="Stocks",y="Log of Prices",title = "Box Plot of log of prices")
+p2+theme(axis.title.x =  element_text(size=20,face="bold"),legend.position = "none")
+ggsave(filename="plot_box.jpg",plot = p2)
+```
+
+
+## Linear Regression
+
+$$y\approx \alpha +\beta x +\varepsilon $$
+
+```{r}
+head(data1)
+reg1=lm(AXP~DJI+MMM,data=data1)
+reg1
+summary(reg1)
+```
+
+
+
+```{r}
+library(flextable)
+as_flextable(reg1)
+```
+
+
+
+- Visualise the regression
+
+```{r,fig.cap="Linear Regression Fit"}
+p1=ggplot(data1,aes(DJI,AXP))
+p1+geom_point(color="tomato")+geom_smooth(method="lm")
+#colors()
+```
+
+

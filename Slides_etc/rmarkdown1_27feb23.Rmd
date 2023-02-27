@@ -1,0 +1,113 @@
+---
+title: "R workshop Session-1"
+author: "Abhay Singh"
+date: "`r Sys.Date()`"
+output:
+  word_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,comment="#")
+
+```
+
+
+# R Workshop Part-1
+
+## Import CSV File
+
+- Import CSV
+
+```{r}
+#import csv
+data1=read.csv(file="data_fin.csv")
+#look at the structure
+str(data1)
+date1=data1$Date
+dji=data1$DJI
+
+
+
+```
+
+- Date type
+
+```{r}
+date2=as.Date(date1,format="%d/%m/%Y")
+date2[1:5]
+```
+```{r,echo=FALSE}
+library(psych)
+dji_stat=describe(dji)
+t(dji_stat)
+
+```
+
+- Desc stats with stat.desc
+
+```{r}
+data_dummy=data.frame("Date"=date2,"DJIA"=dji,"ATT"=data1$ATT)
+library(pastecs)
+stat1=stat.desc(data_dummy,norm=TRUE)
+library(pander)
+pander(stat1)
+```
+
+
+## Subsetting
+
+
+- Extract columns by their number
+
+```{r}
+data_sub1=data1[,c(1,5,10)]
+head(data_sub1)
+```
+
+- Extract all data where ATT>25
+
+```{r}
+data_sub2=data_sub1[data_sub1$ATT>25,]
+head(data_sub2)
+```
+
+
+```{r}
+data_sub3=data_sub1[data_sub1$ATT>25 & data_sub1$ATT<40,]
+head(data_sub3)
+```
+
+- Extract data from 2002 to 2006
+
+```{r}
+idx1=as.Date("2001-12-31")
+idx2=as.Date("2007-01-01")
+data_sub1$Date=as.Date(data_sub1$Date,format="%d/%m/%Y")
+head(data_sub1)
+#extract
+
+data_sub3=data_sub1[data_sub1$Date>idx1 & data_sub1$Date<idx2,]
+head(data_sub3)
+```
+
+
+### Lists data structure
+
+```{r}
+#factor data
+fac1=c("A","B","O","AB")
+fac1=factor(fac1)
+
+#matrix
+
+num1=c(1:9)
+
+mat1=matrix(num1,nrow=3,byrow=T)
+mat1
+list1=list(fac1,mat1,data_sub3)
+
+typeof(list1[[1]])
+list1[[1]][[1]]
+```
+
